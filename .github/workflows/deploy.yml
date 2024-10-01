@@ -25,8 +25,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: If repo is docs-prod replace text website.wopee.io to wopee.io and remove robots.txt
-        if: github.repository == 'autonomous-testing/website-prod'
+      - name: If repo is docs-prod replace text docs.dev.wopee.io to docs.wopee.io and remove robots.txt
+        if: github.repository == 'autonomous-testing/docs-prod'
         run: |
           sed -i 's/newdocs.dev.wopee.io/newdocs.wopee.io/g' ./CNAME
           rm -rf ./docs/robots.txt
