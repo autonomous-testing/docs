@@ -1,0 +1,17 @@
+name: Test build website
+
+on:
+  pull_request:
+    branches:
+      - main
+    # Review gh actions docs if you want to further define triggers, paths, etc
+    # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on
+
+jobs:
+  test-build:
+    name: Test build website
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Test build website
+        run: docker run --rm -v ${PWD}:/docs -u $(id -u):$(id -g) squidfunk/mkdocs-material build
