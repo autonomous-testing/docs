@@ -6,8 +6,8 @@ title: Overview
 
 There are 2 main options to start with Wopee.io and Cypress visual testing:
 
-1. Clone the [Cypress Integration Template Project](/integrations/cypress/02-template-project).
-2. Install the [Cypress Plugin](/integrations/cypress/03-install-plugin) into your existing Cypress project.
+1. Clone the [Cypress Integration Template Project](/cypress/02-template-project).
+2. Install the [Cypress Plugin](/cypress/03-install-plugin) into your existing Cypress project.
 
 ## Wopee.io + Cypress
 

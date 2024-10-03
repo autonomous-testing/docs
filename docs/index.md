@@ -1,5 +1,5 @@
 ---
-title: Welcome
+title: Autonomous testing plarform
 ---
 
 # Welcome to Wopee.io
@@ -41,8 +41,8 @@ Unlike traditional test automation tools, Wopee.io does not require any preparat
 
 ## Start with bot testing : Step by step
 
-- See detailed [📙 Getting Started with bot testing](getting-started.md) section
-- Understand [📖 Vocabulary](vocabulary.md) of 🐒
+- See detailed [📙 Getting Started with bot testing](bot.md) section
+- Understand [📖 Vocabulary](glossary.md) of 🐒
 
 ## Wopee.io Integrations
 
@@ -50,10 +50,10 @@ Getting started guides for your favorite testing framework:
 
 <div class="grid cards" markdown>
 
-- [Playwright](/integrations/playwright/01-getting-started)
-- [Cypress](/integrations/cypress/01-getting-started)
-- [Robot Framework](/integrations/robot-framework/01-getting-started)
-- [WebdriverIO](/integrations/WebdriverIO/01-getting-started)
+- [Playwright](/playwright)
+- [Cypress](/cypress/01-getting-started)
+- [Robot Framework](/robot-framework/01-getting-started)
+- [WebdriverIO](/webdriverio)
 
 </div>
 

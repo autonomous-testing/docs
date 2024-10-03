@@ -2,7 +2,7 @@
 title: Template project
 ---
 
-The following steps will guide you through the setup of the template project. If you want a faster alternative, you can use the [Makefile](/integrations/robot-framework/03-setup-with-make) to automate the setup process. However, following the instructions below will give you a better understanding of the project structure.
+The following steps will guide you through the setup of the template project. If you want a faster alternative, you can use the [Makefile](/robot-framework/03-setup-with-make) to automate the setup process. However, following the instructions below will give you a better understanding of the project structure.
 
 ## Prerequisites
 
@@ -50,7 +50,7 @@ Clone repository using VS Code palette option (Ctrl + Shift + P): `https://githu
 
 !!! tip
 
-    You can save your time by using Makefile to automate the setup process and run tests easier. Check out our [Set up with Makefile](/integrations/robot-framework/03-setup-with-make) documentation for more details.
+    You can save your time by using Makefile to automate the setup process and run tests easier. Check out our [Set up with Makefile](/robot-framework/03-setup-with-make) documentation for more details.
 
 ## Create and activate virtual environment
 

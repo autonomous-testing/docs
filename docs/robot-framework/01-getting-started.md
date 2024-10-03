@@ -17,7 +17,7 @@ The listener approach is simpler to set up, while the library approach offers mo
 
 <div class="grid cards" markdown>
 
-- [Getting Started >> ](/integrations/robot-framework/02-manual-setup)
+- [Getting Started >> ](/robot-framework/02-manual-setup)
 
 </div>
 

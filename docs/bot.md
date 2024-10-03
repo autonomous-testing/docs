@@ -1,4 +1,4 @@
-# 📙 Getting Started
+# 🤖 Self-driving bot
 
 ## 1. Login to [Wopee Commander](https://cmd.wopee.io)
 
@@ -33,7 +33,7 @@ This button can be disabled when some tests are curently running.
 
 ## 5. Approve current state
 
-You can **👍 Approve** or **👎 Reject** current state of the tested application if [Test Step Status](vocabulary.md#test-step-status) is:
+You can **👍 Approve** or **👎 Reject** current state of the tested application if [Test Step Status](glossary.md#test-step-status) is:
 
 - `New` - no previous state was approved (for this test step)
 - `Unresolved` - previous state was already approved but current state is different (for this test step)

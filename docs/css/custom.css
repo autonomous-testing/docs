@@ -1,0 +1,4 @@
+/* Hide the ToC for pages with the 'no-toc' class */
+.no-toc .md-nav--secondary {
+    display: none;
+}
