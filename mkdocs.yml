@@ -7,8 +7,8 @@ nav:
           - Getting started: cypress/01-getting-started.md
           - Template project: cypress/02-template-project.md
           - Install plugin: cypress/03-install-plugin.md
-      - ≫ Playwright: playwright.md
-      - ≫ WebdriverIO: webdriverio.md
+      - ≫ Playwright: playwright-visual-testing.md
+      - ≫ WebdriverIO: webdriverio-visual-testing.md
       - ≫ Robot Framework: 
           - Getting started: robot-framework/01-getting-started.md
           - Manual setup: robot-framework/02-manual-setup.md
