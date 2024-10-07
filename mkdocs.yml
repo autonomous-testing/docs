@@ -16,6 +16,8 @@ nav:
           - Examples: robot-framework/04-some-more-examples.md
   - Other docs:
       - 📖 Glossary: glossary.md
+
+
 theme:
   name: material
   language: en
@@ -69,11 +71,19 @@ extra_css:
 extra_javascript:
   - js/custom.js
 
+plugins:
+  - redirects:
+      redirect_maps:
+        'integrations/cypress/01-getting-started.md': 'cypress/01-getting-started.md'
+        'integrations/playwright/01-getting-started.md': 'playwright.md'
+        'integrations/webdriverio/01-getting-started.md': 'webdriverio.md'
+        'integrations/robot-framework/01-getting-started.md': 'robot-framework/01-getting-started.md'
+
 markdown_extensions:
   - attr_list
   - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
   - pymdownx.superfences
   - md_in_html

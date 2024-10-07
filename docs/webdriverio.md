@@ -1,4 +1,4 @@
-# ≫ WebdriverIO
+# WebdriverIO
 
 ## Getting started
 
