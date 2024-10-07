@@ -76,16 +76,16 @@ plugins:
       redirect_maps:
         'integrations/cypress/01-getting-started.md': 'cypress/01-getting-started.md'
         'cypress.md': 'cypress/01-getting-started.md'
-        'cy': 'cypress/01-getting-started.md'
+        'cy.md': 'cypress/01-getting-started.md'
         'integrations/playwright/01-getting-started.md': 'playwright-visual-testing.md'
         'playwright.md': 'playwright-visual-testing.md'
-        'pw': 'playwright-visual-testing.md'
+        'pw.md': 'playwright-visual-testing.md'
         'integrations/webdriverio/01-getting-started.md': 'webdriverio-visual-testing.md'
         'webdriverio.md': 'webdriverio-visual-testing.md'
-        'wdio': 'webdriverio-visual-testing.md'
+        'wdio.md': 'webdriverio-visual-testing.md'
         'integrations/robot-framework/01-getting-started.md': 'robot-framework/01-getting-started.md'
         'robot-framework.md': 'robot-framework/01-getting-started.md'
-        'rf': 'robot-framework/01-getting-started.md'
+        'rf.md': 'robot-framework/01-getting-started.md'
 
 markdown_extensions:
   - attr_list
