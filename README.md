@@ -11,3 +11,11 @@ Images used in documentation are
 
 - stored in `/docs/img` folder,
 - foldered by name of markdown file where image is used.
+
+## Local development
+
+To preview the documentation locally, you can use the following command:
+
+```bash
+make serve
+```
