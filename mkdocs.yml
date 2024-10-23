@@ -9,15 +9,17 @@ nav:
           - Getting started: cypress/01-getting-started.md
           - Template project: cypress/02-template-project.md
           - Install plugin: cypress/03-install-plugin.md
-      - ≫ Playwright: playwright.md
-      - ≫ WebdriverIO: webdriverio.md
-      - ≫ Robot Framework:
+      - ≫ Playwright: playwright-visual-testing.md
+      - ≫ WebdriverIO: webdriverio-visual-testing.md
+      - ≫ Robot Framework: 
           - Getting started: robot-framework/01-getting-started.md
           - Manual setup: robot-framework/02-manual-setup.md
           - Setup with make: robot-framework/03-setup-with-make.md
           - Examples: robot-framework/04-some-more-examples.md
   - Other docs:
       - 📖 Glossary: glossary.md
+
+
 theme:
   name: material
   language: en
@@ -71,11 +73,27 @@ extra_css:
 extra_javascript:
   - js/custom.js
 
+plugins:
+  - redirects:
+      redirect_maps:
+        'integrations/cypress/01-getting-started.md': 'cypress/01-getting-started.md'
+        'cypress.md': 'cypress/01-getting-started.md'
+        'cy.md': 'cypress/01-getting-started.md'
+        'integrations/playwright/01-getting-started.md': 'playwright-visual-testing.md'
+        'playwright.md': 'playwright-visual-testing.md'
+        'pw.md': 'playwright-visual-testing.md'
+        'integrations/webdriverio/01-getting-started.md': 'webdriverio-visual-testing.md'
+        'webdriverio.md': 'webdriverio-visual-testing.md'
+        'wdio.md': 'webdriverio-visual-testing.md'
+        'integrations/robot-framework/01-getting-started.md': 'robot-framework/01-getting-started.md'
+        'robot-framework.md': 'robot-framework/01-getting-started.md'
+        'rf.md': 'robot-framework/01-getting-started.md'
+
 markdown_extensions:
   - attr_list
   - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
   - pymdownx.superfences
   - md_in_html

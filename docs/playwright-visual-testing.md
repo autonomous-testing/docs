@@ -25,7 +25,7 @@ Key features of Playwright include:
 - Navigate to [cmd.Wopee.io](https://cmd.wopee.io){: target="\_blank"} and click **`NEW INTEGRATION`** button **`Playwright`**.
 ![New project button](/img/new-project.png)
 
-- Fill in the project name, url and click **`CREATE`**.
+- Fill in the project name and click **`CREATE`**.
 
 - **Confirm an invitation** to GitHub private repository with sample tests. (Which you will recieve via email after project creation.)
 
@@ -71,7 +71,7 @@ WOPEE_API_KEY=your-api-key
       
       ![New project button](/img/new-project.png)
 
-    - Fill in the project name, url and click **`CREATE`**.
+    - Fill in the project name and click **`CREATE`**.
 
     **Find your project UUID and API key in the `PROJECT SETTINGS` / `API Keys` section.**
     
@@ -125,9 +125,9 @@ WOPEE_API_KEY=your-api-key
   ```
 
 ??? info "`wopee.startSuite()` function explained"
-    The `wopee.startSuite()` command initializes a session with the Wopee.io platform and allows you to configure the Wopee object.
+    The `wopee.startSuite()` command initializes a session with the Wopee.io platform.
 
-    This function must be called before any calls to `wopee.track...()`. Therefore, it is recommended to place it in the beforeAll hook or equivalent for your test suite.
+    This function might be called before any calls to `wopee.track...()`. Therefore, it is recommended to place it in the beforeAll hook or equivalent for your test suite.
 
 **Test visually**
 
