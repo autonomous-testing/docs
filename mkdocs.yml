@@ -1,7 +1,9 @@
 site_name: Wopee.io
 nav:
   - 🚀 Autonomous Testing: index.md
-  - 🤖 Self-driving Bot: bot.md
+  - Self-driving Bot...:
+      - 🤖 Getting started: bot.md
+      - 🛠️ Before method: before-method.md
   - Visual Testing with...:
       - ≫ Cypress:
           - Getting started: cypress/01-getting-started.md
@@ -9,7 +11,7 @@ nav:
           - Install plugin: cypress/03-install-plugin.md
       - ≫ Playwright: playwright.md
       - ≫ WebdriverIO: webdriverio.md
-      - ≫ Robot Framework: 
+      - ≫ Robot Framework:
           - Getting started: robot-framework/01-getting-started.md
           - Manual setup: robot-framework/02-manual-setup.md
           - Setup with make: robot-framework/03-setup-with-make.md
@@ -22,7 +24,7 @@ theme:
   palette:
     # Palette toggle for light mode
     - scheme: default
-      media: '(prefers-color-scheme: light)'
+      media: "(prefers-color-scheme: light)"
       primary: amber
       accent: deep purple
       toggle:
@@ -31,7 +33,7 @@ theme:
 
     # Palette toggle for dark mode
     - scheme: slate
-      media: '(prefers-color-scheme: dark)'
+      media: "(prefers-color-scheme: dark)"
       primary: amber
       accent: deep purple
       toggle:
@@ -65,7 +67,7 @@ extra:
 
 extra_css:
   - css/custom.css
-  
+
 extra_javascript:
   - js/custom.js
 
