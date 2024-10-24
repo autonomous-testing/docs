@@ -12,5 +12,12 @@ Images used in documentation are
 - stored in `/docs/img` folder,
 - foldered by name of markdown file where image is used.
 
-Remeber to add **redirects to original pages** into `mkdocs.yml`  when changing pages structure.
+Remeber to add **redirects to original pages** into `mkdocs.yml` when changing pages structure.
 
+## Local development
+
+To preview the documentation locally, you can use the following command:
+
+```bash
+make serve
+```

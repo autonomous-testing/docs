@@ -23,17 +23,16 @@ Key features of Playwright include:
 ### 1. Get Sample project
 
 - Navigate to [cmd.Wopee.io](https://cmd.wopee.io){: target="\_blank"} and click **`NEW INTEGRATION`** button **`Playwright`**.
-![New project button](/img/new-project.png)
+  ![New project button](img/new-project.png)
 
 - Fill in the project name and click **`CREATE`**.
 
 - **Confirm an invitation** to GitHub private repository with sample tests. (Which you will recieve via email after project creation.)
 
-
 ### 2. Run Sample project
 
 - Run those sample tests using `GitHub Actions` directly from the GitHub page of the sample repository.
- 
+
 !!! info "Detailed instructions are placed in README.md file inside the sample repository."
 
 ---
@@ -51,6 +50,7 @@ To start visual testing with **your existing Playwright tests**, leverage the be
 **Installation**
 
 - Install `@wopee-io/wopee.pw` npm package into your existing Playwright project:
+
 ```shell
 npm i -D @wopee-io/wopee.pw
 ```
@@ -58,6 +58,7 @@ npm i -D @wopee-io/wopee.pw
 **Environment setup**
 
 - Set following environment variables:
+
 ```shell
 WOPEE_PROJECT_UUID=your-project-uuid
 WOPEE_API_KEY=your-api-key
@@ -68,14 +69,14 @@ WOPEE_API_KEY=your-api-key
     **Create a new Playwright project**
 
     - Navigate to [cmd.Wopee.io](https://cmd.wopee.io){: target="\_blank"} and click **`NEW INTEGRATION`** button **`Playwright`**.
-      
-      ![New project button](/img/new-project.png)
+
+      ![New project button](img/new-project.png)
 
     - Fill in the project name and click **`CREATE`**.
 
     **Find your project UUID and API key in the `PROJECT SETTINGS` / `API Keys` section.**
-    
-    ![Project UUID](/img/project-settings.gif)
+
+    ![Project UUID](img/project-settings.gif)
 
 ??? info "How to set env variables?"
 
@@ -109,23 +110,21 @@ WOPEE_API_KEY=your-api-key
 
     Full list of `.env` file parameters could be found in our [playwright-template](https://github.com/Wopee-io/playwright-template){: target="\_blank"} / [.env.example](https://github.com/Wopee-io/playwright-template/blob/main/.env.example){: target="\_blank"}.
 
-
-
 ### 2. Modify your tests
 
 **Start session**
 
 - Add `wopee.startSuite()` into beforeAll or equivalent hook.
   ```typescript
-  let wopee: Wopee
+  let wopee: Wopee;
   test.beforeAll(async () => {
-      wopee = new Wopee()
-      await wopee.startSuite('Minimal example')
-  })
+    wopee = new Wopee();
+    await wopee.startSuite("Minimal example");
+  });
   ```
 
 ??? info "`wopee.startSuite()` function explained"
-    The `wopee.startSuite()` command initializes a session with the Wopee.io platform.
+The `wopee.startSuite()` command initializes a session with the Wopee.io platform.
 
     This function might be called before any calls to `wopee.track...()`. Therefore, it is recommended to place it in the beforeAll hook or equivalent for your test suite.
 
@@ -133,11 +132,11 @@ WOPEE_API_KEY=your-api-key
 
 - Add `wopee.track...()` into individual tests wherever you need visual assertion.
   ```typescript
-  await wopee.trackFullPage({stepName: 'exmplePageComparison'});
+  await wopee.trackFullPage({ stepName: "exmplePageComparison" });
   ```
 
 ??? info "`wopee.tracktrackFullPage()`, `wopee.trackElement()` and `wopee.trackImage()` functions explained"
-    For automatic visual testing assertion, you can use one of the following functions. Which can capture and test *whole page*, *individual element* or any *image* you can provide.
+For automatic visual testing assertion, you can use one of the following functions. Which can capture and test _whole page_, _individual element_ or any _image_ you can provide.
 
     The `wopee.track...()` functions are used to capture screenshots and compare them with the baseline images stored in the Wopee.io platform.
 
@@ -153,23 +152,19 @@ WOPEE_API_KEY=your-api-key
     await wopee.trackImage({ imageBase64: imageBase64,, stepName: 'exampleImageComparison'});
     ```
 
-
 **End scenario**
 
 - Add `wopee.stopScenario()` into afterEach or equivalent hook.
   ```typescript
   test.afterEach(async () => {
-      await wopee.stopScenario()
-  })
+    await wopee.stopScenario();
+  });
   ```
 
 ??? info "`wopee.stopScenario()` function explained"
-    The `wopee.stopScenario()` command finalizes the current scenario which helps to keep your tests organized and separated. Plus you can see if your tests are currently running or not in the Wopee.io platform itself.
+The `wopee.stopScenario()` command finalizes the current scenario which helps to keep your tests organized and separated. Plus you can see if your tests are currently running or not in the Wopee.io platform itself.
 
     This function must be called after all calls to `wopee.track...()` from the individual test in the afterEach hook or equivalent for your test suite.
-
-
-
 
 ### 3. Run tests as usual
 
@@ -179,38 +174,37 @@ The only condition is that Wopee.io platform is accessible from the environment 
 
 ## 📚 Examples
 
-
 ### Minimal test
 
 To run sample test create a new file `tests/mini.spec.ts` and paste the following code:
 
 ```typescript
-import { Wopee } from '@wopee-io/wopee.pw'
-import { test } from '@playwright/test'
+import { Wopee } from "@wopee-io/wopee.pw";
+import { test } from "@playwright/test";
 
-test.describe('test', () => {
-  let wopee: Wopee
+test.describe("test", () => {
+  let wopee: Wopee;
   test.beforeAll(async () => {
-    wopee = new Wopee()
-    await wopee.startSuite('Minimal example')
-  })
+    wopee = new Wopee();
+    await wopee.startSuite("Minimal example");
+  });
 
   test.afterEach(async () => {
-    await wopee.stopScenario()
-  })
+    await wopee.stopScenario();
+  });
 
-  test('test', async ({ page }) => {
-    await page.goto('https://playwright.dev/')
+  test("test", async ({ page }) => {
+    await page.goto("https://playwright.dev/");
 
-    const screenshot = await page.screenshot()
-    const imageBase64 = screenshot.toString('base64')
+    const screenshot = await page.screenshot();
+    const imageBase64 = screenshot.toString("base64");
     await wopee.trackImage({
-      stepName: 'image',
-      scenarioName: 'test',
+      stepName: "image",
+      scenarioName: "test",
       imageBase64: imageBase64,
-    })
-  })
-})
+    });
+  });
+});
 ```
 
 ### Complex test
@@ -218,91 +212,95 @@ test.describe('test', () => {
 To run sample test create a new file `tests/wopee.spec.ts` and paste the following code:
 
 ```typescript
-import { Wopee } from '@wopee-io/wopee.pw'
-import { test } from '@playwright/test'
+import { Wopee } from "@wopee-io/wopee.pw";
+import { test } from "@playwright/test";
 
-test.describe('test', () => {
-  let wopee: Wopee
+test.describe("test", () => {
+  let wopee: Wopee;
   test.beforeAll(async () => {
-    wopee = new Wopee()
+    wopee = new Wopee();
 
-    const now = new Date()
-    const date = `${now.getDate().toString().padStart(2, '0')}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getFullYear()}`
-    await wopee.startSuite(`test-${date}`)
-  })
+    const now = new Date();
+    const date = `${now.getDate().toString().padStart(2, "0")}-${(
+      now.getMonth() + 1
+    )
+      .toString()
+      .padStart(2, "0")}-${now.getFullYear()}`;
+    await wopee.startSuite(`test-${date}`);
+  });
 
   test.afterEach(async () => {
-    await wopee.stopScenario()
-  })
+    await wopee.stopScenario();
+  });
 
-  test('trackImage', async ({ page }) => {
-    await page.goto('https://playwright.dev/')
+  test("trackImage", async ({ page }) => {
+    await page.goto("https://playwright.dev/");
 
-    const screenshot = await page.screenshot({ type: 'png' })
-    const imageBase64 = screenshot.toString('base64')
+    const screenshot = await page.screenshot({ type: "png" });
+    const imageBase64 = screenshot.toString("base64");
 
     await wopee.trackImage({
-      comment: 'comment',
-      customTags: 'customTags',
+      comment: "comment",
+      customTags: "customTags",
       imageBase64: imageBase64,
       pixelToPixelDiffTolerance: 1.0,
-      scenarioName: 'trackImageWithoutStartScenario',
-      stepName: 'image-trackImage',
-      viewport: 'viewport',
-    })
-  })
+      scenarioName: "trackImageWithoutStartScenario",
+      stepName: "image-trackImage",
+      viewport: "viewport",
+    });
+  });
 
-  test('trackFullPageScreenshot', async ({ page }) => {
-    await page.goto('https://playwright.dev/')
+  test("trackFullPageScreenshot", async ({ page }) => {
+    await page.goto("https://playwright.dev/");
 
     await wopee.trackFullPage({
-      comment: 'comment',
-      customTags: 'customTags',
+      comment: "comment",
+      customTags: "customTags",
       page: page,
       pixelToPixelDiffTolerance: 1.0,
-      scenarioName: 'trackFullPageScreenshotWithoutStartScenario',
-      stepName: 'image-trackFullPageScreenshot',
-      viewport: 'viewport',
-    })
-  })
+      scenarioName: "trackFullPageScreenshotWithoutStartScenario",
+      stepName: "image-trackFullPageScreenshot",
+      viewport: "viewport",
+    });
+  });
 
-  test('trackElement', async ({ page }) => {
-    await page.goto('https://playwright.dev/')
+  test("trackElement", async ({ page }) => {
+    await page.goto("https://playwright.dev/");
 
-    const element = page.locator('//a[@class="getStarted_Sjon"]')
-
-    await wopee.trackElement({
-      comment: 'comment',
-      customTags: 'customTags',
-      locator: element,
-      pixelToPixelDiffTolerance: 1.0,
-      scenarioName: 'trackElementWithoutStartScenario',
-      stepName: 'element',
-      viewport: 'viewport',
-    })
-  })
-
-  test('trackViewport', async ({ page }) => {
-    await page.goto('https://playwright.dev/')
-
-    const element = page.locator('//a[@class="getStarted_Sjon"]')
+    const element = page.locator('//a[@class="getStarted_Sjon"]');
 
     await wopee.trackElement({
-      comment: 'comment',
-      customTags: 'customTags',
+      comment: "comment",
+      customTags: "customTags",
       locator: element,
       pixelToPixelDiffTolerance: 1.0,
-      scenarioName: 'trackViewportWithoutStartScenario',
-      stepName: 'viewport',
-      viewport: 'viewport',
-    })
-  })
-})
+      scenarioName: "trackElementWithoutStartScenario",
+      stepName: "element",
+      viewport: "viewport",
+    });
+  });
+
+  test("trackViewport", async ({ page }) => {
+    await page.goto("https://playwright.dev/");
+
+    const element = page.locator('//a[@class="getStarted_Sjon"]');
+
+    await wopee.trackElement({
+      comment: "comment",
+      customTags: "customTags",
+      locator: element,
+      pixelToPixelDiffTolerance: 1.0,
+      scenarioName: "trackViewportWithoutStartScenario",
+      stepName: "viewport",
+      viewport: "viewport",
+    });
+  });
+});
 ```
 
 ## 🏆 Benefits
 
-...  of Integrating Playwright with Wopee.io
+... of Integrating Playwright with Wopee.io
 
 **Basic Features:**
 
@@ -326,9 +324,9 @@ Integrating Playwright with Wopee.io offers significant benefits for modern web 
 !!! tip "Playwright Visual Regression Testing with Wopee.io"
 
     Enhance your Playwright-based testing with Wopee.io's visual regression testing!
-    
+
     Integrate seamlessly to catch visual bugs early and ensure your web app works flawlessly across versions. Set up in 1 minute, and start automating your regression tests to achieve faster feedback and consistent results.
-    
+
     Start your Wopee.io for Playwright integration – [Free Trial](https://cmd.wopee.io), and streamline your visual regression testing with minimal maintenance.
-    
+
     [Start Free Trial for Playwright](https://cmd.wopee.io)

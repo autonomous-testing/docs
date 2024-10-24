@@ -50,10 +50,10 @@ Getting started guides for your favorite testing framework:
 
 <div class="grid cards" markdown>
 
-- [Playwright](/playwright)
-- [Cypress](/cypress/01-getting-started)
-- [Robot Framework](/robot-framework/01-getting-started)
-- [WebdriverIO](/webdriverio)
+- [Playwright](playwright-visual-testing.md)
+- [Cypress](cypress/01-getting-started.md)
+- [Robot Framework](robot-framework/01-getting-started.md)
+- [WebdriverIO](webdriverio-visual-testing.md)
 
 </div>
 

@@ -1,7 +1,9 @@
 site_name: Wopee.io
 nav:
   - 🚀 Autonomous Testing: index.md
-  - 🤖 Self-driving Bot: bot.md
+  - Self-driving Bot...:
+      - 🤖 Getting started: bot.md
+      - 🛠️ Before method: before-method.md
   - Visual Testing with...:
       - ≫ Cypress:
           - Getting started: cypress/01-getting-started.md
@@ -9,7 +11,7 @@ nav:
           - Install plugin: cypress/03-install-plugin.md
       - ≫ Playwright: playwright-visual-testing.md
       - ≫ WebdriverIO: webdriverio-visual-testing.md
-      - ≫ Robot Framework: 
+      - ≫ Robot Framework:
           - Getting started: robot-framework/01-getting-started.md
           - Manual setup: robot-framework/02-manual-setup.md
           - Setup with make: robot-framework/03-setup-with-make.md
@@ -17,14 +19,13 @@ nav:
   - Other docs:
       - 📖 Glossary: glossary.md
 
-
 theme:
   name: material
   language: en
   palette:
     # Palette toggle for light mode
     - scheme: default
-      media: '(prefers-color-scheme: light)'
+      media: "(prefers-color-scheme: light)"
       primary: amber
       accent: deep purple
       toggle:
@@ -33,7 +34,7 @@ theme:
 
     # Palette toggle for dark mode
     - scheme: slate
-      media: '(prefers-color-scheme: dark)'
+      media: "(prefers-color-scheme: dark)"
       primary: amber
       accent: deep purple
       toggle:
@@ -67,25 +68,25 @@ extra:
 
 extra_css:
   - css/custom.css
-  
+
 extra_javascript:
   - js/custom.js
 
 plugins:
   - redirects:
       redirect_maps:
-        'integrations/cypress/01-getting-started.md': 'cypress/01-getting-started.md'
-        'cypress.md': 'cypress/01-getting-started.md'
-        'cy.md': 'cypress/01-getting-started.md'
-        'integrations/playwright/01-getting-started.md': 'playwright-visual-testing.md'
-        'playwright.md': 'playwright-visual-testing.md'
-        'pw.md': 'playwright-visual-testing.md'
-        'integrations/webdriverio/01-getting-started.md': 'webdriverio-visual-testing.md'
-        'webdriverio.md': 'webdriverio-visual-testing.md'
-        'wdio.md': 'webdriverio-visual-testing.md'
-        'integrations/robot-framework/01-getting-started.md': 'robot-framework/01-getting-started.md'
-        'robot-framework.md': 'robot-framework/01-getting-started.md'
-        'rf.md': 'robot-framework/01-getting-started.md'
+        "integrations/cypress/01-getting-started.md": "cypress/01-getting-started.md"
+        "cypress.md": "cypress/01-getting-started.md"
+        "cy.md": "cypress/01-getting-started.md"
+        "integrations/playwright/01-getting-started.md": "playwright-visual-testing.md"
+        "playwright.md": "playwright-visual-testing.md"
+        "pw.md": "playwright-visual-testing.md"
+        "integrations/webdriverio/01-getting-started.md": "webdriverio-visual-testing.md"
+        "webdriverio.md": "webdriverio-visual-testing.md"
+        "wdio.md": "webdriverio-visual-testing.md"
+        "integrations/robot-framework/01-getting-started.md": "robot-framework/01-getting-started.md"
+        "robot-framework.md": "robot-framework/01-getting-started.md"
+        "rf.md": "robot-framework/01-getting-started.md"
 
 markdown_extensions:
   - attr_list

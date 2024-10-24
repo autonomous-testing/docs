@@ -39,7 +39,7 @@ All parameters are already set in `.env.example` file. You need to set only `WOP
 
     You can find your project UUID and Wopee.io API key in the project settings screen after navigating to project.
 
-    ![Project UUID](/img/project-settings.gif)
+    ![Project UUID](../img/project-settings.gif)
 
 ## Get template project
 
