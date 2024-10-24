@@ -6,7 +6,7 @@ This makes some steps easier to run. You can use the Makefile to run tests with 
 
 ## Prerequisites
 
-Follow initial steps from the [Manual setup](/robot-framework/02-manual-setup) to set up your environment.
+Follow initial steps from the [Manual setup](02-manual-setup.md) to set up your environment.
 There is point in the documentation referring back here. Once you have your environment set up, you can proceed with the following steps.
 
 We prepared a Makefile to automate following steps to demonstrate how to run tests with Robot Framework and Wopee.io.

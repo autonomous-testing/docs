@@ -2,7 +2,7 @@
 title: Template project
 ---
 
-The following steps will guide you through the setup of the template project. If you want a faster alternative, you can use the [Makefile](/robot-framework/03-setup-with-make) to automate the setup process. However, following the instructions below will give you a better understanding of the project structure.
+The following steps will guide you through the setup of the template project. If you want a faster alternative, you can use the [Makefile](03-setup-with-make.md) to automate the setup process. However, following the instructions below will give you a better understanding of the project structure.
 
 ## Prerequisites
 
@@ -40,7 +40,7 @@ All parameters are already set in `.env.example` file. You need to set only `WOP
 
     You can find your project UUID and Wopee.io API key in the project settings screen after navigating to project.
 
-    ![Project UUID](/img/project-settings.gif)
+    ![Project UUID](../img/project-settings.gif)
 
 ## Get template project
 
@@ -50,7 +50,7 @@ Clone repository using VS Code palette option (Ctrl + Shift + P): `https://githu
 
 !!! tip
 
-    You can save your time by using Makefile to automate the setup process and run tests easier. Check out our [Set up with Makefile](/robot-framework/03-setup-with-make) documentation for more details.
+    You can save your time by using Makefile to automate the setup process and run tests easier. Check out our [Set up with Makefile](03-setup-with-make.md) documentation for more details.
 
 ## Create and activate virtual environment
 
