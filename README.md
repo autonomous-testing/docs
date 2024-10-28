@@ -12,5 +12,6 @@ Images used in documentation are
 - stored in `/docs/img` folder,
 - foldered by name of markdown file where image is used.
 
-Remeber to add **redirects to original pages** into `mkdocs.yml`  when changing pages structure.
+Remember to add **redirects to original pages** into `mkdocs.yml` when changing pages structure.
 
+This is just to test the CI/CD pipeline. Won't be merged.
