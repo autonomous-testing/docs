@@ -48,7 +48,7 @@ Full list of `.env` file parameters could be found [here](https://docs.wopee.io)
 
     You can find your project UUID and Wopee.io API key in the project settings screen after navigating to project.
 
-    ![Project UUID](/img/project-settings.gif)
+    ![Project UUID](../img/project-settings.gif)
 
 ### Set up CI/CD
 
@@ -96,8 +96,8 @@ export default defineConfig({
 ```javascript
 // cypress/support/commands.js
 
-import { addWopeeCommands } from '@wopee-io/wopee.cy'
-addWopeeCommands()
+import { addWopeeCommands } from "@wopee-io/wopee.cy";
+addWopeeCommands();
 ```
 
 ## Install dependencies
@@ -116,34 +116,34 @@ To run sample test create a new file `cypress/integration/wopee.spec.js` with th
 /// <reference types="@wopee-io/wopee.cy" />
 
 // const testSuiteName = "cy-wopee-io integration - 1st-run";
-const testSuiteName = 'cy-wopee-io integration - regression'
+const testSuiteName = "cy-wopee-io integration - regression";
 
 describe(testSuiteName, () => {
   before(() => {
-    cy.wopeeStartSuite(testSuiteName)
-  })
+    cy.wopeeStartSuite(testSuiteName);
+  });
 
   beforeEach(() => {
-    cy.wopeeStartScenario(Cypress.currentTest.title)
-  })
+    cy.wopeeStartScenario(Cypress.currentTest.title);
+  });
 
   afterEach(() => {
-    cy.wopeeStopScenario()
-  })
+    cy.wopeeStopScenario();
+  });
 
-  it('Correct login - minimalistic', () => {
-    cy.visit('https://dronjo.wopee.io/')
-    cy.get('#sign_in').click()
+  it("Correct login - minimalistic", () => {
+    cy.visit("https://dronjo.wopee.io/");
+    cy.get("#sign_in").click();
 
-    cy.get('input[name="user"]').type('marcel.veselka@tesena.com')
-    cy.get('input[name="password"]').type('admin')
+    cy.get('input[name="user"]').type("marcel.veselka@tesena.com");
+    cy.get('input[name="password"]').type("admin");
 
-    cy.get('button').contains('sign in').click()
+    cy.get("button").contains("sign in").click();
 
     // Autonomous (low-code) assert: Wopee visual check
-    cy.wopeeTrack({ stepName: 'User is logged in' })
-  })
-})
+    cy.wopeeTrack({ stepName: "User is logged in" });
+  });
+});
 ```
 
 ## Run tests

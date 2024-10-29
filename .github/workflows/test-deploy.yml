@@ -12,6 +12,8 @@ jobs:
     name: Test build website
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       - name: Test build website
         run: docker run --rm -v ${PWD}:/docs -u $(id -u):$(id -g) squidfunk/mkdocs-material build
