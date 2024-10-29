@@ -6,7 +6,7 @@
 2. Click on the `GitHub` or `GitLab` or `Google` login button.
 3. Use your existing [GitHub](https://github.com/signup) or [GitLab](https://gitlab.com/users/sign_up) or [Google](https://accounts.google.com/) account and confirm the access.
 
-![](img/getting-started/2024-08-08-15-10-15-image.png)
+![Login screen](img/getting-started/2024-08-08-15-10-15-image.png)
 
 ## 2. Create a project
 
@@ -14,14 +14,18 @@
 2. Enter the URL of your app.
 3. Confirm by clicking `START ANALYSING`.
 
-![](img/getting-started/2024-08-08-15-15-21-image.png)
+![Create new project](img/getting-started/2024-08-08-15-15-21-image.png)
+
+!!! tip
+
+    To handle login or accept cookies before testing, configure it in `Project Settings` using the [`Before method`](before-method.md).
 
 ## 3. Run tests
 
 1. After finishing the first analysis you`ll be presented with the results - generated test scenarios.
 2. Then just click the `START TESTING` button.
 
-![](img/getting-started/2024-08-08-15-17-58-image.png)
+![Running tests](img/getting-started/2024-08-08-15-17-58-image.png)
 
 This button can be disabled when some tests are curently running.
 
@@ -29,7 +33,7 @@ This button can be disabled when some tests are curently running.
 
 1. Visual difference is highlighted if it was identified comapring current state (on the left) and the baseline - previously approved state (on the right).
 
-![](img/getting-started/2024-08-08-15-23-56-image.png)
+![Comparison screen](img/getting-started/2024-08-08-15-23-56-image.png)
 
 ## 5. Approve current state
 
