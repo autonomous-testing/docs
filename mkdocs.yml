@@ -87,6 +87,7 @@ plugins:
         "integrations/robot-framework/01-getting-started.md": "robot-framework/01-getting-started.md"
         "robot-framework.md": "robot-framework/01-getting-started.md"
         "rf.md": "robot-framework/01-getting-started.md"
+        "getting-started.md": "bot.md"
 
 markdown_extensions:
   - attr_list
