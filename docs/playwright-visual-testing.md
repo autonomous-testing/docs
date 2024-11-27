@@ -22,7 +22,7 @@ Key features of Playwright include:
 
 ### 1. Get Sample project
 
-- Navigate to [cmd.Wopee.io](https://cmd.wopee.io){: target="\_blank"} and click **`NEW INTEGRATION`** button **`Playwright`**.
+- Navigate to [cmd.Wopee.io](https://cmd.wopee.io){: target="\_blank"} and click **`PLAYWRIGHT`** button.
   ![New project button](img/new-project.png)
 
 - Fill in the project name and click **`CREATE`**.
@@ -68,7 +68,7 @@ WOPEE_API_KEY=your-api-key
 
     **Create a new Playwright project**
 
-    - Navigate to [cmd.Wopee.io](https://cmd.wopee.io){: target="\_blank"} and click **`NEW INTEGRATION`** button **`Playwright`**.
+    - Navigate to [cmd.Wopee.io](https://cmd.wopee.io){: target="\_blank"} and click **`PLAYWRIGHT`** button.
 
       ![New project button](img/new-project.png)
 
@@ -132,7 +132,7 @@ The `wopee.startSuite()` command initializes a session with the Wopee.io platfor
 
 - Add `wopee.track...()` into individual tests wherever you need visual assertion.
   ```typescript
-  await wopee.trackFullPage({ stepName: "exmplePageComparison" });
+  await wopee.trackFullPage({ stepName: "examplePageComparison", page });
   ```
 
 ??? info "`wopee.tracktrackFullPage()`, `wopee.trackElement()` and `wopee.trackImage()` functions explained"
@@ -141,7 +141,7 @@ For automatic visual testing assertion, you can use one of the following functio
     The `wopee.track...()` functions are used to capture screenshots and compare them with the baseline images stored in the Wopee.io platform.
 
     ```typescript
-    await wopee.trackFullPage({stepName: 'exmplePageComparison'});
+    await wopee.trackFullPage({stepName: 'examplePageComparison', page });
     ```
 
     ```typescript
@@ -149,12 +149,13 @@ For automatic visual testing assertion, you can use one of the following functio
     ```
 
     ```typescript
-    await wopee.trackImage({ imageBase64: imageBase64,, stepName: 'exampleImageComparison'});
+    await wopee.trackImage({ stepName: 'exampleImageComparison', imageBase64 });
     ```
 
 **End scenario**
 
 - Add `wopee.stopScenario()` into afterEach or equivalent hook.
+
   ```typescript
   test.afterEach(async () => {
     await wopee.stopScenario();
@@ -201,7 +202,8 @@ test.describe("test", () => {
     await wopee.trackImage({
       stepName: "image",
       scenarioName: "test",
-      imageBase64: imageBase64,
+      imageBase64,
+      page,
     });
   });
 });
@@ -247,6 +249,7 @@ test.describe("test", () => {
       scenarioName: "trackImageWithoutStartScenario",
       stepName: "image-trackImage",
       viewport: "viewport",
+      page,
     });
   });
 
@@ -254,13 +257,13 @@ test.describe("test", () => {
     await page.goto("https://playwright.dev/");
 
     await wopee.trackFullPage({
+      stepName: "image-trackFullPageScreenshot",
       comment: "comment",
       customTags: "customTags",
-      page: page,
       pixelToPixelDiffTolerance: 1.0,
       scenarioName: "trackFullPageScreenshotWithoutStartScenario",
-      stepName: "image-trackFullPageScreenshot",
-      viewport: "viewport",
+      viewport: "1920x1080",
+      page,
     });
   });
 
@@ -276,7 +279,7 @@ test.describe("test", () => {
       pixelToPixelDiffTolerance: 1.0,
       scenarioName: "trackElementWithoutStartScenario",
       stepName: "element",
-      viewport: "viewport",
+      viewport: "1920x1080",
     });
   });
 
@@ -292,7 +295,7 @@ test.describe("test", () => {
       pixelToPixelDiffTolerance: 1.0,
       scenarioName: "trackViewportWithoutStartScenario",
       stepName: "viewport",
-      viewport: "viewport",
+      viewport: "1920x1080",
     });
   });
 });
