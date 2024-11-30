@@ -108,7 +108,7 @@ WOPEE_API_KEY=your-api-key
     WOPEE_PROJECT_UUID=your-project-uuid
     ```
 
-    Full list of `.env` file parameters could be found in our [playwright-template](https://github.com/Wopee-io/playwright-template){: target="\_blank"} / [.env.example](https://github.com/Wopee-io/playwright-template/blob/main/.env.example){: target="\_blank"}.
+- Full list of `.env` file parameters could be found in our [playwright-template](https://github.com/Wopee-io/playwright-template){: target="\_blank"} / [.env.example](https://github.com/Wopee-io/playwright-template/blob/main/.env.example){: target="\_blank"}.
 
 ### 2. Modify your tests
 
@@ -124,7 +124,7 @@ WOPEE_API_KEY=your-api-key
   ```
 
 ??? info "`wopee.startSuite()` function explained"
-The `wopee.startSuite()` command initializes a session with the Wopee.io platform.
+    The `wopee.startSuite()` command initializes a session with the Wopee.io platform.
 
     This function might be called before any calls to `wopee.track...()`. Therefore, it is recommended to place it in the beforeAll hook or equivalent for your test suite.
 
@@ -136,7 +136,7 @@ The `wopee.startSuite()` command initializes a session with the Wopee.io platfor
   ```
 
 ??? info "`wopee.tracktrackFullPage()`, `wopee.trackElement()` and `wopee.trackImage()` functions explained"
-For automatic visual testing assertion, you can use one of the following functions. Which can capture and test _whole page_, _individual element_ or any _image_ you can provide.
+    For automatic visual testing assertion, you can use one of the following functions. Which can capture and test _whole page_, _individual element_ or any _image_ you can provide.
 
     The `wopee.track...()` functions are used to capture screenshots and compare them with the baseline images stored in the Wopee.io platform.
 
@@ -163,7 +163,7 @@ For automatic visual testing assertion, you can use one of the following functio
   ```
 
 ??? info "`wopee.stopScenario()` function explained"
-The `wopee.stopScenario()` command finalizes the current scenario which helps to keep your tests organized and separated. Plus you can see if your tests are currently running or not in the Wopee.io platform itself.
+    The `wopee.stopScenario()` command finalizes the current scenario which helps to keep your tests organized and separated. Plus you can see if your tests are currently running or not in the Wopee.io platform itself.
 
     This function must be called after all calls to `wopee.track...()` from the individual test in the afterEach hook or equivalent for your test suite.
 
