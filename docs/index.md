@@ -35,9 +35,9 @@ Unlike traditional test automation tools, Wopee.io does not require any preparat
 
     We have also limited support for mobile apps, PDFs, desktop apps, and custom images generated or processed by your application. Contact us for more information.
 
-## 🐒 Our autonomous testing bot in 2-minutes
+## 🐒 Autonomous testing in 2-minutes
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/IehmfXNSp74?si=iRqMIzoK_-Zsvl_6" title="Introducing Wopee.io autonomous testing bot" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="display: block; margin: 0 auto;"></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/IehmfXNSp74?si=tU2dqA8XJRD6RxYg" title="Introducing Wopee.io autonomous testing" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Start with bot testing : Step by step
 
