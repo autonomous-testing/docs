@@ -12,30 +12,42 @@
 
 1. Click the `NEW PROJECT` button in the top right corner.
 2. Enter the URL of your app.
-3. Confirm by clicking `START ANALYSING`.
+3. Confirm by clicking `CREATE`.
 
-![Create new project](img/getting-started/2024-08-08-15-15-21-image.png)
+![Create new project](img/bot/2025-04-16_04-14.png)
 
-!!! tip
+## 3. Get tests
 
-    To handle login or accept cookies before testing, configure it in `Project Settings` using the [`Before method`](before-method.md).
+After creating a project, you have two options to add tests:
 
-## 3. Run tests
+**A. Generate new tests automatically**
+- Start a [NEW ANALYSIS](playwright-visual-testing.md) to let the system create tests for you.
 
-1. After finishing the first analysis you`ll be presented with the results - generated test scenarios.
-2. Then just click the `START TESTING` button.
+**B. Integrate your existing tests**
+- Use your own test suites with one of the following frameworks:
+  - [Playwright](playwright-visual-testing.md)
+  - [Cypress](cypress/01-getting-started.md)
+  - [Robot Framework](robot-framework/01-getting-started.md)
+  - [WebdriverIO](webdriverio-visual-testing.md)
+
+
+## 4. Run tests
+
+Once your tests are ready:
+
+1. Click the `START TESTING` button to begin running your tests.
 
 ![Running tests](img/getting-started/2024-08-08-15-17-58-image.png)
 
-This button can be disabled when some tests are curently running.
+> **Note:** The `START TESTING` button may be disabled if tests are currently running.
 
-## 4. Check the results
+## 5. Check the results
 
 1. Visual difference is highlighted if it was identified comapring current state (on the left) and the baseline - previously approved state (on the right).
 
 ![Comparison screen](img/getting-started/2024-08-08-15-23-56-image.png)
 
-## 5. Approve current state
+## 6. Approve current state
 
 You can **👍 Approve** or **👎 Reject** current state of the tested application if [Test Step Status](glossary.md#test-step-status) is:
 
