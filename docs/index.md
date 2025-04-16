@@ -37,7 +37,7 @@ Unlike traditional test automation tools, Wopee.io does not require any preparat
 
 ## 🐒 Autonomous testing in 2-minutes
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/IehmfXNSp74?si=tU2dqA8XJRD6RxYg" title="Introducing Wopee.io autonomous testing" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/XNxoqs4l7vw?si=wycqaHZSprFjYB39" title="Introducing Wopee.io autonomous testin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Start with bot testing : Step by step
 
