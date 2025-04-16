@@ -1,4 +1,4 @@
-# 🤖 Self-driving bot
+# 🤖 Getting started
 
 ## 1. Login to [Wopee Commander](https://cmd.wopee.io)
 
@@ -16,14 +16,16 @@
 
 ![Create new project](img/bot/2025-04-16_04-14.png)
 
-## 3. Get tests
+## 3. Get your tests
 
 After creating a project, you have two options to add tests:
 
 **A. Generate new tests automatically**
+
 - Start a [NEW ANALYSIS](playwright-visual-testing.md) to let the system create tests for you.
 
 **B. Integrate your existing tests**
+
 - Use your own test suites with one of the following frameworks:
   - [Playwright](playwright-visual-testing.md)
   - [Cypress](cypress/01-getting-started.md)

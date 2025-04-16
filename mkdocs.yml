@@ -1,9 +1,7 @@
 site_name: Wopee.io
 nav:
   - 🚀 Autonomous Testing: index.md
-  - Self-driving Bot...:
-      - 🤖 Getting started: bot.md
-      - 🛠️ Before method: before-method.md
+  - 🤖 Getting started: bot.md
   - Visual Testing with...:
       - ≫ Cypress:
           - Getting started: cypress/01-getting-started.md
