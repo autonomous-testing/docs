@@ -27,6 +27,7 @@ After creating a project, you have two options to add tests:
 **B. Integrate your existing tests**
 
 - Use your own test suites with one of the following frameworks:
+
   - [Playwright](playwright-visual-testing.md)
   - [Cypress](cypress/01-getting-started.md)
   - [Robot Framework](robot-framework/01-getting-started.md)
