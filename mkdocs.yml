@@ -2,6 +2,8 @@ site_name: Wopee.io
 nav:
   - 🚀 Autonomous Testing: index.md
   - 🤖 Getting started: bot.md
+  - AI Generated Tests:
+      - Analysis: analysis.md
   - Visual Testing with...:
       - ≫ Cypress:
           - Getting started: cypress/01-getting-started.md

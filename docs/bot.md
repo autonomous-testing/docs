@@ -22,7 +22,7 @@ After creating a project, you have two options to add tests:
 
 **A. Generate new tests automatically**
 
-- Start a [NEW ANALYSIS](playwright-visual-testing.md) to let the system create tests for you.
+- Start a [NEW ANALYSIS](analysis.md) to let the system create tests for you.
 
 **B. Integrate your existing tests**
 
