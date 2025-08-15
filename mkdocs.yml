@@ -16,6 +16,11 @@ nav:
           - Manual setup: robot-framework/02-manual-setup.md
           - Setup with make: robot-framework/03-setup-with-make.md
           - Examples: robot-framework/04-some-more-examples.md
+  - Guides:
+      - 📁 Upload files: upload-files.md
+      - 📥 Download files: download-files.md
+      - 🗄️ Browser local storage: browser-local-storage.md
+      - 🌐 Project context: project-context.md
   - Other docs:
       - 📖 Glossary: glossary.md
 
