@@ -1,9 +1,11 @@
 site_name: Wopee.io
 nav:
   - 🚀 Autonomous Testing: index.md
-  - 🤖 Getting started: bot.md
-  - ✨ Analysis Process: analysis.md
-  - 🧑‍✈️ Pilot projects: pilot-projects.md
+  - Concepts:
+      - ✨ Analysis - Process: concepts/analysis-process.md
+      - 🔗 Analysis - Inputs: concepts/analysis-inputs.md
+      - 📖 Prompting Guidelines: concepts/prompting-guidelines.md
+      - 📃 POM example - Login: automation/pom-login-example.md
   - Visual Testing with...:
       - ≫ Cypress:
           - Getting started: cypress/01-getting-started.md
@@ -22,6 +24,8 @@ nav:
       - 🗄️ Browser local storage: browser-local-storage.md
       - 🌐 Project context: project-context.md
   - Other docs:
+      - 🧑‍✈️ Pilot projects: pilot-projects.md
+      - 🔒 Enterprise Connectivity: security/enterprise-connectivity.md
       - 📖 Glossary: glossary.md
 
 theme:
