@@ -42,6 +42,7 @@ Unlike traditional test automation tools, Wopee.io does not require any preparat
 ## Start with bot testing : Step by step
 
 - See detailed [📙 Getting Started with bot testing](bot.md) section
+- Learn about [🛠️ Tools & Assertions](tools-and-assertions.md) and how the agent works
 - Understand [📖 Vocabulary](glossary.md) of 🐒
 
 ## Wopee.io Integrations

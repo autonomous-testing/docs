@@ -291,3 +291,9 @@ When applying POM patterns, also verify:
 - [ ] **Error handling** requirements are outlined
 - [ ] **Example usage** demonstrates page object interaction
 - [ ] **Single responsibility** principle is maintained
+
+## Related topics
+
+- [🛠️ Tools & Assertions](tools-and-assertions.md) - Understand how the agent interacts with your app and validates outcomes
+- [✨ Analysis Process](analysis-process.md) - Learn about the complete analysis workflow
+- [🔗 Analysis Inputs](analysis-inputs.md) - Discover what inputs improve test analysis quality
