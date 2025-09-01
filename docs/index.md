@@ -1,11 +1,14 @@
 ---
-title: Autonomous testing plarform
+title: AI Testing Agents for your web apps
 ---
 
-# Welcome to Wopee.io
+# AI Testing Agents for your web apps
 
 Wopee.io is a regression software testing tool for web apps that rapidly speeds up and simplifies testing preparation and test execution.
 Unlike traditional test automation tools, Wopee.io does not require any preparation or programming (tests are generated) and maintenance is easier.
+
+Our AI Testing Agents explore your app like a human tester, learn its flows, and autonomously generate, run, and maintain end-to-end tests.
+The output is deterministic test code you can run anywhere. No LLMs or Wopee.io runtime required.
 
 ## Features
 
@@ -42,6 +45,7 @@ Unlike traditional test automation tools, Wopee.io does not require any preparat
 ## Start with bot testing : Step by step
 
 - See detailed [📙 Getting Started with bot testing](bot.md) section
+- Learn about [🛠️ Tools & Assertions](tools-and-assertions.md) and how the agent works
 - Understand [📖 Vocabulary](glossary.md) of 🐒
 
 ## Wopee.io Integrations
