@@ -21,10 +21,10 @@ nav:
           - Setup with make: robot-framework/03-setup-with-make.md
           - Examples: robot-framework/04-some-more-examples.md
   - Guides:
-      - 📁 Upload files: upload-files.md
-      - 📥 Download files: download-files.md
-      - 🗄️ Browser local storage: browser-local-storage.md
-      - 🌐 Project context: project-context.md
+      - 📁 Upload files: guides/upload-files.md
+      - 📥 Download files: guides/download-files.md
+      - 🗄️ Browser local storage: guides/browser-local-storage.md
+      - 🌐 Project context: guides/project-context.md
   - Other docs:
       - 🧑‍✈️ Pilot projects: pilot-projects.md
       - 🔒 Enterprise Connectivity: security/enterprise-connectivity.md
