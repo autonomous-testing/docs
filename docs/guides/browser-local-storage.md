@@ -15,6 +15,126 @@ Local storage is a web storage mechanism that allows web applications to store d
 - **Application state**: Shopping cart contents, form data, user progress
 - **Cache data**: Frequently accessed information, user-specific configurations
 
+## How to obtain browser storage data
+
+To capture browser storage data for your tests, you'll use Playwright's built-in test generator (`codegen`) tool. This tool allows you to record your browser interactions and automatically save the resulting storage state.
+
+### Step 1: Install Playwright (if not already installed)
+
+```bash
+npm install -D @playwright/test
+```
+
+### Step 2: Generate storage state using Playwright codegen
+
+Use the `codegen` command with the `--save-storage` flag to capture browser storage:
+
+```bash
+npx playwright codegen --save-storage=auth.json [your-website-url]
+```
+
+**Examples:**
+
+```bash
+# For a specific website
+npx playwright codegen --save-storage=auth.json https://example.com
+
+# For local development
+npx playwright codegen --save-storage=auth.json http://localhost:3000
+
+# Without URL (you can navigate manually)
+npx playwright codegen --save-storage=auth.json
+```
+
+### Step 3: Authenticate and interact with your application
+
+When the browser window opens:
+
+1. **Navigate to your application** (if not already there)
+2. **Perform authentication** (login, etc.)
+3. **Navigate through pages** you want to test
+4. **Interact with features** that set storage data
+5. **Stop recording** by closing the browser window or pressing the stop button
+
+### Step 4: Verify the generated file
+
+After closing the browser, verify that `auth.json` was created in your current directory. The file should contain your browser's storage state including cookies, localStorage, sessionStorage, and IndexedDB data.
+
+### Step 5: Move the file to your repository
+
+Move the generated `auth.json` file to your repository's `data` directory:
+
+```bash
+mkdir -p data
+mv auth.json data/
+```
+
+### Complete workflow example
+
+Here's a complete example for capturing authentication state:
+
+```bash
+# 1. Start codegen with storage saving
+npx playwright codegen --save-storage=auth.json https://myapp.com
+
+# 2. In the browser window that opens:
+#    - Navigate to the login page
+#    - Enter your credentials
+#    - Complete the login process
+#    - Navigate to a few key pages
+#    - Close the browser
+
+# 3. Move the file to your repository
+mkdir -p data
+mv auth.json data/
+
+# 4. Verify the file structure
+ls -la data/auth.json
+```
+
+### Advanced codegen options
+
+You can customize the codegen process with additional options:
+
+```bash
+# Emulate specific device
+npx playwright codegen --device="iPhone 13" --save-storage=auth.json https://cmd.wopee.io
+
+# Set specific viewport size
+npx playwright codegen --viewport-size="1920,1080" --save-storage=auth.json https://cmd.wopee.io
+
+# Emulate dark mode
+npx playwright codegen --color-scheme=dark --save-storage=auth.json https://cmd.wopee.io
+
+# Use existing browser profile (for persistent authentication)
+npx playwright codegen --user-data-dir=/path/to/browser/profile --save-storage=auth.json https://cmd.wopee.io
+```
+
+### Testing the captured storage state
+
+Before using the file in your tests, verify it works correctly:
+
+```bash
+# Test the captured authentication state
+npx playwright codegen --load-storage=auth.json https://myapp.com
+```
+
+If the storage state is correct, you should see your application in an authenticated state when the browser opens.
+
+### Troubleshooting storage capture
+
+**Common issues and solutions:**
+
+- **No file generated**: Ensure you close the browser window properly or stop recording
+- **Empty file**: Make sure you actually perform actions that set storage data
+- **Missing data**: Navigate through more pages and interact with features that use storage
+- **Authentication not captured**: Complete the full login flow before stopping recording
+
+**File size considerations:**
+
+- Consider cleaning up unnecessary storage entries
+- Focus on essential authentication and state data
+
 ## Supported storage types
 
 Wopee.io AI Agent automatically loads data from the `data` directory. It is based on Playwright's [browser context](https://playwright.dev/docs/test-state#browser-context) and supports multiple browser storage mechanisms:
@@ -102,7 +222,7 @@ The recommended format organizes storage by domain origin:
 {
   "origins": [
     {
-      "origin": "https://example.com",
+      "origin": "https://cmd.wopee.io",
       "localStorage": [
         {
           "name": "user_id",
@@ -128,7 +248,7 @@ Cookies are specified in an array with detailed properties:
     {
       "name": "auth_session", // Cookie name
       "value": "encrypted_session_data", // Cookie value
-      "domain": ".myapp.com", // Domain scope
+      "domain": ".cmd.wopee.io", // Domain scope
       "path": "/", // Path scope
       "expires": 1752609084, // Unix timestamp
       "secure": true, // HTTPS only
