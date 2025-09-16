@@ -131,7 +131,7 @@ After a successful agent run, Wopee.io emits **deterministic test code** that ex
 
 ## Related topics
 
-- [Getting Started with bot testing](/bot)
+- [Getting Started with Wopee.io Agent testing](/ai-agent)
 - [Analysis Process](/concepts/analysis-process)
 - [Prompting Guidelines](/concepts/prompting-guidelines)
-- [Project Context](/project-context)
+- [Project Context](/guides/project-context)
