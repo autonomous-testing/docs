@@ -44,8 +44,8 @@ The output is deterministic test code you can run anywhere. No LLMs or Wopee.io 
 
 ## Start with bot testing : Step by step
 
-- See detailed [📙 Getting Started with bot testing](bot.md) section
-- Learn about [🛠️ Tools & Assertions](tools-and-assertions.md) and how the agent works
+- See detailed [📙 Getting Started with bot testing](ai-agent.md) section
+- Learn about [🛠️ Tools & Assertions](concepts/tools-and-assertions.md) and how the agent works
 - Understand [📖 Vocabulary](glossary.md) of 🐒
 
 ## Wopee.io Integrations

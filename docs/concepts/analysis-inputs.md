@@ -51,15 +51,15 @@ Technical Notes:
 
 Step 1: Add an user story:
 
-![Add an user story](../../img/concepts/analysis-inputs/add-user-story.png)
+![Add an user story](../img/concepts/analysis-inputs/add-user-story.png)
 
 Step 2: Prompt for user story:
 
-![Prompt for user story](../../img/concepts/analysis-inputs/prompt-user-story.png)
+![Prompt for user story](../img/concepts/analysis-inputs/prompt-user-story.png)
 
 Step 3: Test case generated:
 
-![Test case generated](../../img/concepts/analysis-inputs/tests-generated.png)
+![Test case generated](../img/concepts/analysis-inputs/tests-generated.png)
 
 ### Figma Frame Example
 

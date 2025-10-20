@@ -6,7 +6,7 @@ Below is a step-by-step overview of how your application is analyzed and how you
 
 ## New Analysis
 
-![New analysis](../../img/analysis/2025-04-16_04-39.png)
+![New analysis](../img/analysis/2025-04-16_04-39.png)
 
 Before starting the analysis, you can tailor how source data is collected and provide specific instructions for the crawler:
 
