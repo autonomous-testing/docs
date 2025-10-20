@@ -25,6 +25,8 @@ nav:
       - 📥 Download files: guides/download-files.md
       - 🗄️ Browser local storage: guides/browser-local-storage.md
       - 🌐 Project context: guides/project-context.md
+      - 🔌 HTTP Request Tool: guides/http-tools.md
+      - 🚀 Wopee.io MCP: guides/wopee-mcp.md
   - Other docs:
       - 🧑‍✈️ Pilot projects: pilot-projects.md
       - 🔒 Enterprise Connectivity: security/enterprise-connectivity.md
