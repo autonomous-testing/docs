@@ -23,7 +23,7 @@ After creating a project, you have two options to add tests:
 **A. Generate new tests automatically**
 
 - Start a [NEW ANALYSIS](concepts/analysis-process.md) to let the system create tests for you.
-- Learn about [🛠️ Tools & Assertions](tools-and-assertions.md) to understand how the agent interacts with your app.
+- Learn about [🛠️ Tools & Assertions](concepts/tools-and-assertions.md) to understand how the agent interacts with your app.
 
 **B. Integrate your existing tests**
 

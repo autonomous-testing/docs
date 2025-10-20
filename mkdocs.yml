@@ -25,6 +25,8 @@ nav:
       - 📥 Download files: guides/download-files.md
       - 🗄️ Browser local storage: guides/browser-local-storage.md
       - 🌐 Project context: guides/project-context.md
+      - 🔌 HTTP Request Tool: guides/http-tools.md
+      - 🚀 Wopee.io MCP: guides/wopee-mcp.md
   - Other docs:
       - 🧑‍✈️ Pilot projects: pilot-projects.md
       - 🔒 Enterprise Connectivity: security/enterprise-connectivity.md
@@ -98,7 +100,8 @@ plugins:
         "integrations/robot-framework/01-getting-started.md": "robot-framework/01-getting-started.md"
         "robot-framework.md": "robot-framework/01-getting-started.md"
         "rf.md": "robot-framework/01-getting-started.md"
-        "getting-started.md": "bot.md"
+        "getting-started.md": "ai-agent.md"
+        "bot.md": "ai-agent.md"
 
 markdown_extensions:
   - attr_list

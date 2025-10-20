@@ -68,6 +68,6 @@ Run Wopee.io agents within your internal network.
 
 ## Related Pages
 
-- [Quick Start Guide](/docs/get-started/quickstart.md) - Initial setup
-- [Stability Guide](/docs/troubleshooting/stability.md) - Troubleshooting
-- [Billing and Licensing](/docs/billing-and-licensing.md) - Enterprise plans
+- [Getting Started Guide](../ai-agent.md) - Initial setup
+- [Pilot Projects](../pilot-projects.md) - More about pilot projects
+- [Start now!](https://wopee.io/book-demo) - Get started with your pilot project
