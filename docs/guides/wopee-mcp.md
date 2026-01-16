@@ -4,21 +4,17 @@
 
 ## Overview
 
-Wopee.io MCP is a Model Context Protocol server for integrating with the Wopee testing platform. This server provides tools for dispatching analysis, generating app context, user stories, test cases, and running test executions.
+Wopee.io MCP is a Model Context Protocol server for integrating with the Wopee testing platform. This server provides tools for managing analysis suites, generating test cases, user stories, and dispatching autonomous testing agents.
 
 Now, you can use Wopee.io MCP to integrate with your favorite IDE and use Wopee.io AI Agents to increase your productivity and speed up your testing while developing your web app.
 
 ## Features
 
 - **Dispatch Analysis**: Start analysis of web applications to understand their structure and behavior
-- **Dispatch Agent**: Execute tests for specific projects and suites
-- **Generate App Context**: Create detailed application context based on analysis results
-- **Generate General User Stories**: Generate high-level user stories from analysis data
-- **Generate User Stories**: Generate detailed user stories and acceptance criteria from analysis data
-- **Generate Test Cases**: Generate comprehensive test cases from analysis and user stories
-- **Get App Context**: Retrieve existing app context for a project and suite
-- **Get User Stories**: Retrieve existing user stories for a project and suite
-- **Get Test Cases**: Retrieve existing test cases for a project and suite
+- **Dispatch Agent**: Execute tests for specific suites with autonomous testing agents
+- **Generate Artifacts**: Create app context, user stories, test cases, and more from analysis results
+- **Fetch Artifacts**: Retrieve existing app context, user stories, test cases, and Playwright code
+- **Update Artifacts**: Modify existing artifacts for a specific suite
 - **Fetch Analysis Suites**: Fetch all analysis suites for a project
 
 ## Quick Start Guide
@@ -26,24 +22,21 @@ Now, you can use Wopee.io MCP to integrate with your favorite IDE and use Wopee.
 ### 🚀 One-Click Installation
 
 **For VS Code / Cursor:**
+
 1. `Ctrl+Shift+P` → "MCP: Install Server"
 2. Enter: `wopee-mcp`
-3. Add your API key into .env file
+3. Configure your environment variables in the MCP config
 
 ### 🛠 Available Tools
 
-| Tool | Purpose | Example |
-|------|---------|---------|
-| `wopee_dispatch_analysis` | Start app analysis | `@wopee wopee_dispatch_analysis Project UUID: project-123` |
-| `wopee_dispatch_agent` | Execute tests | `@wopee wopee_dispatch_agent Project UUID: project-123 Suite UUID: suite-123` |
-| `wopee_generate_app_context` | Generate app context | `@wopee wopee_generate_app_context Project UUID: project-123 Suite UUID: suite-123` |
-| `wopee_generate_general_user_stories` | Generate general user stories | `@wopee wopee_generate_general_user_stories Project UUID: project-123 Suite UUID: suite-123` |
-| `wopee_generate_user_stories` | Generate detailed user stories | `@wopee wopee_generate_user_stories Project UUID: project-123 Suite UUID: suite-123` |
-| `wopee_generate_test_cases` | Generate test cases | `@wopee wopee_generate_test_cases Project UUID: project-123 Suite UUID: suite-123` |
-| `wopee_get_app_context` | Get existing app context | `@wopee wopee_get_app_context Project UUID: project-123 Suite UUID: suite-123` |
-| `wopee_get_user_stories` | Get existing user stories | `@wopee wopee_get_user_stories Project UUID: project-123 Suite UUID: suite-123` |
-| `wopee_get_test_cases` | Get existing test cases | `@wopee wopee_get_test_cases Project UUID: project-123 Suite UUID: suite-123` |
-| `wopee_fetch_analysis_suites` | Fetch all analysis suites | `@wopee wopee_fetch_analysis_suites Project UUID: project-123` |
+| Tool                          | Purpose                   | Example                                                                     |
+| ----------------------------- | ------------------------- | --------------------------------------------------------------------------- |
+| `wopee_fetch_analysis_suites` | Fetch all analysis suites | `Fetch all existing analysis suites for my project`                         |
+| `wopee_dispatch_analysis`     | Start app analysis        | `Dispatch a new analysis suite`                                             |
+| `wopee_generate_artifact`     | Generate artifacts        | `Generate app context for my most recent analysis suite`                    |
+| `wopee_fetch_artifact`        | Fetch existing artifacts  | `Fetch user stories for the latest suite`                                   |
+| `wopee_update_artifact`       | Update existing artifacts | `Update app context file for the most recent suite`                         |
+| `wopee_dispatch_agent`        | Execute tests             | `Dispatch agent for my latest suite's user story US001 and test case TC003` |
 
 ### 🔧 Manual Installation
 
@@ -53,10 +46,20 @@ npm install -g wopee-mcp
 
 ### ⚙️ Configuration
 
-Set environment variables:
-```bash
-export WOPEE_API_KEY=your_api_key_here
-export WOPEE_PROJECT_UUID=your_project_uuid_here
+Add the Wopee MCP server to your MCP configuration:
+
+```json
+{
+  "mcpServers": {
+    "wopee": {
+      "command": "npx wopee-mcp",
+      "env": {
+        "WOPEE_PROJECT_UUID": "your-project-uuid-here",
+        "WOPEE_API_KEY": "your-api-key-here"
+      }
+    }
+  }
+}
 ```
 
 ### Prerequisites
@@ -64,68 +67,106 @@ export WOPEE_PROJECT_UUID=your_project_uuid_here
 Before using the Wopee MCP server, ensure you have:
 
 1. **VS Code** with the MCP extension installed, or **Cursor** ... or even could be used with ChatGPT or Claude or any other AI agent that supports MCP.
-2. A **Wopee API key** from [wopee.io](https://wopee.io)
+2. A **Wopee API key** from [cmd.wopee.io](https://cmd.wopee.io) (in your project's settings)
 3. **Node.js 18+** installed on your system
 
 ## Configuration
 
-The server loads configuration from a `.env` file in the project root directory (where `package.json` is located).
-
 ### Environment Variables
 
-- `WOPEE_API_KEY` (required): Your Wopee API key
-- `WOPEE_PROJECT_UUID` (required): Your Wopee project UUID
-- `WOPEE_API_URL` (optional): Wopee API endpoint (defaults to `https://api.wopee.io/`)
+#### Required Environment Variables
 
-### Setting up .env file
+- **`WOPEE_PROJECT_UUID`** - Your Wopee project UUID. This identifies which project you're working with.
+- **`WOPEE_API_KEY`** - Your Wopee API key. You can create one at [cmd.wopee.io](https://cmd.wopee.io), in your project's settings.
 
-1. **Copy the example file:**
-   ```bash
-   cp env.example .env
-   ```
+#### Optional Environment Variables
 
-2. **Edit the .env file in the project root:**
-   ```bash
-   # Wopee API Configuration
-   WOPEE_API_KEY=your_actual_api_key_here
-   WOPEE_PROJECT_UUID=your_project_uuid_here
-   WOPEE_API_URL=https://api.dev.wopee.io/
-   ```
+- **`WOPEE_API_URL`** - The Wopee API endpoint URL. Should be specified only for testing/development purposes.
 
-3. **For MCP integration, update your `mcp.json`:**
-   ```json
-   {
-     "mcpServers": {
-       "wopee": {
-         "command": "npx",
-         "args": ["wopee-mcp@latest"],
-         "env": {}
-       }
-     }
-   }
-   ```
+### Corporate Proxy Configuration
 
-   **Note:** The server automatically loads API keys from the `.env` file in the project root. No need to hardcode them in the MCP configuration.
+If you're behind a corporate proxy/VPN and experiencing connection timeouts, you can configure proxy settings using standard environment variables:
+
+```json
+{
+  "mcpServers": {
+    "wopee": {
+      "command": "npx wopee-mcp",
+      "env": {
+        "WOPEE_PROJECT_UUID": "your-project-uuid-here",
+        "WOPEE_API_KEY": "your-api-key-here",
+        "HTTPS_PROXY": "http://your-proxy-server:8080"
+      }
+    }
+  }
+}
+```
+
+#### Supported Proxy Environment Variables
+
+- **`HTTPS_PROXY`** or **`https_proxy`** - Proxy server URL for HTTPS connections (recommended)
+- **`HTTP_PROXY`** or **`http_proxy`** - Fallback proxy server URL
+
+#### Finding Your Proxy Settings
+
+If you're unsure about your proxy settings, check your VS Code settings (`settings.json`) for `http.proxy` value, or consult your IT department. Common corporate proxy formats:
+
+- `http://proxy.company.com:8080`
+- `http://10.x.x.x:8080`
+- `http://username:password@proxy.company.com:8080` (if authentication is required)
+
+## Getting Started
+
+Most tools in this MCP server require a `suiteUuid` to operate. You have two options to get started:
+
+### Option 1: Use Existing Suites
+
+Start by fetching your existing analysis suites:
+
+```
+Use the wopee_fetch_analysis_suites tool to retrieve all available suites for your project.
+```
+
+This will return a list of all analysis suites with their UUIDs, which you can then use with other tools.
+
+### Option 2: Create a New Suite
+
+If you don't have any suites yet, create a fresh analysis suite:
+
+```
+Use the wopee_dispatch_analysis tool to create and dispatch a new analysis/crawling suite.
+```
+
+This will create a new suite and return its UUID, which you can use for subsequent operations.
 
 ## Usage
 
-Once configured, you can use the Wopee tools in your chat interface. Simply type `@wopee` followed by the tool name and required parameters.
+Once configured, you can use the Wopee tools in your chat interface. Simply describe what you want to do in natural language.
 
 ### Quick Examples
 
-**Start Analysis:**
+**Fetch Analysis Suites:**
+
 ```
-@wopee wopee_dispatch_analysis Project UUID: project-123
+Fetch all existing analysis suites for my project
 ```
 
-**Generate Test Cases:**
+**Start Analysis:**
+
 ```
-@wopee wopee_generate_test_cases Project UUID: project-123 Suite UUID: suite-123
+Dispatch a new analysis suite
+```
+
+**Generate Artifacts:**
+
+```
+Generate app context for my most recent analysis suite
 ```
 
 **Execute Tests:**
+
 ```
-@wopee wopee_dispatch_agent Project UUID: project-123 Suite UUID: suite-123
+Dispatch agent for my latest suite's user story US001 and test case TC003
 ```
 
 ## Real-World Usage Examples
@@ -135,31 +176,37 @@ Once configured, you can use the Wopee tools in your chat interface. Simply type
 Here's a typical workflow from analysis to test execution:
 
 #### 1. Start Analysis
+
 ```
 Dispatch analysis
 ```
 
 #### 2. Generate Application Context
+
 ```
 Generate app context
 ```
 
 #### 3. Create User Stories
+
 ```
-Generate user stories
+Generate user stories with test cases
 ```
 
-#### 4. Generate Test Cases
+#### 4. Generate Test Case Steps
+
 ```
-Generate test cases
+Generate test case steps
 ```
 
 #### 5. Review Generated Tests
+
 ```
 Give me all the generated tests in tabular format
 ```
 
 #### 6. Execute Tests
+
 ```
 Dispatch agent to run test TC001 from US001
 ```
@@ -167,6 +214,7 @@ Dispatch agent to run test TC001 from US001
 ### Advanced Usage Examples
 
 #### Multi-Language Support
+
 ```
 Generate user stories with additional instructions: "All outputs has to be in Portuguese language"
 ```
@@ -176,6 +224,7 @@ Generate test cases with additional instructions: "Focus on fields validations, 
 ```
 
 #### Custom Analysis Instructions
+
 ```
 Dispatch analysis with additional instructions: "All outputs has to be in Czech Language"
 ```
@@ -187,6 +236,7 @@ Generate test cases with focus on security testing like password validation, ema
 ### Data Retrieval Examples
 
 #### Check Analysis Status
+
 ```
 What is the status of my analysis?
 ```
@@ -196,6 +246,7 @@ Show me all available analysis suites
 ```
 
 #### Get Specific Test Cases
+
 ```
 Give me all tests from the A001
 ```
@@ -205,6 +256,7 @@ Show me test cases from analysis A007
 ```
 
 #### View User Stories
+
 ```
 Give me a list of the user stories in bullet points format
 ```
@@ -216,6 +268,7 @@ Give me the same table with the user stories but also provide a column with numb
 ### Test Execution Examples
 
 #### Run Specific Tests
+
 ```
 Dispatch all tests for user story US001
 ```
@@ -225,6 +278,7 @@ Dispatch agent to run all tests for user story US001
 ```
 
 #### Monitor Execution
+
 ```
 What about now?
 ```
@@ -236,13 +290,16 @@ What are the current test execution results?
 ## Common Workflows
 
 ### 1. New Project Setup
+
 1. **Dispatch analysis** for your application
 2. **Generate app context** to understand the application
-3. **Generate user stories** based on analysis
-4. **Generate test cases** from user stories
-5. **Review and organize** the generated content
+3. **Generate general user stories** for high-level overview
+4. **Generate user stories with test cases** based on analysis
+5. **Generate test case steps** for detailed test execution
+6. **Review and organize** the generated content
 
 ### 2. Test Execution Workflow
+
 1. **Check available tests** in your analysis
 2. **Select specific tests** to execute
 3. **Dispatch agent** to run selected tests
@@ -250,6 +307,7 @@ What are the current test execution results?
 5. **Review test outcomes** and iterate
 
 ### 3. Multi-Analysis Comparison
+
 1. **Fetch all analysis suites** for your project
 2. **Compare test cases** from different analyses
 3. **Check statuses** of all analyses
@@ -258,224 +316,192 @@ What are the current test execution results?
 ## Tips and Best Practices
 
 ### 1. Use Descriptive Analysis Names
+
 - Include the application name and version
 - Add date or iteration information
 - Example: `"E-commerce App v2.1 - Payment Testing"`
 
 ### 2. Provide Clear Instructions
+
 - Be specific about language requirements
 - Include focus areas for testing
 - Example: `"Focus on user authentication and payment flows"`
 
 ### 3. Monitor Progress
+
 - Check analysis status regularly
 - Wait for completion before proceeding
 - Use status queries to track progress
 
 ### 4. Organize by Analysis
+
 - Keep related tests in the same analysis
 - Use consistent naming conventions
 - Document analysis purposes
 
 ### 5. Test Execution
+
 - Start with single test cases
 - Monitor execution status
 - Scale up to multiple tests once stable
 
 ## Available Tools
 
-### 1. wopee_dispatch_analysis
+### Suite Management
 
-Start a new analysis for a given URL.
+#### wopee_fetch_analysis_suites
 
-**Parameters:**
-- `projectUuid` (string, required): UUID of the project
-- `iterations` (number, required): Number of analysis iterations
-- `suiteAnalysisConfig` (object, required): Configuration for the analysis
+Fetches all analysis suites for your project. This is a good starting point to see what suites are available.
 
-**Example:**
-```json
-{
-  "projectUuid": "project-123",
-  "iterations": 5,
-  "suiteAnalysisConfig": {
-    "startingUrl": "https://example.com",
-    "username": "testuser",
-    "password": "testpass",
-    "cookiesPreference": "ACCEPT_ALL"
-  }
-}
+- **Returns:** Array of analysis suites with their UUIDs, names, statuses, and metadata
+
+**Example Usage:**
+
+```
+Fetch all existing analysis suites for my project
 ```
 
-### 2. wopee_dispatch_agent
+#### wopee_dispatch_analysis
 
-Execute tests for specific projects and suites.
+Creates and dispatches a new analysis/crawling suite for your project. Use this to start a fresh analysis session.
 
-**Parameters:**
-- `projectUuid` (string, required): UUID of the project
-- `suiteUuid` (string, required): UUID of the test suite
-- `analysisIdentifier` (string, required): Analysis identifier
-- `testCases` (array, required): Array of test cases to execute
+- **Returns:** Success message with the created suite information
 
-**Example:**
-```json
-{
-  "projectUuid": "project-123",
-  "suiteUuid": "suite-123",
-  "analysisIdentifier": "analysis-123",
-  "testCases": [
-    {
-      "testCaseId": "test-1",
-      "userStoryId": "story-1"
-    }
-  ]
-}
+**Example Usage:**
+
+```
+Dispatch a new analysis suite
 ```
 
-### 3. wopee_generate_app_context
+### Generation Tools
 
-Generate application context based on analysis results.
+These tools generate various artifacts for a specific suite. All require a `suiteUuid` and `type` to generate.
 
-**Parameters:**
-- `projectUuid` (string, required): UUID of the project
-- `suiteUuid` (string, required): UUID of the test suite
-- `extraPrompt` (string, optional): Optional prompt to modify the app context generation
+#### wopee_generate_artifact
 
-**Example:**
-```json
-{
-  "projectUuid": "project-123",
-  "suiteUuid": "suite-123",
-  "extraPrompt": "Focus on user authentication flows"
-}
-```
-
-### 4. wopee_generate_general_user_stories
-
-Generate high-level user stories from analysis data.
+Generates a specific file (artifact) for the selected suite.
 
 **Parameters:**
-- `projectUuid` (string, required): UUID of the project
-- `suiteUuid` (string, required): UUID of the test suite
-- `extraPrompt` (string, optional): Optional prompt to modify the user story generation
 
-**Example:**
-```json
-{
-  "projectUuid": "project-123",
-  "suiteUuid": "suite-123",
-  "extraPrompt": "Include high-level business requirements"
-}
+- `suiteUuid` (string, required): The UUID of the suite
+- `type` (string, required): One of:
+  - `APP_CONTEXT` - Application context markdown
+  - `GENERAL_USER_STORIES` - High-level user stories
+  - `USER_STORIES_WITH_TEST_CASES` - Detailed user stories with test cases
+  - `TEST_CASES` - Comprehensive test cases
+  - `TEST_CASE_STEPS` - Detailed test case steps
+  - `REUSABLE_TEST_CASES` - Reusable test case templates
+  - `REUSABLE_TEST_CASE_STEPS` - Reusable test case step templates
+
+**Example Usage:**
+
+```
+Generate app context for my most recent analysis suite
 ```
 
-### 5. wopee_generate_user_stories
+### Fetch Tools
 
-Generate detailed user stories and acceptance criteria from analysis data.
+These tools retrieve generated artifacts for a specific suite. All require a `suiteUuid` and `type`.
+
+#### wopee_fetch_artifact
+
+Fetches the enquired file (artifact) from the selected suite.
 
 **Parameters:**
-- `projectUuid` (string, required): UUID of the project
-- `suiteUuid` (string, required): UUID of the test suite
-- `extraPrompt` (string, optional): Optional prompt to modify the user story generation
 
-**Example:**
-```json
-{
-  "projectUuid": "project-123",
-  "suiteUuid": "suite-123",
-  "extraPrompt": "Include edge cases and error scenarios"
-}
+- `suiteUuid` (string, required): The UUID of the suite
+- `type` (string, required): One of:
+  - `APP_CONTEXT` - Application context markdown
+  - `GENERAL_USER_STORIES` - General user stories markdown
+  - `USER_STORIES` - Detailed user stories JSON
+  - `PLAYWRIGHT_CODE` - Generated Playwright test code
+  - `PROJECT_CONTEXT` - Project context markdown
+- `identifier` (string, optional): Identifier of the test case to fetch Playwright code for, e.g., `US003:TC004`. Required only for `PLAYWRIGHT_CODE` type.
+
+**Example Usage:**
+
+```
+Fetch user stories for the latest suite
 ```
 
-### 6. wopee_generate_test_cases
+```
+Fetch Playwright code for test case US004:TC006
+```
 
-Generate comprehensive test cases from analysis and user stories.
+### Update Tools
+
+These tools are used to update or set certain files (artifacts) for a specific suite.
+
+#### wopee_update_artifact
+
+Updates/replaces existing file (artifact) for a specific suite.
 
 **Parameters:**
-- `projectUuid` (string, required): UUID of the project
-- `suiteUuid` (string, required): UUID of the test suite
-- `extraPrompt` (string, optional): Optional prompt to modify the test case generation
-- `selectedUserStories` (array, optional): Array of selected user story IDs
 
-**Example:**
-```json
-{
-  "projectUuid": "project-123",
-  "suiteUuid": "suite-123",
-  "extraPrompt": "Generate comprehensive test coverage",
-  "selectedUserStories": ["story-1", "story-2"]
-}
+- `suiteUuid` (string, required): The UUID of the suite
+- `type` (string, required): One of:
+  - `APP_CONTEXT` - Application context markdown
+  - `GENERAL_USER_STORIES` - General user stories markdown
+  - `USER_STORIES` - Detailed user stories JSON
+  - `PLAYWRIGHT_CODE` - Generated Playwright test code
+  - `PROJECT_CONTEXT` - Project context markdown
+- `content` (string, required): Markdown content for `APP_CONTEXT`, `GENERAL_USER_STORIES` and `PROJECT_CONTEXT`, structured JSON for `USER_STORIES`
+- `identifier` (string, optional): Identifier of the test case to update Playwright code for, e.g., `US003:TC004`. Required only for `PLAYWRIGHT_CODE` type.
+
+**Example Usage:**
+
+```
+Update app context file for the most recent suite with this content: <YourMarkdown>
 ```
 
-### 7. wopee_get_app_context
+### Agent Testing
 
-Get existing app context for a project and suite.
+#### wopee_dispatch_agent
+
+Dispatches an autonomous testing agent to execute test cases for a selected suite.
 
 **Parameters:**
-- `projectUuid` (string, required): UUID of the project
-- `suiteUuid` (string, required): UUID of the test suite
 
-**Example:**
-```json
-{
-  "projectUuid": "project-123",
-  "suiteUuid": "suite-123"
-}
+- `suiteUuid` (string, required): The UUID of the suite containing the test cases
+- `analysisIdentifier` (string, required): The analysis identifier for the suite
+- `testCases` (array, required): Array of test case objects to execute, each containing:
+  - `testCaseId` (string): The ID of the test case (e.g., `TC001`)
+  - `userStoryId` (string): The ID of the associated user story (e.g., `US001`)
+
+**Example Usage:**
+
+```
+Dispatch agent for my latest suite's user story US001 and test case TC003
 ```
 
-### 8. wopee_get_user_stories
+## Typical Workflow
 
-Get existing user stories for a project and suite.
+1. **Start with a suite:**
 
-**Parameters:**
-- `projectUuid` (string, required): UUID of the project
-- `suiteUuid` (string, required): UUID of the test suite
+   - Use `wopee_fetch_analysis_suites` to see existing suites, OR
+   - Use `wopee_dispatch_analysis` to create a new suite
 
-**Example:**
-```json
-{
-  "projectUuid": "project-123",
-  "suiteUuid": "suite-123"
-}
-```
+2. **Generate artifacts:**
 
-### 9. wopee_get_test_cases
+   - Generate app context: `wopee_generate_artifact` with `APP_CONTEXT`
+   - Generate general user stories: `wopee_generate_artifact` with `GENERAL_USER_STORIES`
+   - Generate user stories with test cases: `wopee_generate_artifact` with `USER_STORIES_WITH_TEST_CASES`
+   - Generate reusable test cases: `wopee_generate_artifact` with `REUSABLE_TEST_CASES`
+   - Generate reusable test case steps: `wopee_generate_artifact` with `REUSABLE_TEST_CASE_STEPS`
+   - Generate test case steps: `wopee_generate_artifact` with `TEST_CASE_STEPS`
 
-Get existing test cases for a project and suite.
+3. **Fetch generated content:**
 
-**Parameters:**
-- `projectUuid` (string, required): UUID of the project
-- `suiteUuid` (string, required): UUID of the test suite
+   - Use `wopee_fetch_artifact` to retrieve generated markdown/JSON files
 
-**Example:**
-```json
-{
-  "projectUuid": "project-123",
-  "suiteUuid": "suite-123"
-}
-```
+4. **Run tests:**
+   - Use `wopee_dispatch_agent` to execute test cases with the autonomous testing agent
 
-### 10. wopee_fetch_analysis_suites
+## Notes
 
-Fetch all analysis suites for a given project.
-
-**Parameters:**
-- `projectUuid` (string, required): UUID of the project
-
-**Example:**
-```json
-{
-  "projectUuid": "project-123"
-}
-```
-
-**Response:**
-Returns an array of analysis suites with detailed information including:
-- Suite UUID, name, and type
-- Upload and execution status
-- Analysis identifier
-- Suite running status
-- Generation state for app context, user stories, and test cases
-- Creation and update timestamps
+- Most tools require a `suiteUuid`. Always start by fetching or creating a suite.
+- `wopee_dispatch_analysis` tool will go through the whole cycle of processing - crawling the application and generating all of the files (artifacts) one by one.
+- It is advisable to use [cmd.wopee.io](https://cmd.wopee.io) for a convenient visual representation of the generated data and results of the agent runs.
 
 ## Example Session Flow
 
@@ -507,9 +533,10 @@ Assistant: ✅ Test execution started successfully!
 
 ### Common Issues
 
-- **Command not found**: `npm install -g wopee-mcp`
-- **API key error**: Check environment variables
+- **Command not found**: Run `npm install -g wopee-mcp`
+- **API key error**: Check environment variables in MCP config
 - **Connection failed**: Verify internet and API key
+- **Connection timeout**: Configure corporate proxy settings
 - **Tools not showing**: Restart editor
 
 ### Error Handling
@@ -517,50 +544,30 @@ Assistant: ✅ Test execution started successfully!
 #### Common Error Messages
 
 1. **"User not found" error:**
-    - Check API key configuration
-    - Verify project permissions
-    - Contact support if persistent
+
+   - Check API key configuration
+   - Verify project permissions
+   - Contact support if persistent
 
 2. **"Analysis not found" error:**
-    - Verify project UUID
-    - Check analysis completion status
-    - Ensure analysis exists
+
+   - Verify suite UUID
+   - Check analysis completion status
+   - Ensure analysis exists
 
 3. **"Test execution failed" error:**
-    - Check test case validity
-    - Verify application accessibility
-    - Review test steps
+   - Check test case validity
+   - Verify application accessibility
+   - Review test steps
 
 ### Getting Help
 
 - **Check logs**: Look in the MCP server output panel
 - **Verify installation**: Run `wopee-mcp --help` in terminal
-- **Test connection**: Use the `wopee_dispatch_analysis` tool with a simple URL
-
-## Response Format
-
-All tools return responses in the following format:
-
-```json
-{
-  "success": true,
-  "data": { /* tool-specific data */ },
-  "message": "Success message",
-  "error": "Error message (only present if success is false)"
-}
-```
-
-## Error Handling
-
-The server provides detailed error messages for:
-- Invalid parameters
-- GraphQL API errors
-- Network connectivity issues
-- Configuration problems
+- **Test connection**: Use the `wopee_dispatch_analysis` tool
 
 !!! note "Need help?"
 
     For support and further information, please refer to the [npm package page](https://www.npmjs.com/package/wopee-mcp) or contact the package maintainers.
 
-*Note: This package is currently in early preview; features and functionalities are subject to change.*
-
+_Note: This package is currently in early preview; features and functionalities are subject to change._
