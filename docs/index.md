@@ -39,14 +39,15 @@ The output is deterministic test code you can run anywhere. No LLMs or Wopee.io 
 
     We have also limited support for mobile apps, PDFs, desktop apps, and custom images generated or processed by your application. Contact us for more information.
 
-## 🐒 Autonomous testing in 2-minutes
+## 🐒 Autonomous testing in a 2-minute video
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/XNxoqs4l7vw?si=wycqaHZSprFjYB39" title="Introducing Wopee.io autonomous testin" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/XNxoqs4l7vw?si=wycqaHZSprFjYB39" title="Introducing Wopee.io autonomous testing" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Start with bot testing : Step by step
 
 - See detailed [📙 Getting Started with bot testing](ai-agent.md) section
 - Learn about [🛠️ Tools & Assertions](concepts/tools-and-assertions.md) and how the agent works
+- See how [🩹 Self-Healing](concepts/self-healing.md) keeps tests running when your UI changes
 - Understand [📖 Vocabulary](glossary.md) of 🐒
 
 ## Wopee.io Integrations
@@ -64,9 +65,9 @@ Getting started guides for your favorite testing framework:
 
 ## Why choose Wopee.io?
 
-Wopee.io is web app test efficiency booster: **10x quicker, 5x more testing, 30% less maintenance**.
+**First tests from a URL in minutes. A reviewed regression suite in days.** See [🧑‍✈️ Pilot projects](pilot-projects.md) for what teams typically measure over an 8-week pilot.
 
-1. **Effortless setup and execution**: Set up in one minute and get results in two. Wopee.io generates tests automatically, requiring no extensive preparation or programming skills.
+1. **Fast first results**: Point Wopee.io at a URL and get your first generated tests in minutes. Building a regression suite your team has reviewed and trusts takes days, not weeks. No extensive preparation or programming skills required.
 2. **Simplified test automation**: Wopee.io’s intuitive interface allows even those with limited technical skills to run comprehensive tests, making it easy for your team to adapt and use without a steep learning curve.
 3. **Cost-effective and efficient**: Reduce testing complexity and costs while maximizing efficiency. Wopee.io integrates seamlessly into your workflow and enhances your productivity.
 4. **Minimize human errors**: Automated testing with Wopee.io ensures consistency and accuracy, reducing the risk of overlooked bugs and human errors.
