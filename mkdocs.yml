@@ -7,6 +7,7 @@ nav:
       - 🔗 Analysis - Inputs: concepts/analysis-inputs.md
       - 📖 Prompting Guidelines: concepts/prompting-guidelines.md
       - 🛠️ Tools & Assertions: concepts/tools-and-assertions.md
+      - 🩹 Self-Healing: concepts/self-healing.md
       - 📃 POM example - Login: concepts/pom-login-example.md
   - Visual Testing with...:
       - ≫ Cypress:

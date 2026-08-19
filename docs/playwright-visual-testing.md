@@ -332,7 +332,7 @@ Integrating Playwright with Wopee.io offers significant benefits for modern web 
 
     Enhance your Playwright-based testing with Wopee.io's visual regression testing!
 
-    Integrate seamlessly to catch visual bugs early and ensure your web app works flawlessly across versions. Set up in 1 minute, and start automating your regression tests to achieve faster feedback and consistent results.
+    Integrate seamlessly to catch visual bugs early and ensure your web app works flawlessly across versions. First tests from a URL in minutes. A reviewed regression suite in days.
 
     Start your Wopee.io for Playwright integration – [Free Trial](https://cmd.wopee.io), and streamline your visual regression testing with minimal maintenance.
 
