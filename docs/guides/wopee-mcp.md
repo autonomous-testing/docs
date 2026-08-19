@@ -76,6 +76,8 @@ Fetch all existing analysis suites for my project
 
 ## Available Tools
 
+These are the MCP server's tools, the commands your AI client can call. They are not the same as the agent's in-browser [interaction tools and assertions](../concepts/tools-and-assertions.md), which the testing agent uses while executing a test.
+
 | Tool                          | Purpose             | Example Prompt                            |
 | ----------------------------- | ------------------- | ----------------------------------------- |
 | `wopee_fetch_analysis_suites` | List all suites     | `Fetch all analysis suites`               |
