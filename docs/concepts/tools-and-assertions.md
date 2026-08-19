@@ -79,6 +79,19 @@ _Example:_ "Open settings and enable dark mode" → navigate, click toggles, and
 
 ---
 
+## Troubleshoot tool
+
+When a step keeps failing, the agent does not retry blindly and does not give up silently. It calls the **Troubleshoot** tool, which launches a focused troubleshooting sub-agent against the same live browser session.
+
+- **Fresh eyes** – The sub-agent examines the page with a fresh accessibility snapshot and browser devtools, independent of the main agent's assumptions.
+- **Safe recovery** – It may take small recovery actions itself, such as dismissing a stray dialog, and every action it takes is recorded in the run.
+- **Structured outcome** – It returns **recovered** (the step can proceed), **diagnosed** (root cause, a recommended next step, and a better locator), or **blocked**.
+- **Bounded** – A few minutes and a handful of actions per attempt, and a few attempts per run, so troubleshooting cannot consume the run's budget.
+
+Only when troubleshooting cannot resolve a step does the agent escalate to a human handoff or report the step as a finding. See [Self-Healing](self-healing.md) for where this fits in the wider recovery ladder.
+
+---
+
 ## Locator strategies (automatic selection)
 
 The agent automatically selects the optimal locator strategy based on the tool you choose and the target element:

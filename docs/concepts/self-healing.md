@@ -37,7 +37,7 @@ If the preferred strategy fails, the agent automatically tries the next one. The
 
 ## Self-troubleshooting sub-agent
 
-When a step fails repeatedly (typically after two attempts), the agent does not blindly retry. It spawns a focused **troubleshooting sub-agent** against the same live browser session. The sub-agent examines the page with a different lens, a fresh accessibility snapshot plus browser devtools, and may take safe recovery actions itself, such as dismissing a stray dialog, to unstick the page. Everything it does is recorded in the run.
+When a step fails repeatedly (typically after two attempts), the agent does not blindly retry. It calls its **Troubleshoot** tool, which spawns a focused troubleshooting sub-agent against the same live browser session (see the [tool summary](tools-and-assertions.md#troubleshoot-tool)). The sub-agent examines the page with a different lens, a fresh accessibility snapshot plus browser devtools, and may take safe recovery actions itself, such as dismissing a stray dialog, to unstick the page. Everything it does is recorded in the run.
 
 It returns a structured result: **recovered** (the page is unstuck and the step can proceed), **diagnosed** (root cause plus a recommended next step and a better locator), or **blocked**. Troubleshooting is bounded, a few minutes and a handful of actions per attempt, and a few attempts per run, so it cannot eat the run's budget.
 
