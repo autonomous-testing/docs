@@ -28,6 +28,7 @@ After creating a project, you have two options to add tests:
 
 - Start a [NEW ANALYSIS](concepts/analysis-process.md) to let the system create tests for you.
 - Learn about [🛠️ Tools & Assertions](concepts/tools-and-assertions.md) to understand how the agent interacts with your app.
+- See [🩹 Self-Healing](concepts/self-healing.md) for how tests keep working when your UI changes.
 
 **B. Integrate your existing tests**
 
@@ -50,7 +51,7 @@ Once your tests are ready:
 
 ## 5. Check the results
 
-1. Visual difference is highlighted if it was identified comapring current state (on the left) and the baseline - previously approved state (on the right).
+1. Visual difference is highlighted if it was identified comparing current state (on the left) and the baseline - previously approved state (on the right).
 
 ![Comparison screen](img/getting-started/2024-08-08-15-23-56-image.png)
 
