@@ -7,7 +7,7 @@ description: How Wopee.io agents interact with your app using click, type, selec
 
 ## What this page covers
 
-How the agent interacts with your app, how it validates outcomes, and how locators are chosen. After a scenario runs, Wopee.io generates **plain test code** (e.g., Playwright) that you can run anywhere—**no LLMs or Wopee.io runtime required**.
+How the agent interacts with your app, how it validates outcomes, and how locators are chosen. After a scenario runs, Wopee.io generates **plain test code** (e.g., Playwright) that you can run anywhere, **no LLMs or Wopee.io runtime required**.
 
 ---
 
@@ -16,7 +16,7 @@ How the agent interacts with your app, how it validates outcomes, and how locato
 1. **Select interaction tool** (click, type, select, etc.) for the desired action.
 2. **Agent automatically chooses locator strategy** (ARIA/HTML/visual) based on the tool and target element.
 3. **Perform interactions** using the selected tool and optimal locator.
-4. **Validate results** with assertions (text, visibility, visual).
+4. **Validate results** with assertions (text, visibility, URL, visual).
 5. **Export deterministic code** that mirrors the exact tools and locators used.
 
 ---
@@ -26,16 +26,20 @@ How the agent interacts with your app, how it validates outcomes, and how locato
 Use these to drive the UI.
 _(Tip: prefer semantic/accessible targets first; fall back to visual only when needed.)_
 
-- **Click** – Click an element once.
-- **Double click** – Double-click an element.
-- **Visual click** – Click by visual position (e.g., icon/button without stable DOM locator).
-- **Fill** – Type text into an input/textarea.
+- **Click** – Click an element once. Double-click and right-click variants are available.
+- **Visual click** – Click by visual position (e.g., canvas elements or icons without a stable DOM locator). Positions can be viewport percentages, so they survive resolution changes.
+- **Fill** – Set the value of an input/textarea in one step. The default for text input.
+- **Type** – Type character by character, for type-ahead and autocomplete fields that only show suggestions on real keystrokes. Replaces the current field content.
 - **Select** – Choose an option in a `<select>` or custom dropdown.
 - **Hover** – Move the pointer over an element (tooltips/menus).
-- **Press** – Send keyboard keys or combos (e.g., `Enter`, `Ctrl+S`).
+- **Press** – Send keyboard keys or combos (e.g., `Enter`, `Ctrl+S`), optionally holding a key for a set duration (useful for games and canvas apps).
+- **Scroll** – Scroll the page or a specific container: up/down, by pixels, or to top/bottom.
+- **Resize viewport** – Change the browser viewport size mid-test (e.g., `1024x768`).
 - **Navigate to URL** – Open a specific URL or path.
+- **HTTP request** – Call an API directly from a test step (GET/POST/PUT/PATCH/DELETE and more). See the [HTTP Request Tool guide](../guides/http-tools.md).
 - **Add cookie** – Set a cookie (auth/session/bootstrap).
-- **Upload file** – Attach a local file to a file input.
+- **Upload file** – Attach a file to a file input. Files are read from your project's `data/` directory (see [Upload files](../guides/upload-files.md)).
+- **Wait** – Pause for a bounded time. Prefer a poll assert that waits for a condition instead of a fixed sleep.
 
 **Tool-locator relationship**
 
@@ -50,11 +54,17 @@ The tool you select influences how the agent chooses locators:
 
 Use these to prove the UI is in the expected state.
 
-- **Verify visibility** – Assert that an element is rendered and visible.
-- **Contain text** – Assert an element's text contains a string or regex.
+- **Verify visibility** – Assert that an element is rendered and visible, or that it is not. When you expect an element to be gone, its absence from the page counts as a pass.
+- **Contain text** – Assert an element's text contains a string or regex. Plain strings match case-insensitively, `a|b|c` alternation is supported, and form fields (inputs, dropdowns) are checked by their value.
+- **URL assert** – Assert the current page URL contains a string or matches a regex. Useful for verifying redirects and navigation outcomes.
 - **Visual assert** – LLM-assisted visual check written in natural language, e.g.,
-  "**Shopping cart shows a badge with 4 items**."
-  _Great for UI semantics that are hard to express via raw locators; avoid for pixel-perfect needs—use DOM/text assertions instead when possible._
+  "**Shopping cart shows a badge with 4 items**." The result carries a confidence score and the value the agent actually observed on screen.
+  _Great for UI semantics that are hard to express via raw locators; avoid for pixel-perfect needs, use DOM/text assertions instead when possible._
+- **Poll assert** – Repeat any of the above until it passes or a deadline is reached (up to 4 minutes). Use it to wait for slow transitions, background jobs, or data that takes time to appear.
+
+!!! tip "Never assert values that change between runs"
+
+    A passing assertion is saved as an expectation for future runs. Do not assert literal balances, totals, timestamps, or order numbers; they will differ on the next run and fail it. Use a test variable, a regex for the format (e.g., `/€\d+\.\d{2}/`), or a visual assert question instead.
 
 ---
 
@@ -85,7 +95,7 @@ The agent automatically selects the optimal locator strategy based on the tool y
 
 **Guidance**
 
-- The agent aims for **stable, readable locators** (data-test IDs > ARIA > HTML > visual).
+- The agent aims for **stable, readable locators**, in the same order as above: ARIA role/name first, then data-test IDs and other HTML attributes, visual position last.
 - **Visual tools** (like "Visual click") automatically trigger visual location strategies.
 - Keep assertions **specific and minimal**: verify what proves the behavior, not everything on the page.
 
@@ -137,3 +147,4 @@ After a successful agent run, Wopee.io emits **deterministic test code** that ex
 - [Analysis Process](analysis-process.md)
 - [Prompting Guidelines](prompting-guidelines.md)
 - [Project Context](../guides/project-context.md)
+- [HTTP Request Tool](../guides/http-tools.md)
