@@ -1,189 +1,140 @@
 ---
-description: 8-week guided pilot projects with Wopee.io. Achieve 70-90% faster test creation, 2-5x coverage increase, and expert coaching for autonomous testing.
+title: Pilot Projects
+description: "Wopee.io pilot project: 8 weeks, up to 10 critical flows, fixed price. What we deliver, what we need from your team, how we measure, and what happens after."
 ---
 
-# Pilot Projects
+# Pilot Projects (Wopee.io)
 
-## Why Choose a Pilot Project?
+A pilot project is an 8-week, fixed-scope engagement to prove that autonomous testing works on your application, with your team, before you commit to a contract. It is priced, scoped and measured in advance, and it ends with a decision.
 
-Transform your testing approach in just 8 weeks with expert guidance and proven results. A **Wopee.io Pilot Project** is your fast-track to autonomous testing success, delivering measurable improvements that justify broader adoption.
+## What this page covers
 
-### What You'll Achieve
+Exactly what a pilot includes, what it costs, what it asks of your team, how success is measured, and what happens when it ends. If you can answer every question on this page for your own organization, you are ready for the [first call](https://wopee.io/book-demo).
 
-- **70-90% reduction** in test creation time
-- **2-5x increase** in test coverage
-- **60-90% reduction** in maintenance effort
-- **From weeks to hours** for regression testing
-- **95%+ success rate** with expert guidance
+---
 
-### Key Benefits vs Self-Service
+## The offer
 
-| Aspect                 | Self-Service         | Pilot Project               |
-| ---------------------- | -------------------- | --------------------------- |
-| **Setup Time**         | Weeks to months      | 1-2 weeks                   |
-| **Expert Guidance**    | Documentation only   | Dedicated coach             |
-| **Customization**      | Standard templates   | Tailored to your needs      |
-| **Success Rate**       | Varies significantly | 95%+ success rate           |
-| **ROI Timeline**       | 3-6 months           | 8 weeks                     |
-| **Risk Mitigation**    | Self-managed         | Guided risk management      |
-| **Team Training**      | Self-study           | Structured training program |
-| **Stakeholder Buy-in** | Self-driven          | Facilitated presentations   |
+| Item | Detail |
+| ---- | ------ |
+| **Duration** | 8 weeks, run as 8 weekly sprints |
+| **Price** | **Fixed.** Agreed before Sprint 1 and credited in full against your first annual contract if you continue. Everything else on this page is fixed too; only the amount is discussed on the call |
+| **Scope** | Up to **10 critical user flows** of one web application, agreed before Sprint 1. Flows can be exchanged one for one during the pilot |
+| **We deliver** | 5 tests built by our engineers, weekly test runs, a live stability dashboard, a benefit assessment against your baseline, a viability report, and a closure presentation for your stakeholders |
+| **You deliver** | Around 20 further tests built by your team with our coaching |
+| **Decision** | A named decision maker on your side commits to a go/no-go decision at the end of Sprint 8 |
+| **After the pilot** | You own every test. They export as plain Playwright code and run without Wopee.io |
 
-## How Pilot Projects Are Organized
+**How the credit works.** If you continue after the pilot, the full pilot fee is deducted from your first year. You do not pay for the evaluation and then again for the contract.
 
-### Team Structure
+---
 
-Each pilot project involves a collaborative team from both organizations:
+## What we need from your team
 
-**Wopee.io Team:**
+This is the part most vendors leave out. A pilot only works if your team has the capacity to take part, so we say the numbers up front.
 
-- **Autonomous Testing Coach**: Guides the overall process, provides training, and ensures success
-- **Autonomous Testing Engineer**: Handles technical implementation and infrastructure setup
+| Role | Commitment |
+| ---- | ---------- |
+| **QA or test lead** (your pilot owner) | Named before kickoff. Attends the weekly review, selects scope, owns the go/no-go decision or knows who does |
+| **Testing team** | **3 to 5 person-days per sprint** across the team: building tests with our coaching, reviewing runs, giving feedback. Roughly 20 to 35 person-days over the 8 weeks |
+| **SRE / DevOps** | Environment access and connectivity in Sprint 1, then on request |
+| **Stakeholders** | Attend the Sprint 8 demo and decision |
 
-**Customer Team:**
+**Before kickoff you need:**
 
-- **SRE/DevOps**: Provides infrastructure access and connectivity setup
-- **Testing Team**: Selects testing scope and implements new test scenarios
-- **Stakeholders**: Reviews progress and provides feedback on the solution
+- A non-production environment with working test accounts and stable test data
+- Network access for our agents to reach that environment (VPN, allow-list, or a jump host; we will agree the route in the first call)
+- The initial 5 test cases you want covered first
+- A named decision maker and a date for the Sprint 8 decision
 
-### Project Phases
+!!! note "If the numbers above do not fit"
 
-#### Week 1: Foundation
+    Say so in the first call. A pilot with a team that cannot spare the time stalls in Sprint 3, and nobody benefits from that. It is better to schedule a pilot for a quarter when the capacity exists.
 
-- **Day 1**: Introduction training (Autonomous Testing Methodology + Wopee.io Platform)
-- **Day 2**: Introduction to AI/ML testing (optional)
-- **Days 3-5**: Infrastructure setup and connectivity verification
+---
 
-#### Week 2: Implementation
+## Week by week
 
-- Wopee.io AI Testing Agent setup for your first application
-- Wopee.io Copilot configuration for your testing framework
-- Creation of 5 sample test scenarios
+| Sprint | Focus | Outcome |
+| ------ | ----- | ------- |
+| 1 | Training, environment access, connectivity check, scope confirmed, **baseline measured** | Everyone can run a test; the numbers we will compare against are recorded |
+| 2 | First working tests: login and prerequisites, first analysis cycle | At least one runnable critical flow per area |
+| 3 | Optimization: ignore regions, stabilization, advanced training if wanted | Runs are repeatable |
+| 4 to 5 | Expand coverage, 10 to 15 test cases per sprint | Agreed scope covered |
+| 6 to 7 | Stabilization: run, monitor, address flakiness and maintenance | Suite is trustworthy |
+| 8 | Lessons-learned workshop, stakeholder demo, **go/no-go decision** | Viability report and a decision |
 
-#### Weeks 3-7: Execution & Optimization
+Sprint 1 and Sprint 8 can be on site or remote. Everything between is remote.
 
-- Running tests and monitoring results
-- Weekly review meetings with progress updates
-- Continuous improvement based on feedback
-- Expanding test coverage based on learnings
+---
 
-#### Week 8: Evaluation & Decision
+## How we measure
 
-- Final demonstration for stakeholders
-- Lesson-learned workshop
-- Decision about future adoption
+Every pilot records a **baseline in Sprint 1** and compares against it in Sprint 8. Success criteria are agreed in writing before work starts, not interpreted afterwards.
 
-## Typical Timing
+Typical criteria, adjusted to your context:
 
-The standard 8-week timeline is designed to provide sufficient time for meaningful results while maintaining momentum:
+- Coverage of the agreed critical flows by automated tests
+- Time to create a test scenario, before versus with Wopee.io
+- Regression cycle time for the agreed scope
+- Test stability: share of runs that fail for non-product reasons
+- Team adoption: how many of your team can run and review tests unaided
 
-| Week | Activities               | Deliverables                                      |
-| ---- | ------------------------ | ------------------------------------------------- |
-| 1    | Training & Setup         | Infrastructure ready, team trained                |
-| 2    | Initial Implementation   | Wopee.io tools configured, 5 sample tests running |
-| 3-7  | Execution & Optimization | Weekly progress reviews, expanding coverage       |
-| 8    | Evaluation               | Final demo, lessons learned, go/no-go decision    |
+We report each of these against your own baseline. We do not quote percentages from other customers as your expected result, because every application and team is different.
 
-_Note: Timeline can be adjusted based on customer preferences and specific requirements._
+---
 
-## Customer Effort Requirements
+## Security and data
 
-### Minimal Preparation (Before Kickoff)
+- Your data is stored in the EU by default. A custom region or full on-premise deployment is available.
+- **We never train models on your code, test data, or screenshots.**
+- Data is deleted within 30 days of the pilot ending.
+- Under the EU AI Act, Wopee.io is the provider and you are the deployer. The system does not self-learn or modify model weights from your inputs.
+- You can bring your own LLM account (Azure OpenAI, Google Vertex AI, Anthropic, or OpenAI) so that model usage stays under your contract.
+- SOC 2 and ISO 27001 are on our roadmap. We are happy to complete your supplier security questionnaire before the pilot starts.
 
-- Review and update the Pilot Project Charter with your information
-- Prepare connectivity from your infrastructure to Wopee.io cloud
-- Nominate your team members with contact details
-- Prepare testing scope including 5 initial test cases
+---
 
-### Ongoing Commitment
+## What a pilot does not do
 
-- **Weekly**: 1-2 hours for review meetings
-- **Daily**: 30-60 minutes for test monitoring and feedback
-- **As needed**: Infrastructure support and stakeholder coordination
+- It does not replace your QA team. It gives them a suite that keeps working and coaching on how to run it.
+- It does not promise a defect count. Our agents build and stabilize a regression suite; how many bugs that suite surfaces depends on your application.
+- It does not cover mobile native apps, desktop applications, or APIs on their own. The scope is one web application.
+- It does not run indefinitely. Sprint 8 ends with a decision either way.
 
-### Infrastructure Requirements
+---
 
-- VPN connection to Wopee.io cloud
-- Node.js (for Wopee.io AI Testing Agent and Wopee.io Copilot for Cypress and Playwright)
-- Python setup (Wopee.io Copilot for Robot Framework)
-- Internet connectivity (GitHub, MS Azure, Google Cloud access required - details to be agreed with Wopee.io team)
+## What happens after
 
-## What is a Pilot Project?
+At the end of Sprint 8 you have a viability report, a working suite, and a decision to make.
 
-A **Wopee.io Pilot Project** is a structured 8-week engagement designed to demonstrate the value and capabilities of autonomous testing in your organization. It's a hands-on, guided experience that goes far beyond self-service implementation, providing expert coaching, customized setup, and measurable outcomes.
+- **Continue:** the pilot fee is credited in full against your first annual contract, the suite grows from the pilot's foundation, and your team keeps our support.
+- **Stop:** you keep every test, exported as plain Playwright. We revoke our access and delete your data within 30 days. Nothing runs on our side afterwards.
 
-### Key Characteristics
+Either way, the tests are yours. If they are handed over and nobody maintains them, they will decay like any other test suite, which is exactly the outcome the Sprint 8 decision exists to avoid.
 
-- **Duration**: 8 weeks of intensive, focused implementation
-- **Scope**: One application with comprehensive test coverage
-- **Support**: Dedicated Wopee.io team with hands-on coaching
-- **Outcomes**: Measurable improvements in testing efficiency and quality
-- **Decision Point**: Clear go/no-go decision for broader adoption
+---
 
-### Why Choose a Pilot Project?
+## Getting started
 
-1. **Accelerated Learning**: Skip the trial-and-error phase with expert guidance
-2. **Proven Methodology**: Follow a tested approach that has worked for similar organizations
-3. **Risk Reduction**: Minimize implementation risks with professional support
-4. **Measurable Outcomes**: Clear metrics and success criteria from day one
-5. **Stakeholder Confidence**: Professional presentations and demonstrations
-6. **Future Planning**: Clear roadmap for broader adoption
+The first call is 30 minutes. It is not a product demo. We go through the questions on this page for your organization:
 
-## Metrics & Improvements
+1. Which application and which flows
+2. Who your pilot owner and decision maker are
+3. Whether the team capacity exists in the coming quarter
+4. Environment access and any security review you need from us
 
-Wopee.io delivers measurable improvements across key testing metrics. The following table shows typical improvements observed during pilot projects, with priority levels indicating which metrics are most feasible to improve during an 8-week pilot.
+If it fits, we send you the pilot charter pre-filled from that conversation.
 
-> **Important Note**: These are common, typical improvements based on our experience with pilot projects. Actual results vary by customer and depend on their specific context, existing testing maturity, application complexity, and team engagement. Your results may differ.
+!!! success "Start the conversation"
 
-| #   | Metric                                | Definition / Formula                                               | How to Collect (Baseline → Pilot)                                       | Pilot Target / Direction            | Priority |
-| --- | ------------------------------------- | ------------------------------------------------------------------ | ----------------------------------------------------------------------- | ----------------------------------- | -------- |
-| 1   | **Test Coverage (%)**                 | % of critical user flows/requirements covered by automated tests   | Inventory flows → map to automated tests; compute covered / total       | ↑ Significant increase (2–5×)       | **H**    |
-| 2   | **Test Creation Time (per scenario)** | Avg. hours to design & implement one test scenario                 | Time-track authoring for a sample of scenarios before vs. with Wopee.io | ↓ 70–90% reduction                  | **H**    |
-| 3   | **Time to First "Useful Suite"**      | Time to reach ~80% of agreed regression scope from zero            | Start clock at kickoff; stop when suite hits ~80% scope & runs green    | ↓ From weeks to days/hours          | **H**    |
-| 4   | **Regression Cycle Time**             | Wall-clock time from "run" to consolidated results (incl. visuals) | Measure end-to-end runtime and reporting before vs. with Wopee.io       | ↓ From days to minutes/hours        | **H**    |
-| 5   | **Defect Detection Rate**             | Defects found in QA per release (by severity)                      | Count QA-found defects per release; segment by Sev1–Sev3                | ↔/↑ Find more earlier (esp. Sev1–2) | **M**    |
-| 6   | **Defect Escape Rate**                | Defects found in UAT/production per release                        | Count post-QA defects (UAT + prod)                                      | ↓ 30–60% fewer escapes              | **M**    |
-| 7   | **Test Flakiness Rate (%)**           | % of test runs that fail for non-product reasons                   | Track false failures / total failures across runs                       | ↓ Toward <2–5%                      | **M**    |
-| 8   | **Maintenance Effort (hrs/sprint)**   | Hours spent fixing/updating tests/locators                         | Time-track maintenance before vs. with Wopee.io self-healing            | ↓ 60–90% reduction                  | **H**    |
-| 9   | **Business-User UAT Hours**           | Hours business users spend executing acceptance tests              | Calendar/time logs during UAT windows                                   | ↓ 30–70% reduction                  | **M**    |
-| 10  | **Cost per Release (Testing)**        | (Testing hours × blended rate) + tool costs                        | Compare total testing cost baseline vs. pilot period                    | ↓ 30–40% reduction                  | **L**    |
+    [:octicons-arrow-right-24: **Book the first call**](https://wopee.io/book-demo){ .md-button .md-button--primary style="display: block; margin: 0 auto; text-align: center;" }
 
-### Priority Levels Explained
+    _30 minutes, with the founders. Bring the questions above and we will answer them plainly._
 
-- **High (H)**: These metrics are directly impacted by Wopee.io and will show clear improvements even in a short 8-week pilot. They represent the core value proposition of autonomous testing.
+## Related topics
 
-- **Medium (M)**: Improvements are possible but depend on scope, defect inflow, and business involvement. These metrics may show improvement but require longer observation periods.
-
-- **Low (L)**: While savings will appear, these metrics are harder to quantify convincingly in a short pilot. Better measured over multiple releases.
-
-### Why These Metrics Matter
-
-**Test Coverage & Creation Time**: The foundation of testing efficiency. Faster test creation with broader coverage means more comprehensive testing with less effort.
-
-**Time to First Suite & Regression Cycle**: Critical for CI/CD integration. Faster feedback loops enable more frequent releases and earlier defect detection.
-
-**Maintenance Effort**: Often the hidden cost of automated testing. Self-healing capabilities dramatically reduce ongoing maintenance burden.
-
-**Defect Metrics**: Quality indicators that demonstrate the effectiveness of autonomous testing in finding and preventing issues.
-
-**Cost Metrics**: Business justification for continued investment in autonomous testing solutions.
-
-## Getting Started
-
-Ready to transform your testing approach? Here's what happens next:
-
-1. **Initial Consultation** - We'll discuss your testing challenges and goals
-2. **Scope Definition** - Identify the optimal application and test scenarios for your pilot
-3. **Team Alignment** - Help you identify the right team members for success
-4. **Success Planning** - Define clear success criteria and measurement approaches
-5. **Kickoff** - Begin your 8-week journey to autonomous testing success
-
-The pilot project is your opportunity to experience the future of testing with expert guidance and proven methodology.
-
-!!! success "🚀 Ready to Transform Your Testing?"
-
-    **Transform your testing approach with a Wopee.io Pilot Project.** Our expert team will guide you through every step of the process, ensuring you achieve measurable results in just 8 weeks.
-
-    [:octicons-arrow-right-24: **Book Your Demo**](https://wopee.io/book-demo){ .md-button .md-button--primary style="display: block; margin: 0 auto; text-align: center;" }
-
-    _Schedule a personalized consultation to discuss how autonomous testing can benefit your organization._
+- [Getting Started with Wopee.io Agent testing](ai-agent.md)
+- [Tools & Assertions](concepts/tools-and-assertions.md)
+- [Self-Healing](concepts/self-healing.md)
+- [Project Context](guides/project-context.md)
