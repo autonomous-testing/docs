@@ -1,339 +1,217 @@
 ---
-description: Integrate Wopee.io visual testing with Playwright. Add visual validation to your existing tests in JavaScript, Python, Java, or .NET.
+description: Add Wopee.io visual testing to your Playwright tests. Install @wopee-io/wopee.pw, set three variables, call trackFullPage, and review the screenshots in Commander.
 ---
 
 # Playwright
 
-## 📄 About
+Add visual checks to your existing Playwright tests. Each `wopee.track...()` call sends a screenshot to Wopee.io, which compares it with the approved baseline. You review the differences in Commander and approve or reject them.
 
-Wopee.io integrates seamlessly with Playwright to enhance test coverage, expedite maintenance, and ensure more resilient test runs. With a vision of autonomous visual testing, Wopee.io enables easy visual validation integration into your existing Playwright tests, providing an extra layer of quality assurance.
+This page walks through a complete example on [Sauce Demo](https://www.saucedemo.com){: target="\_blank"}: two screenshots, a first run that creates the baselines, and a second run that catches a visual bug. Verified with `@wopee-io/wopee.pw` 4.26.1 and `@playwright/test` 1.64.
 
-Playwright is a modern, open-source test automation framework designed for JavaScript developers and QA engineers however it also provide bindings in multiple additional languages like Java, Python, or .NET.
+## Prerequisites
 
-Key features of Playwright include:
+- Node.js 20 or newer
+- An existing Playwright project, or a new one as below
+- A Wopee.io account at [cmd.wopee.io](https://cmd.wopee.io){: target="\_blank"}
 
-- **Cross-browser Testing**: Run tests across multiple browsers including Chromium, Firefox, and WebKit.
-- **Automated Web Interactions**: Easily simulate user interactions for comprehensive testing.
-- **Flexible and Powerful API**: Robust API for creating and managing tests.
-- **Visual Comparisons**: Built-in support for capturing and comparing screenshots.
-- **Efficient Execution**: Tests run in parallel for faster results.
-- **Network Interception**: Full control over network traffic and requests.
-- **Headless and Headed Modes**: Run tests in both headless and headed browser modes.
+## 1. Create a project
 
----
+1. In Commander, click **NEW PROJECT** and paste the **App URL** (for example `https://www.saucedemo.com`).
+2. Open **Advanced settings**, keep **Test framework** on **Playwright** and switch off **Explore the app and generate tests**. You bring your own tests, so the AI exploration is not needed.
+3. Click **Create project**.
 
-## 🚀 Quickstart
+![Test framework picker in the New project dialog](img/visual-testing/new-project-framework.webp){ width="440" }
 
-### 1. Get Sample project
+## 2. Get the API key
 
-- Navigate to [cmd.Wopee.io](https://cmd.wopee.io){: target="\_blank"} and click **`PLAYWRIGHT`** button.
-  ![New project button](img/new-project.png)
+1. In the project, open **More** › **Settings** › **API Keys** and copy `WOPEE_API_URL` and `WOPEE_PROJECT_UUID`.
+2. Click **Generate a new key** and copy `WOPEE_API_KEY`. The key is shown **only once**.
 
-- Fill in the project name and click **`CREATE`**.
+![API Keys in project settings](img/visual-testing/api-keys.webp){ width="600" }
 
-- **Confirm an invitation** to GitHub private repository with sample tests. (Which you will recieve via email after project creation.)
+## 3. Install
 
-### 2. Run Sample project
-
-- Run those sample tests using `GitHub Actions` directly from the GitHub page of the sample repository.
-
-!!! info "Detailed instructions are placed in README.md file inside the sample repository."
-
----
-
-## 🧑‍💻 Integrate w. your tests
-
-To start visual testing with **your existing Playwright tests**, leverage the benefits of the Wopee.io. Follow the steps below to install the plugin.
-
-### 1. Install dependencies
-
-**Prerequisites**
-
-- Existing Playwright tests (if you need some, follow the [Quickstart](#quickstart) to get Sample project)
-
-**Installation**
-
-- Install `@wopee-io/wopee.pw` npm package into your existing Playwright project:
+In a new folder (skip `npm init` and the browser install in an existing Playwright project):
 
 ```shell
-npm i -D @wopee-io/wopee.pw
+npm init -y
+npm i -D @playwright/test @wopee-io/wopee.pw @types/node
+npx playwright install chromium
 ```
 
-**Environment setup**
-
-- Set following environment variables:
+Create a `.env` file next to `playwright.config.ts`:
 
 ```shell
+WOPEE_API_URL=https://api.wopee.io
 WOPEE_PROJECT_UUID=your-project-uuid
 WOPEE_API_KEY=your-api-key
 ```
 
-??? tip "Where to find project UUID and API key in cmd.Wopee.io?"
+The package loads `.env` by itself; you do not need to import `dotenv`. Add `.env` to `.gitignore`. In CI, set the same three variables as secrets instead.
 
-    **Create a new Playwright project**
+## 4. Configure Playwright
 
-    - Navigate to [cmd.Wopee.io](https://cmd.wopee.io){: target="\_blank"} and click **`PLAYWRIGHT`** button.
+Add the Wopee.io reporter next to your usual reporter. It uploads the test results and stops the suite when the run ends.
 
-      ![New project button](img/new-project.png)
+```typescript title="playwright.config.ts"
+import { defineConfig, devices } from '@playwright/test';
 
-    - Fill in the project name and click **`CREATE`**.
-
-    **Find your project UUID and API key in the `PROJECT SETTINGS` / `API Keys` section.**
-
-    ![Project UUID](img/project-settings.webp)
-
-??? info "How to set env variables?"
-
-    **Set API key via command**
-
-    Before running the visual test, set up your API key as an environment variable named `WOPEE_API_KEY`.
-    You may set it from the command line like this:
-
-    === "Linux/MacOS"
-
-        ```shell
-        export WOPEE_API_KEY=your-api-key
-        ```
-
-    === "Windows"
-
-        ```shell
-        set WOPEE_API_KEY=your-api-key
-        ```
-
-    **Set project UUID via `.env` file**
-
-    You need to set your own `.env` file to your project.
-
-    This is a sample `.env` file:
-
-    ```shell
-    # Mandatory
-    WOPEE_PROJECT_UUID=your-project-uuid
-    ```
-
-- Full list of `.env` file parameters could be found in our [playwright-template](https://github.com/Wopee-io/playwright-template){: target="\_blank"} / [.env.example](https://github.com/Wopee-io/playwright-template/blob/main/.env.example){: target="\_blank"}.
-
-### 2. Modify your tests
-
-**Start session**
-
-- Add `wopee.startSuite()` into beforeAll or equivalent hook.
-  ```typescript
-  let wopee: Wopee;
-  test.beforeAll(async () => {
-    wopee = new Wopee();
-    await wopee.startSuite("Minimal example");
-  });
-  ```
-
-??? info "`wopee.startSuite()` function explained"
-    The `wopee.startSuite()` command initializes a session with the Wopee.io platform.
-
-    This function might be called before any calls to `wopee.track...()`. Therefore, it is recommended to place it in the beforeAll hook or equivalent for your test suite.
-
-**Test visually**
-
-- Add `wopee.track...()` into individual tests wherever you need visual assertion.
-  ```typescript
-  await wopee.trackFullPage({ stepName: "examplePageComparison", page });
-  ```
-
-??? info "`wopee.tracktrackFullPage()`, `wopee.trackElement()` and `wopee.trackImage()` functions explained"
-    For automatic visual testing assertion, you can use one of the following functions. Which can capture and test _whole page_, _individual element_ or any _image_ you can provide.
-
-    The `wopee.track...()` functions are used to capture screenshots and compare them with the baseline images stored in the Wopee.io platform.
-
-    ```typescript
-    await wopee.trackFullPage({stepName: 'examplePageComparison', page });
-    ```
-
-    ```typescript
-    await wopee.trackElement({locator: element, stepName: 'exampleElementComparison'});
-    ```
-
-    ```typescript
-    await wopee.trackImage({ stepName: 'exampleImageComparison', imageBase64 });
-    ```
-
-**End scenario**
-
-- Add `wopee.stopScenario()` into afterEach or equivalent hook.
-
-  ```typescript
-  test.afterEach(async () => {
-    await wopee.stopScenario();
-  });
-  ```
-
-??? info "`wopee.stopScenario()` function explained"
-    The `wopee.stopScenario()` command finalizes the current scenario which helps to keep your tests organized and separated. Plus you can see if your tests are currently running or not in the Wopee.io platform itself.
-
-    This function must be called after all calls to `wopee.track...()` from the individual test in the afterEach hook or equivalent for your test suite.
-
-### 3. Run tests as usual
-
-You can run your tests as you would normally do - locally or using some CI/CD tool like GitHub Actions, GitLab CI, Jenkins, etc. The visual testing will be automatically triggered by the `wopee.track...()` functions placed in your tests.
-
-The only condition is that Wopee.io platform is accessible from the environment where the tests are running.
-
-## 📚 Examples
-
-### Minimal test
-
-To run sample test create a new file `tests/mini.spec.ts` and paste the following code:
-
-```typescript
-import { Wopee } from "@wopee-io/wopee.pw";
-import { test } from "@playwright/test";
-
-test.describe("test", () => {
-  let wopee: Wopee;
-  test.beforeAll(async () => {
-    wopee = new Wopee();
-    await wopee.startSuite("Minimal example");
-  });
-
-  test.afterEach(async () => {
-    await wopee.stopScenario();
-  });
-
-  test("test", async ({ page }) => {
-    await page.goto("https://playwright.dev/");
-
-    const screenshot = await page.screenshot();
-    const imageBase64 = screenshot.toString("base64");
-    await wopee.trackImage({
-      stepName: "image",
-      scenarioName: "test",
-      imageBase64,
-      page,
-    });
-  });
+export default defineConfig({
+  testDir: './tests',
+  workers: 1,
+  reporter: [['list'], ['@wopee-io/wopee.pw/wopee-reporter']],
+  use: {
+    ...devices['Desktop Chrome'],
+    baseURL: 'https://www.saucedemo.com',
+  },
 });
 ```
 
-### Complex test
+## 5. Track screenshots in your test
 
-To run sample test create a new file `tests/wopee.spec.ts` and paste the following code:
+```typescript title="tests/saucedemo.spec.ts"
+import { test } from '@playwright/test';
+import { Wopee } from '@wopee-io/wopee.pw';
 
-```typescript
-import { Wopee } from "@wopee-io/wopee.pw";
-import { test } from "@playwright/test";
+const wopee = new Wopee();
+const user = process.env.SAUCE_USER ?? 'standard_user';
 
-test.describe("test", () => {
-  let wopee: Wopee;
-  test.beforeAll(async () => {
-    wopee = new Wopee();
+test.beforeAll(async () => {
+  const now = new Date().toLocaleString('sv-SE').slice(0, 16); // YYYY-MM-DD HH:MM
+  await wopee.startSuite(`Playwright demo ${now}`);
+});
 
-    const now = new Date();
-    const date = `${now.getDate().toString().padStart(2, "0")}-${(
-      now.getMonth() + 1
-    )
-      .toString()
-      .padStart(2, "0")}-${now.getFullYear()}`;
-    await wopee.startSuite(`test-${date}`);
-  });
+test.beforeEach(async ({}, testInfo) => {
+  await wopee.startScenario(testInfo.title, testInfo);
+});
 
-  test.afterEach(async () => {
-    await wopee.stopScenario();
-  });
+test.afterEach(async () => {
+  await wopee.stopScenario();
+});
 
-  test("trackImage", async ({ page }) => {
-    await page.goto("https://playwright.dev/");
+test('Playwright: login and products', async ({ page }) => {
+  await page.goto('/');
+  await wopee.trackFullPage({ page, stepName: 'Login page' });
 
-    const screenshot = await page.screenshot({ type: "png" });
-    const imageBase64 = screenshot.toString("base64");
+  await page.getByPlaceholder('Username').fill(user);
+  await page.getByPlaceholder('Password').fill('secret_sauce');
+  await page.getByRole('button', { name: 'Login' }).click();
+  await page.locator('.inventory_list').waitFor();
 
-    await wopee.trackImage({
-      comment: "comment",
-      customTags: "customTags",
-      imageBase64: imageBase64,
-      pixelToPixelDiffTolerance: 1.0,
-      scenarioName: "trackImageWithoutStartScenario",
-      stepName: "image-trackImage",
-      viewport: "viewport",
-      page,
-    });
-  });
-
-  test("trackFullPageScreenshot", async ({ page }) => {
-    await page.goto("https://playwright.dev/");
-
-    await wopee.trackFullPage({
-      stepName: "image-trackFullPageScreenshot",
-      comment: "comment",
-      customTags: "customTags",
-      pixelToPixelDiffTolerance: 1.0,
-      scenarioName: "trackFullPageScreenshotWithoutStartScenario",
-      viewport: "1920x1080",
-      page,
-    });
-  });
-
-  test("trackElement", async ({ page }) => {
-    await page.goto("https://playwright.dev/");
-
-    const element = page.locator('//a[@class="getStarted_Sjon"]');
-
-    await wopee.trackElement({
-      comment: "comment",
-      customTags: "customTags",
-      locator: element,
-      pixelToPixelDiffTolerance: 1.0,
-      scenarioName: "trackElementWithoutStartScenario",
-      stepName: "element",
-      viewport: "1920x1080",
-    });
-  });
-
-  test("trackViewport", async ({ page }) => {
-    await page.goto("https://playwright.dev/");
-
-    const element = page.locator('//a[@class="getStarted_Sjon"]');
-
-    await wopee.trackElement({
-      comment: "comment",
-      customTags: "customTags",
-      locator: element,
-      pixelToPixelDiffTolerance: 1.0,
-      scenarioName: "trackViewportWithoutStartScenario",
-      stepName: "viewport",
-      viewport: "1920x1080",
-    });
-  });
+  await wopee.trackFullPage({ page, stepName: 'Products' });
 });
 ```
 
-## 🏆 Benefits
+| Call | Where | Purpose |
+| --- | --- | --- |
+| `new Wopee()` | top of the file | Reads the configuration. Fails at once if `WOPEE_API_KEY` or `WOPEE_PROJECT_UUID` is missing. |
+| `wopee.startSuite(name)` | `beforeAll` | Starts a suite (one entry in **Runs**). A suite with the same name and branch is reused, so the timestamp gives every run its own entry. |
+| `wopee.startScenario(testInfo.title, testInfo)` | `beforeEach` | Starts a scenario named after the test. **Required**: without it the first track call throws `There is no Scenario started, and no scenarioName provided`. Passing `testInfo` lets the reporter link the test result and stop the suite. |
+| `wopee.trackFullPage({ page, stepName })` | in the test | Takes a full-page screenshot and compares it with the baseline. |
+| `wopee.stopScenario()` | `afterEach` | Closes the scenario. |
 
-... of Integrating Playwright with Wopee.io
+Other track methods:
 
-**Basic Features:**
+- `wopee.trackViewport({ page, stepName })` captures the visible part of the page.
+- `wopee.trackElement({ locator, stepName })` captures one element.
+- `wopee.trackImage({ imageBase64, stepName })` sends a PNG you captured yourself.
 
-- **Advanced Visual Comparison**: Playwright's built-in visual comparison capabilities are enhanced by Wopee.io, providing a more comprehensive validation with pixel-perfect accuracy.
-- **Ignore Areas**: Specify areas to ignore during comparisons by locator or coordinates, reducing false positives.
-- **Baseline Management**: Efficiently handle baselines with bulk approval, filtering options, and the ability to flexibly tag baselines for better organization and control.
-- **Cross-browser Screenshots**: Capture and compare screenshots across Chromium, Firefox, and WebKit for thorough cross-browser visual testing.
+All of them accept the optional `comment`, `customTags`, `viewport`, `pixelToPixelDiffTolerance` and `baselineBranchName`, and return `{ stepName, imageUrl, status }`.
 
-**Advanced Features:**
+Wait for the content you want to capture before each track call, as the test does with `.inventory_list`. See [Wait for fonts and images before tracking](visual-testing.md#wait-for-fonts-and-images-before-tracking).
 
-- **Baseline Version History**: Track changes over time with detailed version histories.
-- **Multi-Branch and Multi-Config Support**: Easily manage tests across different branches and configurations.
-- **Improved Team Collaboration**: Enhance teamwork with features designed for better collaboration and communication.
-- **Archiving**: Keep your workspace organized with archiving capabilities for old or irrelevant tests.
-- **Dynamic Content Handling**: Wopee.io provides tools to manage and compare dynamic content more effectively, reducing the noise in visual test results.
+## 6. First run: create the baselines
 
-Additionally, users can **benefit from Wopee.io's visual testing bot**, which automates and streamlines the visual testing process, ensuring thorough and consistent validation without manual intervention.
+```shell
+npx playwright test
+```
 
-Integrating Playwright with Wopee.io offers significant benefits for modern web application testing. Playwright provides a robust, efficient, and developer-friendly testing experience with advanced visual testing capabilities, while Wopee.io enhances this by adding comprehensive visual validation and management tools. This integration allows for advanced baseline management, enabling efficient handling of baselines with features like bulk approval, filtering, and flexible tagging. It also improves team collaboration with enhanced tools and supports thorough visual testing with automated comparison algorithms. Overall, combining Playwright with Wopee.io ensures more resilient test runs, faster maintenance, and higher quality web applications.
+```text
+[wopee]: Suite(name=Playwright demo 2026-10-12 21:21, uuid=...) is activated.
+[wopee]: Scenario(name=Playwright: login and products, uuid=...) is started.
+[wopee]: Tracking response: {"stepName":"Login page","imageUrl":"https://cmd.wopee.io/tests?...&tab=RUNS","status":"new"}
+[wopee]: Tracking response: {"stepName":"Products","imageUrl":"https://cmd.wopee.io/tests?...&tab=RUNS","status":"new"}
+[wopee]: Scenario(name=Playwright: login and products, uuid=...) is stopped.
+  ✓  1 tests/saucedemo.spec.ts:20:5 › Playwright: login and products (4.7s)
 
-!!! tip "Playwright Visual Regression Testing with Wopee.io"
+  1 passed (10.5s)
+Uploading 1 remaining test results...
+Successfully uploaded all test results.
+Suite(uuid=...) is stopped.
+```
 
-    Enhance your Playwright-based testing with Wopee.io's visual regression testing!
+Both steps are `new`: there is no baseline yet. Each `imageUrl` opens the step in Commander.
 
-    Integrate seamlessly to catch visual bugs early and ensure your web app works flawlessly across versions. First tests from a URL in minutes. A reviewed regression suite in days.
+## 7. Approve in Runs
 
-    Start your Wopee.io for Playwright integration – [Free Trial](https://cmd.wopee.io), and streamline your visual regression testing with minimal maintenance.
+Open the project and go to **Runs**. Select the run `Playwright demo ...`, then each step, and click **Approve**. The screenshot becomes the baseline.
 
-    [Start Free Trial for Playwright](https://cmd.wopee.io)
+![Comparison view with a new step and the Approve button](img/visual-testing/runs-comparison.webp)
+
+## 8. Second run: catch a visual bug
+
+Sauce Demo has a `visual_user` whose products page is visually broken. Run the same test as that user:
+
+```shell
+SAUCE_USER=visual_user npx playwright test
+```
+
+```text
+[wopee]: Tracking response: {"stepName":"Login page",...,"status":"ok"}
+[wopee]: Tracking response: {"stepName":"Products",...,"status":"unresolved"}
+  ✓  1 tests/saucedemo.spec.ts:20:5 › Playwright: login and products (4.1s)
+```
+
+**Login page** matches the baseline. **Products** is `unresolved`: open it in **Runs**, inspect the highlighted differences and **Reject** it as a bug, or **Approve** it if the change is intended.
+
+![Unresolved step with the difference overlay next to the baseline](img/visual-testing/runs-diff.webp)
+
+## Good to know
+
+- **A difference does not fail the test.** The Playwright test passes and the step waits for review. To fail the test as well, check the returned status:
+
+    ```typescript
+    const result = await wopee.trackFullPage({ page, stepName: 'Products' });
+    expect(result?.status).not.toBe('unresolved');
+    ```
+
+- **Baselines** are identified by `<scenario name>-<step name>` (here `Playwright: login and products-Products`) plus the branch and the OS, browser, viewport, device and custom tags labels. Renaming a test or a step starts a new baseline.
+- **Branches**: `WOPEE_BRANCH_NAME` sets the branch of the run (default `master`). `WOPEE_BASELINE_BRANCH_NAME` sets the branch to compare with when the current branch has no baseline yet, for example `master` for a feature branch. Merge approved baselines with **More** › **Baselines** › **Merge Branches**. See [Baselines and branches](visual-testing.md#baselines-and-branches).
+- **Statuses**: `new`, `ok`, `unresolved`, `autoApproved`. See [How it works](visual-testing.md#how-it-works).
+
+## Configuration
+
+All options are environment variables (shell, `.env` file or CI secrets).
+
+| Variable | Required | Description |
+| --- | --- | --- |
+| `WOPEE_API_KEY` | yes | Project API key (**More** › **Settings** › **API Keys**). |
+| `WOPEE_PROJECT_UUID` | yes | Project UUID (same place). |
+| `WOPEE_API_URL` | no | API endpoint. Default `https://api.wopee.io`. |
+| `WOPEE_BRANCH_NAME` | no | Branch of this run. Default `master`. |
+| `WOPEE_BASELINE_BRANCH_NAME` | no | Branch to take baselines from when the current branch has none. |
+| `WOPEE_SCREENSHOT_VALIDATION_ENABLED` | no | Switches all Wopee.io calls on or off. Default on. See the warning below. |
+| `WOPEE_SUITE_UUID` | no | Report into an existing suite instead of creating one. |
+| `WOPEE_PIXEL_TO_PIXEL_DIFF_TOLERANCE` | no | Difference in percent that still counts as a match. |
+| `WOPEE_BROWSER`, `WOPEE_OS`, `WOPEE_VIEWPORT`, `WOPEE_DEVICE` | no | Labels that are part of the baseline identity. |
+| `WOPEE_CUSTOM_TAGS` | no | Tags added to every step; also part of the baseline identity. |
+| `WOPEE_COMMENT` | no | Comment added to every step. |
+| `WOPEE_COLLECT_PAGE_CONTENT` | no | Also send the page HTML with `trackFullPage` and `trackViewport`. |
+| `WOPEE_API_TIMEOUT_MS` | no | Timeout of one API call. Default `180000`; `0` means no limit. |
+| `WOPEE_API_MAX_RETRIES` | no | Retries of a call that did not get through (timeouts, 408, 429, 502, 503, 504). Default `2`. |
+
+The standard `HTTPS_PROXY` and `NO_PROXY` variables are honoured.
+
+!!! warning "`WOPEE_SCREENSHOT_VALIDATION_ENABLED=false` does not switch Wopee.io off"
+
+    In `@wopee-io/wopee.pw` 4.26.1 the value is read as a string, and any non-empty string, `false` included, counts as on. To run the tests without Wopee.io, set the variable to an empty value (`WOPEE_SCREENSHOT_VALIDATION_ENABLED=`). The track calls then return `null` and nothing is sent.
+
+## Troubleshooting
+
+| Message | Fix |
+| --- | --- |
+| `There is no Scenario started, and no scenarioName provided` | Call `wopee.startScenario(testInfo.title, testInfo)` in `beforeEach`, or pass `scenarioName` to every track call. The Quick Start in the npm README misses this call. |
+| `Wopee is not configured — missing required environment variables` | `WOPEE_API_KEY` or `WOPEE_PROJECT_UUID` is not set. Check that `.env` is next to `playwright.config.ts` or that the CI secret is exported. |
+| `must be an absolute URL including the scheme` | Write `WOPEE_API_URL` with `https://`. |
+| All runs end up in one entry in **Runs** | The suite name is constant. Add a timestamp or build ID to the name passed to `startSuite`. |
+| A step stays `new` on the second run | The step from the first run was not approved, or the scenario or step name changed. |
