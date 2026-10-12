@@ -39,9 +39,13 @@ The output is deterministic test code you can run anywhere. No LLMs or Wopee.io 
 
     We have also limited support for mobile apps, PDFs, desktop apps, and custom images generated or processed by your application. Contact us for more information.
 
-## 🐒 Autonomous testing in a 2-minute video
+## 🐒 Wopee.io in 2 minutes
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/XNxoqs4l7vw?si=wycqaHZSprFjYB39" title="Introducing Wopee.io autonomous testing" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<div style="width: 100%; aspect-ratio: 16 / 9; margin: 1rem 0 1.5rem; border-radius: 12px; overflow: hidden; background: #000;">
+<iframe style="width: 100%; height: 100%; border: 0; display: block;" src="https://www.youtube.com/embed/X4vKIrlauik" title="Wopee.io in 2 minutes: an AI agent that tests your web app" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+Ready to try it? The [📙 Getting started](ai-agent.md) guide and its [6-minute quick start video](https://youtu.be/o5ThjRddZfw) walk you through every step.
 
 ## Start with bot testing : Step by step
 
