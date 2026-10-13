@@ -19,7 +19,7 @@ nav:
       - ≫ WebdriverIO: webdriverio-visual-testing.md
       - ≫ Robot Framework:
           - Getting started: robot-framework/01-getting-started.md
-          - Manual setup: robot-framework/02-manual-setup.md
+          - Configuration and listener: robot-framework/02-manual-setup.md
           - Setup with make: robot-framework/03-setup-with-make.md
           - Examples: robot-framework/04-some-more-examples.md
   - Guides:
