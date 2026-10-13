@@ -67,6 +67,8 @@ Getting started guides for your favorite testing framework:
 
 </div>
 
+Any other stack: see [Visual testing with your own tests](visual-testing.md), which also covers the GraphQL API.
+
 ## Why choose Wopee.io?
 
 **First tests from a URL in minutes. A reviewed regression suite in days.** See [🧑‍✈️ Pilot projects](pilot-projects.md) for what teams typically measure over an 8-week pilot.
