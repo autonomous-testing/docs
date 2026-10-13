@@ -1,56 +1,215 @@
 ---
-title: Overview
-description: Get started with Wopee.io visual testing for Cypress. Clone the template project or install the plugin into your existing Cypress setup.
+title: Getting started
+description: Add Wopee.io visual testing to your Cypress tests. Install @wopee-io/wopee.cy, register the plugin, track screenshots, and review differences in Commander.
 ---
 
-## Getting started
+# Cypress
 
-There are 2 main options to start with Wopee.io and Cypress visual testing:
+Add visual checks to your existing Cypress tests with the `@wopee-io/wopee.cy` plugin. Each `cy.wopeeTrack()` sends a screenshot to Wopee.io, which compares it with the approved baseline. You review the differences in Commander and approve or reject them.
 
-1. Clone the [Cypress Integration Template Project](02-template-project.md).
-2. Install the [Cypress Plugin](03-install-plugin.md) into your existing Cypress project.
+This page walks through a complete example on [Sauce Demo](https://www.saucedemo.com){: target="\_blank"}: two screenshots, a first run that creates the baselines, and a second run that catches a visual bug. Verified with `@wopee-io/wopee.cy` 4.12.2 and Cypress 14.5.4. Prefer a ready project? Start from the [template project](02-template-project.md).
 
-## Wopee.io + Cypress
+## Prerequisites
 
-Wopee.io integrates seamlessly with Cypress to enhance test coverage, expedite maintenance, and ensure more resilient test runs. With a vision of autonomous visual testing, Wopee.io enables easy visual validation integration into your existing Cypress tests, providing an extra layer of quality assurance.
+- Node.js 18 or newer
+- **Cypress 13 or 14.** Cypress 15 and newer do not work with `@wopee-io/wopee.cy` 4.12.2 yet (see [Troubleshooting](#troubleshooting)).
+- A Wopee.io account at [cmd.wopee.io](https://cmd.wopee.io){: target="\_blank"}
 
-Cypress is a modern, open-source test automation framework designed for JavaScript developers and QA engineers. It is commonly used as a language-agnostic tool for testing modern web applications. Unlike other testing frameworks like Selenium, Cypress features a unique architecture that offers a distinctive approach to testing.
+## 1. Create a project
 
-Key features of Cypress include:
+1. In Commander, click **NEW PROJECT** and paste the **App URL** (for example `https://www.saucedemo.com`).
+2. Open **Advanced settings** and set **Test framework** to **Cypress**. **Explore the app and generate tests** switches off, because test generation is available for Playwright only.
+3. Click **Create project**.
 
-- **Simple Setup**: No need for additional servers or drivers.
-- **Real-time Reloading**: Immediate feedback during test development.
-- **Built-in Automatic Waiting**: Reduces flakiness by waiting for elements to reach an actionable state.
-- **Time Travel Debugging**: Easily identify issues by reviewing previous test steps.
-- **Comprehensive Network Traffic Control**: Manage and stub network requests effortlessly.
-- **Direct Browser Execution**: Tests run directly in the browser for more accurate results.
-- **Powerful Interactive Test Runner**: Provides a smooth and reliable testing experience.
+![New project with Cypress selected](../img/visual-testing/new-project.webp){ width="440" }
 
-## Benefits of Integrating Cypress with Wopee.io
+## 2. Get the API key
 
-**Basic Features:**
+1. In the project, open **More** › **Settings** › **API Keys** and copy `WOPEE_API_URL` and `WOPEE_PROJECT_UUID`.
+2. Enter a name, click **Generate a new key** and copy `WOPEE_API_KEY`. The key is shown **only once**.
 
-- **Image Comparison**: Accurately compare screenshots to detect visual discrepancies, providing a more thorough validation than Cypress's CSS assertions alone.
-- **Ignore Areas**: Specify areas to ignore during comparisons by locator or coordinates, reducing false positives.
-- **Baseline Management**: Efficiently handle baselines with bulk approval, filtering options, and the ability to flexibly tag baselines for better organization and control.
+![API Keys in project settings](../img/visual-testing/api-keys.webp){ width="600" }
 
-**Advanced Features:**
+## 3. Install
 
-- **Baseline Version History**: Track changes over time with detailed version histories.
-- **Multi-Branch and Multi-Config Support**: Easily manage tests across different branches and configurations.
-- **Improved Team Collaboration**: Enhance teamwork with features designed for better collaboration and communication.
-- **Archiving**: Keep your workspace organized with archiving capabilities for old or irrelevant tests.
+In a new folder (skip `npm init` in an existing project):
 
-Additionally, users can **benefit from Wopee.io's visual testing bot**, which automates and streamlines the visual testing process, ensuring thorough and consistent validation without manual intervention.
+```shell
+npm init -y
+npm install -D cypress@14.5.4 @wopee-io/wopee.cy dotenv
+```
 
-Integrating Cypress with Wopee.io offers significant benefits for modern web application testing. Cypress provides a streamlined, efficient, and developer-friendly testing experience, while Wopee.io enhances this by adding robust visual validation capabilities. This integration allows for advanced baseline management, enabling efficient handling of baselines with features like bulk approval, filtering, and flexible tagging. It also improves team collaboration with enhanced tools and supports comprehensive visual testing with automated comparison algorithms. Overall, combining Cypress with Wopee.io ensures more resilient test runs, faster maintenance, and higher quality web applications.
+Create a `.env` file in the project root:
 
-!!! tip "Cypress Visual Regression Testing with Wopee.io"
+```shell
+WOPEE_API_URL=https://api.wopee.io
+WOPEE_PROJECT_UUID=your-project-uuid
+WOPEE_API_KEY=your-api-key
+```
 
-    Unlock powerful visual regression testing with Wopee.io's Cypress integration!
+Add `.env` to `.gitignore`. In CI, set the same variables as secrets; values already set in the environment take precedence over `.env`.
 
-    Ensure your web app stays visually consistent across all releases. Code your tests to integrate seamlessly with Wopee.io’s visual testing features and catch issues before they impact users. Setup takes just 1 minute to start improving your regression testing.
+## 4. Register the plugin
 
-    Experience Wopee.io for Cypress – [Free Trial](https://cmd.wopee.io), and ensure your visual regression testing is top-notch.
+The plugin reads its settings from the `wopee` object in `env`, not from the `WOPEE_*` variables directly. Map them in the Cypress config:
 
-    [Start Free Trial with Cypress](https://cmd.wopee.io)
+```javascript title="cypress.config.js"
+require("dotenv").config();
+const { defineConfig } = require("cypress");
+const { addWopeePlugin } = require("@wopee-io/wopee.cy");
+
+module.exports = defineConfig({
+  viewportWidth: 1280,
+  viewportHeight: 800,
+  env: {
+    wopee: {
+      apiUrl: process.env.WOPEE_API_URL,
+      apiKey: process.env.WOPEE_API_KEY,
+      projectUuid: process.env.WOPEE_PROJECT_UUID,
+    },
+  },
+  e2e: {
+    baseUrl: "https://www.saucedemo.com",
+    setupNodeEvents(on, config) {
+      addWopeePlugin(on, config);
+    },
+  },
+});
+```
+
+For a TypeScript config (`cypress.config.ts`) use `import "dotenv/config";` and `import { addWopeePlugin } from "@wopee-io/wopee.cy";`. More options of the `wopee` object are in the [plugin reference](03-install-plugin.md#configuration).
+
+## 5. Register the commands
+
+```javascript title="cypress/support/e2e.js"
+import { addWopeeCommands } from "@wopee-io/wopee.cy";
+
+addWopeeCommands();
+```
+
+## 6. Wait until the page is ready
+
+Cypress takes the screenshot immediately. Web fonts and images that are still loading are missing from the screenshot, and a baseline without text or pictures is worse than none. `document.fonts.status` does not help: it reports `loaded` while the font faces the page uses are still `unloaded`.
+
+Add a `pageReady` command to the same support file. It forces every font face to load and every image to decode:
+
+```javascript title="cypress/support/e2e.js"
+import { addWopeeCommands } from "@wopee-io/wopee.cy";
+
+addWopeeCommands();
+
+// Cypress screenshots right away: load web fonts and images first, or the baseline misses text and pictures.
+Cypress.Commands.add("pageReady", () =>
+  cy.document().then((doc) =>
+    Promise.all([
+      ...[...doc.fonts].map((font) => font.load()),
+      ...[...doc.images].map((img) => img.decode().catch(() => {})),
+    ]),
+  ),
+);
+```
+
+Call `cy.pageReady()` before **every** `cy.wopeeTrack()`.
+
+## 7. Track screenshots in your test
+
+```javascript title="cypress/e2e/saucedemo.cy.js"
+/// <reference types="cypress" />
+/// <reference types="@wopee-io/wopee.cy" />
+
+const pad = (n) => String(n).padStart(2, "0");
+const now = new Date();
+const stamp = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}`;
+const suiteName = `Cypress demo ${stamp}`;
+
+describe(suiteName, () => {
+  before(() => cy.wopeeStartSuite(suiteName));
+  beforeEach(() => cy.wopeeStartScenario("Cypress: login and products"));
+  afterEach(() => cy.wopeeStopScenario());
+
+  it("login and products", () => {
+    cy.visit("/");
+    cy.pageReady();
+    cy.wopeeTrack({ stepName: "Login page" });
+
+    cy.get("[data-test=username]").type(Cypress.env("SAUCE_USER") || "standard_user");
+    cy.get("[data-test=password]").type("secret_sauce");
+    cy.get("[data-test=login-button]").click();
+    cy.get(".inventory_list").should("be.visible");
+    cy.pageReady();
+    cy.wopeeTrack({ stepName: "Products" });
+  });
+});
+```
+
+| Command | Where | Purpose |
+| --- | --- | --- |
+| `cy.wopeeStartSuite(name)` | `before` | Starts a suite (one entry in **Runs**). Required before the first track. A suite with the same name and branch is reused, so the timestamp gives every run its own entry. |
+| `cy.wopeeStartScenario(name)` | `beforeEach` | Starts a scenario. Use a stable name; it is part of the baseline key. |
+| `cy.wopeeTrack({ stepName })` | in the test | Takes a full-page screenshot and compares it with the baseline. Chained after `cy.get()` it captures one element. |
+| `cy.wopeeStopScenario()` | `afterEach` | Closes the scenario. |
+
+## 8. First run: create the baselines
+
+```shell
+npx cypress run
+```
+
+```text
+[wopee]: Suite(name=Cypress demo 2026-10-12 21:21, uuid=...) is activated.
+[wopee]: Scenario(name=Cypress: login and products, uuid=...) is started.
+[wopee]: Tracking response: {"stepName":"Login page","imageUrl":"https://cmd.wopee.io/tests?...&tab=RUNS","status":"new"}
+[wopee]: Tracking response: {"stepName":"Products","imageUrl":"https://cmd.wopee.io/tests?...&tab=RUNS","status":"new"}
+[wopee]: Scenario(name=Cypress: login and products, uuid=...) is stopped.
+    ✓ login and products (7250ms)
+```
+
+Both steps are `new`: there is no baseline yet. Each `imageUrl` opens the step in Commander. The plugin deletes the local screenshots after the upload.
+
+## 9. Approve in Runs
+
+Open the project and go to **Runs**. Select the run `Cypress demo ...`, then each step, and click **Approve**. The screenshot becomes the baseline.
+
+![Comparison view with a new step and the Approve button](../img/visual-testing/runs-comparison.webp)
+
+## 10. Second run: catch a visual bug
+
+Sauce Demo has a `visual_user` whose products page is visually broken. Run the same test as that user:
+
+```shell
+CYPRESS_SAUCE_USER=visual_user npx cypress run
+```
+
+```text
+[wopee]: Tracking response: {"stepName":"Login page",...,"status":"ok"}
+[wopee]: Tracking response: {"stepName":"Products",...,"status":"unresolved"}
+[wopee]: Tracking response: {"stepName":"Products",...,"status":"unresolved"}
+[wopee]: Tracking response: {"stepName":"Products",...,"status":"unresolved"}
+    ✓ login and products (6475ms)
+```
+
+**Login page** matches the baseline. **Products** is `unresolved`. The plugin tracks an `unresolved` step up to three times (the first attempt plus two retries) in case the page was still changing, so the line appears three times. Open the step in **Runs**, inspect the highlighted differences and **Reject** it as a bug, or **Approve** it if the change is intended.
+
+![Unresolved step with the difference overlay next to the baseline](../img/visual-testing/runs-diff.webp)
+
+## Good to know
+
+- **A difference does not fail the test.** The Cypress run stays green and the step waits for review in Commander. To act on the result in the test, pass a callback: `cy.wopeeTrack({ stepName: "Products" }, (result) => { /* result.status */ })`.
+- **Baselines** are identified by `<scenario name>-<step name>` plus the branch and the environment labels. Keep both names stable between runs.
+- **Branches**: set `branchName` in the `wopee` object (default `master`), for example from `process.env.WOPEE_BRANCH_NAME`. See [Baselines and branches](../visual-testing.md#baselines-and-branches).
+- **Statuses**: `new`, `ok`, `unresolved`, `autoApproved`. See [How it works](../visual-testing.md#how-it-works).
+- All commands, options and more examples: [plugin reference](03-install-plugin.md).
+
+## Troubleshooting
+
+| Message | Fix |
+| --- | --- |
+| `Class extends value undefined is not a constructor or null` (in `agent-base` / `http-proxy-agent`) | Cypress 15 or newer. `@wopee-io/wopee.cy` 4.12.2 works with Cypress 13 and 14 only: `npm install -D cypress@14.5.4`. |
+| `Cannot find module '.../Cypress.app/Contents/MacOS/Contents/Resources/app/index.js'` or `bad option: --no-sandbox` | Cypress was started from a terminal inside VS Code (or another Electron app) that exports `ELECTRON_RUN_AS_NODE=1`. Run `unset ELECTRON_RUN_AS_NODE`, then start Cypress again. |
+| Fonts or product images are missing in the screenshots | Call `cy.pageReady()` before `cy.wopeeTrack()`, see [step 6](#6-wait-until-the-page-is-ready). |
+| `apiKey` or `projectUuid` reported missing | `WOPEE_API_KEY` or `WOPEE_PROJECT_UUID` is not set, or the `env.wopee` object is missing in the Cypress config. |
+| `There is no Suite and no Scenario started` | Call `cy.wopeeStartSuite()` in `before()`. |
+| `cy.wopeeTrack is not a function` | Add `addWopeeCommands()` to `cypress/support/e2e.js`. |
+| `Can't run because no spec files were found` | Spec files must match `specPattern`, by default `cypress/e2e/**/*.cy.{js,jsx,ts,tsx}`. |
+| All runs end up in one entry in **Runs** | The suite name is constant. Add a timestamp or build ID to it. |
+| A step stays `new` on the second run | The step from the first run was not approved, or the scenario or step name changed. |
