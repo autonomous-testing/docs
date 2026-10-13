@@ -1,72 +1,180 @@
 ---
-title: Overview
-description: Get started with Wopee.io visual testing for Robot Framework. Works with Browser library, Selenium, and picture comparison for PDF or mobile apps.
+title: Getting started
+description: Add Wopee.io visual testing to Robot Framework. Install wopee_rf, track screenshots from your Browser or Selenium tests, and review differences in Commander.
 ---
 
-## Getting started
+# Robot Framework
 
-There are several ways to initiate visual testing with Wopee.io and Robot Framework. It can be used with the Browser library, Selenium library, or for any picture comparison (e.g., PDF, mobile or desktop apps).
+`wopee_rf` adds visual testing to your Robot Framework tests. Your test takes a screenshot at the steps you choose, Wopee.io compares it with the approved baseline, and you review the differences in [Commander](https://cmd.wopee.io).
 
-You can use all of the options in two ways:
+You can use it in two ways:
 
-1. Library: By adding tracking keywords into your test cases
-2. Listener: Without modifying your test and automatically collecting visual validation
+1. **Keywords**: add `Start Suite`, `Start Scenario`, `Track Fullpage` and `Stop Scenario` to your tests. You decide where screenshots are taken and how steps are named. This page uses this way.
+2. **Listener**: run your existing tests unchanged with `--listener wopee_rf.Listener` and track a screenshot after selected keywords. See [Configuration and listener › Listener](02-manual-setup.md#listener).
 
-To quickly explore most of the options, you can start with the Robot Framework Integration Template Project.
+Both work with the [Browser library](https://robotframework-browser.org) and SeleniumLibrary. The `Track` keyword compares any image you pass in, for example from Appium or a PDF rendered to PNG ([examples](04-some-more-examples.md)).
 
-The listener approach is simpler to set up, while the library approach offers more customization. Choose the method that best suits your project requirements and preferences.
+This page walks through a complete example on [Sauce Demo](https://www.saucedemo.com): two screenshots, a first run that creates the baselines, and a second run that catches a visual bug. Verified with `wopee_rf` 2.6.3, Robot Framework 7.5 and robotframework-browser 20.6.
 
-<div class="grid cards" markdown>
+## Prerequisites
 
-- [Getting Started >>](02-manual-setup.md)
+- Python 3.11 or newer
+- Robot Framework 7 or newer
+- Node.js 18 or newer, for the Browser library
+- A Wopee.io account in [Commander](https://cmd.wopee.io)
 
-</div>
+## 1. Create a project
 
-## Wopee.io + Robot Framework
+1. In Commander, click **NEW PROJECT** and paste the **App URL** (for example `https://www.saucedemo.com`).
+2. Open **Advanced settings** and set **Test framework** to **Robot Framework**. **Explore the app and generate tests** switches off, because test generation is available for Playwright only.
+3. Click **Create project**.
 
-Wopee.io seamlessly integrates with Robot Framework to improve test coverage, speed up maintenance, and ensure more robust test runs. With a vision of autonomous visual testing, Wopee.io facilitates easy integration of visual validation into your existing Robot Framework tests, adding an extra layer of quality assurance. With Wopee.io, you can easily compare screenshots (from web and mobile testing), compare various images (including PDFs, desktop apps, or test data images captured or processed by your application under test), manage baselines, and automate visual testing within your Robot Framework test suite.
+![Test framework picker in the New project dialog](../img/visual-testing/new-project-framework.webp){ width="440" }
 
-Robot Framework is a versatile open-source automation framework for acceptance testing, acceptance test-driven development (ATDD), and robotic process automation (RPA). It features an easy-to-use tabular test data syntax and follows a keyword-driven testing approach. The testing capabilities of Robot Framework can be extended by test libraries implemented either with Python or Java. Furthermore, users can create new higher-level keywords from existing ones using the same syntax used for creating test cases.
+## 2. Get the API key
 
-Robot Framework offers the following key features:
+In the project, open **More › Settings › API Keys**. The page shows `WOPEE_API_URL` and `WOPEE_PROJECT_UUID`. Enter a name and click **Generate a new key**. The key is shown only once: copy it right away.
 
-- **Simple and readable syntax:** It has an easy-to-understand tabular syntax for writing test cases.
-- **Keyword-Driven testing:** Tests can be organized into reusable keywords for efficient test creation and maintenance.
-- **Cross-Platform support:** It allows tests to be run on different operating systems and browsers.
-- **Extensive library support:** Users can utilize a wide range of libraries for various functionalities.
-- **Built-in reporting:** It can generate detailed reports for test execution results.
-- **Flexible test data handling:** It enables efficient management of test data using tabular syntax and variables.
-- **Integration with other tools:** It can be integrated with other tools and frameworks to enhance testing capabilities.
+![API Keys in project settings](../img/visual-testing/api-keys.webp){ width="600" }
 
----
+## 3. Install
 
-## The benefits of integrating Robot Framework with Wopee.io
+```shell
+python3 -m venv .venv
+source .venv/bin/activate          # Windows: .venv\Scripts\activate
 
-**Basic features:**
+pip install wopee_rf robotframework robotframework-browser
+rfbrowser init chromium
+```
 
-- **Image comparison**: Accurately compare screenshots to detect visual differences, providing more thorough validation than Robot Framework's assertions alone.
-- **Ignore areas**: Specify areas to ignore during comparisons by locator or coordinates, reducing false positives.
-- **Baseline management**: Efficiently handle baselines with bulk approval, filtering options, and the ability to flexibly tag baselines for better organization and control.
+!!! warning "wopee_rf 2.6.3 needs one more install command"
 
-**Advanced features:**
+    The PyPI package `wopee_rf` 2.6.3 does not declare its dependency `wopee_sdk`. Without it, Robot Framework reports `Importing library 'wopee_rf.Standalone' failed: ModuleNotFoundError: No module named 'wopee_sdk'`. Install the copy that ships inside the package:
 
-- **Baseline version history**: Track changes over time with detailed version histories.
-- **Multi-branch and multi-config support**: Easily manage tests across different branches and configurations.
-- **Improved team collaboration**: Enhance teamwork with features designed for better collaboration and communication.
-- **Archiving**: Keep your workspace organized with archiving capabilities for old or irrelevant tests.
+    ```shell
+    pip install "$(python -c 'import sysconfig; print(sysconfig.get_paths()["purelib"])')/wopee_rf/dependencies/wopee_sdk-1.2.0.tar.gz"
+    ```
 
-Our implementation of Robot Framework with Wopee.io enables testing of web applications (using Selenium or Playwright) and mobile applications (using Appium). Additionally, it supports testing various other applications, including PDFs, desktop apps, and custom images generated or processed by your application. This integration offers a robust visual validation solution that enhances the testing capabilities of Robot Framework. It ensures more resilient test executions, faster maintenance, and higher quality web applications.
+    On Windows PowerShell:
 
-Furthermore, users can **benefit from Wopee.io's visual testing bot**, which automates and streamlines the visual testing process, ensuring thorough and consistent validation without manual intervention.
+    ```powershell
+    $sp = python -c "import sysconfig; print(sysconfig.get_paths()['purelib'])"
+    pip install "$sp\wopee_rf\dependencies\wopee_sdk-1.2.0.tar.gz"
+    ```
 
-Integrating Robot Framework with Wopee.io offers significant benefits for modern web application testing. Robot Framework provides a flexible, keyword-driven testing approach with easy-to-understand syntax, while Wopee.io enhances this by adding robust visual validation capabilities. This integration allows for advanced baseline management, enabling efficient handling of baselines with features like bulk approval, filtering, and flexible tagging. It also improves team collaboration with enhanced tools and supports comprehensive visual testing with automated comparison algorithms. Overall, combining Robot Framework with Wopee.io ensures more resilient test runs, faster maintenance, and higher quality web applications.
+    Check with `python -c "import wopee_rf"`. It prints nothing when the installation is complete.
 
-!!! tip "Robot Framework Visual Regression Testing with Wopee.io"
+## 4. Configure
 
-    Power up your Robot Framework tests with Wopee.io's advanced visual regression testing integration.
+Create a `.env` file next to your tests folder. Copy the first three values from **API Keys**:
 
-    Identify and track visual changes in your web app easily, ensuring consistency across updates. With a quick 1-minute setup, enhance your regression testing and automate visual validations efficiently.
+```dotenv
+WOPEE_API_URL=https://api.wopee.io
+WOPEE_PROJECT_UUID=your-project-uuid
+WOPEE_API_KEY=your-api-key
+WOPEE_SCREENSHOT_VALIDATION_ENABLED=true
+WOPEE_DRIVER_LIBRARY=BrowserLibrary
+```
 
-    Try Wopee.io for Robot Framework – [Free Trial](https://cmd.wopee.io), and elevate your visual regression capabilities.
+!!! warning "Both last lines are required"
 
-    [Get Started with Wopee.io](https://cmd.wopee.io)
+    Without `WOPEE_SCREENSHOT_VALIDATION_ENABLED=true` the keywords do nothing and send nothing. Without `WOPEE_DRIVER_LIBRARY` the library cannot take screenshots and `Track Fullpage` returns `None`. In both cases the test still passes, so nothing tells you that no screenshot reached Wopee.io. Use `SeleniumLibrary` instead of `BrowserLibrary` for Selenium tests.
+
+Keep `.env` out of version control. In CI, set the same variables as environment variables or secrets instead.
+
+## 5. Write the test
+
+`tests/saucedemo.robot`:
+
+```robotframework
+*** Settings ***
+Library     Browser
+Library     wopee_rf.Standalone    dot_env_path=.env
+
+Test Setup       New Page    https://www.saucedemo.com
+Test Teardown    Stop Scenario
+
+
+*** Variables ***
+${USER}     standard_user
+${SUITE}    Robot Framework demo ${{datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}}
+
+
+*** Test Cases ***
+Login And Products
+    Start Suite       suite_name=${SUITE}
+    Start Scenario    scenario_name=Robot Framework: login and products
+
+    ${login}=    Track Fullpage    step_name=Login page
+
+    Fill Text    id=user-name    ${USER}
+    Fill Text    id=password     secret_sauce
+    Click        id=login-button
+    Wait For Elements State    css=.inventory_list    visible
+
+    ${products}=    Track Fullpage    step_name=Products
+
+    Log To Console    \nLogin page: ${login.status} | Products: ${products.status}
+```
+
+- `Start Suite` starts a run in Commander. A suite with the same name on the same branch is reused, so the timestamp gives every run its own entry.
+- `Start Scenario` groups the screenshots of one test.
+- `Track Fullpage` takes a full-page screenshot and returns the result with `status` and `image_url`.
+- `Stop Scenario` in the teardown finishes the scenario even when the test fails.
+- All Wopee.io keywords take named arguments only: write `step_name=Login page`, not just `Login page`.
+
+## 6. First run: create the baselines
+
+Run `robot` from the folder that holds `.env`, because `dot_env_path` is relative to the working directory:
+
+```shell
+robot -d reports tests/
+```
+
+```text
+Login And Products
+Login page: new | Products: new
+| PASS |
+```
+
+Both steps are `new`: there is no baseline yet. The Robot log (`reports/log.html`) shows the full result of each step, including `image_url`, the link to the step in Commander.
+
+## 7. Approve in Runs
+
+Open **Runs** in Commander and select the run `Robot Framework demo ...`, then each step, and click **Approve**. The screenshot becomes the baseline.
+
+![Comparison view with a new step and the Approve button](../img/visual-testing/runs-comparison.webp)
+
+## 8. Second run: catch a visual bug
+
+Sauce Demo has a `visual_user` whose products page is visually broken. Run the same test as that user:
+
+```shell
+robot -d reports -v USER:visual_user tests/
+```
+
+```text
+Login page: ok | Products: unresolved
+```
+
+**Login page** matches the baseline. **Products** is `unresolved`: open it in **Runs**, inspect the highlighted differences and **Reject** it as a bug, or **Approve** it if the change is intended.
+
+![Unresolved step with the difference overlay next to the baseline](../img/visual-testing/runs-diff.webp)
+
+## Good to know
+
+- **A difference does not fail the test.** The Robot test still passes and the step waits for review. To fail the test on a difference, add `WOPEE_ENABLE_SOFT_ASSERT=false` to `.env` (see [Fail the test on a visual difference](02-manual-setup.md#fail-the-test-on-a-visual-difference)).
+- **Baselines** are identified by `<scenario name>-<step name>` plus the branch and the environment labels. Keep both names stable between runs.
+- **Branches**: `WOPEE_BRANCH_NAME` sets the branch of the run (default `master`). See [Branches](02-manual-setup.md#branches) and [Baselines and branches](../visual-testing.md#baselines-and-branches).
+- **Statuses**: `new`, `ok`, `unresolved`, `autoApproved`. See [How it works](../visual-testing.md#how-it-works).
+- **Wait for the content** you want to capture before each `Track Fullpage`, as the test does with `Wait For Elements State`. See [Wait for fonts and images before tracking](../visual-testing.md#wait-for-fonts-and-images-before-tracking).
+
+## Troubleshooting
+
+The most common problems are a missing `wopee_sdk` (step 3), a missing `WOPEE_SCREENSHOT_VALIDATION_ENABLED=true` or `WOPEE_DRIVER_LIBRARY` (step 4), and unnamed keyword arguments. The full list is in [Configuration and listener › Troubleshooting](02-manual-setup.md#troubleshooting).
+
+## Next steps
+
+- [Configuration and listener](02-manual-setup.md): all settings, the listener, SeleniumLibrary, branches and CI.
+- [Setup with Make](03-setup-with-make.md): start from the template project.
+- [Examples](04-some-more-examples.md): extra parameters, viewport screenshots, mobile apps and PDF documents.
