@@ -10,11 +10,12 @@ nav:
       - 🩹 Self-Healing: concepts/self-healing.md
       - 📃 POM example - Login: concepts/pom-login-example.md
   - Visual Testing with...:
+      - ≫ Your own tests: visual-testing.md
+      - ≫ Playwright: playwright-visual-testing.md
       - ≫ Cypress:
           - Getting started: cypress/01-getting-started.md
           - Template project: cypress/02-template-project.md
           - Install plugin: cypress/03-install-plugin.md
-      - ≫ Playwright: playwright-visual-testing.md
       - ≫ WebdriverIO: webdriverio-visual-testing.md
       - ≫ Robot Framework:
           - Getting started: robot-framework/01-getting-started.md
