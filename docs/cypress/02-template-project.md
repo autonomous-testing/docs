@@ -1,74 +1,51 @@
 ---
-title: Template Project
-description: Ready-to-use Cypress template project for Wopee.io visual testing. Clone, configure your API key, and run your first visual test in minutes.
+title: Template project
+description: Start Wopee.io visual testing with the Cypress template project. Configure your project UUID and API key and run the sample test.
 ---
 
-This is anThis might be a good place to start with Wopee.io and Cypress visual testing. Our template project provides you with a ready-to-use setup for visual testing with Cypress and Wopee.io. Also you will find a demo test that you can run to see how it works.
+# Cypress template project
+
+The [Cypress template project](https://github.com/Wopee-io/cypress-template){: target="\_blank"} is a ready Cypress setup with the Wopee.io plugin and a sample test. It uses Cypress 13 and the same plugin setup as [Getting started](01-getting-started.md).
 
 ## Prerequisites
 
-- [Node.js](https://nodejs.org/en/download/)
-- Visual Studio Code or any other code editor
-- Wopee.io [account](https://cmd.wopee.io)
+- [Node.js](https://nodejs.org/en/download/){: target="\_blank"} 18 or newer
+- A Wopee.io project with the test framework **Cypress** and an API key: follow steps 1 and 2 of [Getting started](01-getting-started.md)
 
-## Environment setup
+## Get the template project
 
-### Set Wopee.io API key
+```shell
+git clone https://github.com/Wopee-io/cypress-template
+cd cypress-template
+npm install
+```
 
-Before running the visual test, set up your API key as an environment variable named `WOPEE_API_KEY`.
-You may set it from the command line like this:
+## Configure the environment
 
-=== "Linux/MacOS"
+Copy `.env.example` to `.env` and fill in your values:
 
-    ```shell
-    export WOPEE_API_KEY=your-api-key
-    ```
+```shell
+WOPEE_API_URL=https://api.wopee.io
+WOPEE_PROJECT_UUID=your-project-uuid
+WOPEE_API_KEY=your-api-key
+```
 
-=== "Windows"
+`.env.example` also lists `WOPEE_PROJECT_URL` and `WOPEE_CI_BUILD_ID`; the plugin does not read them. The template maps the `WOPEE_*` variables into the `env.wopee` object in `cypress.config.ts`, as described in [Getting started › Register the plugin](01-getting-started.md#4-register-the-plugin).
 
-    ```shell
-    set WOPEE_API_KEY=your-api-key
-    ```
+The sample test opens `baseUrl` from `cypress.config.ts`. Change it to your application URL and adjust the test to your pages. Add `cy.pageReady()` before each `cy.wopeeTrack()` as shown in [Wait until the page is ready](01-getting-started.md#6-wait-until-the-page-is-ready).
 
-### Set `.env` file params
+Do not commit `.env`.
 
-Template repository comes with sample environment file. You can easily reuse it and set your own `.env` file. To do so copy or rename `.env.example` file into `.env`.
+## Run the sample test
 
-All parameters are already set in `.env.example` file. You need to set only `WOPEE_PROJECT_UUID` parameter.
+```shell
+npm test
+```
 
-??? tip "Where to find project UUID and Wopee.io API key?"
+This runs `cypress/e2e/simple.spec.cy.ts`. The terminal prints one `[wopee]: Tracking response:` line per tracked step, with its status and a link to the step in Commander.
 
-    You can find your project UUID and Wopee.io API key in the project settings screen after navigating to project.
+## Review the results
 
-    ![Project UUID](../img/project-settings.webp)
+Open **Runs** in Commander and select the run. On the first run every step is `new`: open each step and click **Approve** to make it the baseline. On the next run, matching steps are `ok` and changed steps are `unresolved`. See [Getting started › Approve in Runs](01-getting-started.md#9-approve-in-runs).
 
-## Get template project
-
-Clone repository using VS Code palette option (Ctrl + Shift + P): `https://github.com/Wopee-io/cypress-template` or by running:
-
-    git clone https://github.com/Wopee-io/cypress-template
-
-## Install dependencies
-
-Install all dependencies:
-
-    npm i
-
-## Run tests
-
-Run first demo test:
-
-    npx cypress run --spec cypress/e2e/*.spec.ts
-
-OR just:
-
-    npm t
-
-!!! note
-
-    When running tests with the `npm t` command, ensure the API key is properly configured in the `.env` file.
-    If using the `npx cypress run --spec cypress/e2e/*.spec.ts` command, the API key is read from an environment variable."
-
-You can also run tests in Docker container (Docker need to installed on your machine):
-
-    npm run tests-in-docker
+![Comparison view with a new step and the Approve button](../img/visual-testing/runs-comparison.webp)
