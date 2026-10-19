@@ -22,6 +22,7 @@ nav:
           - Manual setup: robot-framework/02-manual-setup.md
           - Setup with make: robot-framework/03-setup-with-make.md
           - Examples: robot-framework/04-some-more-examples.md
+      - ≫ Any other framework (API): graphql-api.md
   - Guides:
       - 📁 Upload files: guides/upload-files.md
       - 📥 Download files: guides/download-files.md
@@ -102,6 +103,8 @@ plugins:
         "integrations/robot-framework/01-getting-started.md": "robot-framework/01-getting-started.md"
         "robot-framework.md": "robot-framework/01-getting-started.md"
         "rf.md": "robot-framework/01-getting-started.md"
+        "api.md": "graphql-api.md"
+        "graphql.md": "graphql-api.md"
         "getting-started.md": "ai-agent.md"
         "bot.md": "ai-agent.md"
 
