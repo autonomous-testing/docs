@@ -1,74 +1,73 @@
 ---
-title: Template Project
-description: Ready-to-use Cypress template project for Wopee.io visual testing. Clone, configure your API key, and run your first visual test in minutes.
+title: Template project
+description: The Cypress repository Wopee.io creates for your project from the Cypress template. Run it from Commander or locally, review the first screenshot and grow it into your own tests.
 ---
 
-This is anThis might be a good place to start with Wopee.io and Cypress visual testing. Our template project provides you with a ready-to-use setup for visual testing with Cypress and Wopee.io. Also you will find a demo test that you can run to see how it works.
+# Cypress template project
 
-## Prerequisites
+When you create a project with the test framework **Cypress**, Wopee.io creates a repository for it from the [Cypress template](https://github.com/Wopee-io/cypress-template){: target="\_blank"} and fills in your project settings. It is a ready Cypress 13 setup with the Wopee.io plugin, the same plugin setup as [Getting started](01-getting-started.md), and one sample test.
 
-- [Node.js](https://nodejs.org/en/download/)
-- Visual Studio Code or any other code editor
-- Wopee.io [account](https://cmd.wopee.io)
+| File | What it does |
+| --- | --- |
+| `cypress.config.ts` | Registers the plugin and maps the `WOPEE_*` variables into `env.wopee`. `baseUrl` is `WOPEE_PROJECT_URL`, the App URL of your project (fallback `https://dronjo.wopee.io/`). |
+| `cypress/e2e/simple.spec.cy.ts` | The sample test **Home page works**: opens your app, waits for its fonts and images, and tracks one screenshot, the step **Home page**. |
+| `cypress/e2e-examples/` | More examples on the Wopee.io demo app. Not part of the default run; copy a file into `cypress/e2e/` to try it. |
+| `.env.example` | Your project's values for local runs. Only `WOPEE_API_KEY` is empty. |
+| `.github/workflows/tests.yml` | The workflow Commander starts. |
 
-## Environment setup
+## Run from Commander
 
-### Set Wopee.io API key
+Nothing to set up. In Commander open **Runs** › **Start testing**. Commander runs the repository's tests in GitHub Actions with your project settings and shows the results under **Runs**.
 
-Before running the visual test, set up your API key as an environment variable named `WOPEE_API_KEY`.
-You may set it from the command line like this:
+The workflow has no manual **Run workflow** button in GitHub and does not run on push. To run the tests on every push or pull request, add your own trigger to `.github/workflows/tests.yml`.
 
-=== "Linux/MacOS"
+## Run locally
 
-    ```shell
-    export WOPEE_API_KEY=your-api-key
-    ```
+Needs [Node.js](https://nodejs.org/en/download/){: target="\_blank"} 20 or newer and git.
 
-=== "Windows"
+```shell
+git clone <your project's repository>
+cd <repository folder>
+cp .env.example .env
+```
 
-    ```shell
-    set WOPEE_API_KEY=your-api-key
-    ```
+Open `.env` and paste an API key after `WOPEE_API_KEY=`. Create the key in Commander › **More** › **Settings** › **API Keys**; it is shown only once (see [Get the API key](../visual-testing.md#2-get-the-api-key)). The other values are already your project's. `.env` is in `.gitignore`; do not commit it.
 
-### Set `.env` file params
+```shell
+npm ci
+npm test
+```
 
-Template repository comes with sample environment file. You can easily reuse it and set your own `.env` file. To do so copy or rename `.env.example` file into `.env`.
+The first `npm ci` also downloads the Cypress app. `npm test` runs `cypress/e2e/**/*.spec.cy.ts` and prints one `[wopee]: Tracking response:` line per tracked step, with its status and a link to the step in Commander.
 
-All parameters are already set in `.env.example` file. You need to set only `WOPEE_PROJECT_UUID` parameter.
+`WOPEE_API_URL` is not needed for [cmd.wopee.io](https://cmd.wopee.io){: target="\_blank"}; the plugin defaults to `https://api.wopee.io`. Set it only for a self-hosted instance.
 
-??? tip "Where to find project UUID and Wopee.io API key?"
+In a VS Code terminal, start the tests with `env -u ELECTRON_RUN_AS_NODE npm test` (see [Troubleshooting](01-getting-started.md#troubleshooting)).
 
-    You can find your project UUID and Wopee.io API key in the project settings screen after navigating to project.
+## Review the results
 
-    ![Project UUID](../img/project-settings.webp)
+Open **Runs** in Commander and select the suite **First tests for your project w. Wopee.io** followed by the date and time of the run. The sample puts the date and time into the suite name, so every run is its own entry.
 
-## Get template project
+- First run: the step **Home page** is `new`. Check the screenshot and click **Approve**; it becomes the baseline.
+- Next runs: the step is `ok` when the page looks the same, or `unresolved` when it differs. Open it, then **Approve** it as the new baseline or **Reject** it as a bug.
 
-Clone repository using VS Code palette option (Ctrl + Shift + P): `https://github.com/Wopee-io/cypress-template` or by running:
+A visual difference is reported in Commander; it does not fail the Cypress test. See [Review in Runs](../visual-testing.md#3-review-in-runs).
 
-    git clone https://github.com/Wopee-io/cypress-template
+![Comparison view with a new step and the Approve button](../img/visual-testing/runs-comparison.webp)
 
-## Install dependencies
+## Local runs and Commander baselines
 
-Install all dependencies:
+Compare like with like. A screenshot from your machine differs from one taken by Commander's runner: on a Mac with a retina screen the local screenshot is 2560x1440, the runner's is 1280x720, and fonts render differently. A local run against a baseline approved from Commander is therefore `unresolved`. Keep the baselines from one place, usually Commander, and do not approve local screenshots over them.
 
-    npm i
+For small rendering differences between runs on the same machine, set a tolerance: `WOPEE_PIXEL_TO_PIXEL_DIFF_TOLERANCE` is the difference in percent that still counts as a match. In the template, also uncomment the `pixelToPixelDiffTolerance` line in `cypress.config.ts`, which maps it into `env.wopee`.
 
-## Run tests
+## Make it yours
 
-Run first demo test:
+- **Your app:** `cy.visit("/")` opens `baseUrl`, which is `WOPEE_PROJECT_URL`. For local runs change it in `.env`; for runs from Commander change the App URL of the project in Commander.
+- **More checks:** add `cy.wopeeTrack({ stepName: "Contact page" })` after an interaction. Every `stepName` gets its own baseline. On a newly loaded page, put the font and image wait from the sample before the track, or use `cy.pageReady()` from [Wait until the page is ready](01-getting-started.md#6-wait-until-the-page-is-ready).
+- **More tests:** add `*.spec.cy.ts` files under `cypress/e2e/`. Every test needs what the sample has: start a suite and a scenario, track, stop the scenario.
+- **Cypress version:** stay on Cypress 13 or 14; `@wopee-io/wopee.cy` 4.12.2 does not support Cypress 15 and newer.
 
-    npx cypress run --spec cypress/e2e/*.spec.ts
+## Cloned the public template?
 
-OR just:
-
-    npm t
-
-!!! note
-
-    When running tests with the `npm t` command, ensure the API key is properly configured in the `.env` file.
-    If using the `npx cypress run --spec cypress/e2e/*.spec.ts` command, the API key is read from an environment variable."
-
-You can also run tests in Docker container (Docker need to installed on your machine):
-
-    npm run tests-in-docker
+If `.env` contains `put-your-project-uuid-here`, you cloned the public template, not your project's repository. Put in your project UUID from **More** › **Settings** › **API Keys** (`WOPEE_PROJECT_UUID`) and your app's URL (`WOPEE_PROJECT_URL`), then run as in [Run locally](#run-locally).

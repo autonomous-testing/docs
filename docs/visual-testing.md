@@ -106,7 +106,7 @@ await Promise.all([
 ]);
 ```
 
-`document.fonts.status` and `document.fonts.ready` are not enough: they can report `loaded` while font faces the page uses are still `unloaded`. Cypress needs this wait explicitly, see [Cypress](cypress/01-getting-started.md). In the other frameworks, wait for the content you want to capture (for example the product list) before tracking.
+`document.fonts.status` and `document.fonts.ready` are not enough: they can report `loaded` while font faces the page uses are still `unloaded`. Cypress needs this wait explicitly, see [Cypress › Wait until the page is ready](cypress/01-getting-started.md#6-wait-until-the-page-is-ready). In the other frameworks, wait for the content you want to capture (for example the product list) before tracking.
 
 ## Any other framework (GraphQL API)
 
