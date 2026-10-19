@@ -1,115 +1,154 @@
 ---
 title: Some more examples
-description: Advanced Wopee.io Robot Framework examples. Extract comparison details, handle multiple viewports, and integrate visual checks into CI pipelines.
+description: Wopee.io visual testing examples for Robot Framework. Read the comparison result, pass extra parameters, track the viewport, and compare mobile app screenshots and PDF pages.
 ---
 
-## Comparison details from response
+The examples assume the setup from [Getting started](01-getting-started.md): `wopee_rf` installed and a `.env` with `WOPEE_SCREENSHOT_VALIDATION_ENABLED=true` and `WOPEE_DRIVER_LIBRARY`. Every Wopee.io keyword takes named arguments only.
 
-In order to get comparison details from the response, you can to use any of Wopee.io comparison keywords(`Track`, `Track Fullpage`, or `Track Viewport`).
-keyword. This keyword returns a dictionary with keys: `image_url` and `status`.
+## Comparison details from the result
 
-Example of usage:
+`Track`, `Track Fullpage` and `Track Viewport` return the result of the comparison: `step_name`, `status` and `image_url`, the link to the step in Commander.
 
 ```robotframework
+*** Settings ***
+Library     Browser
+Library     wopee_rf.Standalone    dot_env_path=.env
+
+Test Teardown    Stop Scenario
+
 *** Test Cases ***
-Get comparison details from visual test
-    Open Browser ${URL} ${BROWSER}
+Get comparison details
+    New Page          https://www.saucedemo.com
+    Start Scenario    scenario_name=${TEST NAME}    suite_name=Examples
 
-    &{payload}    Create Dictionary  step_name=${TEST NAME}
+    ${result}=    Track Fullpage    step_name=Login page
 
-    ${result}  Track Fullpage    payload=&{payload}
-
-    Log To Console \n Link to comparison: ${result.image_url}
-    Log To Console \n Status of comparison: ${result.status}
+    Log To Console    \nStatus: ${result.status}
+    Log To Console    Link to comparison: ${result.image_url}
+    Should Not Be Equal    ${result.status}    unresolved
 ```
+
+`status` is `new`, `ok`, `unresolved` or `autoApproved`. The last line fails the test on a difference for this one step. To do that for every step, set `WOPEE_ENABLE_SOFT_ASSERT=false` instead (see [Fail the test on a visual difference](02-manual-setup.md#fail-the-test-on-a-visual-difference)).
 
 ## More parameters for tracking
 
-You can use more parameters to track during visual testing. Here is an example of usage:
+The optional parameters are stored with the screenshot and shown in Commander. They override the matching `WOPEE_*` environment variable for this step.
 
 ```robotframework
 *** Test Cases ***
 Visual test with more parameters
-    Open Browser ${URL} ${BROWSER}
+    New Page          https://www.saucedemo.com
+    Start Scenario    scenario_name=${TEST NAME}    suite_name=Examples
 
-    &{payload}    Create Dictionary
-    ...  step_name=${TEST NAME}
-    ...  pixel_to_pixel_diff_tolerance=1
-    ...  comment=Hello, world!
-    ...  custom_tags=tag1,tag2
-    ...  device=desktop
-    ...  os=Windows
-    ...  browser=Chrome
-    ...  viewport=1920x1080
+    Track Fullpage
+    ...    step_name=Login page
+    ...    pixel_to_pixel_diff_tolerance=1
+    ...    comment=Hello, world!
+    ...    custom_tags=tag1,tag2
+    ...    device=desktop
+    ...    os=Windows
+    ...    browser=Chrome
+    ...    viewport=1920x1080
+```
 
-    Track Fullpage    payload=&{payload}
+`pixel_to_pixel_diff_tolerance` is the difference in percent that still counts as a match.
+
+## Viewport or full page
+
+`Track Fullpage` scrolls through the page and captures all of it. `Track Viewport` captures only what is visible, which is faster and ignores content below the fold.
+
+```robotframework
+*** Test Cases ***
+Header only
+    New Page             https://www.saucedemo.com
+    Set Viewport Size    1280    720
+    Start Scenario       scenario_name=${TEST NAME}    suite_name=Examples
+
+    Track Viewport    step_name=Above the fold
+```
+
+Keep the viewport size the same between runs. A different size produces a different screenshot and an `unresolved` step.
+
+## Several tests in one run
+
+The library starts fresh in every test case, so pass the suite name in each test. Tests with the same suite name end up in the same run:
+
+```robotframework
+*** Variables ***
+${SUITE}    Shop ${{datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}}
+
+*** Test Cases ***
+Login page
+    New Page          https://www.saucedemo.com
+    Start Scenario    scenario_name=Login       suite_name=${SUITE}
+    Track Fullpage    step_name=Login page
+
+Products page
+    New Page          https://www.saucedemo.com
+    Fill Text         id=user-name    standard_user
+    Fill Text         id=password     secret_sauce
+    Click             id=login-button
+    Start Scenario    scenario_name=Products    suite_name=${SUITE}
+    Track Fullpage    step_name=Products
 ```
 
 ## Visual testing for mobile applications
 
-When you test mobile applications for instance with Appium it is possible to use our agnostic approach.
-In this case, you need to transform your picture to the base64 format and use the `Track` keyword to compare it.
+For Appium, or any other tool that saves a screenshot as a file, read the PNG, encode it to base64 and pass it to `Track`. `Track` needs no driver library, but the `robotframework-browser` package must be installed (see [Configuration and listener › SeleniumLibrary](02-manual-setup.md#seleniumlibrary)).
 
 ```robotframework
+*** Settings ***
+Library     AppiumLibrary
+Library     wopee_rf.Standalone    dot_env_path=.env
+
+Test Teardown    Stop Scenario
+
 *** Test Cases ***
-Visual test for mobile application
-    Open Application    http://localhost:4723/wd/hub
-    ...     alias=Myapp1
-    ...     platformName=iOS
-    ...     platformVersion=7.0
-    ...     deviceName='iPhone Simulator'
-    ...     app=your.app
+Visual test for a mobile application
+    Open Application    http://localhost:4723
+    ...    platformName=Android
+    ...    automationName=UiAutomator2
+    ...    app=${CURDIR}/app.apk
 
-    ${image_path}  Capture Page Screenshot
-    ${image_base64}    Convert Image to Base64    ${image_path}
+    Start Scenario    scenario_name=${TEST NAME}    suite_name=Mobile
 
-    &{payload}    Create Dictionary
-    ...  image_base64=${image_base64}
-    ...  step_name=${TEST NAME}
-
-    Track    payload=&{payload}
+    ${path}=    Capture Page Screenshot
+    ${image}=    Image To Base64    ${path}
+    Track    image_base64=${image}    step_name=Start screen    device=Pixel 8    os=Android 15
 
 *** Keywords ***
-Convert Image to Base64
-    [Arguments]    ${image_path}
-    ${image_base64}    Evaluate
-    ...    sys.modules['base64'].b64encode(open(r"${image_path}", 'rb').read()).decode('utf-8')
-    ...    base64
-    RETURN    ${image_base64}
-
+Image To Base64
+    [Arguments]    ${path}
+    ${image}=    Evaluate    base64.b64encode(pathlib.Path(r"${path}").read_bytes()).decode()    modules=base64,pathlib
+    RETURN    ${image}
 ```
 
-## Visual testing for pdf documents
+## Visual testing for PDF documents
 
-When you test pdf documents, you can use our agnostic approach. Convert your pdf to the base64 format and use the `Track` keyword to compare it.
+Wopee.io compares images, so render each PDF page to PNG first. This example uses [PyMuPDF](https://pymupdf.readthedocs.io) (`pip install pymupdf`) and tracks every page as its own step:
 
 ```robotframework
+*** Settings ***
+Library     wopee_rf.Standalone    dot_env_path=.env
+
+Test Teardown    Stop Scenario
+
 *** Test Cases ***
-Visual test for pdf document
-    ${pdf_path}  Get File    ${CURDIR}/path/to/your.pdf
-    ${pdf_base64}    Convert File To Base64    ${pdf_path}
+Visual test for a PDF document
+    Start Scenario    scenario_name=Invoice PDF    suite_name=Documents
 
-    &{payload}    Create Dictionary
-    ...  image_base64=${pdf_base64}
-    ...  step_name=${TEST NAME}
-
-    Track    payload=&{payload}
+    @{pages}=    PDF Pages To Base64    ${CURDIR}/invoice.pdf
+    FOR    ${index}    ${page}    IN ENUMERATE    @{pages}    start=1
+        Track    image_base64=${page}    step_name=Page ${index}
+    END
 
 *** Keywords ***
-Convert File To Base64
-    [Arguments]    ${file_path}
-    ${file_base64}    Evaluate
-    ...    sys.modules['base64'].b64encode(open(r"${file_path}", 'rb').read()).decode('utf-8')
-    ...    base64
-    RETURN    ${file_base64}
+PDF Pages To Base64
+    [Arguments]    ${pdf_path}
+    @{pages}=    Evaluate
+    ...    [base64.b64encode(p.get_pixmap(dpi=100).tobytes("png")).decode() for p in pymupdf.open(r"${pdf_path}")]
+    ...    modules=base64,pymupdf
+    RETURN    @{pages}
 ```
 
-!!! tip "Robot Framework Visual Regression Testing with Wopee.io"
-
-    Power up your Robot Framework tests with Wopee.io's advanced visual regression testing integration.
-
-    Identify and track visual changes in your web app easily, ensuring consistency across updates. With a quick 1-minute setup, enhance your regression testing and automate visual validations efficiently.
-
-    Try Wopee.io for Robot Framework – [Free Trial](https://cmd.wopee.io), and elevate your visual regression capabilities.
-
-    [Get Started with Wopee.io](https://cmd.wopee.io)
+Keep the same `dpi` between runs, because it sets the image size.
