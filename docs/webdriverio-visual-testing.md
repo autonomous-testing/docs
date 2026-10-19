@@ -1,12 +1,12 @@
 ---
-description: Add Wopee.io visual testing to your WebdriverIO tests. Install the @wopee-io/wopee.wdio service, add track commands, and review differences in Commander.
+description: Add Wopee.io visual testing to your WebdriverIO tests. Install the @wopee-io/wopee.wdio service, add track commands, review differences in Commander, or start from the template project.
 ---
 
 # WebdriverIO
 
 Add visual checks to your existing WebdriverIO tests with the `@wopee-io/wopee.wdio` service. Each `browser.track...()` command sends a screenshot to Wopee.io, which compares it with the approved baseline. You review the differences in Commander and approve or reject them.
 
-This page walks through a complete example on [Sauce Demo](https://www.saucedemo.com){: target="\_blank"}: two screenshots, a first run that creates the baselines, and a second run that catches a visual bug. Verified with `@wopee-io/wopee.wdio` 6.0.0 and WebdriverIO 9 (Mocha, Chrome).
+This page walks through a complete example on [Sauce Demo](https://www.saucedemo.com){: target="\_blank"}: two screenshots, a first run that creates the baselines, and a second run that catches a visual bug. Verified with `@wopee-io/wopee.wdio` 6.0.0 and WebdriverIO 9 (Mocha, Chrome). Prefer a ready project? Start from the [template project](#template-project).
 
 ## Prerequisites
 
@@ -25,7 +25,7 @@ This page walks through a complete example on [Sauce Demo](https://www.saucedemo
 
 ## 2. Get the API key
 
-1. In the project, open **More** › **Settings** › **API Keys** and copy `WOPEE_API_URL` and `WOPEE_PROJECT_UUID`.
+1. In the project, open **More** › **Settings** › **API Keys** and copy `WOPEE_PROJECT_UUID`.
 2. Enter a name, click **Generate a new key** and copy `WOPEE_API_KEY`. The key is shown **only once**.
 
 ![API Keys in project settings](img/visual-testing/api-keys.webp){ width="600" }
@@ -41,12 +41,11 @@ npm install --save-dev @wopee-io/wopee.wdio dotenv
 Create a `.env` file in the project root:
 
 ```shell
-WOPEE_API_URL=https://api.wopee.io
 WOPEE_PROJECT_UUID=your-project-uuid
 WOPEE_API_KEY=your-api-key
 ```
 
-Add `.env` to `.gitignore`. In CI, set the same variables as secrets.
+`WOPEE_API_URL` is needed only for a self-hosted instance (its URL is shown in **API Keys**); the service defaults to `https://api.wopee.io`. Add `.env` to `.gitignore`. In CI, set the same variables as secrets.
 
 ## 4. Configure the service
 
@@ -219,7 +218,7 @@ Options inside `screenshotValidation`:
 | --- | --- | --- |
 | `apiKey` | required | API key from **More** › **Settings** › **API Keys** |
 | `projectUuid` | required | Project UUID from the same page |
-| `apiUrl` | `https://api.wopee.io` | API endpoint from the same page |
+| `apiUrl` | `https://api.wopee.io` | API endpoint. Set it only for a self-hosted instance (its URL is shown in **API Keys**). |
 | `branchName` | `master` | Branch the screenshots belong to |
 | `baselineBranchName` | | Branch to compare with when the current branch has no baseline yet |
 | `pixelToPixelDiffTolerance` | `0` | Difference in percent that still counts as a match |
@@ -246,13 +245,81 @@ screenshotValidation: {
 },
 ```
 
+The repository Wopee.io creates for a WebdriverIO project runs from Commander (**Runs** › **Start testing**), not on push; see [Run from Commander](#run-from-commander).
+
+## Template project
+
+When you create a project with the test framework **WebdriverIO**, Wopee.io creates a repository for it from the [WebdriverIO template](https://github.com/Wopee-io/webdriverio-template){: target="\_blank"} and fills in your project settings. It is a ready WebdriverIO 9 setup (Mocha, headless Chrome) with the service configured as above and one sample test.
+
+| File | What it does |
+| --- | --- |
+| `wdio.conf.ts` | Registers the service with the `screenshotValidation` block and `isLandscape: false`. `baseUrl` is `WOPEE_PROJECT_URL`, the App URL of your project. |
+| `tests/example.spec.ts` | The sample test: opens your app at 1920x1080 and tracks three steps, `fullPage` (`trackFullPageScreen`), `screen` (`trackScreen`) and `image` (`trackImage`). |
+| `.env.example` | Your project's values for local runs. Only `WOPEE_API_KEY` is empty. |
+| `.github/workflows/tests.yml` | The workflow Commander starts. |
+
+### Run from Commander
+
+Nothing to set up. In Commander open **Runs** › **Start testing**. Commander runs the repository's tests in GitHub Actions with your project settings and shows the results under **Runs**.
+
+The workflow has no manual **Run workflow** button in GitHub and does not run on push. To run the tests on every push or pull request, add your own trigger to `.github/workflows/tests.yml`.
+
+### Run locally
+
+Needs Node.js 20 or newer, git and Google Chrome.
+
+```shell
+git clone <your project's repository>
+cd <repository folder>
+cp .env.example .env
+```
+
+Open `.env` and paste an API key after `WOPEE_API_KEY=`. Create the key in Commander › **More** › **Settings** › **API Keys**; it is shown only once (see [Get the API key](visual-testing.md#2-get-the-api-key)). The other values are already your project's. `.env` is in `.gitignore`; do not commit it.
+
+```shell
+npm ci
+npm test
+```
+
+The console prints a `Tracking response` line for each tracked step, with its status and a link to the step in Commander. `WOPEE_API_URL` stays commented out for [cmd.wopee.io](https://cmd.wopee.io){: target="\_blank"}; set it only for a self-hosted instance.
+
+### Review the results
+
+Open **Runs** in Commander and select the suite **service browsers-** followed by the date and time of the run. The sample puts the date and time into the suite name, so every run is its own entry.
+
+- First run: the steps `fullPage`, `screen` and `image` are `new`. Check the screenshots and click **Approve**; they become the baselines.
+- Next runs: a step is `ok` when the page looks the same, or `unresolved` when it differs. Open it, then **Approve** it as the new baseline or **Reject** it as a bug.
+
+A visual difference is reported in Commander; it does not fail the WebdriverIO test. See [Review in Runs](visual-testing.md#3-review-in-runs).
+
+### Local runs and Commander baselines
+
+Compare like with like. A screenshot from your machine differs from one taken by Commander's runner: screen scaling and font rendering are not the same, for example on a Mac. A local run against a baseline approved from Commander is therefore `unresolved`. Keep the baselines from one place, usually Commander, and do not approve local screenshots over them.
+
+For small rendering differences between runs on the same machine, set `WOPEE_PIXEL_TO_PIXEL_DIFF_TOLERANCE` in `.env`: the difference in percent that still counts as a match. The template already maps it to `pixelToPixelDiffTolerance`.
+
+### Make it yours
+
+- **Your app:** `browser.url('/')` opens `baseUrl`, which is `WOPEE_PROJECT_URL`. For local runs change it in `.env`; for runs from Commander change the App URL of the project in Commander.
+- **More checks:** add `await browser.trackScreen({ stepName: 'Inventory page' })` after an interaction. Every `stepName` gets its own baseline. See [Other track commands](#5-track-screenshots-in-your-test) for full page, element and image.
+- **More tests:** add `*.spec.ts` files under `tests/` and list them in `specs` in `wdio.conf.ts`. Every test needs what the sample has: start a suite and a scenario, track, stop the scenario.
+- **Desktop screenshots:** keep `isLandscape: false`; `true` is for mobile devices in landscape and rotates desktop screenshots.
+
+### Cloned the public template?
+
+If `.env` contains `put-your-project-uuid-here`, you cloned the public template, not your project's repository. Put in your project UUID from **More** › **Settings** › **API Keys** (`WOPEE_PROJECT_UUID`) and your app's URL (`WOPEE_PROJECT_URL`), then run as in [Run locally](#run-locally).
+
 ## Troubleshooting
 
 | Message | Fix |
 | --- | --- |
 | `Failed to initialise service @wopee-io/wopee.wdio` naming `apiKey` or `projectUuid` | The value is missing. Check `.env`, that `wdio.conf.ts` starts with `import 'dotenv/config'`, and that the values are inside `screenshotValidation`. |
 | `must be an absolute URL including the scheme` | Write `apiUrl` with `https://`. |
+| `ZodError ... Expected object, received null` or an authorization error | The API key usually belongs to another Wopee.io instance or another project. Create the key in the Commander you run against. Set `WOPEE_API_URL` only for a self-hosted instance. |
+| `Error: Unsupported type: function` from `trackElement` | The selector matched nothing on the page. Use a selector from your app. |
 | `browser.trackScreen is not a function` | The service is not listed in `services`, or the package is not installed. |
 | The screenshot is narrow and tall, with a white area | Set `isLandscape: false` next to `screenshotValidation`. |
 | A step is `unresolved` on every run without a visible change | The page was still loading. Wait for fonts and images before tracking, or draw an ignore area over the dynamic region in the comparison view. |
 | All runs end up in one entry in **Runs** | The suite name is constant. Add a timestamp or build ID to it. |
+
+Another framework or language? Send screenshots through the [GraphQL API](graphql-api.md).
