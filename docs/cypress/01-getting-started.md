@@ -11,7 +11,7 @@ This page walks through a complete example on [Sauce Demo](https://www.saucedemo
 
 ## Prerequisites
 
-- Node.js 18 or newer
+- Node.js 20 or newer
 - **Cypress 13 or 14.** Cypress 15 and newer do not work with `@wopee-io/wopee.cy` 4.12.2 yet (see [Troubleshooting](#troubleshooting)).
 - A Wopee.io account at [cmd.wopee.io](https://cmd.wopee.io){: target="\_blank"}
 
@@ -25,7 +25,7 @@ This page walks through a complete example on [Sauce Demo](https://www.saucedemo
 
 ## 2. Get the API key
 
-1. In the project, open **More** › **Settings** › **API Keys** and copy `WOPEE_API_URL` and `WOPEE_PROJECT_UUID`.
+1. In the project, open **More** › **Settings** › **API Keys** and copy `WOPEE_PROJECT_UUID`.
 2. Enter a name, click **Generate a new key** and copy `WOPEE_API_KEY`. The key is shown **only once**.
 
 ![API Keys in project settings](../img/visual-testing/api-keys.webp){ width="600" }
@@ -42,12 +42,11 @@ npm install -D cypress@14.5.4 @wopee-io/wopee.cy dotenv
 Create a `.env` file in the project root:
 
 ```shell
-WOPEE_API_URL=https://api.wopee.io
 WOPEE_PROJECT_UUID=your-project-uuid
 WOPEE_API_KEY=your-api-key
 ```
 
-Add `.env` to `.gitignore`. In CI, set the same variables as secrets; values already set in the environment take precedence over `.env`.
+`WOPEE_API_URL` is needed only for a self-hosted instance (its URL is shown in **API Keys**); the plugin defaults to `https://api.wopee.io`. Add `.env` to `.gitignore`. In CI, set the same variables as secrets; values already set in the environment take precedence over `.env`.
 
 ## 4. Register the plugin
 
@@ -205,7 +204,7 @@ CYPRESS_SAUCE_USER=visual_user npx cypress run
 | Message | Fix |
 | --- | --- |
 | `Class extends value undefined is not a constructor or null` (in `agent-base` / `http-proxy-agent`) | Cypress 15 or newer. `@wopee-io/wopee.cy` 4.12.2 works with Cypress 13 and 14 only: `npm install -D cypress@14.5.4`. |
-| `Cannot find module '.../Cypress.app/Contents/MacOS/Contents/Resources/app/index.js'` or `bad option: --no-sandbox` | Cypress was started from a terminal inside VS Code (or another Electron app) that exports `ELECTRON_RUN_AS_NODE=1`. Run `unset ELECTRON_RUN_AS_NODE`, then start Cypress again. |
+| `Cannot find module '.../Cypress.app/Contents/MacOS/Contents/Resources/app/index.js'` or `bad option: --no-sandbox` | Cypress was started from a terminal inside VS Code (or another Electron app) that exports `ELECTRON_RUN_AS_NODE=1`. Start it with `env -u ELECTRON_RUN_AS_NODE npx cypress run`, or use another terminal. |
 | Fonts or product images are missing in the screenshots | Call `cy.pageReady()` before `cy.wopeeTrack()`, see [step 6](#6-wait-until-the-page-is-ready). |
 | `apiKey` or `projectUuid` reported missing | `WOPEE_API_KEY` or `WOPEE_PROJECT_UUID` is not set, or the `env.wopee` object is missing in the Cypress config. |
 | `There is no Suite and no Scenario started` | Call `cy.wopeeStartSuite()` in `before()`. |

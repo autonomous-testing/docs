@@ -81,7 +81,7 @@ cy.get(".inventory_list").wopeeTrack({ stepName: "Product list" });
 
 ### Wait for fonts and images
 
-Cypress screenshots right away. Call `cy.pageReady()` from [Getting started › Wait until the page is ready](01-getting-started.md#6-wait-until-the-page-is-ready) before every track.
+Cypress screenshots right away. Call `cy.pageReady()` from [Getting started › Wait until the page is ready](01-getting-started.md#6-wait-until-the-page-is-ready) before every track. The sample test of the [template project](02-template-project.md) runs the same wait inline.
 
 ## Branches and suites
 
@@ -91,7 +91,9 @@ Cypress screenshots right away. Call `cy.pageReady()` from [Getting started › 
 
 ## Run in CI
 
-Wopee.io works with any CI system. Set `WOPEE_API_URL`, `WOPEE_PROJECT_UUID` and `WOPEE_API_KEY` as secrets of your CI and run `npx cypress run` as usual. Cypress' own guides: [Continuous Integration](https://docs.cypress.io/guides/continuous-integration/introduction){: target="\_blank"}.
+Wopee.io works with any CI system. Set `WOPEE_PROJECT_UUID` and `WOPEE_API_KEY` as secrets of your CI (plus `WOPEE_API_URL` for a self-hosted instance) and run `npx cypress run` as usual. Cypress' own guides: [Continuous Integration](https://docs.cypress.io/guides/continuous-integration/introduction){: target="\_blank"}.
+
+The repository Wopee.io creates for a Cypress project runs from Commander (**Runs** › **Start testing**), not on push; see [Template project › Run from Commander](02-template-project.md#run-from-commander).
 
 ## Known issues in 4.12.2
 
