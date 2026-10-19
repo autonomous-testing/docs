@@ -7,7 +7,7 @@ description: Send screenshots to Wopee.io from Selenium, TestCafe, Appium, Puppe
 
 The Playwright, Cypress, WebdriverIO and Robot Framework SDKs are thin clients of one GraphQL API. When your tests run in anything else, such as Selenium (Java, C#, Python), TestCafe, Appium, Puppeteer or your own harness, call the same API directly: take a screenshot the way your tool does it and send it as base64.
 
-This page is the reference for those calls. The examples were run against the Wopee.io API on 19 October 2026.
+This page is the reference for those calls.
 
 Read [Visual testing with your own tests](visual-testing.md) first for the concepts (projects, baselines, branches, review in **Runs**). This page covers only what is different when you call the API yourself.
 
