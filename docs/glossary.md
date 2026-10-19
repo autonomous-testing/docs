@@ -15,7 +15,7 @@ A baseline is identified by `<scenario name>-<step name>` together with the bran
 To utilize wopee.io, you must create a project, providing essential details such as the project name and your website's URL. There are two types of projects:
 
 - **Bot Project**: Uses the provided URL to crawl your application and locate elements for interaction.
-- **Integration Project**: Receives screenshots from your own tests in Playwright, Cypress, WebdriverIO, Robot Framework or any other stack, through the SDKs or the GraphQL API. Created with **Explore the app and generate tests** switched off. See [Visual testing with your own tests](visual-testing.md).
+- **Integration Project**: Receives screenshots from your own tests in Playwright, Cypress, WebdriverIO, Robot Framework or any other stack, through the SDKs or the [GraphQL API](graphql-api.md). Created with **Explore the app and generate tests** switched off. See [Visual testing with your own tests](visual-testing.md).
 
 ### Branch
 

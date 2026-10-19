@@ -12,7 +12,7 @@ Keep your tests in your framework and add visual checks to them. At the points y
 | Cypress | `@wopee-io/wopee.cy` (npm) | [Cypress](cypress/01-getting-started.md) |
 | WebdriverIO | `@wopee-io/wopee.wdio` (npm) | [WebdriverIO](webdriverio-visual-testing.md) |
 | Robot Framework | `wopee_rf` (PyPI) | [Robot Framework](robot-framework/01-getting-started.md) |
-| Anything else | GraphQL API | [Any other framework](#any-other-framework-graphql-api) |
+| Anything else | GraphQL API | [Any other framework](graphql-api.md) |
 
 Every guide uses the same example: log in to [Sauce Demo](https://www.saucedemo.com){: target="\_blank"}, track the **Login page** and the **Products** page, approve both, then run again as `visual_user` to see a real visual difference.
 
@@ -110,51 +110,6 @@ await Promise.all([
 
 ## Any other framework (GraphQL API)
 
-All SDKs talk to the same GraphQL API, so you can send screenshots from any language or tool. There is no separate API reference yet; this section lists the calls the SDKs make.
+All SDKs talk to the same GraphQL API, so you can send screenshots from any language or tool, for example Selenium, TestCafe, Appium or Puppeteer. Your test starts a suite and a scenario, sends each screenshot as a step, and stops the scenario and the suite at the end. Authenticate with the API key in the `x-api-key` header.
 
-- **Endpoint**: `POST` to `WOPEE_API_URL` itself (for example `https://api.wopee.io`), with a JSON body `{"query": "...", "variables": {...}}`.
-- **Authentication**: the API key in the `api_key` header. Current API versions also accept `x-api-key`, which helps when a proxy drops header names with an underscore. The SDKs send both.
-
-The calls, in order:
-
-| Mutation | Arguments | Returns |
-| --- | --- | --- |
-| `createIntegrationSuite` | `projectUuid: ID!`, `name: String!`, `suiteIntegrationConfig: { branchName }` | `uuid`, `name` |
-| `createIntegrationScenario` | `projectUuid: ID!`, `suiteUuid: ID!`, `name: String` | `uuid`, `name` |
-| `createIntegrationStep` | `input: CreateIntegrationStepInput!` (below) | `status`, `url`, `diffPercent`, `branchName`, `baselineBranchName`, … |
-| `stopIntegrationScenario` | `scenarioUuid: ID!`, `projectUuid: ID!` | `uuid` |
-| `stopIntegrationSuite` | `suiteUuid: ID!` | `uuid` |
-
-`CreateIntegrationStepInput`:
-
-| Field | Required | Description |
-| --- | --- | --- |
-| `projectUuid` | yes | `WOPEE_PROJECT_UUID` |
-| `scenarioUuid` | yes | From `createIntegrationScenario` |
-| `stepName` | yes | Step name shown in Commander |
-| `trackName` | yes | Baseline key. The SDKs send `<scenario name>-<step name>`; do the same to share baselines with them. |
-| `imageBase64` | yes | The screenshot as base64-encoded PNG, without a `data:` prefix |
-| `os`, `browser`, `viewport`, `device`, `customTags` | no | Labels that are part of the baseline identity |
-| `pixelToPixelDiffTolerance` | no | Difference in percent that still counts as a match |
-| `comment` | no | Free text stored with the step |
-| `baselineBranchName` | no | Branch to compare with when the current branch has no baseline |
-
-`status` is one of `new`, `ok`, `unresolved`, `autoApproved` (and `approved` or `failed` for a step that was already reviewed). `url` opens the step in Commander.
-
-Example with `curl`, starting a suite on the branch `master`:
-
-```shell
-curl -s "$WOPEE_API_URL" \
-  -H "Content-Type: application/json" \
-  -H "api_key: $WOPEE_API_KEY" \
-  -d '{
-    "query": "mutation($projectUuid: ID!, $name: String!, $config: SuiteConfigInput) { createIntegrationSuite(projectUuid: $projectUuid, name: $name, suiteIntegrationConfig: $config) { uuid name } }",
-    "variables": {
-      "projectUuid": "'"$WOPEE_PROJECT_UUID"'",
-      "name": "My run 2026-10-12 10:00",
-      "config": { "branchName": "master" }
-    }
-  }'
-```
-
-Then create a scenario with the returned suite `uuid`, send one `createIntegrationStep` per screenshot, and stop the scenario and the suite at the end.
+[Any other framework: the GraphQL API](graphql-api.md) is the full reference: every mutation with its fields, a `curl` walk-through, a Python example, retries and tolerance.
