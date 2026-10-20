@@ -5,7 +5,7 @@ description: Reference for the Wopee.io Cypress plugin @wopee-io/wopee.cy. Confi
 
 # Cypress plugin reference
 
-Everything about `@wopee-io/wopee.cy` that [Getting started](01-getting-started.md) leaves out. Applies to version 4.12.2.
+Everything about `@wopee-io/wopee.cy` that [Getting started](01-getting-started.md) leaves out. Applies to version 4.13.1.
 
 ## Install
 
@@ -13,7 +13,9 @@ Everything about `@wopee-io/wopee.cy` that [Getting started](01-getting-started.
 npm install -D @wopee-io/wopee.cy dotenv
 ```
 
-Supported Cypress versions: 13 and 14. With Cypress 15 and newer the spec fails to load with `Class extends value undefined is not a constructor or null`; pin `cypress@14.5.4` until a fixed plugin version is released. The plugin also installs its own copy of Cypress 13 as a dependency, which downloads an extra Cypress binary during `npm install`.
+Supported Cypress versions: 13 to 16. Cypress is a peer dependency: the plugin uses your project's Cypress and installs no copy of its own. Cypress 16 needs Node.js 22 or 24.
+
+Version 4.12.2 and older support Cypress 13 and 14 only: on Cypress 15 and newer the spec fails to load with `Class extends value undefined is not a constructor or null`. They also install their own copy of Cypress 13, which downloads an extra Cypress binary during `npm install`. Update with `npm install -D @wopee-io/wopee.cy@latest`.
 
 ## Configuration
 
@@ -95,9 +97,8 @@ Wopee.io works with any CI system. Set `WOPEE_PROJECT_UUID` and `WOPEE_API_KEY` 
 
 The repository Wopee.io creates for a Cypress project runs from Commander (**Runs** › **Start testing**), not on push; see [Template project › Run from Commander](02-template-project.md#run-from-commander).
 
-## Known issues in 4.12.2
+## Known issues in 4.13.1
 
-- Cypress 15 and newer are not supported (see [Install](#install)).
 - An `unresolved` step never fails the test, also with `enableSoftAssert` set. Use the `responseCallback` to act on the status.
 - Ignore areas passed to `cy.wopeeTrack()` are not sent. Draw ignore areas in the Commander comparison view instead.
 - The npm README Quick Start is outdated: it uses flat `WOPEE_*` keys in `cypress.env.json` and `cy.wopeeTrack('name')`. Use the setup on this page.

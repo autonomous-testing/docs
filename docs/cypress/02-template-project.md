@@ -5,7 +5,7 @@ description: The Cypress repository Wopee.io creates for your project from the C
 
 # Cypress template project
 
-When you create a project with the test framework **Cypress**, Wopee.io creates a repository for it from the [Cypress template](https://github.com/Wopee-io/cypress-template){: target="\_blank"} and fills in your project settings. It is a ready Cypress 13 setup with the Wopee.io plugin, the same plugin setup as [Getting started](01-getting-started.md), and one sample test.
+When you create a project with the test framework **Cypress**, Wopee.io creates a repository for it from the [Cypress template](https://github.com/Wopee-io/cypress-template){: target="\_blank"} and fills in your project settings. It is a ready Cypress 16 setup with the Wopee.io plugin, the same plugin setup as [Getting started](01-getting-started.md), and one sample test.
 
 | File | What it does |
 | --- | --- |
@@ -23,7 +23,7 @@ The workflow has no manual **Run workflow** button in GitHub and does not run on
 
 ## Run locally
 
-Needs [Node.js](https://nodejs.org/en/download/){: target="\_blank"} 20 or newer and git.
+Needs [Node.js](https://nodejs.org/en/download/){: target="\_blank"} 22 or 24 (the versions Cypress 16 supports) and git.
 
 ```shell
 git clone <your project's repository>
@@ -59,14 +59,14 @@ A visual difference is reported in Commander; it does not fail the Cypress test.
 
 Compare like with like. A screenshot from your machine differs from one taken by Commander's runner: on a Mac with a retina screen the local screenshot is 2560x1440, the runner's is 1280x720, and fonts render differently. A local run against a baseline approved from Commander is therefore `unresolved`. Keep the baselines from one place, usually Commander, and do not approve local screenshots over them.
 
-For small rendering differences between runs on the same machine, set a tolerance: `WOPEE_PIXEL_TO_PIXEL_DIFF_TOLERANCE` is the difference in percent that still counts as a match. In the template, also uncomment the `pixelToPixelDiffTolerance` line in `cypress.config.ts`, which maps it into `env.wopee`.
+For small rendering differences between runs on the same machine, set a tolerance: `WOPEE_PIXEL_TO_PIXEL_DIFF_TOLERANCE` is the difference in percent that still counts as a match. The template passes it to the plugin; set it in `.env` or in Commander › **More** › **Settings** › **Environment Variables**.
 
 ## Make it yours
 
 - **Your app:** `cy.visit("/")` opens `baseUrl`, which is `WOPEE_PROJECT_URL`. For local runs change it in `.env`; for runs from Commander change the App URL of the project in Commander.
 - **More checks:** add `cy.wopeeTrack({ stepName: "Contact page" })` after an interaction. Every `stepName` gets its own baseline. On a newly loaded page, put the font and image wait from the sample before the track, or use `cy.pageReady()` from [Wait until the page is ready](01-getting-started.md#6-wait-until-the-page-is-ready).
 - **More tests:** add `*.spec.cy.ts` files under `cypress/e2e/`. Every test needs what the sample has: start a suite and a scenario, track, stop the scenario.
-- **Cypress version:** stay on Cypress 13 or 14; `@wopee-io/wopee.cy` 4.12.2 does not support Cypress 15 and newer.
+- **Cypress version:** repositories created before the template moved to Cypress 16 stay on Cypress 13 and keep working. To move one to Cypress 16, run `npm install -D cypress@16 @wopee-io/wopee.cy@latest` and replace any `Cypress.env()` in your tests with `cy.env()`, for example `cy.env(["SAUCE_USER"]).then(({ SAUCE_USER }) => …)`. Variables set in Commander › **Environment Variables** reach the run as `CYPRESS_*` environment variables, which `cy.env()` reads and `Cypress.expose()` does not.
 
 ## Cloned the public template?
 
