@@ -179,7 +179,7 @@ Sauce Demo has a `visual_user` whose products page is visually broken. Run the s
 npx cypress run --expose SAUCE_USER=visual_user
 ```
 
-`Cypress.expose()` and `--expose` exist since Cypress 15.10. On older Cypress, read the user with `Cypress.env("SAUCE_USER")` in the test and run `CYPRESS_SAUCE_USER=visual_user npx cypress run`.
+`Cypress.expose()` and `--expose` exist since Cypress 15.10. `Cypress.expose()` reads only values passed with `--expose`; for environment variables such as `CYPRESS_SAUCE_USER`, or the ones set in Commander, use `cy.env(["SAUCE_USER"]).then(({ SAUCE_USER }) => …)`. On older Cypress, read the user with `Cypress.env("SAUCE_USER")` in the test and run `CYPRESS_SAUCE_USER=visual_user npx cypress run`.
 
 ```text
 [wopee]: Tracking response: {"stepName":"Login page",...,"status":"ok"}
@@ -206,7 +206,7 @@ npx cypress run --expose SAUCE_USER=visual_user
 | Message | Fix |
 | --- | --- |
 | `Class extends value undefined is not a constructor or null` (in `agent-base` / `http-proxy-agent`) | Cypress 15 or newer with `@wopee-io/wopee.cy` 4.12.2 or older. Update the plugin: `npm install -D @wopee-io/wopee.cy@latest`. |
-| `Cypress.env() was removed in Cypress version 16.0.0` | Your own test code calls `Cypress.env()`. Use `Cypress.expose()` for values the test reads, see [step 10](#10-second-run-catch-a-visual-bug). If the message comes from `cy.wopeeTrack()`, update the plugin to 4.13.1 or newer. |
+| `Cypress.env() was removed in Cypress version 16.0.0` | Your own test code calls `Cypress.env()`. Use `Cypress.expose()` for values passed with `--expose` (see [step 10](#10-second-run-catch-a-visual-bug)) and `cy.env()` for environment variables, including the ones set in Commander. If the message comes from `cy.wopeeTrack()`, update the plugin to 4.13.1 or newer. |
 | `Cannot find module '.../Cypress.app/Contents/MacOS/Contents/Resources/app/index.js'` or `bad option: --no-sandbox` | Cypress was started from a terminal inside VS Code (or another Electron app) that exports `ELECTRON_RUN_AS_NODE=1`. Start it with `env -u ELECTRON_RUN_AS_NODE npx cypress run`, or use another terminal. |
 | Fonts or product images are missing in the screenshots | Call `cy.pageReady()` before `cy.wopeeTrack()`, see [step 6](#6-wait-until-the-page-is-ready). |
 | `apiKey` or `projectUuid` reported missing | `WOPEE_API_KEY` or `WOPEE_PROJECT_UUID` is not set, or the `env.wopee` object is missing in the Cypress config. |
