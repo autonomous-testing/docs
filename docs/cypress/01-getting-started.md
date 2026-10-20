@@ -7,12 +7,12 @@ description: Add Wopee.io visual testing to your Cypress tests. Install @wopee-i
 
 Add visual checks to your existing Cypress tests with the `@wopee-io/wopee.cy` plugin. Each `cy.wopeeTrack()` sends a screenshot to Wopee.io, which compares it with the approved baseline. You review the differences in Commander and approve or reject them.
 
-This page walks through a complete example on [Sauce Demo](https://www.saucedemo.com){: target="\_blank"}: two screenshots, a first run that creates the baselines, and a second run that catches a visual bug. Verified with `@wopee-io/wopee.cy` 4.12.2 and Cypress 14.5.4. Prefer a ready project? Start from the [template project](02-template-project.md).
+This page walks through a complete example on [Sauce Demo](https://www.saucedemo.com){: target="\_blank"}: two screenshots, a first run that creates the baselines, and a second run that catches a visual bug. Verified with `@wopee-io/wopee.cy` 4.13.1 and Cypress 16.2.0. Prefer a ready project? Start from the [template project](02-template-project.md).
 
 ## Prerequisites
 
-- Node.js 20 or newer
-- **Cypress 13 or 14.** Cypress 15 and newer do not work with `@wopee-io/wopee.cy` 4.12.2 yet (see [Troubleshooting](#troubleshooting)).
+- **Cypress 13 to 16**, with `@wopee-io/wopee.cy` 4.13.1 or newer (4.12.2 and older work with Cypress 13 and 14 only)
+- The Node.js version your Cypress needs: 22 or 24 for Cypress 16, 20 or newer for Cypress 13 to 15
 - A Wopee.io account at [cmd.wopee.io](https://cmd.wopee.io){: target="\_blank"}
 
 ## 1. Create a project
@@ -36,7 +36,7 @@ In a new folder (skip `npm init` in an existing project):
 
 ```shell
 npm init -y
-npm install -D cypress@14.5.4 @wopee-io/wopee.cy dotenv
+npm install -D cypress@16.2.0 @wopee-io/wopee.cy dotenv
 ```
 
 Create a `.env` file in the project root:
@@ -131,7 +131,7 @@ describe(suiteName, () => {
     cy.pageReady();
     cy.wopeeTrack({ stepName: "Login page" });
 
-    cy.get("[data-test=username]").type(Cypress.env("SAUCE_USER") || "standard_user");
+    cy.get("[data-test=username]").type(Cypress.expose("SAUCE_USER") || "standard_user");
     cy.get("[data-test=password]").type("secret_sauce");
     cy.get("[data-test=login-button]").click();
     cy.get(".inventory_list").should("be.visible");
@@ -176,8 +176,10 @@ Open the project and go to **Runs**. Select the run `Cypress demo ...`, then eac
 Sauce Demo has a `visual_user` whose products page is visually broken. Run the same test as that user:
 
 ```shell
-CYPRESS_SAUCE_USER=visual_user npx cypress run
+npx cypress run --expose SAUCE_USER=visual_user
 ```
+
+`Cypress.expose()` and `--expose` exist since Cypress 15.10. On older Cypress, read the user with `Cypress.env("SAUCE_USER")` in the test and run `CYPRESS_SAUCE_USER=visual_user npx cypress run`.
 
 ```text
 [wopee]: Tracking response: {"stepName":"Login page",...,"status":"ok"}
@@ -203,7 +205,8 @@ CYPRESS_SAUCE_USER=visual_user npx cypress run
 
 | Message | Fix |
 | --- | --- |
-| `Class extends value undefined is not a constructor or null` (in `agent-base` / `http-proxy-agent`) | Cypress 15 or newer. `@wopee-io/wopee.cy` 4.12.2 works with Cypress 13 and 14 only: `npm install -D cypress@14.5.4`. |
+| `Class extends value undefined is not a constructor or null` (in `agent-base` / `http-proxy-agent`) | Cypress 15 or newer with `@wopee-io/wopee.cy` 4.12.2 or older. Update the plugin: `npm install -D @wopee-io/wopee.cy@latest`. |
+| `Cypress.env() was removed in Cypress version 16.0.0` | Your own test code calls `Cypress.env()`. Use `Cypress.expose()` for values the test reads, see [step 10](#10-second-run-catch-a-visual-bug). If the message comes from `cy.wopeeTrack()`, update the plugin to 4.13.1 or newer. |
 | `Cannot find module '.../Cypress.app/Contents/MacOS/Contents/Resources/app/index.js'` or `bad option: --no-sandbox` | Cypress was started from a terminal inside VS Code (or another Electron app) that exports `ELECTRON_RUN_AS_NODE=1`. Start it with `env -u ELECTRON_RUN_AS_NODE npx cypress run`, or use another terminal. |
 | Fonts or product images are missing in the screenshots | Call `cy.pageReady()` before `cy.wopeeTrack()`, see [step 6](#6-wait-until-the-page-is-ready). |
 | `apiKey` or `projectUuid` reported missing | `WOPEE_API_KEY` or `WOPEE_PROJECT_UUID` is not set, or the `env.wopee` object is missing in the Cypress config. |
