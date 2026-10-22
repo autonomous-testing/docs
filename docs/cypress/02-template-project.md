@@ -19,6 +19,8 @@ When you create a project with the test framework **Cypress**, Wopee.io creates 
 
 Nothing to set up. In Commander open **Runs** › **Start testing**. Commander runs the repository's tests in GitHub Actions with your project settings and shows the results under **Runs**.
 
+The tests run in Chrome for Testing. To use another browser, set `WOPEE_CYPRESS_BROWSER` in Commander › **More** › **Settings** › **Environment Variables** to a browser name from `npx cypress info`; `electron` keeps the browser Cypress picks by default. A repository on a Cypress older than 13.17.0 runs in Electron.
+
 The workflow has no manual **Run workflow** button in GitHub and does not run on push. To run the tests on every push or pull request, add your own trigger to `.github/workflows/tests.yml`.
 
 ## Run locally
@@ -40,6 +42,8 @@ npm test
 
 The first `npm ci` also downloads the Cypress app. `npm test` runs `cypress/e2e/**/*.spec.cy.ts` and prints one `[wopee]: Tracking response:` line per tracked step, with its status and a link to the step in Commander.
 
+`npm test` runs in Electron, which Cypress 16 deprecates. `npm test -- --browser chrome` runs in your installed Chrome, closer to the browser Commander uses.
+
 `WOPEE_API_URL` is not needed for [cmd.wopee.io](https://cmd.wopee.io){: target="\_blank"}; the plugin defaults to `https://api.wopee.io`. Set it only for a self-hosted instance.
 
 In a VS Code terminal, start the tests with `env -u ELECTRON_RUN_AS_NODE npm test` (see [Troubleshooting](01-getting-started.md#troubleshooting)).
@@ -58,6 +62,8 @@ A visual difference is reported in Commander; it does not fail the Cypress test.
 ## Local runs and Commander baselines
 
 Compare like with like. A screenshot from your machine differs from one taken by Commander's runner: on a Mac with a retina screen the local screenshot is 2560x1440, the runner's is 1280x720, and fonts render differently. A local run against a baseline approved from Commander is therefore `unresolved`. Keep the baselines from one place, usually Commander, and do not approve local screenshots over them.
+
+Commander used to run Cypress tests in Electron. Chrome renders fonts slightly differently, so the first run in Chrome for Testing is `unresolved` on every step whose baseline came from Electron. Check the differences, approve once, and the next runs are `ok`.
 
 For small rendering differences between runs on the same machine, set a tolerance: `WOPEE_PIXEL_TO_PIXEL_DIFF_TOLERANCE` is the difference in percent that still counts as a match. The template passes it to the plugin; set it in `.env` or in Commander › **More** › **Settings** › **Environment Variables**.
 
