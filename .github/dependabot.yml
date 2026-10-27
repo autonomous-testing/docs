@@ -1,0 +1,17 @@
+version: 2
+updates:
+  - package-ecosystem: pip
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      mkdocs:
+        patterns: ["*"]
+    ignore:
+      # 1.2.3+ is the ProperDocs republish (pulls in the properdocs MkDocs fork)
+      - dependency-name: mkdocs-redirects
+        versions: [">1.2.2"]
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
