@@ -28,7 +28,18 @@ nav:
       - 🗄️ Browser local storage: guides/browser-local-storage.md
       - 🌐 Project context: guides/project-context.md
       - 🔌 HTTP Request Tool: guides/http-tools.md
-      - 🚀 Wopee.io MCP: guides/wopee-mcp.md
+      - 🚀 Wopee.io MCP:
+          - guides/wopee-mcp/index.md
+          - Claude Code: guides/wopee-mcp/claude-code.md
+          - GitHub Copilot: guides/wopee-mcp/github-copilot.md
+          - Cursor: guides/wopee-mcp/cursor.md
+          - OpenCode: guides/wopee-mcp/opencode.md
+          - OpenAI Codex: guides/wopee-mcp/codex.md
+          - Antigravity and Gemini CLI: guides/wopee-mcp/antigravity.md
+          - JetBrains AI Assistant and Junie: guides/wopee-mcp/jetbrains.md
+          - Devin Desktop (Windsurf): guides/wopee-mcp/devin-desktop-windsurf.md
+          - Visual Studio: guides/wopee-mcp/visual-studio.md
+          - Other MCP clients: guides/wopee-mcp/other-clients.md
   - Other docs:
       - 🧑‍✈️ Pilot projects: pilot-projects.md
       - 🔒 Enterprise Connectivity: security/enterprise-connectivity.md
@@ -104,6 +115,9 @@ plugins:
         "rf.md": "robot-framework/01-getting-started.md"
         "getting-started.md": "ai-agent.md"
         "bot.md": "ai-agent.md"
+        "mcp.md": "guides/wopee-mcp/index.md"
+        "guides/wopee-mcp/windsurf.md": "guides/wopee-mcp/devin-desktop-windsurf.md"
+        "guides/wopee-mcp/vscode.md": "guides/wopee-mcp/github-copilot.md"
 
 markdown_extensions:
   - attr_list

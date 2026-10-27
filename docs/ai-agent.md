@@ -93,5 +93,6 @@ Each Analysis has its own branch in the project's GitHub repository: the user fl
 
 - [🛠️ Tools & Assertions](concepts/tools-and-assertions.md): how the agent interacts with your app
 - [🩹 Self-Healing](concepts/self-healing.md): how tests keep working when your UI changes
+- Run and generate tests from your coding agent (Claude Code, GitHub Copilot, Cursor, OpenCode and others): [🚀 Wopee.io MCP server](guides/wopee-mcp/index.md)
 - Integrate your existing tests: [Playwright](playwright-visual-testing.md), [Cypress](cypress/01-getting-started.md), [Robot Framework](robot-framework/01-getting-started.md), [WebdriverIO](webdriverio-visual-testing.md)
 - Short videos: [Wopee.io in 2 minutes](https://youtu.be/X4vKIrlauik), [Visual checks](https://youtu.be/jLA-rA1AHd0), [Your tests, your repo](https://youtu.be/7yLnLJBpBB4)
