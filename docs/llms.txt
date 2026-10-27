@@ -1,0 +1,56 @@
+# Wopee.io documentation
+
+> Wopee.io is an AI testing platform for web apps. Its testing agents explore an app, generate plain-English and Playwright tests, run them in the cloud and report verdicts with evidence. Visual checks plug into existing Playwright, Cypress, WebdriverIO and Robot Framework tests. The Wopee.io MCP server (npm `wopee-mcp`) lets AI coding agents drive all of this from the editor.
+
+The web app is Commander at https://cmd.wopee.io. Project API keys and the project UUID are under More › Settings › API Keys in a project.
+
+## Get started
+
+- [Getting started](https://docs.wopee.io/ai-agent/): create a project, let the AI agent explore your app and generate tests, read the verdicts, schedule a test plan
+- [Glossary](https://docs.wopee.io/glossary/): projects, baselines, branches, runs, scenarios, steps, statuses
+
+## Wopee.io MCP server (AI coding agents)
+
+- [Wopee.io MCP server](https://docs.wopee.io/guides/wopee-mcp/): quick start, configuration, environment variables, prompt library, all 15 tools and 3 prompts, how runs work, limits, security, troubleshooting, FAQ, comparison with Playwright MCP
+- [Claude Code](https://docs.wopee.io/guides/wopee-mcp/claude-code/): `claude mcp add`, `.mcp.json`, `${VAR}` expansion, `/mcp` (tested)
+- [GitHub Copilot](https://docs.wopee.io/guides/wopee-mcp/github-copilot/): VS Code agent mode (`.vscode/mcp.json` with `servers` and `envFile`, Local session type, install link), Copilot CLI (`--additional-mcp-config` in `-p` mode), Copilot cloud agent (VS Code and Copilot CLI tested)
+- [Cursor](https://docs.wopee.io/guides/wopee-mcp/cursor/): `.cursor/mcp.json` with `envFile` or `${env:VAR}`, enable in Customize › MCPs, install link, Cursor CLI (tested)
+- [OpenCode](https://docs.wopee.io/guides/wopee-mcp/opencode/): `opencode.json` with `mcp`, `type: local`, command array, `environment` (tested)
+- [OpenAI Codex](https://docs.wopee.io/guides/wopee-mcp/codex/): `codex mcp add`, `~/.codex/config.toml`, CLI, IDE extension and ChatGPT desktop app
+- [Google Antigravity and Gemini CLI](https://docs.wopee.io/guides/wopee-mcp/antigravity/): `mcp_config.json`, `gemini mcp add`, `settings.json`
+- [JetBrains AI Assistant and Junie](https://docs.wopee.io/guides/wopee-mcp/jetbrains/): IDE settings, `.junie/mcp/mcp.json`
+- [Devin Desktop (formerly Windsurf)](https://docs.wopee.io/guides/wopee-mcp/devin-desktop-windsurf/): `~/.config/devin/mcp_config.json`, Devin cloud
+- [Visual Studio](https://docs.wopee.io/guides/wopee-mcp/visual-studio/): GitHub Copilot in Visual Studio 2026 and 2022 17.14+
+- [Other MCP clients](https://docs.wopee.io/guides/wopee-mcp/other-clients/): Zed, Cline, Kilo Code, Warp, Kiro, Goose, Continue, Augment, Claude Desktop
+
+## Concepts
+
+- [Analysis process](https://docs.wopee.io/concepts/analysis-process/): how Wopee.io analyzes a web app and generates tests
+- [Analysis inputs](https://docs.wopee.io/concepts/analysis-inputs/): Jira stories, Figma designs and crawl data as inputs
+- [Prompting guidelines](https://docs.wopee.io/concepts/prompting-guidelines/): writing goals, scope and constraints for test generation
+- [Tools and assertions](https://docs.wopee.io/concepts/tools-and-assertions/): what the testing agent does in the browser
+- [Self-healing](https://docs.wopee.io/concepts/self-healing/): locators with fallback, self-troubleshooting, agent skills
+- [POM example: login](https://docs.wopee.io/concepts/pom-login-example/): a reusable login module
+
+## Visual testing with your own tests
+
+- [Overview](https://docs.wopee.io/visual-testing/): projects, API keys, baselines, branches, statuses
+- [Playwright](https://docs.wopee.io/playwright-visual-testing/): `@wopee-io/wopee.pw`
+- [Cypress](https://docs.wopee.io/cypress/01-getting-started/): `@wopee-io/wopee.cy`
+- [WebdriverIO](https://docs.wopee.io/webdriverio-visual-testing/): `@wopee-io/wopee.wdio`
+- [Robot Framework](https://docs.wopee.io/robot-framework/01-getting-started/): `wopee_rf`
+- [GraphQL API](https://docs.wopee.io/graphql-api/): send screenshots from any framework
+
+## Guides
+
+- [Upload files](https://docs.wopee.io/guides/upload-files/)
+- [Download files](https://docs.wopee.io/guides/download-files/)
+- [Browser local storage](https://docs.wopee.io/guides/browser-local-storage/)
+- [Project context](https://docs.wopee.io/guides/project-context/): global instructions for the testing agent
+- [HTTP Request Tool](https://docs.wopee.io/guides/http-tools/): API calls inside UI tests
+
+## Optional
+
+- [Pilot projects](https://docs.wopee.io/pilot-projects/)
+- [Enterprise connectivity](https://docs.wopee.io/security/enterprise-connectivity/): apps behind VPN or firewalls
+- [wopee-mcp on GitHub](https://github.com/Wopee-io/wopee-mcp)

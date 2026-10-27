@@ -53,6 +53,7 @@ Ready to try it? The [📙 Getting started](ai-agent.md) guide and its [6-minute
 - Learn about [🛠️ Tools & Assertions](concepts/tools-and-assertions.md) and how the agent works
 - See how [🩹 Self-Healing](concepts/self-healing.md) keeps tests running when your UI changes
 - Understand [📖 Vocabulary](glossary.md) of 🐒
+- Work from your coding agent: the [🚀 Wopee.io MCP server](guides/wopee-mcp/index.md) connects Claude Code, GitHub Copilot, Cursor, OpenCode and other agents to your project
 
 ## Wopee.io Integrations
 
