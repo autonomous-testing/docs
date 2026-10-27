@@ -9,6 +9,10 @@ Connect Claude Code to your Wopee.io project, so it can generate tests, run them
 
 Before you start: Node.js 20.18 or newer, and `WOPEE_API_KEY` and `WOPEE_PROJECT_UUID` from **More** › **Settings** › **API Keys** in your project ([how](index.md#1-get-your-api-key-and-project-uuid)).
 
+!!! tip "Video"
+
+    [Watch Claude Code use the Wopee.io MCP server](https://youtu.be/rIfLyNvAOjs){: target="\_blank"}.
+
 Tested on 27 October 2026 with `wopee-mcp` 1.32.0 and the setup on this page.
 
 ## Add with the Claude Code CLI

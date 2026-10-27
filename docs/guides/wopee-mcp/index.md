@@ -9,6 +9,10 @@ The Wopee.io MCP server (npm package [`wopee-mcp`](https://www.npmjs.com/package
 
 Playwright MCP gives your agent a browser to drive step by step. The Wopee.io MCP server gives it a tester: one call starts a test run in the cloud, and the agent gets back a verdict with evidence. Your tests, their history and the reports stay in your Wopee.io project, where your team can open them in [Commander](https://cmd.wopee.io){: target="\_blank"}.
 
+!!! tip "Video"
+
+    [Watch an AI QA agent in Cursor](https://wopee.io/videos/ai-qa-agent-jira-playwright/){: target="\_blank"} use the Wopee.io, Playwright and Atlassian MCP servers.
+
 ## Add it to your agent
 
 | Agent | Config file | One-click install | Guide |
