@@ -95,7 +95,7 @@ Any other stack: see [Visual testing with your own tests](visual-testing.md), wh
 
 ## Follow 🐵 and share
 
-- [:simple-linkedin: (Wopee.io on LinkedIn)](https://www.linkedin.com/company/wopee-io)
+- [:fontawesome-brands-linkedin: (Wopee.io on LinkedIn)](https://www.linkedin.com/company/wopee-io)
 - [:simple-github: (Wopee.io on Github)](https://github.com/Wopee-io)
 
 🍌 🍌 🍌
