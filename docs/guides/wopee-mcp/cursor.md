@@ -9,6 +9,10 @@ Connect Cursor to your Wopee.io project, so its agent can generate tests, run th
 
 Before you start: Node.js 20.18 or newer, and `WOPEE_API_KEY` and `WOPEE_PROJECT_UUID` from **More** › **Settings** › **API Keys** in your project ([how](index.md#1-get-your-api-key-and-project-uuid)).
 
+!!! tip "Video"
+
+    [Watch an AI QA agent in Cursor](https://wopee.io/videos/ai-qa-agent-jira-playwright/){: target="\_blank"} use the Wopee.io, Playwright and Atlassian MCP servers.
+
 Tested on 27 October 2026 with `wopee-mcp` 1.32.0 and Cursor 3.15 using `${env:...}`; `envFile` follows Cursor's documented config schema. The install link and the Cursor CLI follow Cursor's documentation.
 
 ## Add to .cursor/mcp.json
