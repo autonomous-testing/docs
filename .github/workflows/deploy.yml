@@ -32,7 +32,7 @@ jobs:
           rm -rf ./docs/robots.txt
 
       - name: Build website
-        run: docker run --rm -v ${PWD}:/docs -u $(id -u):$(id -g) squidfunk/mkdocs-material build
+        run: docker run --rm -v ${PWD}:/docs -u $(id -u):$(id -g) squidfunk/mkdocs-material:9.7.7 build
 
       - name: Add nojekyll file
         run: touch ./site/.nojekyll
