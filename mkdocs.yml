@@ -80,6 +80,8 @@ theme:
     - navigation.top
     - navigation.footer
     - content.code.copy
+    - search.suggest
+    - search.highlight
 
 extra:
   social:
@@ -99,6 +101,7 @@ extra_javascript:
   - js/custom.js
 
 plugins:
+  - search
   - redirects:
       redirect_maps:
         "integrations/cypress/01-getting-started.md": "cypress/01-getting-started.md"
