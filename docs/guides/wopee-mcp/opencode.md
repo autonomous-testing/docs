@@ -72,6 +72,8 @@ opencode mcp list
 
 The output shows `✓ wopee connected`. If it does not, `opencode mcp debug wopee` shows why.
 
+![opencode mcp list output with wopee connected](../../img/guides/wopee-mcp/opencode-mcp-list.png){ width="600" }
+
 OpenCode prefixes tool names with the server name, so the agent calls the tools as `wopee_wopee_fetch_test_inventory`, `wopee_wopee_dispatch_agent` and so on.
 
 ## First prompt to try
@@ -81,6 +83,8 @@ How many tests do I have in Wopee.io, and which ones have never run?
 ```
 
 OpenCode calls `wopee_wopee_fetch_test_inventory` and lists the analyses and test cases in your project with their latest status. More prompts: [Prompt library](index.md#prompt-library).
+
+![OpenCode reports that a Wopee.io test passed, with the steps and the verdict](../../img/guides/wopee-mcp/opencode-test-passed.png)
 
 ## Troubleshooting
 
