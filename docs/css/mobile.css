@@ -93,6 +93,16 @@
   }
 }
 
+/* Phones: table columns stay wide enough to read code, a wide table scrolls sideways */
+@media screen and (max-width: 44.984375em) {
+  .md-typeset table:not([class]) :is(td, th) {
+    min-width: 6.5rem;
+  }
+  .md-typeset table:not([class]) :is(td, th):last-child:not(:first-child) {
+    min-width: 11rem;
+  }
+}
+
 /* Tablets without sidebars or with only the table of contents: keep lines under about 80 characters */
 @media screen and (min-width: 45em) and (max-width: 76.234375em) {
   .md-content__inner {
