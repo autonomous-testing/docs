@@ -28,6 +28,9 @@
   line-height: 1.08;
   margin: 0.9rem auto 0;
 }
+.wo-home-hero .wo-nowrap {
+  white-space: nowrap;
+}
 .wo-home-hero h1 em {
   color: var(--wo-yellow);
   font-style: normal;
@@ -114,7 +117,7 @@
   font-family: var(--md-code-font-family);
   font-size: 0.7rem;
   line-height: 1.7;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
   padding: 0.8rem 0.9rem;
   white-space: pre-wrap;
 }
@@ -275,7 +278,30 @@
     grid-template-columns: 1fr;
   }
 }
+@media screen and (max-width: 76.234375em) {
+  .wo-home-term__copy {
+    min-height: 2.2rem;
+    min-width: 2.8rem;
+  }
+}
+@media screen and (max-width: 44.9844em) {
+  .wo-home-term__bar,
+  .wo-home-term__copy,
+  .wo-home-hero__note,
+  .md-typeset .wo-cards li > p:not(:first-child),
+  .md-typeset .wo-cards li > p.wo-meta,
+  .md-typeset ol.wo-steps span,
+  .md-typeset .wo-home .wo-small {
+    font-size: 0.8rem;
+  }
+}
 @media screen and (max-width: 29.9844em) {
+  .wo-home-hero__chip {
+    display: none;
+  }
+  .wo-home-hero h1 {
+    margin-top: 0;
+  }
   .wo-home-hero {
     padding: 2.4rem 0.8rem 2rem;
   }
