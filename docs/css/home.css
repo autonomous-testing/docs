@@ -313,3 +313,12 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Tablets: the home grid uses the full width, also where prose pages cap their line length */
+@media screen and (min-width: 45em) and (max-width: 76.234375em) {
+  .md-content__inner:has(> .wo-home) {
+    margin-left: 0.8rem;
+    margin-right: 0.8rem;
+    max-width: none;
+  }
+}
