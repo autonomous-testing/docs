@@ -1,5 +1,7 @@
 site_name: Wopee.io
 site_url: https://docs.wopee.io/
+# repo_url enables the edit link but is deliberately not the GitHub URL: the theme would call the GitHub API on every page view for the header repo facts, which the CSS hides
+repo_url: https://docs.wopee.io/
 edit_uri: https://github.com/autonomous-testing/docs/edit/main/docs/
 copyright: >-
   Need help? <a href="mailto:help@wopee.io">help@wopee.io</a>
@@ -59,6 +61,7 @@ nav:
 
 theme:
   name: material
+  variant: classic
   language: en
   palette:
     # Palette toggle for light mode
@@ -131,6 +134,52 @@ extra_javascript:
 
 plugins:
   - search
+  - llmstxt:
+      full_output: llms-full.txt
+      markdown_description: |
+        Wopee.io is an AI testing platform for web apps. Its testing agents explore an app, generate plain-English and Playwright tests, run them in the cloud and report verdicts with evidence. Visual checks plug into existing Playwright, Cypress, WebdriverIO and Robot Framework tests. The Wopee.io MCP server (npm `wopee-mcp`) lets AI coding agents drive all of this from the editor.
+
+        The web app is Commander at https://cmd.wopee.io. Project API keys and the project UUID are under More › Settings › API Keys in a project.
+      sections:
+        "Get started":
+          - "ai-agent.md": "create a project, let the AI agent explore your app and generate tests, read the verdicts, schedule a test plan"
+          - "glossary.md": "projects, baselines, branches, runs, scenarios, steps, statuses"
+        "Wopee.io MCP server (AI coding agents)":
+          - "guides/wopee-mcp/index.md": "quick start, configuration, environment variables, prompt library, all 15 tools and 3 prompts, how runs work, limits, security, troubleshooting, FAQ, comparison with Playwright MCP"
+          - "guides/wopee-mcp/claude-code.md": "`claude mcp add`, `.mcp.json`, `${VAR}` expansion, `/mcp` (tested)"
+          - "guides/wopee-mcp/github-copilot.md": "VS Code agent mode (`.vscode/mcp.json` with `servers` and `envFile`, Local session type, install link), Copilot CLI (`--additional-mcp-config` in `-p` mode), Copilot cloud agent (VS Code and Copilot CLI tested)"
+          - "guides/wopee-mcp/cursor.md": "`.cursor/mcp.json` with `envFile` or `${env:VAR}`, enable in Customize › MCPs, install link, Cursor CLI (tested)"
+          - "guides/wopee-mcp/opencode.md": "`opencode.json` with `mcp`, `type: local`, command array, `environment` (tested)"
+          - "guides/wopee-mcp/codex.md": "`codex mcp add`, `~/.codex/config.toml`, CLI, IDE extension and ChatGPT desktop app"
+          - "guides/wopee-mcp/antigravity.md": "`mcp_config.json`, `gemini mcp add`, `settings.json`"
+          - "guides/wopee-mcp/jetbrains.md": "IDE settings, `.junie/mcp/mcp.json`"
+          - "guides/wopee-mcp/devin-desktop-windsurf.md": "`~/.config/devin/mcp_config.json`, Devin cloud"
+          - "guides/wopee-mcp/visual-studio.md": "GitHub Copilot in Visual Studio 2026 and 2022 17.14+"
+          - "guides/wopee-mcp/other-clients.md": "Zed, Cline, Kilo Code, Warp, Kiro, Goose, Continue, Augment, Claude Desktop"
+        "Concepts":
+          - "concepts/analysis-process.md": "how Wopee.io analyzes a web app and generates tests"
+          - "concepts/analysis-inputs.md": "Jira stories, Figma designs and crawl data as inputs"
+          - "concepts/prompting-guidelines.md": "writing goals, scope and constraints for test generation"
+          - "concepts/tools-and-assertions.md": "what the testing agent does in the browser"
+          - "concepts/self-healing.md": "locators with fallback, self-troubleshooting, agent skills"
+          - "concepts/pom-login-example.md": "a reusable login module"
+        "Visual testing with your own tests":
+          - "visual-testing.md": "projects, API keys, baselines, branches, statuses"
+          - "playwright-visual-testing.md": "`@wopee-io/wopee.pw`"
+          - "cypress/01-getting-started.md": "`@wopee-io/wopee.cy`"
+          - "webdriverio-visual-testing.md": "`@wopee-io/wopee.wdio`"
+          - "robot-framework/01-getting-started.md": "`wopee_rf`"
+          - "graphql-api.md": "send screenshots from any framework"
+          - "ci/index.md": "secrets, branches and suite names for any CI system"
+        "Guides":
+          - "guides/upload-files.md": ""
+          - "guides/download-files.md": ""
+          - "guides/browser-local-storage.md": ""
+          - "guides/project-context.md": "global instructions for the testing agent"
+          - "guides/http-tools.md": "API calls inside UI tests"
+        "Optional":
+          - "pilot-projects.md": ""
+          - "security/enterprise-connectivity.md": "apps behind VPN or firewalls"
   - redirects:
       redirect_maps:
         "integrations/cypress/01-getting-started.md": "cypress/01-getting-started.md"
