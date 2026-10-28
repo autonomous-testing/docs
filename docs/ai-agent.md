@@ -2,7 +2,7 @@
 description: Step-by-step guide to set up Wopee.io. Create a project, let the AI agent explore your app and generate tests, read the verdicts, and schedule your first test plan.
 ---
 
-# 🤖 Getting started
+# Getting started
 
 Your first AI test, from a URL to a verdict, in a few minutes. Prefer to watch first? Here is the 6-minute quick start:
 

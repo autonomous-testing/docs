@@ -42,6 +42,7 @@ jobs:
       - name: Build website
         run: |
           python scripts/check-media.py
+          export SITE_URL="https://$(cat CNAME)/"
           zensical build --strict
 
       - name: Add nojekyll file

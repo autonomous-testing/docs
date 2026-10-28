@@ -1,5 +1,5 @@
 site_name: Wopee.io
-site_url: https://docs.wopee.io/
+site_url: !ENV [SITE_URL, "https://docs.wopee.io/"]
 # repo_url enables the edit link but is deliberately not the GitHub URL: the theme would call the GitHub API on every page view for the header repo facts, which the CSS hides
 repo_url: https://docs.wopee.io/
 edit_uri: https://github.com/autonomous-testing/docs/edit/main/docs/

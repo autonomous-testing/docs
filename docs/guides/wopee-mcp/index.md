@@ -3,7 +3,7 @@ title: Wopee.io MCP server for AI coding agents
 description: Connect the Wopee.io MCP server (wopee-mcp) to Claude Code, GitHub Copilot, Cursor, OpenCode, Codex and other MCP clients. Quick start, configuration, prompts, all 15 tools, limits and troubleshooting.
 ---
 
-# 🚀 Wopee.io MCP server
+# Wopee.io MCP server
 
 The Wopee.io MCP server (npm package [`wopee-mcp`](https://www.npmjs.com/package/wopee-mcp){: target="\_blank"}, registry name `io.github.Wopee-io/wopee-mcp`) connects your AI coding agent to your Wopee.io project over the Model Context Protocol. From the chat, the agent can explore your web app, generate user stories and test cases, start Wopee.io's testing agent on them, read the verdicts with the agent's report, and file a failed run as a GitHub issue. The browsers run on Wopee.io's runners, not on your machine.
 

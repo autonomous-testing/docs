@@ -2,7 +2,7 @@
 description: Test file download functionality in your web app with Wopee.io. Verify downloads work correctly across browsers and file types.
 ---
 
-# 📥 Download files
+# Download files
 
 Test your web application's file download functionality to ensure users can successfully download files, reports, and other content.
 

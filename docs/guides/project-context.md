@@ -2,7 +2,7 @@
 description: Set global instructions and context for Wopee.io AI testing agents. Guide agent behavior across all tests in your project.
 ---
 
-# 🌍 Project context
+# Project context
 
 Configure global instructions and context that guide the AI testing agent's behavior across all tests in your project.
 

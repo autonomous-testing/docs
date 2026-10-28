@@ -26,4 +26,5 @@ jobs:
       - name: Test build website
         run: |
           python scripts/check-media.py
+          export SITE_URL="https://$(cat CNAME)/"
           zensical build --strict

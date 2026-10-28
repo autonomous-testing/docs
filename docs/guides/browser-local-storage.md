@@ -2,7 +2,7 @@
 description: Configure and upload browser local storage data for Wopee.io tests. Ensure tests run with the correct application state and user preferences.
 ---
 
-# 🗄️ Browser local storage
+# Browser local storage
 
 Configure and upload browser local storage data to ensure your tests run with the necessary application state and user preferences.
 
