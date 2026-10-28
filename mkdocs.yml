@@ -1,49 +1,61 @@
 site_name: Wopee.io
+site_url: https://docs.wopee.io/
+edit_uri: https://github.com/autonomous-testing/docs/edit/main/docs/
+copyright: >-
+  Need help? <a href="mailto:help@wopee.io">help@wopee.io</a>
+  &middot; <a href="https://github.com/orgs/Wopee-io/discussions/categories/q-a">Community Q&amp;A</a>
+  &middot; <a href="https://github.com/orgs/Wopee-io/discussions/categories/status-of-services">Service status</a>
+  &middot; <a href="https://cmd.wopee.io">Open Commander</a>
+
 nav:
-  - 🚀 Welcome!: index.md
-  - 🤖 Getting started: ai-agent.md
-  - Concepts:
-      - ✨ Analysis - Process: concepts/analysis-process.md
-      - 🔗 Analysis - Inputs: concepts/analysis-inputs.md
-      - 📖 Prompting Guidelines: concepts/prompting-guidelines.md
-      - 🛠️ Tools & Assertions: concepts/tools-and-assertions.md
-      - 🩹 Self-Healing: concepts/self-healing.md
-      - 📃 POM example - Login: concepts/pom-login-example.md
-  - Visual Testing with...:
-      - ≫ Your own tests: visual-testing.md
-      - ≫ Playwright: playwright-visual-testing.md
-      - ≫ Cypress:
+  - Home: index.md
+  - Get started:
+      - Quickstart: ai-agent.md
+      - Writing good prompts: concepts/prompting-guidelines.md
+      - Pilot projects: pilot-projects.md
+  - Integrations:
+      - Your own tests: visual-testing.md
+      - Playwright: playwright-visual-testing.md
+      - Cypress:
           - Getting started: cypress/01-getting-started.md
           - Template project: cypress/02-template-project.md
           - Install plugin: cypress/03-install-plugin.md
-      - ≫ WebdriverIO: webdriverio-visual-testing.md
-      - ≫ Robot Framework:
+      - WebdriverIO: webdriverio-visual-testing.md
+      - Robot Framework:
           - Getting started: robot-framework/01-getting-started.md
           - Configuration and listener: robot-framework/02-manual-setup.md
           - Setup with make: robot-framework/03-setup-with-make.md
           - Examples: robot-framework/04-some-more-examples.md
+  - MCP:
+      - Overview and quick start: guides/wopee-mcp/index.md
+      - Claude Code: guides/wopee-mcp/claude-code.md
+      - GitHub Copilot: guides/wopee-mcp/github-copilot.md
+      - Cursor: guides/wopee-mcp/cursor.md
+      - OpenCode: guides/wopee-mcp/opencode.md
+      - OpenAI Codex: guides/wopee-mcp/codex.md
+      - Antigravity and Gemini CLI: guides/wopee-mcp/antigravity.md
+      - JetBrains AI Assistant and Junie: guides/wopee-mcp/jetbrains.md
+      - Devin Desktop (Windsurf): guides/wopee-mcp/devin-desktop-windsurf.md
+      - Visual Studio: guides/wopee-mcp/visual-studio.md
+      - Other MCP clients: guides/wopee-mcp/other-clients.md
+  - CI:
+      - Run in CI: ci/index.md
   - Guides:
-      - 📁 Upload files: guides/upload-files.md
-      - 📥 Download files: guides/download-files.md
-      - 🗄️ Browser local storage: guides/browser-local-storage.md
-      - 🌐 Project context: guides/project-context.md
-      - 🔌 HTTP Request Tool: guides/http-tools.md
-      - 🚀 Wopee.io MCP:
-          - guides/wopee-mcp/index.md
-          - Claude Code: guides/wopee-mcp/claude-code.md
-          - GitHub Copilot: guides/wopee-mcp/github-copilot.md
-          - Cursor: guides/wopee-mcp/cursor.md
-          - OpenCode: guides/wopee-mcp/opencode.md
-          - OpenAI Codex: guides/wopee-mcp/codex.md
-          - Antigravity and Gemini CLI: guides/wopee-mcp/antigravity.md
-          - JetBrains AI Assistant and Junie: guides/wopee-mcp/jetbrains.md
-          - Devin Desktop (Windsurf): guides/wopee-mcp/devin-desktop-windsurf.md
-          - Visual Studio: guides/wopee-mcp/visual-studio.md
-          - Other MCP clients: guides/wopee-mcp/other-clients.md
-  - Other docs:
-      - 🧑‍✈️ Pilot projects: pilot-projects.md
-      - 🔒 Enterprise Connectivity: security/enterprise-connectivity.md
-      - 📖 Glossary: glossary.md
+      - Project context: guides/project-context.md
+      - Upload files: guides/upload-files.md
+      - Download files: guides/download-files.md
+      - Browser local storage: guides/browser-local-storage.md
+      - HTTP Request Tool: guides/http-tools.md
+      - POM example - Login: concepts/pom-login-example.md
+  - Concepts:
+      - Analysis - Process: concepts/analysis-process.md
+      - Analysis - Inputs: concepts/analysis-inputs.md
+      - Tools & Assertions: concepts/tools-and-assertions.md
+      - Self-Healing: concepts/self-healing.md
+  - Reference:
+      - GraphQL API: graphql-api.md
+      - Glossary: glossary.md
+      - Enterprise Connectivity: security/enterprise-connectivity.md
 
 theme:
   name: material
@@ -52,8 +64,8 @@ theme:
     # Palette toggle for light mode
     - scheme: default
       media: "(prefers-color-scheme: light)"
-      primary: amber
-      accent: deep purple
+      primary: custom
+      accent: custom
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
@@ -61,27 +73,33 @@ theme:
     # Palette toggle for dark mode
     - scheme: slate
       media: "(prefers-color-scheme: dark)"
-      primary: amber
-      accent: deep purple
+      primary: custom
+      accent: custom
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
-  font:
-    text: Roboto
-    code: Roboto Mono
-  logo: assets/logo.png
+  font: false
+  logo: assets/logo-yellow.png
   favicon: assets/favicon.png
   features:
     - navigation.indexes
     - navigation.instant
     - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.sections
-    - toc.integrate
+    - navigation.prune
+    - navigation.path
+    - toc.follow
     - navigation.top
     - navigation.footer
     - content.code.copy
+    - content.code.annotate
+    - content.action.edit
+    - content.tabs.link
     - search.suggest
     - search.highlight
+    - search.share
 
 extra:
   social:
@@ -93,6 +111,17 @@ extra:
   analytics:
     provider: google
     property: G-PVTHWLV51B
+    feedback:
+      title: Was this page helpful?
+      ratings:
+        - icon: material/thumb-up-outline
+          name: This page was helpful
+          data: 1
+          note: Thanks for your feedback!
+        - icon: material/thumb-down-outline
+          name: This page could be improved
+          data: 0
+          note: Thanks for your feedback! Write to help@wopee.io to tell us what is missing.
 
 extra_css:
   - css/custom.css

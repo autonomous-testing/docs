@@ -50,18 +50,18 @@ After your review, Commander shows the step as **Approved** or **Failed** (rejec
 3. Switch off **Explore the app and generate tests**. You bring your own tests, so the AI exploration is not needed. Automatic test generation is available for Playwright only; for the other frameworks the switch is already off.
 4. Click **Create project**.
 
-![Test framework picker in the New project dialog](img/visual-testing/new-project-framework.webp){ width="440" }
+![Test framework picker in the New project dialog](img/visual-testing/new-project-framework.webp){ width="440" height="520" }
 
-![New project with Cypress selected and test generation off](img/visual-testing/new-project.webp){ width="440" }
+![New project with Cypress selected and test generation off](img/visual-testing/new-project.webp){ width="440" height="470" loading="lazy" }
 
 ## 2. Get the API key
 
 1. In the project, open **More** › **Settings** › **API Keys**. The section shows `WOPEE_API_URL` and `WOPEE_PROJECT_UUID`.
 2. Enter a name and click **Generate a new key**. The dialog shows `WOPEE_API_KEY` **only once**: copy it right away. If you lose it, generate a new one and delete the old one under **Existing keys**.
 
-![API Keys in project settings](img/visual-testing/api-keys.webp){ width="600" }
+![API Keys in project settings](img/visual-testing/api-keys.webp){ width="600" height="433" loading="lazy" }
 
-![The new key is shown once](img/visual-testing/api-key-generated.webp){ width="420" }
+![The new key is shown once](img/visual-testing/api-key-generated.webp){ width="420" height="186" loading="lazy" }
 
 Put the three values into a `.env` file in your test project:
 
@@ -77,7 +77,7 @@ WOPEE_API_KEY=your-api-key
 
 Open the project and go to **Runs**. Select the run on the left, then a step of the scenario. The **Comparison view** shows the current screenshot; when a baseline exists, the baseline is shown next to it.
 
-![Comparison view with a new step](img/visual-testing/runs-comparison.webp)
+![Comparison view with a new step](img/visual-testing/runs-comparison.webp){ width="1600" height="775" loading="lazy" }
 
 - **Approve** makes the screenshot the baseline of the step.
 - **Reject** (the red button next to it) marks the screenshot as a bug. The baseline stays as it was.
@@ -86,7 +86,7 @@ Open the project and go to **Runs**. Select the run on the left, then a step of 
 
 On the next run, matching steps are `ok` and changed steps are `unresolved`:
 
-![Unresolved step: current screenshot with the difference overlay next to the baseline](img/visual-testing/runs-diff.webp)
+![Unresolved step: current screenshot with the difference overlay next to the baseline](img/visual-testing/runs-diff.webp){ width="1600" height="775" loading="lazy" }
 
 ## Baselines and branches
 

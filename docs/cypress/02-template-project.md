@@ -57,7 +57,7 @@ Open **Runs** in Commander and select the suite **First tests for your project w
 
 A visual difference is reported in Commander; it does not fail the Cypress test. See [Review in Runs](../visual-testing.md#3-review-in-runs).
 
-![Comparison view with a new step and the Approve button](../img/visual-testing/runs-comparison.webp)
+![Comparison view with a new step and the Approve button](../img/visual-testing/runs-comparison.webp){ width="1600" height="775" }
 
 ## Local runs and Commander baselines
 

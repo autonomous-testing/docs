@@ -92,11 +92,11 @@ The Cursor CLI reads the same files.
 
 1. Open **Customize** › **MCPs**. A project server first shows as **Disabled**.
 
-    ![The wopee server listed as Disabled in Cursor Customize › MCPs](../../img/guides/wopee-mcp/cursor-mcps-disabled.png)
+    ![The wopee server listed as Disabled in Cursor Customize › MCPs](../../img/guides/wopee-mcp/cursor-mcps-disabled.webp){ width="1100" height="515" }
 
 2. Open the `wopee` server and switch on the `.cursor/mcp.json` source. The server lists 15 tools.
 
-    ![Configure wopee dialog in Cursor with the .cursor/mcp.json source switched on and the wopee tools listed](../../img/guides/wopee-mcp/cursor-enable-source.png){ width="420" }
+    ![Configure wopee dialog in Cursor with the .cursor/mcp.json source switched on and the wopee tools listed](../../img/guides/wopee-mcp/cursor-enable-source.webp){ width="420" height="577" loading="lazy" }
 
 3. If it shows an error, open the **Output** panel (Cmd+Shift+U, Ctrl+Shift+U on Windows and Linux) and select **MCP Logs**.
 
@@ -117,7 +117,7 @@ How many tests do I have in Wopee.io, and which ones have never run?
 
 Cursor calls `wopee_fetch_test_inventory` and lists the analyses and test cases in your project with their latest status. More prompts: [Prompt library](index.md#prompt-library).
 
-![Cursor agent reports that the new Wopee.io test passed, with its ID, verdict and finish time](../../img/guides/wopee-mcp/cursor-test-passed.png){ width="420" }
+![Cursor agent reports that the new Wopee.io test passed, with its ID, verdict and finish time](../../img/guides/wopee-mcp/cursor-test-passed.webp){ width="420" height="542" loading="lazy" }
 
 ## Troubleshooting
 

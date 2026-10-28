@@ -1,27 +1,18 @@
-function hideToCForSpecificPages() {
-    var currentUrl = window.location.pathname;
-  
-    // List of pages where the ToC should be hidden
-    var pagesWithoutToC = [
-      '/',                  // Root homepage (index.md)
-      '/index.html'         // Sometimes MkDocs uses /index.html for the homepage
-    ];
-  
-    // Check if current URL is in the list of pages to hide the ToC
-    var toc = document.querySelector('.md-nav--secondary');
+document.addEventListener("click", function (event) {
+  var link = event.target.closest("a[data-yt]");
+  if (!link || event.metaKey || event.ctrlKey || event.shiftKey) return;
+  event.preventDefault();
+  var frame = document.createElement("iframe");
+  frame.src = "https://www.youtube-nocookie.com/embed/" + link.dataset.yt + "?autoplay=1&rel=0";
+  frame.title = link.dataset.title || "Video";
+  frame.allow = "autoplay; encrypted-media; picture-in-picture; clipboard-write";
+  frame.referrerPolicy = "strict-origin-when-cross-origin";
+  frame.allowFullscreen = true;
+  link.parentNode.replaceChild(frame, link);
+  frame.focus();
+});
 
-    if (pagesWithoutToC.includes(currentUrl)) {
-      if (toc) {
-        toc.style.display = 'none';
-      }
-    } else {
-      if (toc) {
-        toc.style.display = '';
-      }
-    }
-  }
-  
-  // Listen for the initial page load
-  document.addEventListener('DOMContentLoaded', function() {
-    hideToCForSpecificPages();
-  });
+document.addEventListener("DOMContentLoaded", function () {
+  var search = document.querySelector(".md-search[role=dialog]");
+  if (search && !search.hasAttribute("aria-label")) search.setAttribute("aria-label", "Search");
+});

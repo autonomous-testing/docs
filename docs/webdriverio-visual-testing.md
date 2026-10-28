@@ -21,14 +21,14 @@ This page walks through a complete example on [Sauce Demo](https://www.saucedemo
 2. Open **Advanced settings** and set **Test framework** to **WebdriverIO**. **Explore the app and generate tests** switches off, because test generation is available for Playwright only.
 3. Click **Create project**.
 
-![Test framework picker in the New project dialog](img/visual-testing/new-project-framework.webp){ width="440" }
+![Test framework picker in the New project dialog](img/visual-testing/new-project-framework.webp){ width="440" height="520" }
 
 ## 2. Get the API key
 
 1. In the project, open **More** › **Settings** › **API Keys** and copy `WOPEE_PROJECT_UUID`.
 2. Enter a name, click **Generate a new key** and copy `WOPEE_API_KEY`. The key is shown **only once**.
 
-![API Keys in project settings](img/visual-testing/api-keys.webp){ width="600" }
+![API Keys in project settings](img/visual-testing/api-keys.webp){ width="600" height="433" loading="lazy" }
 
 ## 3. Install
 
@@ -169,7 +169,7 @@ Both steps are `new`: there is no baseline yet. Add `--logLevel info` to see whe
 
 Open the project and go to **Runs**. Select the run `WebdriverIO demo ...`, then each step, and click **Approve**. The screenshot becomes the baseline.
 
-![Comparison view with a new step and the Approve button](img/visual-testing/runs-comparison.webp)
+![Comparison view with a new step and the Approve button](img/visual-testing/runs-comparison.webp){ width="1600" height="775" loading="lazy" }
 
 ## 8. Second run: catch a visual bug
 
@@ -195,7 +195,7 @@ SAUCE_USER=visual_user npx wdio run wdio.conf.ts
 
 **Login page** matches the baseline. **Products** is `unresolved`: open it in **Runs**, inspect the highlighted differences and **Reject** it as a bug, or **Approve** it if the change is intended.
 
-![Unresolved step with the difference overlay next to the baseline](img/visual-testing/runs-diff.webp)
+![Unresolved step with the difference overlay next to the baseline](img/visual-testing/runs-diff.webp){ width="1600" height="775" loading="lazy" }
 
 ## Good to know
 

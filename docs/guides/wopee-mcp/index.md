@@ -46,15 +46,15 @@ Three steps, about five minutes. The example uses Claude Code; the tabs show the
 
 1. In [Commander](https://cmd.wopee.io){: target="\_blank"}, open your project and go to **More** › **Settings** › **API Keys**.
 
-    ![Settings in the More menu of a Commander project](../../img/guides/wopee-mcp/commander-more-settings.png){ width="300" }
+    ![Settings in the More menu of a Commander project](../../img/guides/wopee-mcp/commander-more-settings.webp){ width="300" height="200" }
 
 2. Copy `WOPEE_PROJECT_UUID` with its copy button. The same screen shows `WOPEE_API_URL`, which you need only for a dedicated or self-hosted instance.
 
-    ![API Keys in Project Settings with the WOPEE_API_URL and WOPEE_PROJECT_UUID lines and their copy buttons](../../img/guides/wopee-mcp/commander-api-keys.png){ width="600" }
+    ![API Keys in Project Settings with the WOPEE_API_URL and WOPEE_PROJECT_UUID lines and their copy buttons](../../img/guides/wopee-mcp/commander-api-keys.webp){ width="600" height="397" loading="lazy" }
 
 3. Enter a name, click **Generate a new key** and copy `WOPEE_API_KEY`. The key is shown **only once**.
 
-    ![New API key generated dialog with the WOPEE_API_KEY value and its copy button](../../img/guides/wopee-mcp/commander-new-key.png){ width="440" }
+    ![New API key generated dialog with the WOPEE_API_KEY value and its copy button](../../img/guides/wopee-mcp/commander-new-key.webp){ width="440" height="184" loading="lazy" }
 
 Put both values into your shell environment, not into a file you commit:
 

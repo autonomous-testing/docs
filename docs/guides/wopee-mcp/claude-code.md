@@ -80,7 +80,7 @@ claude mcp get wopee
 
 `claude mcp list` shows `wopee` as **✔ Connected**. Inside a session, run `/mcp`: the list shows **wopee · 15 tools**. The server's three prompts appear as slash commands: `/mcp__wopee__fetch-project-summary`, `/mcp__wopee__fetch-test-results` and `/mcp__wopee__run-test`.
 
-![The /mcp list in Claude Code with wopee connected and 15 tools](../../img/guides/wopee-mcp/claude-code-mcp.png){ width="600" }
+![The /mcp list in Claude Code with wopee connected and 15 tools](../../img/guides/wopee-mcp/claude-code-mcp.webp){ width="600" height="197" }
 
 ## First prompt to try
 
@@ -90,7 +90,7 @@ How many tests do I have in Wopee.io, and which ones have never run?
 
 Claude Code asks to use `wopee_fetch_test_inventory`, then lists the analyses and test cases in your project with their latest status. More prompts: [Prompt library](index.md#prompt-library).
 
-![Claude Code reports a passed Wopee.io test run with the steps the testing agent checked](../../img/guides/wopee-mcp/claude-code-test-passed.png)
+![Claude Code reports a passed Wopee.io test run with the steps the testing agent checked](../../img/guides/wopee-mcp/claude-code-test-passed.webp){ width="1400" height="482" loading="lazy" }
 
 In headless mode (`claude -p`), Claude Code loads the project's MCP servers without the approval prompt, but each tool still needs permission. Allow the server's tools with `--allowedTools "mcp__wopee"`:
 

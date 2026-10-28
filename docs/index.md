@@ -1,101 +1,68 @@
 ---
 title: AI Testing Agents for your web apps
 description: Wopee.io AI testing agents explore your web app, generate Playwright tests, and self-heal when your UI changes. No coding required, deterministic test output.
+hide:
+  - navigation
+  - toc
 ---
+
+<div class="wo-hero" markdown>
 
 # AI Testing Agents for your web apps
 
-Wopee.io is a regression software testing tool for web apps that rapidly speeds up and simplifies testing preparation and test execution.
-Unlike traditional test automation tools, Wopee.io does not require any preparation or programming (tests are generated) and maintenance is easier.
+Our AI Testing Agents explore your app like a human tester, learn its flows, and autonomously generate, run, and maintain end-to-end tests. The output is deterministic test code you can run anywhere. No LLMs or Wopee.io runtime required.
 
-Our AI Testing Agents explore your app like a human tester, learn its flows, and autonomously generate, run, and maintain end-to-end tests.
-The output is deterministic test code you can run anywhere. No LLMs or Wopee.io runtime required.
+[Start the quickstart](ai-agent.md){ .md-button .md-button--primary }
+[Connect your coding agent](guides/wopee-mcp/index.md){ .md-button }
 
-## Features
+</div>
+
+## What do you want to do?
 
 <div class="grid cards" markdown>
 
-- :material-robot:{ .lg .middle } **Testing with bot**
-  <br/>
-  :material-check:{ .lg .middle } No programming
-  <br/>
-  :material-check:{ .lg .middle } Quick preparation
-  <br/>
-  :material-check:{ .lg .middle } Low maintenance
+- :material-rocket-launch:{ .lg .middle } **[Run my first test](ai-agent.md)**
 
-- :material-link:{ .lg .middle } **Testing frameworks integration**
-  <br/>
-  :material-check:{ .lg .middle } Playwright
-  <br/>
-  :material-check:{ .lg .middle } Cypress
-  <br/>
-  :material-check:{ .lg .middle } Robot Framework
-  <br/>
-  :material-check:{ .lg .middle } WebdriverIO
+    ---
+
+    Sign in, create a project, let the agent explore your app and read the verdicts.
+
+- :material-console:{ .lg .middle } **[Use it from my coding agent](guides/wopee-mcp/index.md)**
+
+    ---
+
+    The MCP server connects Claude Code, GitHub Copilot, Cursor, OpenCode and other agents to your project.
+
+- :material-puzzle:{ .lg .middle } **[Add it to my existing tests](visual-testing.md)**
+
+    ---
+
+    Visual checks for Playwright, Cypress, WebdriverIO and Robot Framework.
+
+- :material-source-branch:{ .lg .middle } **[Run it in CI](ci/index.md)**
+
+    ---
+
+    Secrets, branches and suite names for any CI system.
+
+- :material-lightbulb-on:{ .lg .middle } **[Understand how it works](concepts/tools-and-assertions.md)**
+
+    ---
+
+    Tools and assertions, self-healing, analysis inputs.
+
+- :material-book-open-page-variant:{ .lg .middle } **[Look something up](graphql-api.md)**
+
+    ---
+
+    GraphQL API, glossary, enterprise connectivity.
 
 </div>
+
+## Wopee.io in 2 minutes
+
+<div class="yt-facade"><a href="https://youtu.be/X4vKIrlauik" data-yt="X4vKIrlauik" data-title="Wopee.io in 2 minutes: an AI agent that tests your web app"><img src="https://i.ytimg.com/vi/X4vKIrlauik/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"><span class="yt-facade__play">Play: Wopee.io in 2 minutes</span></a></div>
 
 !!! note
 
     We have also limited support for mobile apps, PDFs, desktop apps, and custom images generated or processed by your application. Contact us for more information.
-
-## 🐒 Wopee.io in 2 minutes
-
-<div style="width: 100%; aspect-ratio: 16 / 9; margin: 1rem 0 1.5rem; border-radius: 12px; overflow: hidden; background: #000;">
-<iframe style="width: 100%; height: 100%; border: 0; display: block;" src="https://www.youtube.com/embed/X4vKIrlauik" title="Wopee.io in 2 minutes: an AI agent that tests your web app" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
-
-Ready to try it? The [📙 Getting started](ai-agent.md) guide and its [6-minute quick start video](https://youtu.be/o5ThjRddZfw) walk you through every step.
-
-## Start with bot testing : Step by step
-
-- See detailed [📙 Getting Started with bot testing](ai-agent.md) section
-- Learn about [🛠️ Tools & Assertions](concepts/tools-and-assertions.md) and how the agent works
-- See how [🩹 Self-Healing](concepts/self-healing.md) keeps tests running when your UI changes
-- Understand [📖 Vocabulary](glossary.md) of 🐒
-- Work from your coding agent: the [🚀 Wopee.io MCP server](guides/wopee-mcp/index.md) connects Claude Code, GitHub Copilot, Cursor, OpenCode and other agents to your project
-
-## Wopee.io Integrations
-
-Getting started guides for your favorite testing framework:
-
-<div class="grid cards" markdown>
-
-- [Playwright](playwright-visual-testing.md)
-- [Cypress](cypress/01-getting-started.md)
-- [Robot Framework](robot-framework/01-getting-started.md)
-- [WebdriverIO](webdriverio-visual-testing.md)
-
-</div>
-
-Any other stack: see [Visual testing with your own tests](visual-testing.md), which also covers the GraphQL API.
-
-## Why choose Wopee.io?
-
-**First tests from a URL in minutes. A reviewed regression suite in days.** See [🧑‍✈️ Pilot projects](pilot-projects.md) for what teams typically measure over an 8-week pilot.
-
-1. **Fast first results**: Point Wopee.io at a URL and get your first generated tests in minutes. Building a regression suite your team has reviewed and trusts takes days, not weeks. No extensive preparation or programming skills required.
-2. **Simplified test automation**: Wopee.io’s intuitive interface allows even those with limited technical skills to run comprehensive tests, making it easy for your team to adapt and use without a steep learning curve.
-3. **Cost-effective and efficient**: Reduce testing complexity and costs while maximizing efficiency. Wopee.io integrates seamlessly into your workflow and enhances your productivity.
-4. **Minimize human errors**: Automated testing with Wopee.io ensures consistency and accuracy, reducing the risk of overlooked bugs and human errors.
-5. **Support for your team**: Designed for accessibility, Wopee.io is ideal for teams with varying skill levels, promoting a collaborative approach to testing.
-
-## Ask: User forum
-
-- Chat with other users: [💬 General](https://github.com/orgs/Wopee-io/discussions/categories/general)
-- Search for answer or ask a question: [❓ Q&A](https://github.com/orgs/Wopee-io/discussions/categories/q-a)
-
-## Check: Is it running?
-
-- Check: [🚦 Status of services](https://github.com/orgs/Wopee-io/discussions/categories/status-of-services)
-
-## Let us: help you!
-
-- Just send an e-mail to [📨 help@wopee.io](mailto:help@wopee.io)
-
-## Follow 🐵 and share
-
-- [:fontawesome-brands-linkedin: (Wopee.io on LinkedIn)](https://www.linkedin.com/company/wopee-io)
-- [:simple-github: (Wopee.io on Github)](https://github.com/Wopee-io)
-
-🍌 🍌 🍌
