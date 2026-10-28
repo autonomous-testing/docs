@@ -1,0 +1,36 @@
+{% extends "main.html" %}
+
+{% block extrahead %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ 'css/home.css' | url }}">
+{% endblock %}
+
+{% block tabs %}
+  {{ super() }}
+  <section class="wo-home-hero" aria-labelledby="wo-home-title">
+    <div class="wo-home-hero__inner">
+      <p class="wo-home-hero__chip">Docs for the AI testing agent, MCP server and visual testing</p>
+      <h1 id="wo-home-title">Your first AI-written test in <em>5&nbsp;minutes</em></h1>
+      <p class="wo-home-hero__lead">Point the agent at your app's URL, read the verdict, and keep the tests as Playwright code in your own repository. Everything from sign-in to CI.</p>
+      <div class="wo-home-hero__cta">
+        <a class="md-button md-button--primary" href="{{ 'ai-agent/' | url }}">Start the 5-minute quickstart</a>
+        <a class="md-button" href="{{ 'guides/wopee-mcp/' | url }}">Connect your coding agent (MCP)</a>
+      </div>
+      <div class="wo-home-term">
+        <div class="wo-home-term__bar">
+          <span>Add Wopee.io to Claude Code</span>
+          <button type="button" class="wo-home-term__copy" data-clipboard-text="claude mcp add --scope project wopee -e 'WOPEE_API_KEY=${WOPEE_API_KEY}' -e 'WOPEE_PROJECT_UUID=${WOPEE_PROJECT_UUID}' -- npx -y wopee-mcp" aria-label="Copy the claude mcp add command">Copy</button>
+        </div>
+<pre><code><span class="c"># in your repository, with WOPEE_API_KEY and WOPEE_PROJECT_UUID exported</span>
+<span class="k">claude</span> mcp add --scope project wopee -e <span class="s">'WOPEE_API_KEY=${WOPEE_API_KEY}'</span> -e <span class="s">'WOPEE_PROJECT_UUID=${WOPEE_PROJECT_UUID}'</span> -- npx -y wopee-mcp
+<span class="c"># then start claude and ask</span>
+<span class="s">"Use Wopee.io to analyze my app and generate tests. Focus on the checkout flow."</span></code></pre>
+      </div>
+      <p class="wo-home-hero__note">Key and project UUID: <a href="{{ 'guides/wopee-mcp/' | url }}#1-get-your-api-key-and-project-uuid">where to find them</a> &middot; Other agents: <a href="{{ 'guides/wopee-mcp/' | url }}#add-it-to-your-agent">Copilot, Cursor, Codex and more</a></p>
+    </div>
+  </section>
+{% endblock %}
+
+{% block content %}
+  <div class="wo-home">{{ page.content }}</div>
+{% endblock %}

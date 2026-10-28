@@ -62,6 +62,7 @@ nav:
 theme:
   name: material
   variant: classic
+  custom_dir: overrides
   language: en
   palette:
     # Palette toggle for light mode
