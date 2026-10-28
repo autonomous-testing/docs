@@ -117,3 +117,16 @@
   outline: 2px solid var(--md-accent-fg-color);
   outline-offset: 2px;
 }
+
+/* Until Rubik loads, text uses Arial scaled to Rubik's width and line metrics, so lines do not rewrap when it arrives */
+@font-face {
+  font-family: "Rubik Fallback";
+  src: local("Arial");
+  size-adjust: 103.5%;
+  ascent-override: 90.3%;
+  descent-override: 24.2%;
+  line-gap-override: 0%;
+}
+:root {
+  --md-text-font: "Rubik", "Rubik Fallback";
+}
