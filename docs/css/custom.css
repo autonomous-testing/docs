@@ -234,12 +234,20 @@
 }
 
 /* Links inside text need more than colour to stand out */
-.md-typeset :is(p, li, td, dd) a:not(.md-button, .headerlink) {
+.md-content__inner :is(p, li, td, dd) a:not(.md-button, .headerlink) {
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 2px;
 }
-.md-typeset .grid.cards li a,
-.md-typeset .wo-hero a {
+.md-content__inner .grid.cards li a,
+.md-content__inner .wo-hero a {
   text-decoration: none;
+}
+
+.md-header__source {
+  display: none;
+}
+
+.md-copyright a {
+  text-decoration: underline;
 }
