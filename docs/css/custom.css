@@ -248,6 +248,50 @@
   display: none;
 }
 
+/* Wordmark logo: the yellow W is the first letter of "Wopee.io", so the site-name text is hidden (site_name stays for titles) */
+.md-header__button.md-logo img {
+  height: 1.3rem;
+  width: 6.22rem;
+}
+.md-header__topic:first-child {
+  visibility: hidden;
+}
+@media screen and (max-width: 76.234375em) {
+  .md-header__button[for="__drawer"] {
+    order: -1;
+  }
+  .md-header__button.md-logo {
+    display: block;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-top: 0;
+    padding-bottom: 0.45rem;
+    padding-left: 0.2rem;
+    padding-top: 0.45rem;
+  }
+  .md-header__title {
+    margin-left: 0.4rem;
+  }
+}
+@media screen and (max-width: 29.984375em) {
+  .md-header__title {
+    visibility: hidden;
+  }
+}
+.md-nav--primary .md-nav__title[for="__drawer"] {
+  font-size: 0;
+}
+.md-nav--primary .md-nav__title[for="__drawer"] .md-logo {
+  top: auto;
+  bottom: 0.4rem;
+  right: auto;
+  padding: 0.2rem;
+}
+.md-nav--primary .md-nav__title[for="__drawer"] .md-logo img {
+  height: 1.4rem;
+  width: 6.7rem;
+}
+
 .md-copyright a {
   text-decoration: underline;
 }

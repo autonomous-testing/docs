@@ -82,7 +82,7 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
   font: false
-  logo: assets/logo-yellow.png
+  logo: assets/wordmark.svg
   favicon: assets/favicon.png
   features:
     - navigation.instant
