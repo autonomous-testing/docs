@@ -134,11 +134,11 @@ body:has(.wo-pager) .md-footer__inner {
   }
   .md-typeset .wo-step__n {
     flex-shrink: 0;
-    font-size: 0.75rem;
-    height: 1.5rem;
-    margin-top: 0.1rem;
+    font-size: 0.8rem;
+    height: 1.6rem;
+    margin-top: 0.05rem;
     position: static;
-    width: 1.5rem;
+    width: 1.6rem;
   }
   .md-typeset .wo-pager {
     grid-template-columns: 1fr;
