@@ -251,6 +251,7 @@
 /* Wordmark logo: the yellow W is the first letter of "Wopee.io", so the site-name text is hidden (site_name stays for titles) */
 .md-header__button.md-logo img {
   height: 1.3rem;
+  width: 6.22rem;
 }
 .md-header__topic:first-child {
   visibility: hidden;
@@ -268,6 +269,11 @@
     margin-left: 0.4rem;
   }
 }
+@media screen and (max-width: 29.984375em) {
+  .md-header__title {
+    visibility: hidden;
+  }
+}
 .md-nav--primary .md-nav__title[for="__drawer"] {
   font-size: 0;
 }
@@ -279,6 +285,7 @@
 }
 .md-nav--primary .md-nav__title[for="__drawer"] .md-logo img {
   height: 1.4rem;
+  width: 6.7rem;
 }
 
 .md-copyright a {
