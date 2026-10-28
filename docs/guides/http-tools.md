@@ -2,7 +2,7 @@
 description: Combine UI and API testing in one flow with the Wopee.io HTTP Request Tool. Trigger API calls directly within your web tests.
 ---
 
-# 🔌 HTTP Request Tool
+# HTTP Request Tool
 
 Blend UI and API testing in one seamless flow with the HTTP Request Tool. Trigger API calls directly within your web tests without context switching or additional setup.
 

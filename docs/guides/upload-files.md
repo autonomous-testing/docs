@@ -2,7 +2,7 @@
 description: Upload files to Wopee.io for testing file upload workflows. Support for images, documents, and other file types in your web app tests.
 ---
 
-# 📁 Upload files
+# Upload files
 
 Upload files to your testing environment to ensure your tests can interact with file upload functionality in your web application.
 
