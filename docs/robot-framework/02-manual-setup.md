@@ -5,6 +5,8 @@ type: Reference
 updated: 19 October 2026
 ---
 
+# Configuration and listener
+
 This page covers everything [Getting started](01-getting-started.md) leaves out. Follow steps 1 to 4 there first: create the project, generate the API key, install `wopee_rf` and create `.env`.
 
 ## Configuration

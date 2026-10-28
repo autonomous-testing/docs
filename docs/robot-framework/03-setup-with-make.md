@@ -5,6 +5,8 @@ type: How-to
 updated: 19 October 2026
 ---
 
+# Setup with make
+
 The [Robot Framework template project](https://github.com/Wopee-io/robotframework-template) contains a ready test, examples for every way of using `wopee_rf` and a Makefile that installs everything.
 
 ## Prerequisites

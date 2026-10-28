@@ -5,6 +5,8 @@ type: How-to
 updated: 19 October 2026
 ---
 
+# Examples
+
 The examples assume the setup from [Getting started](01-getting-started.md): `wopee_rf` installed and a `.env` with `WOPEE_SCREENSHOT_VALIDATION_ENABLED=true` and `WOPEE_DRIVER_LIBRARY`. Every Wopee.io keyword takes named arguments only.
 
 ## Comparison details from the result
