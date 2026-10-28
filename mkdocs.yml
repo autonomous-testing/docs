@@ -131,6 +131,7 @@ extra_css:
 
 extra_javascript:
   - js/custom.js
+  - js/scroll-focus.js
 
 plugins:
   - search

@@ -68,8 +68,12 @@
   .md-social__link svg {
     max-height: 1rem;
   }
+  .md-copyright,
+  .md-path,
+  .md-footer__direction {
+    font-size: 0.8rem;
+  }
   .md-copyright {
-    font-size: 0.75rem;
     line-height: 2.2rem;
   }
   .md-copyright a {
@@ -96,4 +100,10 @@
     margin-right: auto;
     max-width: 30rem;
   }
+}
+
+/* Keyboard focus on the back-to-top button */
+.md-top:focus-visible {
+  outline: 2px solid var(--md-accent-fg-color);
+  outline-offset: 2px;
 }
