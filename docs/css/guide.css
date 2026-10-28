@@ -143,4 +143,7 @@ body:has(.wo-pager) .md-footer__inner {
   .md-typeset .wo-pager {
     grid-template-columns: 1fr;
   }
+  .md-typeset .wo-pager small {
+    font-size: 0.8rem;
+  }
 }
