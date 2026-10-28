@@ -1,0 +1,149 @@
+/* Guide template (overrides/main.html, pages with `type` in front matter) */
+.wo-page-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: -0.6rem 0 1.4rem;
+}
+.wo-chip {
+  background: #fff7d1;
+  border: 1px solid var(--wo-yellow);
+  border-radius: 99px;
+  color: #0b1020;
+  font-size: 0.65rem;
+  line-height: 1.5;
+  padding: 0.1rem 0.6rem;
+}
+.wo-chip--type {
+  background: var(--wo-yellow);
+  font-weight: 600;
+}
+.wo-chip--ok::before {
+  content: "\2713\00a0";
+  font-weight: 700;
+}
+[data-md-color-scheme="slate"] .wo-chip {
+  background: #2a2410;
+  color: #f2f3f7;
+}
+[data-md-color-scheme="slate"] .wo-chip--type {
+  background: var(--wo-yellow);
+  color: #0b1020;
+}
+
+/* Numbered step rail: guide.js wraps each "N. Title" h2 section */
+.md-typeset .wo-step {
+  border-left: 2px solid var(--md-default-fg-color--lighter);
+  margin-left: 0.9rem;
+  padding: 0 0 0.4rem 1.6rem;
+  position: relative;
+}
+.md-typeset .wo-step--last {
+  border-left-color: transparent;
+}
+.md-typeset .wo-step > h2 {
+  margin-top: 0;
+  padding-top: 1.4rem;
+}
+.md-typeset .wo-step:first-of-type > h2 {
+  padding-top: 0.2rem;
+}
+.md-typeset .wo-step__n {
+  background: var(--wo-yellow);
+  border-radius: 50%;
+  color: var(--wo-header);
+  display: grid;
+  font-size: 0.8rem;
+  font-weight: 800;
+  height: 1.8rem;
+  left: -0.95rem;
+  letter-spacing: 0;
+  place-items: center;
+  position: absolute;
+  top: 1.35rem;
+  width: 1.8rem;
+}
+.md-typeset .wo-step:first-of-type .wo-step__n {
+  top: 0.15rem;
+}
+
+/* Tabs */
+.md-typeset .tabbed-set {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.md-typeset .tabbed-labels {
+  background: var(--md-code-bg-color);
+}
+.md-typeset .tabbed-content {
+  padding: 0 0.8rem;
+}
+
+/* Video slot */
+.md-typeset .wo-video-caption {
+  color: var(--md-default-fg-color--light);
+  font-size: 0.7rem;
+  margin-top: -1rem;
+}
+
+/* Previous and next */
+.md-typeset .wo-pager {
+  display: grid;
+  gap: 0.7rem;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 2.4rem;
+}
+.md-typeset .wo-pager a {
+  border: 1px solid var(--md-default-fg-color--lighter);
+  border-radius: 14px;
+  color: var(--md-default-fg-color);
+  font-weight: 600;
+  padding: 0.7rem 0.9rem;
+}
+.md-typeset .wo-pager a:hover,
+.md-typeset .wo-pager a:focus-visible {
+  border-color: var(--wo-yellow);
+}
+.md-typeset .wo-pager small {
+  color: var(--md-default-fg-color--light);
+  display: block;
+  font-weight: 400;
+  opacity: 1;
+}
+.md-typeset .wo-pager__next {
+  text-align: right;
+}
+body:has(.wo-pager) .md-footer__inner {
+  display: none;
+}
+@media screen and (max-width: 44.9844em) {
+  .wo-chip,
+  .md-typeset .wo-video-caption {
+    font-size: 0.8rem;
+  }
+  .md-typeset .wo-step {
+    border-left: 0;
+    margin-left: 0;
+    padding-left: 0;
+  }
+  .md-typeset .wo-step > h2 {
+    align-items: flex-start;
+    display: flex;
+    gap: 0.5rem;
+  }
+  .md-typeset .wo-step__n {
+    flex-shrink: 0;
+    font-size: 0.8rem;
+    height: 1.6rem;
+    margin-top: 0.05rem;
+    position: static;
+    width: 1.6rem;
+  }
+  .md-typeset .wo-pager {
+    grid-template-columns: 1fr;
+  }
+  .md-typeset .wo-pager small {
+    font-size: 0.8rem;
+  }
+}

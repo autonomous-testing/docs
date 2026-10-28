@@ -1,5 +1,8 @@
 ---
 description: Add Wopee.io visual testing to your WebdriverIO tests. Install the @wopee-io/wopee.wdio service, add track commands, review differences in Commander, or start from the template project.
+type: How-to
+verified: 19 October 2026
+steps: true
 ---
 
 # WebdriverIO

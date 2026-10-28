@@ -1,6 +1,8 @@
 ---
 title: Add the Wopee.io MCP server to Visual Studio
 description: Set up the Wopee.io MCP server for GitHub Copilot in Visual Studio 2026 and 2022 (17.14+). Config file locations (.mcp.json, .vs/mcp.json), enable the tools, verify and troubleshooting.
+type: How-to
+updated: 27 October 2026
 ---
 
 # Add the Wopee.io MCP server to Visual Studio

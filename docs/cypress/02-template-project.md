@@ -1,6 +1,8 @@
 ---
 title: Template project
 description: The Cypress repository Wopee.io creates for your project from the Cypress template. Run it from Commander or locally, review the first screenshot and grow it into your own tests.
+type: How-to
+updated: 22 October 2026
 ---
 
 # Cypress template project

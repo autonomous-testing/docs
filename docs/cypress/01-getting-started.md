@@ -1,6 +1,9 @@
 ---
 title: Getting started
 description: Add Wopee.io visual testing to your Cypress tests. Install @wopee-io/wopee.cy, register the plugin, track screenshots, and review differences in Commander.
+type: How-to
+verified: 20 October 2026
+steps: true
 ---
 
 # Cypress
