@@ -6,9 +6,7 @@ description: Step-by-step guide to set up Wopee.io. Create a project, let the AI
 
 Your first AI test, from a URL to a verdict, in a few minutes. Prefer to watch first? Here is the 6-minute quick start:
 
-<div style="width: 100%; aspect-ratio: 16 / 9; margin: 1rem 0 1.5rem; border-radius: 12px; overflow: hidden; background: #000;">
-<iframe style="width: 100%; height: 100%; border: 0; display: block;" src="https://www.youtube.com/embed/o5ThjRddZfw" title="Wopee.io quick start: your first AI test in 6 minutes" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
+<div class="yt-facade"><a href="https://youtu.be/o5ThjRddZfw" data-yt="o5ThjRddZfw" data-title="Wopee.io quick start: your first AI test in 6 minutes"><img src="https://i.ytimg.com/vi/o5ThjRddZfw/hqdefault.jpg" alt="" width="480" height="360" fetchpriority="high"><span class="yt-facade__play">Play: Wopee.io quick start, 6 minutes</span></a></div>
 
 ## 1. Sign in to [Wopee Commander](https://cmd.wopee.io)
 
@@ -24,7 +22,7 @@ You land on the **Projects** page. Every app you test lives here as one project.
 3. Under **Test instructions**, describe in plain English what matters to you, including any test credentials. For example: _Log in with the test account, add an item to the cart, complete the purchase, and verify the "Thank you" message._ You can leave it empty and let the agent decide.
 4. Click **Create project and generate tests**.
 
-![New project dialog](img/getting-started/2026-new-project.webp)
+![New project dialog](img/getting-started/2026-new-project.webp){ width="1440" height="810" }
 
 !!! tip "Advanced settings"
 
@@ -34,7 +32,7 @@ You land on the **Projects** page. Every app you test lives here as one project.
 
 Every project gets its own GitHub repository. To open it, accept the invitation: open the menu under your avatar, click **GH Invitation**, and click **Join** on GitHub.
 
-![GH Invitation in the account menu](img/getting-started/2026-gh-invitation.webp)
+![GH Invitation in the account menu](img/getting-started/2026-gh-invitation.webp){ width="1440" height="810" loading="lazy" }
 
 ## 4. Watch the agent explore
 
@@ -50,17 +48,17 @@ All of them are under **Variables & Knowledge** and in the scenario list. Edit a
 
 Click a scenario to open its run. The **Report** gives the verdict, every step with what was expected and what the agent verified, any issues it found, and a final analysis. When a test fails, read the report first: it tells you whether the app has a bug or the test needs a fix.
 
-![Scenario report](img/getting-started/2026-analysis-report.webp)
+![Scenario report](img/getting-started/2026-analysis-report.webp){ width="1440" height="810" loading="lazy" }
 
 Under **Steps**, every step has its Playwright locator and a screenshot. When your page changes, the agent can pick a better locator, so the test [heals itself](concepts/self-healing.md). The **Playwright report** shows exactly what ran.
 
-![Scenario steps with locators](img/getting-started/2026-analysis-steps.webp)
+![Scenario steps with locators](img/getting-started/2026-analysis-steps.webp){ width="1440" height="810" loading="lazy" }
 
 ## 6. Your test library
 
 **Scenarios** lists every test, grouped by Analysis and user story, with its category, number of steps and the agent's last verdict.
 
-![Scenarios library](img/getting-started/2026-scenarios.webp)
+![Scenarios library](img/getting-started/2026-scenarios.webp){ width="1440" height="810" loading="lazy" }
 
 To write your own test, click **+ New test**, give it a name and describe it in plain English. On its first run the agent works out the steps; keep **Save steps from this run** switched on, and later runs replay them.
 
@@ -68,13 +66,13 @@ To write your own test, click **+ New test**, give it a name and describe it in 
 
 Group tests into a **Test Plan** (for example _Smoke Test_), run it by hand with **Run**, or put it on a schedule: every hour, day, week, month, or a custom cron expression.
 
-![Test plan with its run history](img/getting-started/2026-test-plan.webp)
+![Test plan with its run history](img/getting-started/2026-test-plan.webp){ width="1440" height="810" loading="lazy" }
 
 ## 8. Runs and visual checks
 
 Every execution lands in **Runs**. Each step's screenshot is compared with its approved baseline, so you also see visual changes, not only broken clicks.
 
-![Runs with the comparison view](img/getting-started/2026-runs.webp)
+![Runs with the comparison view](img/getting-started/2026-runs.webp){ width="1440" height="810" loading="lazy" }
 
 You can **👍 Approve** or **👎 Reject** the current state of the tested application if its [Test Step Status](glossary.md#test-step-status) is:
 

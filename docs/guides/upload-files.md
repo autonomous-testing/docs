@@ -30,7 +30,7 @@ You can create tests that use file uploads in several ways:
 
 Create new user story and use prompt to generate test that uses file upload.
 
-![Add new user story](../img/guides/upload-files/add-stories.png)
+![Add new user story](../img/guides/upload-files/add-stories.webp){ width="499" height="319" }
 
 !!! tip "Use prompt"
 
@@ -44,13 +44,13 @@ Create new user story and use prompt to generate test that uses file upload.
     - Verify that the message `File Uploaded!` was displayed.
     ```
 
-    ![Generate test with prompt](../img/guides/upload-files/prompt-new-test.png)
+    ![Generate test with prompt](../img/guides/upload-files/prompt-new-test.webp){ width="436" height="268" loading="lazy" }
 
 #### Method 2: Manual test creation
 
 You can also create tests manually that include file upload steps:
 
-![Create new test with file upload](../img/guides/upload-files/new-test-upload-file.png)
+![Create new test with file upload](../img/guides/upload-files/new-test-upload-file.webp){ width="587" height="315" loading="lazy" }
 
 1. Navigate to your project in [Wopee Commander](https://cmd.wopee.io): Project > Analysis > Test
 2. Click "Add new user story" or "Add new test" for existing user story

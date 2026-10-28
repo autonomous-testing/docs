@@ -29,13 +29,13 @@ This page walks through a complete example on [Sauce Demo](https://www.saucedemo
 2. Open **Advanced settings** and set **Test framework** to **Robot Framework**. **Explore the app and generate tests** switches off, because test generation is available for Playwright only.
 3. Click **Create project**.
 
-![Test framework picker in the New project dialog](../img/visual-testing/new-project-framework.webp){ width="440" }
+![Test framework picker in the New project dialog](../img/visual-testing/new-project-framework.webp){ width="440" height="520" }
 
 ## 2. Get the API key
 
 In the project, open **More › Settings › API Keys**. The page shows `WOPEE_API_URL` and `WOPEE_PROJECT_UUID`. Enter a name and click **Generate a new key**. The key is shown only once: copy it right away.
 
-![API Keys in project settings](../img/visual-testing/api-keys.webp){ width="600" }
+![API Keys in project settings](../img/visual-testing/api-keys.webp){ width="600" height="433" loading="lazy" }
 
 ## 3. Install
 
@@ -143,7 +143,7 @@ Both steps are `new`: there is no baseline yet. The Robot log (`reports/log.html
 
 Open **Runs** in Commander and select the run `Robot Framework demo ...`, then each step, and click **Approve**. The screenshot becomes the baseline.
 
-![Comparison view with a new step and the Approve button](../img/visual-testing/runs-comparison.webp)
+![Comparison view with a new step and the Approve button](../img/visual-testing/runs-comparison.webp){ width="1600" height="775" loading="lazy" }
 
 ## 8. Second run: catch a visual bug
 
@@ -159,7 +159,7 @@ Login page: ok | Products: unresolved
 
 **Login page** matches the baseline. **Products** is `unresolved`: open it in **Runs**, inspect the highlighted differences and **Reject** it as a bug, or **Approve** it if the change is intended.
 
-![Unresolved step with the difference overlay next to the baseline](../img/visual-testing/runs-diff.webp)
+![Unresolved step with the difference overlay next to the baseline](../img/visual-testing/runs-diff.webp){ width="1600" height="775" loading="lazy" }
 
 ## Good to know
 

@@ -55,15 +55,15 @@ Technical Notes:
 
 Step 1: Add an user story:
 
-![Add an user story](../img/concepts/analysis-inputs/add-user-story.png)
+![Add an user story](../img/concepts/analysis-inputs/add-user-story.webp){ width="501" height="318" }
 
 Step 2: Prompt for user story:
 
-![Prompt for user story](../img/concepts/analysis-inputs/prompt-user-story.png)
+![Prompt for user story](../img/concepts/analysis-inputs/prompt-user-story.webp){ width="440" height="363" loading="lazy" }
 
 Step 3: Test case generated:
 
-![Test case generated](../img/concepts/analysis-inputs/tests-generated.png)
+![Test case generated](../img/concepts/analysis-inputs/tests-generated.webp){ width="1020" height="295" loading="lazy" }
 
 ### Figma Frame Example
 

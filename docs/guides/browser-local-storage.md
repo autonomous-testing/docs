@@ -165,19 +165,19 @@ Uploading requires project-admin rights. If the **Upload** button is greyed out,
 
 Applies to **every** analysis and run in the project. Open **Project Settings → Authentication** and upload your `auth.json`.
 
-![Project-level auth.json upload in Project Settings](../img/guides/browser-local-storage/upload-project-level.png)
+![Project-level auth.json upload in Project Settings](../img/guides/browser-local-storage/upload-project-level.webp){ width="1600" height="1000" }
 
 ### Analysis level
 
 Applies to a **single analysis**, overriding the project-level file. Open the analysis **1. Inputs** panel and expand the **Authentication (auth.json)** section.
 
-![Analysis-level auth.json upload in the analysis Inputs panel](../img/guides/browser-local-storage/upload-analysis-level.png)
+![Analysis-level auth.json upload in the analysis Inputs panel](../img/guides/browser-local-storage/upload-analysis-level.webp){ width="1600" height="1000" loading="lazy" }
 
 ### User story level
 
 Applies to a **single user story**, overriding both the analysis and project files. Open the user story's edit dialog (the pencil icon in **4. Test Cases**) and expand its **Authentication (auth.json)** section.
 
-![User-story-level auth.json upload in the user story dialog](../img/guides/browser-local-storage/upload-user-story-level.png)
+![User-story-level auth.json upload in the user story dialog](../img/guides/browser-local-storage/upload-user-story-level.webp){ width="1600" height="1000" loading="lazy" }
 
 The status chips on each panel show which levels currently have a file and when each was uploaded, so you can see exactly which one the agent will use.
 

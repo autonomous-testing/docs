@@ -43,7 +43,7 @@ The top-level key in `.vscode/mcp.json` is `servers`, not `mcpServers`. The file
 
 1. Open `.vscode/mcp.json`. Above the `wopee` entry, click **Start**. The CodeLens changes to **Running | 15 tools | 3 prompts**.
 
-    ![.vscode/mcp.json in VS Code with the Running, 15 tools, 3 prompts CodeLens above the wopee entry](../../img/guides/wopee-mcp/vscode-mcp-json-running.png)
+    ![.vscode/mcp.json in VS Code with the Running, 15 tools, 3 prompts CodeLens above the wopee entry](../../img/guides/wopee-mcp/vscode-mcp-json-running.webp){ width="895" height="385" }
 
 2. Open Copilot Chat in **Agent** mode. If the server shows **Error** and does not start before your first message, switch the chat session type to **Local** in the picker under the chat input, then click **Start** again.
 
@@ -51,11 +51,11 @@ The top-level key in `.vscode/mcp.json` is `servers`, not `mcpServers`. The file
 
 The first time Copilot calls a Wopee.io tool, it asks for approval. To stop the prompts for this chat, open the dropdown next to **Allow in this Session** and choose **Allow Tools from wopee-mcp in this Session**.
 
-![Copilot Chat asks to run the wopee tool Fetch test inventory, with Allow in this Session and Skip](../../img/guides/wopee-mcp/vscode-allow-tool.png)
+![Copilot Chat asks to run the wopee tool Fetch test inventory, with Allow in this Session and Skip](../../img/guides/wopee-mcp/vscode-allow-tool.webp){ width="1100" height="639" loading="lazy" }
 
 Test runs are asynchronous. Copilot may stop polling after about 45 seconds, before the verdict is in. Ask "Check the result now" to continue.
 
-![After "Check the sort test result now", Copilot reports that the sort test passed](../../img/guides/wopee-mcp/vscode-test-passed.png)
+![After "Check the sort test result now", Copilot reports that the sort test passed](../../img/guides/wopee-mcp/vscode-test-passed.webp){ width="1100" height="299" loading="lazy" }
 
 ### Other ways to add the server
 
