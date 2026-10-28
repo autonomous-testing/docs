@@ -9,8 +9,11 @@
   if (typeof document$ !== "undefined") document$.subscribe(mark);
   else document.addEventListener("DOMContentLoaded", mark);
   var t;
-  window.addEventListener("resize", function () {
+  function later() {
     clearTimeout(t);
     t = setTimeout(mark, 200);
-  });
+  }
+  window.addEventListener("resize", later);
+  document.addEventListener("change", later);
+  if (document.fonts) document.fonts.ready.then(later);
 })();
