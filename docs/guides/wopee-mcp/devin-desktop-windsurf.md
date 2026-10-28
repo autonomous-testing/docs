@@ -1,6 +1,8 @@
 ---
 title: Add the Wopee.io MCP server to Devin Desktop (formerly Windsurf)
 description: Set up the Wopee.io MCP server in Devin Desktop, formerly Windsurf, with mcp_config.json. Config file location, API key with ${env:VAR}, verify in Cascade, Devin cloud setup and troubleshooting.
+type: How-to
+updated: 27 October 2026
 ---
 
 # Add the Wopee.io MCP server to Devin Desktop (formerly Windsurf)

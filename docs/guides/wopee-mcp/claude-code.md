@@ -1,6 +1,8 @@
 ---
 title: Add the Wopee.io MCP server to Claude Code
 description: Set up the Wopee.io MCP server in Claude Code with one claude mcp add command. Config file location (.mcp.json), API key from environment variables, verify with /mcp, first prompt and troubleshooting.
+type: How-to
+verified: 27 October 2026
 ---
 
 # Add the Wopee.io MCP server to Claude Code
@@ -8,10 +10,6 @@ description: Set up the Wopee.io MCP server in Claude Code with one claude mcp a
 Connect Claude Code to your Wopee.io project, so it can generate tests, run them with Wopee.io's testing agent and read the verdicts. What the server does and how runs work: [Wopee.io MCP server](index.md).
 
 Before you start: Node.js 20.18 or newer, and `WOPEE_API_KEY` and `WOPEE_PROJECT_UUID` from **More** › **Settings** › **API Keys** in your project ([how](index.md#1-get-your-api-key-and-project-uuid)).
-
-!!! tip "Video"
-
-    [Watch Claude Code use the Wopee.io MCP server](https://youtu.be/rIfLyNvAOjs){: target="\_blank"}.
 
 Tested on 27 October 2026 with `wopee-mcp` 1.32.0 and the setup on this page.
 
@@ -97,6 +95,13 @@ In headless mode (`claude -p`), Claude Code loads the project's MCP servers with
 ```shell
 claude -p "How many tests do I have in Wopee.io?" --allowedTools "mcp__wopee"
 ```
+
+## Watch it done
+
+<div class="yt-facade"><a href="https://youtu.be/rIfLyNvAOjs" data-yt="rIfLyNvAOjs" data-title="Claude Code uses the Wopee.io MCP server"><img src="https://i.ytimg.com/vi/rIfLyNvAOjs/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"><span class="yt-facade__play">Play: Claude Code uses the Wopee.io MCP server</span></a></div>
+
+Claude Code uses the Wopee.io MCP server.
+{ .wo-video-caption }
 
 ## Several Wopee.io projects
 

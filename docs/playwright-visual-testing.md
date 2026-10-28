@@ -1,5 +1,8 @@
 ---
 description: Add Wopee.io visual testing to your Playwright tests. Install @wopee-io/wopee.pw, set three variables, call trackFullPage, and review the screenshots in Commander.
+type: How-to
+verified: 13 October 2026
+steps: true
 ---
 
 # Playwright

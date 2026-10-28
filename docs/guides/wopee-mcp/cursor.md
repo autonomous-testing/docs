@@ -1,6 +1,8 @@
 ---
 title: Add the Wopee.io MCP server to Cursor
 description: Set up the Wopee.io MCP server in Cursor with .cursor/mcp.json or the install link. Config file location, API key from .env or environment variables, enable it in Customize › MCPs, Cursor CLI, first prompt and troubleshooting.
+type: How-to
+verified: 27 October 2026
 ---
 
 # Add the Wopee.io MCP server to Cursor
@@ -8,10 +10,6 @@ description: Set up the Wopee.io MCP server in Cursor with .cursor/mcp.json or t
 Connect Cursor to your Wopee.io project, so its agent can generate tests, run them with Wopee.io's testing agent and read the verdicts. The same configuration works in the Cursor editor and the Cursor CLI (`agent`). What the server does: [Wopee.io MCP server](index.md).
 
 Before you start: Node.js 20.18 or newer, and `WOPEE_API_KEY` and `WOPEE_PROJECT_UUID` from **More** › **Settings** › **API Keys** in your project ([how](index.md#1-get-your-api-key-and-project-uuid)).
-
-!!! tip "Video"
-
-    [Watch an AI QA agent in Cursor](https://wopee.io/videos/ai-qa-agent-jira-playwright/){: target="\_blank"} use the Wopee.io, Playwright and Atlassian MCP servers.
 
 Tested on 27 October 2026 with `wopee-mcp` 1.32.0 and Cursor 3.15 using `${env:...}`; `envFile` follows Cursor's documented config schema. The install link and the Cursor CLI follow Cursor's documentation.
 
@@ -118,6 +116,13 @@ How many tests do I have in Wopee.io, and which ones have never run?
 Cursor calls `wopee_fetch_test_inventory` and lists the analyses and test cases in your project with their latest status. More prompts: [Prompt library](index.md#prompt-library).
 
 ![Cursor agent reports that the new Wopee.io test passed, with its ID, verdict and finish time](../../img/guides/wopee-mcp/cursor-test-passed.webp){ width="420" height="542" loading="lazy" }
+
+## Watch it done
+
+<div class="yt-facade"><a href="https://youtu.be/9qk64KKUZJw" data-yt="9qk64KKUZJw" data-title="Build an AI QA agent that reads Jira, runs Playwright, and closes the ticket"><img src="https://i.ytimg.com/vi/9qk64KKUZJw/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"><span class="yt-facade__play">Play: AI QA agent in Cursor, 4:36</span></a></div>
+
+An agent in Cursor combines the Wopee.io, Playwright and Atlassian MCP servers to retest a fixed Jira bug and report back. 4:36. [Video page](https://wopee.io/videos/ai-qa-agent-jira-playwright/){: target="\_blank"}
+{ .wo-video-caption }
 
 ## Troubleshooting
 

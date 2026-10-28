@@ -1,6 +1,8 @@
 ---
 title: Some more examples
 description: Wopee.io visual testing examples for Robot Framework. Read the comparison result, pass extra parameters, track the viewport, and compare mobile app screenshots and PDF pages.
+type: How-to
+updated: 19 October 2026
 ---
 
 The examples assume the setup from [Getting started](01-getting-started.md): `wopee_rf` installed and a `.env` with `WOPEE_SCREENSHOT_VALIDATION_ENABLED=true` and `WOPEE_DRIVER_LIBRARY`. Every Wopee.io keyword takes named arguments only.

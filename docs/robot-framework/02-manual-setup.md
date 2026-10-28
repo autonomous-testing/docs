@@ -1,6 +1,8 @@
 ---
 title: Configuration and listener
 description: Configure wopee_rf for Robot Framework. All environment variables, the keywords, the listener, SeleniumLibrary, branches, CI, and how to fail a test on a visual difference.
+type: Reference
+updated: 19 October 2026
 ---
 
 This page covers everything [Getting started](01-getting-started.md) leaves out. Follow steps 1 to 4 there first: create the project, generate the API key, install `wopee_rf` and create `.env`.

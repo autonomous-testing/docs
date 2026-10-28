@@ -1,6 +1,8 @@
 ---
 title: Add the Wopee.io MCP server to OpenAI Codex
 description: Set up the Wopee.io MCP server in OpenAI Codex (CLI, IDE extension and ChatGPT desktop app) with codex mcp add or config.toml. Forward the API key with env_vars, verify with /mcp, first prompt and troubleshooting.
+type: How-to
+updated: 27 October 2026
 ---
 
 # Add the Wopee.io MCP server to OpenAI Codex

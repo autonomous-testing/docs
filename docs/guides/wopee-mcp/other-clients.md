@@ -1,6 +1,8 @@
 ---
 title: Add the Wopee.io MCP server to other MCP clients
 description: Wopee.io MCP server configuration for Zed, Cline, Kilo Code, Warp, Kiro, Goose, Continue, Augment and Claude Desktop. Config file locations, API key handling and how to verify each.
+type: How-to
+updated: 27 October 2026
 ---
 
 # Add the Wopee.io MCP server to other MCP clients

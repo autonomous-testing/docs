@@ -1,6 +1,9 @@
 ---
 title: Getting started
 description: Add Wopee.io visual testing to Robot Framework. Install wopee_rf, track screenshots from your Browser or Selenium tests, and review differences in Commander.
+type: How-to
+verified: 19 October 2026
+steps: true
 ---
 
 # Robot Framework
@@ -51,16 +54,18 @@ rfbrowser init chromium
 
     The PyPI package `wopee_rf` 2.6.3 does not declare its dependency `wopee_sdk`. Without it, Robot Framework reports `Importing library 'wopee_rf.Standalone' failed: ModuleNotFoundError: No module named 'wopee_sdk'`. Install the copy that ships inside the package:
 
-    ```shell
-    pip install "$(python -c 'import sysconfig; print(sysconfig.get_paths()["purelib"])')/wopee_rf/dependencies/wopee_sdk-1.2.0.tar.gz"
-    ```
+    === "macOS, Linux"
 
-    On Windows PowerShell:
+        ```shell
+        pip install "$(python -c 'import sysconfig; print(sysconfig.get_paths()["purelib"])')/wopee_rf/dependencies/wopee_sdk-1.2.0.tar.gz"
+        ```
 
-    ```powershell
-    $sp = python -c "import sysconfig; print(sysconfig.get_paths()['purelib'])"
-    pip install "$sp\wopee_rf\dependencies\wopee_sdk-1.2.0.tar.gz"
-    ```
+    === "PowerShell"
+
+        ```powershell
+        $sp = python -c "import sysconfig; print(sysconfig.get_paths()['purelib'])"
+        pip install "$sp\wopee_rf\dependencies\wopee_sdk-1.2.0.tar.gz"
+        ```
 
     Check with `python -c "import wopee_rf"`. It prints nothing when the installation is complete.
 

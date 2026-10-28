@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+  {{ super() }}
+  {% if page.meta and page.meta.type %}
+    <link rel="stylesheet" href="{{ 'css/guide.css' | url }}">
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% if page.meta and page.meta.type %}
+    {% set words = page.content | striptags | split | list | length %}
+    {% set parts = page.content | split("</h1>", 1) | list %}
+    {% if parts | length < 2 %}
+      {% set parts = ["<h1>" ~ (page.title | e), page.content] %}
+    {% endif %}
+    {% include "partials/actions.html" %}
+    {{ parts[0] }}</h1>
+    <div class="wo-page-meta"{% if page.meta.steps %} data-wo-steps{% endif %}>
+      <span class="wo-chip wo-chip--type">{{ page.meta.type }}</span>
+      <span class="wo-chip">{{ [(words / 220) | round | int, 1] | max }} min read</span>
+      {% if page.meta.verified %}
+        <span class="wo-chip wo-chip--ok">Verified on {{ page.meta.verified }}</span>
+      {% elif page.meta.updated %}
+        <span class="wo-chip">Updated {{ page.meta.updated }}</span>
+      {% endif %}
+    </div>
+    {{ parts[1] }}
+    {% if page.previous_page or page.next_page %}
+      <nav class="wo-pager" aria-label="Previous and next page">
+        {% if page.previous_page %}
+          <a href="{{ page.previous_page.url | url }}" rel="prev"><small>Previous</small>{{ page.previous_page.title }}</a>
+        {% else %}<span></span>{% endif %}
+        {% if page.next_page %}
+          <a href="{{ page.next_page.url | url }}" rel="next" class="wo-pager__next"><small>Next</small>{{ page.next_page.title }} &rarr;</a>
+        {% endif %}
+      </nav>
+    {% endif %}
+    {% include "partials/tags.html" %}
+    {% include "partials/source-file.html" %}
+    {% include "partials/feedback.html" %}
+  {% else %}
+    {{ super() }}
+  {% endif %}
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  <script src="{{ 'js/guide.js' | url }}"></script>
+{% endblock %}

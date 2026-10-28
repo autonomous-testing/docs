@@ -1,6 +1,8 @@
 ---
 title: Plugin reference
 description: Reference for the Wopee.io Cypress plugin @wopee-io/wopee.cy. Configuration options, commands, element screenshots, branches, CI and known issues.
+type: Reference
+updated: 20 October 2026
 ---
 
 # Cypress plugin reference
