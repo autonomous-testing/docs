@@ -62,6 +62,7 @@ nav:
 theme:
   name: material
   variant: classic
+  custom_dir: overrides
   language: en
   palette:
     # Palette toggle for light mode
@@ -167,8 +168,13 @@ plugins:
           - "visual-testing.md": "projects, API keys, baselines, branches, statuses"
           - "playwright-visual-testing.md": "`@wopee-io/wopee.pw`"
           - "cypress/01-getting-started.md": "`@wopee-io/wopee.cy`"
+          - "cypress/02-template-project.md": "ready Cypress project, runs from Commander and locally"
+          - "cypress/03-install-plugin.md": "install, configuration, commands, branches and suites, CI"
           - "webdriverio-visual-testing.md": "`@wopee-io/wopee.wdio`"
           - "robot-framework/01-getting-started.md": "`wopee_rf`"
+          - "robot-framework/02-manual-setup.md": "environment variables, keywords, listener, SeleniumLibrary, branches, CI"
+          - "robot-framework/03-setup-with-make.md": "setup and runs with make"
+          - "robot-framework/04-some-more-examples.md": "comparison details, tracking parameters, mobile apps, PDFs"
           - "graphql-api.md": "send screenshots from any framework"
           - "ci/index.md": "secrets, branches and suite names for any CI system"
         "Guides":

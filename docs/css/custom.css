@@ -251,3 +251,48 @@
 .md-copyright a {
   text-decoration: underline;
 }
+
+/* Page actions: copy as Markdown, open in ChatGPT or Claude */
+.md-typeset .wo-page-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  justify-content: flex-end;
+  margin: 0 0 0.6rem;
+}
+.md-typeset .wo-page-action {
+  align-items: center;
+  background: transparent;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 99px;
+  color: var(--md-default-fg-color--light);
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  font-size: 0.6rem;
+  gap: 0.25rem;
+  line-height: 1.4;
+  padding: 0.2rem 0.6rem;
+  text-decoration: none;
+}
+.md-typeset .wo-page-action--icon {
+  padding: 0.2rem 0.35rem;
+}
+.md-typeset .wo-page-action svg {
+  fill: currentcolor;
+  height: 0.8rem;
+  width: 0.8rem;
+}
+.md-typeset .wo-page-action:hover,
+.md-typeset .wo-page-action:focus-visible {
+  border-color: var(--md-accent-fg-color);
+  color: var(--md-accent-fg-color);
+}
+.md-typeset .wo-page-action[aria-busy="true"] {
+  opacity: 0.6;
+}
+@media screen and (max-width: 44.9844em) {
+  .md-typeset .wo-page-actions {
+    justify-content: flex-start;
+  }
+}
