@@ -291,8 +291,31 @@
 .md-typeset .wo-page-action[aria-busy="true"] {
   opacity: 0.6;
 }
+@media screen and (max-width: 76.234375em) {
+  .md-typeset .wo-page-action {
+    font-size: 0.8rem;
+    justify-content: center;
+    min-height: 2.2rem;
+    padding: 0.3rem 0.7rem;
+  }
+  .md-typeset .wo-page-action--icon {
+    min-width: 2.2rem;
+    padding: 0.3rem;
+  }
+  .md-typeset .wo-page-action__more {
+    display: none;
+  }
+}
 @media screen and (max-width: 44.9844em) {
   .md-typeset .wo-page-actions {
-    justify-content: flex-start;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .md-typeset .wo-page-actions:has(.wo-page-action--icon) {
+    grid-template-columns: 1fr 1fr 2.2rem;
+  }
+  .md-typeset .wo-page-action--icon {
+    grid-column: 3;
+    grid-row: 1;
   }
 }

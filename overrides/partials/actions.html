@@ -5,14 +5,14 @@
     <button type="button" class="wo-page-action" data-md-copy-url="{{ page.markdown_url | url }}">
       {% include ".icons/material/content-copy.svg" %}<span>Copy page</span>
     </button>
-    <a class="wo-page-action" href="{{ page.markdown_url | url }}" type="text/markdown">
-      {% include ".icons/material/language-markdown-outline.svg" %}<span>View as Markdown</span>
+    <a class="wo-page-action" href="{{ page.markdown_url | url }}" type="text/markdown" aria-label="View as Markdown">
+      {% include ".icons/material/language-markdown-outline.svg" %}<span><span class="wo-page-action__more">View as </span>Markdown</span>
     </a>
-    <a class="wo-page-action" href="https://chatgpt.com/?hints=search&amp;q={{ ask | urlencode }}" target="_blank" rel="noopener">
-      {% include ".icons/material/open-in-new.svg" %}<span>Open in ChatGPT</span>
+    <a class="wo-page-action" href="https://chatgpt.com/?hints=search&amp;q={{ ask | urlencode }}" target="_blank" rel="noopener" aria-label="Open in ChatGPT">
+      {% include ".icons/material/open-in-new.svg" %}<span><span class="wo-page-action__more">Open in </span>ChatGPT</span>
     </a>
-    <a class="wo-page-action" href="https://claude.ai/new?q={{ ask | urlencode }}" target="_blank" rel="noopener">
-      {% include ".icons/material/open-in-new.svg" %}<span>Open in Claude</span>
+    <a class="wo-page-action" href="https://claude.ai/new?q={{ ask | urlencode }}" target="_blank" rel="noopener" aria-label="Open in Claude">
+      {% include ".icons/material/open-in-new.svg" %}<span><span class="wo-page-action__more">Open in </span>Claude</span>
     </a>
     {% if page.edit_url and "content.action.edit" in features %}
       <a class="wo-page-action wo-page-action--icon" href="{{ page.edit_url }}" title="{{ lang.t('action.edit') }}" aria-label="{{ lang.t('action.edit') }}" rel="edit">
