@@ -95,7 +95,7 @@
   margin-top: 2.4rem;
 }
 .md-typeset .wo-pager a {
-  border: 1px solid var(--md-default-fg-color--lightest);
+  border: 1px solid var(--md-default-fg-color--lighter);
   border-radius: 14px;
   color: var(--md-default-fg-color);
   font-weight: 600;
@@ -118,14 +118,26 @@ body:has(.wo-pager) .md-footer__inner {
   display: none;
 }
 @media screen and (max-width: 44.9844em) {
+  .wo-chip,
+  .md-typeset .wo-video-caption {
+    font-size: 0.8rem;
+  }
   .md-typeset .wo-step {
-    margin-left: 0.8rem;
-    padding-left: 1.2rem;
+    border-left: 0;
+    margin-left: 0;
+    padding-left: 0;
+  }
+  .md-typeset .wo-step > h2 {
+    align-items: flex-start;
+    display: flex;
+    gap: 0.5rem;
   }
   .md-typeset .wo-step__n {
-    font-size: 0.7rem;
+    flex-shrink: 0;
+    font-size: 0.75rem;
     height: 1.5rem;
-    left: -0.8rem;
+    margin-top: 0.1rem;
+    position: static;
     width: 1.5rem;
   }
   .md-typeset .wo-pager {
