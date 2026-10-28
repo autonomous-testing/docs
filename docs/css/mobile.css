@@ -1,0 +1,132 @@
+/* Phones and tablets: drawer layout, below the 76.25em breakpoint where the tabs and sidebars appear */
+@media screen and (max-width: 76.234375em) {
+  /* Tap targets of at least 44px */
+  .md-header__button.md-icon {
+    margin: 0.1rem;
+    padding: 0.5rem;
+  }
+  .md-typeset .md-content__button.md-icon {
+    margin: -0.6rem -0.5rem 0 0.4rem;
+    padding: 0.5rem;
+  }
+  .md-path {
+    padding-top: 0.6rem;
+  }
+  .md-path__item:not(:first-child) {
+    align-items: center;
+  }
+  .md-path__link {
+    min-height: 2.2rem;
+    min-width: 2.2rem;
+  }
+  .md-code__nav {
+    padding: 0.1rem;
+  }
+  .md-code__button {
+    height: 2.2rem;
+    width: 2.2rem;
+  }
+  .md-code__button::after {
+    margin: 0 auto;
+  }
+  .md-feedback__list {
+    gap: 0.6rem;
+  }
+  .md-feedback__icon {
+    height: 2.2rem;
+    padding: 0.25rem;
+    width: 2.2rem;
+  }
+  .md-feedback__icon svg {
+    height: 100%;
+    width: 100%;
+  }
+  .md-typeset .tabbed-labels > label {
+    font-size: 0.8rem;
+    min-height: 2.2rem;
+  }
+  .md-typeset .tabbed-control {
+    height: 2.2rem;
+    width: 2.2rem;
+  }
+  .md-content__inner > .tabbed-set .tabbed-labels ~ .tabbed-control {
+    width: 3rem;
+  }
+  .md-typeset .tabbed-button {
+    flex-shrink: 0;
+    height: 2.2rem;
+    margin-top: 0;
+    width: 2.2rem;
+  }
+  .md-typeset .tabbed-button::after {
+    mask-size: 0.9rem;
+  }
+  .md-social__link {
+    height: 2.2rem;
+    width: 2.2rem;
+  }
+  .md-social__link svg {
+    max-height: 1rem;
+  }
+  .md-copyright,
+  .md-path,
+  .md-footer__direction {
+    font-size: 0.8rem;
+  }
+  .md-copyright {
+    line-height: 2.2rem;
+  }
+  .md-copyright a {
+    display: inline-block;
+  }
+
+  /* Body text of at least 16px in tables, admonitions and collapsible blocks */
+  .md-typeset table:not([class]),
+  .md-typeset .admonition,
+  .md-typeset details {
+    font-size: 0.8rem;
+  }
+
+  /* The repository link points back to this site (see repo_url), hidden in the drawer as it is in the header */
+  .md-nav__source {
+    display: none;
+  }
+}
+
+/* Phones: table columns stay wide enough to read code, a wide table scrolls sideways */
+@media screen and (max-width: 44.984375em) {
+  .md-typeset table:not([class]) :is(td, th) {
+    min-width: 6.5rem;
+  }
+  .md-typeset table:not([class]) :is(td, th):last-child:not(:first-child) {
+    min-width: 11rem;
+  }
+}
+
+/* Tablets without sidebars or with only the table of contents: keep lines under about 80 characters */
+@media screen and (min-width: 45em) and (max-width: 76.234375em) {
+  .md-content__inner {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 30rem;
+  }
+}
+
+/* Keyboard focus on the back-to-top button */
+.md-top:focus-visible {
+  outline: 2px solid var(--md-accent-fg-color);
+  outline-offset: 2px;
+}
+
+/* Until Rubik loads, text uses Arial scaled to Rubik's width and line metrics, so lines do not rewrap when it arrives */
+@font-face {
+  font-family: "Rubik Fallback";
+  src: local("Arial");
+  size-adjust: 103.5%;
+  ascent-override: 90.3%;
+  descent-override: 24.2%;
+  line-gap-override: 0%;
+}
+:root {
+  --md-text-font: "Rubik", "Rubik Fallback";
+}
