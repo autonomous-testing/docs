@@ -85,7 +85,6 @@ theme:
   logo: assets/logo-yellow.png
   favicon: assets/favicon.png
   features:
-    - navigation.indexes
     - navigation.instant
     - navigation.tracking
     - navigation.tabs
@@ -128,6 +127,7 @@ extra:
 
 extra_css:
   - css/custom.css
+  - css/mobile.css
 
 extra_javascript:
   - js/custom.js
