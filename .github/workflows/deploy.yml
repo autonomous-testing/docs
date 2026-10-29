@@ -24,12 +24,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          # Full history: the IndexNow step diffs the pushed commit range.
+          fetch-depth: 0
 
-      - name: If repo is docs-prod replace text docs.dev.wopee.io to docs.wopee.io and remove robots.txt
+      - name: If repo is docs-prod replace text docs.dev.wopee.io to docs.wopee.io and write production robots.txt
         if: github.repository == 'autonomous-testing/docs-prod'
         run: |
           sed -i 's/docs.dev.wopee.io/docs.wopee.io/g' ./CNAME
-          rm -rf ./docs/robots.txt
+          cp ./robots.prod.txt ./docs/robots.txt
 
       - uses: actions/setup-python@v7
         with:
@@ -58,3 +61,33 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
+
+      # IndexNow: tell Bing and Yandex which pages changed, instead of waiting for their crawl.
+      # Google ignores IndexNow. Production only; the key file lives in docs/.
+      - name: Submit changed pages to IndexNow
+        if: github.repository == 'autonomous-testing/docs-prod'
+        continue-on-error: true
+        env:
+          BEFORE: ${{ github.event.before }}
+        run: |
+          KEY=aaf796cb36dd6c02b8add0c92d91ae3f
+          HOST=docs.wopee.io
+          if [ -z "$BEFORE" ] || ! git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then echo "no pushed commit range, nothing to submit"; exit 0; fi
+          git diff --name-only "$BEFORE" "$GITHUB_SHA" -- docs/ | python3 -c '
+          import json, re, sys
+          host, key = sys.argv[1], sys.argv[2]
+          live = set(re.findall(r"<loc>([^<]+)</loc>", open("site/sitemap.xml").read()))
+          urls = set()
+          for path in sys.stdin.read().split():
+              if not path.endswith(".md"):
+                  continue
+              page = re.sub(r"(^|/)index$", "", path[len("docs/"):-len(".md")])
+              url = f"https://{host}/" + (page + "/" if page else "")
+              if url in live:
+                  urls.add(url)
+          json.dump({"host": host, "key": key, "keyLocation": f"https://{host}/{key}.txt", "urlList": sorted(urls)}, open("indexnow.json", "w"))
+          print(f"{len(urls)} changed pages")
+          ' "$HOST" "$KEY"
+          if [ "$(python3 -c 'import json; print(len(json.load(open("indexnow.json"))["urlList"]))')" = "0" ]; then echo "nothing to submit"; exit 0; fi
+          code=$(curl -s -o /dev/null -w '%{http_code}' -X POST 'https://api.indexnow.org/indexnow' -H 'Content-Type: application/json; charset=utf-8' --data @indexnow.json)
+          echo "IndexNow responded $code (200/202 = accepted)"
