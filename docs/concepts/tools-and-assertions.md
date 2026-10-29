@@ -1,13 +1,13 @@
 ---
 title: Tools & Assertions
-description: How Wopee.io agents interact with your app using click, type, select tools and validate outcomes with assertions. Generates plain Playwright code.
+description: How Wopee.io agents interact with your app using click, type, select tools and validate outcomes with assertions. Passing runs can also be generated as Playwright code.
 ---
 
 # Tools & Assertions (Wopee.io)
 
 ## What this page covers
 
-How the agent interacts with your app, how it validates outcomes, and how locators are chosen. After a scenario runs, Wopee.io generates **plain test code** (e.g., Playwright) that you can run anywhere, **no LLMs or Wopee.io runtime required**.
+How the agent interacts with your app, how it validates outcomes, and how locators are chosen. After a scenario passes, Wopee.io can also generate Playwright code from it. That code uses the Wopee.io SDK, and the agent runs every test with an LLM.
 
 ---
 
@@ -17,7 +17,7 @@ How the agent interacts with your app, how it validates outcomes, and how locato
 2. **Agent automatically chooses locator strategy** (ARIA/HTML/visual) based on the tool and target element.
 3. **Perform interactions** using the selected tool and optimal locator.
 4. **Validate results** with assertions (text, visibility, URL, visual).
-5. **Export deterministic code** that mirrors the exact tools and locators used.
+5. **Generate Playwright code** (passing runs only) that mirrors the exact tools and locators used.
 
 ---
 
@@ -116,7 +116,7 @@ The agent automatically selects the optimal locator strategy based on the tool y
 
 ## Code generation
 
-After a successful agent run, Wopee.io emits **deterministic test code** that exactly mirrors the tools you selected and the locator strategies the agent automatically chose. The generated code uses the same interaction tools and locators that were used during the agent's execution, ensuring consistency between what the agent did and what your tests will do. You can commit this code to your repo and run it in CI/CD without Wopee.io or LLMs.
+After a passing agent run, Wopee.io can generate Playwright code that mirrors the tools you selected and the locator strategies the agent chose. The code uses the same interaction tools and locators as the agent's run, and it imports the Wopee.io SDK (`@wopee-io/wopee.pw`), whose `visualAssert` calls the Wopee.io API. Failing runs do not produce code.
 
 ---
 

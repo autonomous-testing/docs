@@ -23,7 +23,7 @@ Exactly what a pilot includes, what it costs, what it asks of your team, how suc
 | **We deliver** | 5 tests built by our engineers, weekly test runs, a live stability dashboard, a benefit assessment against your baseline, a viability report, and a closure presentation for your stakeholders |
 | **You deliver** | Around 20 further tests built by your team with our coaching |
 | **Decision** | A named decision maker on your side commits to a go/no-go decision at the end of Sprint 8 |
-| **After the pilot** | You own every test. They export as plain Playwright code and run without Wopee.io |
+| **After the pilot** | You own every test. Tests live in a Git repository you can open, diff and roll back |
 
 **How the credit works.** If you continue after the pilot, the full pilot fee is deducted from your first year. You do not pay for the evaluation and then again for the contract.
 
@@ -109,7 +109,7 @@ We report each of these against your own baseline. We do not quote percentages f
 At the end of Sprint 8 you have a viability report, a working suite, and a decision to make.
 
 - **Continue:** the pilot fee is credited in full against your first annual contract, the suite grows from the pilot's foundation, and your team keeps our support.
-- **Stop:** you keep every test, exported as plain Playwright. We revoke our access and delete your data within 30 days. Nothing runs on our side afterwards.
+- **Stop:** the tests are yours. We revoke our access and delete your data within 30 days. Nothing runs on our side afterwards.
 
 Either way, the tests are yours. If they are handed over and nobody maintains them, they will decay like any other test suite, which is exactly the outcome the Sprint 8 decision exists to avoid.
 

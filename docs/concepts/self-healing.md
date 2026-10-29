@@ -29,7 +29,7 @@ When the agent interacts with an element, it selects a locator strategy in this 
 2. **HTML attributes** – `data-testid` and other data-test IDs, element IDs, CSS/XPath.
 3. **Visual location** – x, y position on screen. Last resort for canvas elements or icons without DOM hooks.
 
-If the preferred strategy fails, the agent automatically tries the next one. The strategy that works is written into the generated test code, so the deterministic code you export uses the same locators the agent proved during the run.
+If the preferred strategy fails, the agent automatically tries the next one. The strategy that works is written into the generated Playwright code, so code generated from a passing run uses the same locators the agent proved during the run.
 
 !!! tip "Help the agent help you"
 

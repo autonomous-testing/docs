@@ -93,7 +93,7 @@ Expected Result: Message is sent successfully and is visible in outbox
 
 ## Artifact Mapping Table
 
-| Artifact Type        | What Wopee Extracts                                       | Affects User Stories        | Affects Tests                  |
+| Artifact Type        | What Wopee.io Extracts                                    | Affects User Stories        | Affects Tests                  |
 | -------------------- | --------------------------------------------------------- | --------------------------- | ------------------------------ |
 | **Jira Story**       | Title, description, acceptance criteria, labels, priority | ✅ Creates/updates stories  | ✅ Generates test scenarios    |
 | **Figma Design**     | UI elements, interactions, states, design tokens          | ✅ Adds visual context      | ✅ Creates visual tests        |

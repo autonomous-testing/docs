@@ -1,5 +1,5 @@
 ---
-description: How Wopee.io analyzes your web app to generate automated tests. Configure crawling, review scenarios, and export deterministic Playwright code.
+description: How Wopee.io analyzes your web app to generate automated tests. Configure crawling and review scenarios.
 ---
 
 # Analysis Process

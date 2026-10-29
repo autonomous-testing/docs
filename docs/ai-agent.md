@@ -8,7 +8,7 @@ Your first AI test, from a URL to a verdict, in a few minutes. Prefer to watch f
 
 <div class="yt-facade"><a href="https://youtu.be/o5ThjRddZfw" data-yt="o5ThjRddZfw" data-title="Wopee.io quick start: your first AI test in 6 minutes"><img src="https://i.ytimg.com/vi/o5ThjRddZfw/hqdefault.jpg" alt="" width="480" height="360" fetchpriority="high"><span class="yt-facade__play">Play: Wopee.io quick start, 6 minutes</span></a></div>
 
-## 1. Sign in to [Wopee Commander](https://cmd.wopee.io)
+## 1. Sign in to [Wopee.io Commander](https://cmd.wopee.io)
 
 1. Go to [https://cmd.wopee.io](https://cmd.wopee.io).
 2. Sign in with your [GitHub](https://github.com/signup), [GitLab](https://gitlab.com/users/sign_up) or [Google](https://accounts.google.com/) account.
