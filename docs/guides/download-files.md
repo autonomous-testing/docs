@@ -49,7 +49,7 @@ Use prompts to generate tests that verify download functionality:
 
 ### Manual test creation
 
-1. Navigate to your project in [Wopee Commander](https://cmd.wopee.io): Project > Analysis > Test
+1. Navigate to your project in [Wopee.io Commander](https://cmd.wopee.io): Project > Analysis > Test
 2. Click "Add new user story" or "Add new test" for existing user story
 3. Add steps that include download interactions:
    - Click download buttons or links

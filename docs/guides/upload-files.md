@@ -52,7 +52,7 @@ You can also create tests manually that include file upload steps:
 
 ![Create new test with file upload](../img/guides/upload-files/new-test-upload-file.webp){ width="587" height="315" loading="lazy" }
 
-1. Navigate to your project in [Wopee Commander](https://cmd.wopee.io): Project > Analysis > Test
+1. Navigate to your project in [Wopee.io Commander](https://cmd.wopee.io): Project > Analysis > Test
 2. Click "Add new user story" or "Add new test" for existing user story
 3. Add steps that include file upload interactions
 4. Reference your uploaded files by their filename or relative path.
