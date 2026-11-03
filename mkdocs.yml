@@ -54,6 +54,7 @@ nav:
       - Analysis - Inputs: concepts/analysis-inputs.md
       - Tools & Assertions: concepts/tools-and-assertions.md
       - Self-Healing: concepts/self-healing.md
+      - Verdict Integrity: concepts/verdict-integrity.md
   - Reference:
       - GraphQL API: graphql-api.md
       - Glossary: glossary.md
@@ -164,6 +165,7 @@ plugins:
           - "concepts/prompting-guidelines.md": "writing goals, scope and constraints for test generation"
           - "concepts/tools-and-assertions.md": "what the testing agent does in the browser"
           - "concepts/self-healing.md": "locators with fallback, self-troubleshooting, agent skills"
+          - "concepts/verdict-integrity.md": "Passed, Failed and Incomplete verdicts, Report only and Enforce modes, test-environment problems"
           - "concepts/pom-login-example.md": "a reusable login module"
         "Visual testing with your own tests":
           - "visual-testing.md": "projects, API keys, baselines, branches, statuses"
