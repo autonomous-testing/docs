@@ -76,7 +76,7 @@ The library starts fresh in every test case, so pass the suite name in each test
 
 ```robotframework
 *** Variables ***
-${SUITE}    Shop ${{datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}}
+${SUITE}    Shop ${{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}}
 
 *** Test Cases ***
 Login page

@@ -85,7 +85,7 @@ Test Teardown    Stop Scenario
 
 *** Variables ***
 ${USER}     standard_user
-${SUITE}    Robot Framework demo ${{datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}}
+${SUITE}    Robot Framework demo ${{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}}
 
 
 *** Test Cases ***
@@ -157,6 +157,7 @@ Login page: ok | Products: unresolved
 - **Baselines** are identified by `<scenario name>-<step name>` plus the branch and, if set, the viewport. Keep both names stable between runs.
 - **Branches**: `WOPEE_BRANCH_NAME` sets the branch of the run (default `master`). See [Branches](02-manual-setup.md#branches) and [Baselines and branches](../visual-testing.md#baselines-and-branches).
 - **Statuses**: `new`, `ok`, `unresolved`, `autoApproved`. See [How it works](../visual-testing.md#how-it-works).
+- **Tiny differences**: font smoothing can differ by a few pixels between runs, for example `Difference: 0.004%` on an unchanged page. Reject such a step, and set `WOPEE_PIXEL_TO_PIXEL_DIFF_TOLERANCE=0.1` in `.env` to accept differences up to 0.1 %.
 - **Wait for the content** you want to capture before each `Track Fullpage`, as the test does with `Wait For Elements State`. See [Wait for fonts and images before tracking](../visual-testing.md#wait-for-fonts-and-images-before-tracking).
 
 ## Troubleshooting
