@@ -2,7 +2,7 @@
 title: Some more examples
 description: Wopee.io visual testing examples for Robot Framework. Read the comparison result, pass extra parameters, track the viewport, and compare mobile app screenshots and PDF pages.
 type: How-to
-updated: 19 October 2026
+updated: 3 November 2026
 ---
 
 # Examples
@@ -36,7 +36,7 @@ Get comparison details
 
 ## More parameters for tracking
 
-The optional parameters are stored with the screenshot and shown in Commander. They override the matching `WOPEE_*` environment variable for this step.
+The optional parameters are stored with the screenshot and override the matching `WOPEE_*` environment variable for this step.
 
 ```robotframework
 *** Test Cases ***
@@ -49,9 +49,6 @@ Visual test with more parameters
     ...    pixel_to_pixel_diff_tolerance=1
     ...    comment=Hello, world!
     ...    custom_tags=tag1,tag2
-    ...    device=desktop
-    ...    os=Windows
-    ...    browser=Chrome
     ...    viewport=1920x1080
 ```
 
@@ -98,7 +95,7 @@ Products page
 
 ## Visual testing for mobile applications
 
-For Appium, or any other tool that saves a screenshot as a file, read the PNG, encode it to base64 and pass it to `Track`. `Track` needs no driver library, but the `robotframework-browser` package must be installed (see [Configuration and listener › SeleniumLibrary](02-manual-setup.md#seleniumlibrary)).
+For Appium, or any other tool that saves a screenshot as a file, read the PNG, encode it to base64 and pass it to `Track`. `Track` needs no browser library: set `WOPEE_DRIVER_LIBRARY=NoLibrary` (or leave it out of `.env`). With `BrowserLibrary` set, `wopee_rf` imports the Browser package and fails without it.
 
 ```robotframework
 *** Settings ***
@@ -118,7 +115,7 @@ Visual test for a mobile application
 
     ${path}=    Capture Page Screenshot
     ${image}=    Image To Base64    ${path}
-    Track    image_base64=${image}    step_name=Start screen    device=Pixel 8    os=Android 15
+    Track    image_base64=${image}    step_name=Start screen    viewport=1080x2400
 
 *** Keywords ***
 Image To Base64
@@ -129,7 +126,7 @@ Image To Base64
 
 ## Visual testing for PDF documents
 
-Wopee.io compares images, so render each PDF page to PNG first. This example uses [PyMuPDF](https://pymupdf.readthedocs.io) (`pip install pymupdf`) and tracks every page as its own step:
+Wopee.io compares images, so render each PDF page to PNG first. As for mobile apps, use `WOPEE_DRIVER_LIBRARY=NoLibrary`. This example uses [PyMuPDF](https://pymupdf.readthedocs.io) (`pip install pymupdf`) and tracks every page as its own step:
 
 ```robotframework
 *** Settings ***
