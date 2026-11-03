@@ -35,6 +35,14 @@ Each successful test run includes at least one scenario, comprising sequences of
 
 A summary of a run calculated from the statuses of each nested entity within a run (scenarios and steps).
 
+### Verdict
+
+The result of an agent test run, checked against the evidence the run recorded. See [Verdict Integrity](concepts/verdict-integrity.md).
+
+- **Passed**: the run established the result the test asks for.
+- **Failed**: the run found evidence that the app does not behave as the test expects.
+- **Incomplete**: the run did not establish its result or could not finish; counted with the failures.
+
 ### Test Step
 
 An action performed by the bot, documented with a screenshot or snapshot for reference. In integration projects, a step is one tracked screenshot (for example `trackFullPage` or `Track Fullpage`). This reference can be approved as a baseline and used for regression testing in future runs.
