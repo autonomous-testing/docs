@@ -68,7 +68,7 @@ The library is created again for every test case. Call `Start Suite` (or `Start 
 
 ```robotframework
 *** Variables ***
-${SUITE}    Checkout ${{datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}}
+${SUITE}    Checkout ${{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}}
 
 *** Test Cases ***
 Cart
@@ -88,7 +88,7 @@ The listener adds visual testing to existing tests without changing them. It sta
 
     ```shell
     export WOPEE_TRACKED_KEYWORDS="Browser.New Page;Browser.Wait For Elements State"
-    export WOPEE_EXECUTION_NAME="Robot Framework listener $(date '+%Y-%m-%d %H:%M')"
+    export WOPEE_EXECUTION_NAME="Robot Framework listener $(date '+%Y-%m-%d %H:%M:%S')"
     export WOPEE_ENABLE_CONSOLE_LOGS=true
     robot -d reports --listener 'wopee_rf.Listener:dot_env_path=.env' tests/saucedemo_listener.robot
     ```
@@ -97,7 +97,7 @@ The listener adds visual testing to existing tests without changing them. It sta
 
     ```powershell
     $env:WOPEE_TRACKED_KEYWORDS = "Browser.New Page;Browser.Wait For Elements State"
-    $env:WOPEE_EXECUTION_NAME = "Robot Framework listener $(Get-Date -Format 'yyyy-MM-dd HH:mm')"
+    $env:WOPEE_EXECUTION_NAME = "Robot Framework listener $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
     $env:WOPEE_ENABLE_CONSOLE_LOGS = "true"
     robot -d reports --listener "wopee_rf.Listener:dot_env_path=.env" tests/saucedemo_listener.robot
     ```
