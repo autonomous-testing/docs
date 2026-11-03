@@ -2,7 +2,7 @@
 title: Getting started
 description: Add Wopee.io visual testing to Robot Framework. Install wopee_rf, track screenshots from your Browser or Selenium tests, and review differences in Commander.
 type: How-to
-verified: 19 October 2026
+verified: 3 November 2026
 steps: true
 ---
 
@@ -17,13 +17,15 @@ You can use it in two ways:
 
 Both work with the [Browser library](https://robotframework-browser.org) and SeleniumLibrary. The `Track` keyword compares any image you pass in, for example from Appium or a PDF rendered to PNG ([examples](04-some-more-examples.md)).
 
-This page walks through a complete example on [Sauce Demo](https://www.saucedemo.com): two screenshots, a first run that creates the baselines, and a second run that catches a visual bug. Verified with `wopee_rf` 2.6.3, Robot Framework 7.5 and robotframework-browser 20.6.
+This page walks through a complete example on [Sauce Demo](https://www.saucedemo.com): two screenshots, a first run that creates the baselines, and a second run that catches a visual bug. Verified with `wopee_rf` 2.7.2, Robot Framework 7.5 and robotframework-browser 21.0.
+
+Created the project in Commander? It already has a Robot Framework repository with a ready test: see [Template project](03-setup-with-make.md).
 
 ## Prerequisites
 
 - Python 3.11 or newer
 - Robot Framework 7 or newer
-- Node.js 18 or newer, for the Browser library
+- Node.js 22 or newer, for the Browser library
 - A Wopee.io account in [Commander](https://cmd.wopee.io)
 
 ## 1. Create a project
@@ -44,30 +46,11 @@ In the project, open **More › Settings › API Keys**. The page shows `WOPEE_A
 
 ```shell
 python3 -m venv .venv
-source .venv/bin/activate          # Windows: .venv\Scripts\activate
+source .venv/bin/activate          # Windows PowerShell: .venv\Scripts\Activate.ps1
 
-pip install wopee_rf robotframework robotframework-browser
+pip install "wopee_rf>=2.7.2" robotframework robotframework-browser
 rfbrowser init chromium
 ```
-
-!!! warning "wopee_rf 2.6.3 needs one more install command"
-
-    The PyPI package `wopee_rf` 2.6.3 does not declare its dependency `wopee_sdk`. Without it, Robot Framework reports `Importing library 'wopee_rf.Standalone' failed: ModuleNotFoundError: No module named 'wopee_sdk'`. Install the copy that ships inside the package:
-
-    === "macOS, Linux"
-
-        ```shell
-        pip install "$(python -c 'import sysconfig; print(sysconfig.get_paths()["purelib"])')/wopee_rf/dependencies/wopee_sdk-1.2.0.tar.gz"
-        ```
-
-    === "PowerShell"
-
-        ```powershell
-        $sp = python -c "import sysconfig; print(sysconfig.get_paths()['purelib'])"
-        pip install "$sp\wopee_rf\dependencies\wopee_sdk-1.2.0.tar.gz"
-        ```
-
-    Check with `python -c "import wopee_rf"`. It prints nothing when the installation is complete.
 
 ## 4. Configure
 
@@ -83,7 +66,7 @@ WOPEE_DRIVER_LIBRARY=BrowserLibrary
 
 !!! warning "Both last lines are required"
 
-    Without `WOPEE_SCREENSHOT_VALIDATION_ENABLED=true` the keywords do nothing and send nothing. Without `WOPEE_DRIVER_LIBRARY` the library cannot take screenshots and `Track Fullpage` returns `None`. In both cases the test still passes, so nothing tells you that no screenshot reached Wopee.io. Use `SeleniumLibrary` instead of `BrowserLibrary` for Selenium tests.
+    Without `WOPEE_SCREENSHOT_VALIDATION_ENABLED=true` the keywords send nothing. Without `WOPEE_DRIVER_LIBRARY` the library cannot take screenshots. In both cases `Track Fullpage` returns `None`. The test below then fails on `${login.status}` with `'NoneType' object has no attribute 'status'`, but a test that does not read the result passes, and nothing tells you that no screenshot reached Wopee.io. Use `SeleniumLibrary` instead of `BrowserLibrary` for Selenium tests.
 
 Keep `.env` out of version control. In CI, set the same variables as environment variables or secrets instead.
 
@@ -148,6 +131,8 @@ Both steps are `new`: there is no baseline yet. The Robot log (`reports/log.html
 
 Open **Runs** in Commander and select the run `Robot Framework demo ...`, then each step, and click **Approve**. The screenshot becomes the baseline.
 
+The screenshots on this page come from the Playwright demo; a Robot Framework run looks the same.
+
 ![Comparison view with a new step and the Approve button](../img/visual-testing/runs-comparison.webp){ width="1600" height="775" loading="lazy" }
 
 ## 8. Second run: catch a visual bug
@@ -169,14 +154,14 @@ Login page: ok | Products: unresolved
 ## Good to know
 
 - **A difference does not fail the test.** The Robot test still passes and the step waits for review. To fail the test on a difference, add `WOPEE_ENABLE_SOFT_ASSERT=false` to `.env` (see [Fail the test on a visual difference](02-manual-setup.md#fail-the-test-on-a-visual-difference)).
-- **Baselines** are identified by `<scenario name>-<step name>` plus the branch and the environment labels. Keep both names stable between runs.
+- **Baselines** are identified by `<scenario name>-<step name>` plus the branch and, if set, the viewport. Keep both names stable between runs.
 - **Branches**: `WOPEE_BRANCH_NAME` sets the branch of the run (default `master`). See [Branches](02-manual-setup.md#branches) and [Baselines and branches](../visual-testing.md#baselines-and-branches).
 - **Statuses**: `new`, `ok`, `unresolved`, `autoApproved`. See [How it works](../visual-testing.md#how-it-works).
 - **Wait for the content** you want to capture before each `Track Fullpage`, as the test does with `Wait For Elements State`. See [Wait for fonts and images before tracking](../visual-testing.md#wait-for-fonts-and-images-before-tracking).
 
 ## Troubleshooting
 
-The most common problems are a missing `wopee_sdk` (step 3), a missing `WOPEE_SCREENSHOT_VALIDATION_ENABLED=true` or `WOPEE_DRIVER_LIBRARY` (step 4), and unnamed keyword arguments. The full list is in [Configuration and listener › Troubleshooting](02-manual-setup.md#troubleshooting).
+The most common problems are a missing `WOPEE_SCREENSHOT_VALIDATION_ENABLED=true` or `WOPEE_DRIVER_LIBRARY` (step 4), and unnamed keyword arguments. The full list is in [Configuration and listener › Troubleshooting](02-manual-setup.md#troubleshooting).
 
 ## Next steps
 
