@@ -2,6 +2,8 @@
 
 {% block extrahead %}
   {{ super() }}
+  <link rel="icon" href="{{ 'assets/icon.svg' | url }}" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="{{ 'assets/apple-touch-icon.png' | url }}">
   {% if page.meta and page.meta.type %}
     <link rel="stylesheet" href="{{ 'css/guide.css' | url }}">
   {% endif %}

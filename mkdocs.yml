@@ -84,7 +84,7 @@ theme:
         name: Switch to light mode
   font: false
   logo: assets/wordmark.svg
-  favicon: assets/favicon.png
+  favicon: assets/favicon.ico
   features:
     - navigation.instant
     - navigation.tracking
