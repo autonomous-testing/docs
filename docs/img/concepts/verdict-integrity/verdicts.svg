@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="250" viewBox="0 0 720 250" role="img" aria-labelledby="t d">
+  <title id="t">The three verdicts</title>
+  <desc id="d">Passed, green: the run established the result the test asks for; counts as a pass. Failed, red: a check ran and failed; counts as a failure. Incomplete, amber: the run proved nothing either way or could not finish, which is not a defect in your app; counts with the failures, so it never raises a pass rate.</desc>
+  <style>
+    text { font-family: Rubik, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; fill: #0b1020; }
+    .p { font-size: 15px; font-weight: 600; fill: #fff; }
+    .s { font-size: 15px; fill: #0b1020; }
+    .c { font-size: 13px; fill: #555b6e; }
+  </style>
+  <rect x="1" y="1" width="718" height="248" rx="14" fill="#fff" stroke="#e3e3ea" stroke-width="2"/>
+
+  <rect x="20" y="20" width="218" height="210" rx="10" fill="#ecf8f0" stroke="#16a34a" stroke-width="1.8"/>
+  <rect x="38" y="38" width="84" height="30" rx="15" fill="#16a34a"/>
+  <text class="p" x="80" y="58" text-anchor="middle">Passed</text>
+  <text class="s" x="38" y="98">The run established</text>
+  <text class="s" x="38" y="120">the result the test</text>
+  <text class="s" x="38" y="142">asks for.</text>
+  <text class="c" x="38" y="210">Counts as a pass</text>
+
+  <rect x="251" y="20" width="218" height="210" rx="10" fill="#fdeeee" stroke="#dc2626" stroke-width="1.8"/>
+  <rect x="269" y="38" width="76" height="30" rx="15" fill="#dc2626"/>
+  <text class="p" x="307" y="58" text-anchor="middle">Failed</text>
+  <text class="s" x="269" y="98">A check ran</text>
+  <text class="s" x="269" y="120">and failed.</text>
+  <text class="c" x="269" y="210">Counts as a failure</text>
+
+  <rect x="482" y="20" width="218" height="210" rx="10" fill="#fff7e8" stroke="#d97706" stroke-width="1.8"/>
+  <rect x="500" y="38" width="110" height="30" rx="15" fill="#d97706"/>
+  <text class="p" x="555" y="58" text-anchor="middle">Incomplete</text>
+  <text class="s" x="500" y="98">The run proved nothing</text>
+  <text class="s" x="500" y="120">either way or could not</text>
+  <text class="s" x="500" y="142">finish. Not a defect in</text>
+  <text class="s" x="500" y="164">your app.</text>
+  <text class="c" x="500" y="210">Counts with the failures</text>
+</svg>

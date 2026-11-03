@@ -17,6 +17,11 @@ The idea behind verdict integrity, the three verdicts, the two project modes, an
 
 After every agent run, Wopee.io compares the agent's claim with the record of the run: which steps really happened, which checks really ran, which inputs really reached the page, and which values in the report a check actually observed. When the record does not support the claim, an integrity check flags the run and states why.
 
+<figure markdown="span">
+  ![Flow diagram: an agent run that claims Passed goes through evidence checks. If the evidence supports it, the run stays Passed. If evidence is missing, the pass is flagged: in Report only it stays Passed with an amber mark and a Verdict Integrity section in the report; in Enforce it becomes Incomplete, or Failed if one of the run's own checks failed.](../img/concepts/verdict-integrity/verdict-flow.svg){ width="720" height="500" }
+  <figcaption>What happens to a pass after the evidence checks, in each mode.</figcaption>
+</figure>
+
 The checks fall into a few categories. Typical examples:
 
 - **An assertion that never executed** – the test case defines a check, but the run skipped it.
@@ -27,6 +32,11 @@ The checks fall into a few categories. Typical examples:
 The set of checks is improved continuously, so new runs may be judged by checks this page does not name. The report always names the check that fired.
 
 ## Three verdicts
+
+<figure markdown="span">
+  ![The three verdicts: Passed in green, the run established the result the test asks for. Failed in red, a check ran and failed. Incomplete in amber, the run proved nothing either way or could not finish, which is not a defect in your app and counts with the failures.](../img/concepts/verdict-integrity/verdicts.svg){ width="720" height="250" loading="lazy" }
+  <figcaption>Passed, Failed and Incomplete at a glance.</figcaption>
+</figure>
 
 | Verdict        | Colour | Meaning                                                                                                |
 | -------------- | ------ | ------------------------------------------------------------------------------------------------------ |
