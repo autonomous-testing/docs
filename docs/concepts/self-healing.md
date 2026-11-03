@@ -77,11 +77,12 @@ Self-healing applies to *locating and interacting* with elements. It does not ap
 
 Healing also never rewrites a test onto a different element. A healed locator is accepted only when it provably matches the originally recorded element or the step's intent; otherwise the run proceeds without recording a heal, and your test stays as you defined it.
 
-Verdicts are guarded in the other direction too: a run cannot report **passed** while its defined assertions failed or were never assessed. Such runs are automatically downgraded to failed, with the reason stated in the report.
+Verdicts are guarded in the other direction too: a pass must rest on evidence the run actually observed. See [Verdict Integrity](verdict-integrity.md).
 
 ## Related topics
 
 - [Tools & Assertions](tools-and-assertions.md)
+- [Verdict Integrity](verdict-integrity.md)
 - [Analysis Process](analysis-process.md)
 - [Project Context](../guides/project-context.md)
 - [Getting Started with Wopee.io Agent testing](../ai-agent.md)

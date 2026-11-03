@@ -46,7 +46,7 @@ All of them are under **Variables & Knowledge** and in the scenario list. Edit a
 
 ## 5. Read the verdict
 
-Click a scenario to open its run. The **Report** gives the verdict, every step with what was expected and what the agent verified, any issues it found, and a final analysis. When a test fails, read the report first: it tells you whether the app has a bug or the test needs a fix.
+Click a scenario to open its run. The **Report** gives the verdict, every step with what was expected and what the agent verified, any issues it found, and a final analysis. When a test fails, read the report first: it tells you whether the app has a bug or the test needs a fix. A verdict is Passed, Failed or Incomplete; see [Verdict Integrity](concepts/verdict-integrity.md).
 
 ![Scenario report](img/getting-started/2026-analysis-report.webp){ width="1440" height="810" loading="lazy" }
 
