@@ -57,10 +57,25 @@ Each project chooses what happens when an integrity check disagrees with a pass.
 
 Report only lets you see how often your runs would change before you rely on it. Enforce makes an unproven pass impossible to miss.
 
+<figure markdown="span">
+  ![Project Settings dialog with Verdict selected: the Verdict Enforcement setting with the Report only and Enforce options, Enforce chosen, and a description of when a pass is downgraded to incomplete](../img/concepts/verdict-integrity/settings-verdict.webp){ width="900" height="650" loading="lazy" }
+  <figcaption>Project settings › Verdict, with Enforce selected.</figcaption>
+</figure>
+
 ## Where you see it
 
 - **Run report** – Every agent run's report ends with a **Verdict Integrity** section: the mode, what was checked, which checks fired and the resulting second opinion.
 - **Analysis, Scenarios and Runs tabs** – A flagged pass carries an amber mark next to its green status. Hover it: the tooltip names the check that disagreed. Incomplete runs show in amber.
+
+<figure markdown="span">
+  ![Scenarios list of a demo project: the checkout test has an amber dot and reads "Test incomplete", and its tooltip shows "Test incomplete" with the last run marked amber](../img/concepts/verdict-integrity/incomplete-run.webp){ width="560" height="248" loading="lazy" }
+  <figcaption>In an Enforce project the agent claimed a pass; the Scenarios list shows the run as Incomplete in amber.</figcaption>
+</figure>
+
+<figure markdown="span">
+  ![End of the same run report: the agent's own "Verdict: PASSED", followed by the Verdict Integrity section with the mode, the checks that ran, the report values no check observed and the resulting Incomplete verdict, then the line explaining the downgrade](../img/concepts/verdict-integrity/report-verdict-integrity.webp){ width="1440" height="403" loading="lazy" }
+  <figcaption>The Verdict Integrity section: the report quoted prices no check observed, so the pass became Incomplete.</figcaption>
+</figure>
 
 ## Test-environment problems are listed apart
 
