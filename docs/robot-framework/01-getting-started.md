@@ -50,25 +50,6 @@ pip install wopee_rf robotframework robotframework-browser
 rfbrowser init chromium
 ```
 
-!!! warning "wopee_rf 2.6.3 needs one more install command"
-
-    The PyPI package `wopee_rf` 2.6.3 does not declare its dependency `wopee_sdk`. Without it, Robot Framework reports `Importing library 'wopee_rf.Standalone' failed: ModuleNotFoundError: No module named 'wopee_sdk'`. Install the copy that ships inside the package:
-
-    === "macOS, Linux"
-
-        ```shell
-        pip install "$(python -c 'import sysconfig; print(sysconfig.get_paths()["purelib"])')/wopee_rf/dependencies/wopee_sdk-1.2.0.tar.gz"
-        ```
-
-    === "PowerShell"
-
-        ```powershell
-        $sp = python -c "import sysconfig; print(sysconfig.get_paths()['purelib'])"
-        pip install "$sp\wopee_rf\dependencies\wopee_sdk-1.2.0.tar.gz"
-        ```
-
-    Check with `python -c "import wopee_rf"`. It prints nothing when the installation is complete.
-
 ## 4. Configure
 
 Create a `.env` file next to your tests folder. Copy the first three values from **API Keys**:
@@ -176,7 +157,7 @@ Login page: ok | Products: unresolved
 
 ## Troubleshooting
 
-The most common problems are a missing `wopee_sdk` (step 3), a missing `WOPEE_SCREENSHOT_VALIDATION_ENABLED=true` or `WOPEE_DRIVER_LIBRARY` (step 4), and unnamed keyword arguments. The full list is in [Configuration and listener › Troubleshooting](02-manual-setup.md#troubleshooting).
+The most common problems are a missing `WOPEE_SCREENSHOT_VALIDATION_ENABLED=true` or `WOPEE_DRIVER_LIBRARY` (step 4), and unnamed keyword arguments. The full list is in [Configuration and listener › Troubleshooting](02-manual-setup.md#troubleshooting).
 
 ## Next steps
 

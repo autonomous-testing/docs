@@ -177,8 +177,8 @@ Set the variables as secrets instead of committing `.env`. The library then read
 
 | Symptom | Cause and fix |
 | --- | --- |
-| `Importing library 'wopee_rf.Standalone' failed: ModuleNotFoundError: No module named 'wopee_sdk'` | Install `wopee_sdk` from inside the package, see [Getting started › Install](01-getting-started.md#3-install). |
-| `ModuleNotFoundError: No module named 'Browser'` | Install `robotframework-browser`, also for SeleniumLibrary and `Track`. |
+| `Importing library 'wopee_rf.Standalone' failed: ModuleNotFoundError: No module named 'wopee_sdk'` | `wopee_rf` older than 2.7.2 does not install `wopee_sdk`. Run `pip install --upgrade wopee_rf`. |
+| `ModuleNotFoundError: No module named 'Browser'` | Install `robotframework-browser`, needed for `WOPEE_DRIVER_LIBRARY=BrowserLibrary`. With SeleniumLibrary, `wopee_rf` older than 2.7.2 needs it too: run `pip install --upgrade wopee_rf`. |
 | Test passes, nothing appears in Commander, `${result}` is `None` | `WOPEE_SCREENSHOT_VALIDATION_ENABLED=true` or `WOPEE_DRIVER_LIBRARY` is missing, or `.env` is not found because `robot` runs from another directory. |
 | `Keyword 'wopee_rf.Standalone.Track Fullpage' expected 0 non-named arguments, got 1.` or `missing named-only argument 'step_name'` | Name every argument: `step_name=...`. The old `payload=&{payload}` form is not supported. |
 | `WopeeError: There is no Suite started, and no suite_name provided.` | Call `Start Suite` in the same test case before `Start Scenario`, or pass `suite_name=` to `Start Scenario`. |
