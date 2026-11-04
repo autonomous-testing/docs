@@ -48,6 +48,7 @@ nav:
       - Download files: guides/download-files.md
       - Browser local storage: guides/browser-local-storage.md
       - HTTP Request Tool: guides/http-tools.md
+      - Roll out Enforce in 2 weeks: guides/roll-out-enforce.md
       - POM example - Login: concepts/pom-login-example.md
   - Concepts:
       - Analysis - Process: concepts/analysis-process.md
@@ -186,6 +187,7 @@ plugins:
           - "guides/browser-local-storage.md": ""
           - "guides/project-context.md": "global instructions for the testing agent"
           - "guides/http-tools.md": "API calls inside UI tests"
+          - "guides/roll-out-enforce.md": "two-week plan from Report only to Enforce: read flagged passes, Enforce on one project, resolve each Incomplete, widen to more projects"
         "Optional":
           - "pilot-projects.md": ""
           - "security/enterprise-connectivity.md": "apps behind VPN or firewalls"

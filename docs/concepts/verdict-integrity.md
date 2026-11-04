@@ -5,7 +5,16 @@ description: "How Wopee.io checks that an AI agent's Passed verdict rests on evi
 
 # Verdict Integrity
 
-Verdict integrity is how Wopee.io makes sure a **Passed** verdict rests on what the test run actually observed, not on the AI agent's own words. The rule is short: **no proof, no pass.** An AI testing agent writes its own report, and that report ends with a verdict; Wopee.io checks that verdict against the record of the run.
+Verdict integrity is how Wopee.io makes sure a **Passed** verdict rests on what the test run actually observed, not on the AI agent's own words. The rule is short: **no proof, no pass.** An AI testing agent writes its own report, and that report ends with a verdict; Wopee.io checks that verdict against the record of the run. Verdict integrity is an **experimental preview**.
+
+<div class="yt-facade"><a href="https://youtu.be/DF_2-VGVQKk" data-yt="DF_2-VGVQKk" data-title="When AI tests pass but prove nothing: catching false passes in end-to-end testing"><img src="https://i.ytimg.com/vi/DF_2-VGVQKk/hqdefault.jpg" alt="" width="480" height="360" fetchpriority="high"><span class="yt-facade__play">Play: When AI tests pass but prove nothing, 6 minutes</span></a></div>
+
+When AI tests pass but prove nothing: a claimed pass becomes Incomplete under Enforce, and goes green once the test checks what it reports.
+{ .wo-video-caption }
+
+!!! info "For product owners and CTOs"
+
+    A green result now means the test run proved what it checked, not just that the AI agent said so. When the run cannot show the proof, the result is held back as Incomplete instead of counting as a pass. Incomplete is not a bug in your app; it tells your team which test needs one more check.
 
 ## What this page covers
 
@@ -59,7 +68,7 @@ Each agent project chooses what happens when an integrity check disagrees with t
 | **Report only** (default) | The verdict stays as the agent reported it and every count stays the same. The report gets a **Verdict Integrity** section with the result of the integrity checks, and a flagged pass carries an amber ring so you know to look.                                                                                                                                      |
 | **Enforce**               | A flagged pass becomes **Incomplete**. If one of the run's own assertions failed, it becomes **Failed** instead. Enforce also works the other way: a Failed verdict that nothing in the run's record supports becomes **Incomplete**, so you are not sent hunting for a defect the run never showed. The report names the integrity check that caused the change and why. |
 
-Start with Report only: watch the amber rings for a few runs and fix the tests they point to. Switch to Enforce when you rely on pass rates, or when Wopee.io results gate a release or a CI pipeline, so that an unproven pass can never count as green.
+Start with Report only: watch the amber rings for a few runs and fix the tests they point to. Switch to Enforce when you rely on pass rates, or when Wopee.io results gate a release or a CI pipeline, so that an unproven pass can never count as green. For a step-by-step plan, see [Roll out Enforce in 2 weeks](../guides/roll-out-enforce.md).
 
 <figure markdown="span">
   ![Verdict Enforcement setting with the Report only and Enforce options, Enforce chosen, and a description of when a pass is downgraded to incomplete](../img/concepts/verdict-integrity/settings-verdict.webp){ width="670" height="250" loading="lazy" }
@@ -95,6 +104,7 @@ Some problems come from the test browser, not from your app: a dropped click, a 
 
 ## Related topics
 
+- [Roll out Enforce in 2 weeks](../guides/roll-out-enforce.md)
 - [Tools & Assertions](tools-and-assertions.md)
 - [Self-Healing](self-healing.md)
 - [Analysis Process](analysis-process.md)
