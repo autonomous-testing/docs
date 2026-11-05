@@ -44,6 +44,7 @@ env: {
 | `pixelToPixelDiffTolerance` | no | Difference in percent that still counts as a match |
 | `customTags`, `comment` | no | Free text stored with each step |
 | `os`, `browser`, `device`, `viewport` | no | Labels that separate baselines per environment |
+| `waitForAssets`, `waitForAssetsTimeout` | no | Defaults for every track, see [Wait for fonts and images](#wait-for-fonts-and-images) |
 
 `WOPEE_*` variables that are not mapped into this object have no effect.
 
@@ -62,7 +63,9 @@ env: {
 | --- | --- |
 | `stepName` | Required. Part of the baseline key `<scenario name>-<step name>`. |
 | `comment`, `customTags`, `viewport`, `pixelToPixelDiffTolerance`, `baselineBranchName` | Override the configuration for this one step |
-| `retryLimit` | How many times an `unresolved` step is tracked again. Default `2`, so up to three attempts. Set `0` to track once. |
+| `waitForAssets` | Wait for the page's web fonts and images before the screenshot. Default `true`. |
+| `waitForAssetsTimeout` | How long that wait may take, in ms. Default `5000`. After that the screenshot is taken anyway. |
+| `retryLimit` | How many times an `unresolved` step is tracked again. Default `0` since 4.13.4, so one attempt (4.13.3 and older: `2`). |
 | Cypress screenshot options | For example `capture: "viewport"` |
 
 The `responseCallback` receives `{ stepName, imageUrl, status }`:
@@ -85,7 +88,11 @@ cy.get(".inventory_list").wopeeTrack({ stepName: "Product list" });
 
 ### Wait for fonts and images
 
-Cypress screenshots right away. Call `cy.pageReady()` from [Getting started › Wait until the page is ready](01-getting-started.md#6-wait-until-the-page-is-ready) before every track. The sample test of the [template project](02-template-project.md) runs the same wait inline.
+From 4.13.4, `cy.wopeeTrack()` loads every web font face and decodes every image of the page before it takes the screenshot, for up to `waitForAssetsTimeout` ms. A font or image that fails to load is skipped; one still loading at the timeout is written to the command log and the screenshot is taken anyway, so the test does not fail.
+
+- Lazy images (`loading="lazy"`) outside the viewport and CSS background images are not awaited. Wait for such content with `cy.get(...).should("be.visible")` before the track.
+- Set `waitForAssets` and `waitForAssetsTimeout` for every track in the `wopee` object, or for one step in `cy.wopeeTrack()`; the step option wins.
+- 4.13.3 and older take the screenshot right away. Update the plugin, or wait for the fonts and images yourself as in [Wait for fonts and images before tracking](../visual-testing.md#wait-for-fonts-and-images-before-tracking).
 
 ## Branches and suites
 
