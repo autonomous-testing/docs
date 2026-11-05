@@ -12,7 +12,7 @@ When you create a project with the test framework **Cypress**, Wopee.io creates 
 | File | What it does |
 | --- | --- |
 | `cypress.config.ts` | Registers the plugin and maps the `WOPEE_*` variables into `env.wopee`. `baseUrl` is `WOPEE_PROJECT_URL`, the App URL of your project (fallback `https://dronjo.wopee.io/`). |
-| `cypress/e2e/simple.spec.cy.ts` | The sample test **Home page works**: opens your app, waits for its fonts and images, and tracks one screenshot, the step **Home page**. |
+| `cypress/e2e/simple.spec.cy.ts` | The sample test **Home page works**: opens your app and tracks one screenshot, the step **Home page**. |
 | `cypress/e2e-examples/` | More examples on the Wopee.io demo app. Not part of the default run; copy a file into `cypress/e2e/` to try it. |
 | `.env.example` | Your project's values for local runs. Only `WOPEE_API_KEY` is empty. |
 | `.github/workflows/tests.yml` | The workflow Commander starts. |
@@ -72,7 +72,7 @@ For small rendering differences between runs on the same machine, set a toleranc
 ## Make it yours
 
 - **Your app:** `cy.visit("/")` opens `baseUrl`, which is `WOPEE_PROJECT_URL`. For local runs change it in `.env`; for runs from Commander change the App URL of the project in Commander.
-- **More checks:** add `cy.wopeeTrack({ stepName: "Contact page" })` after an interaction. Every `stepName` gets its own baseline. On a newly loaded page, put the font and image wait from the sample before the track, or use `cy.pageReady()` from [Wait until the page is ready](01-getting-started.md#6-wait-until-the-page-is-ready).
+- **More checks:** add `cy.wopeeTrack({ stepName: "Contact page" })` after an interaction. Every `stepName` gets its own baseline. The track waits for the page's fonts and images itself (see [Wait for fonts and images](03-install-plugin.md#wait-for-fonts-and-images)).
 - **More tests:** add `*.spec.cy.ts` files under `cypress/e2e/`. Every test needs what the sample has: start a suite and a scenario, track, stop the scenario.
 - **Cypress version:** repositories created before the template moved to Cypress 16 stay on Cypress 13 and keep working. To move one to Cypress 16, run `npm install -D cypress@16 @wopee-io/wopee.cy@latest` and replace any `Cypress.env()` in your tests with `cy.env()`, for example `cy.env(["SAUCE_USER"]).then(({ SAUCE_USER }) => …)`. Variables set in Commander › **Environment Variables** reach the run as `CYPRESS_*` environment variables, which `cy.env()` reads and `Cypress.expose()` does not.
 

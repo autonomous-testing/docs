@@ -14,7 +14,7 @@ This page walks through a complete example on [Sauce Demo](https://www.saucedemo
 
 ## Prerequisites
 
-- **Cypress 13 to 16**, with `@wopee-io/wopee.cy` 4.13.1 or newer (4.12.2 and older work with Cypress 13 and 14 only)
+- **Cypress 13 to 16**, with `@wopee-io/wopee.cy` 4.13.4 or newer, which waits for web fonts and images before each screenshot (4.12.2 and older work with Cypress 13 and 14 only)
 - The Node.js version your Cypress needs: 22 or 24 for Cypress 16, 20 or newer for Cypress 13 to 15
 - A Wopee.io account at [cmd.wopee.io](https://cmd.wopee.io){: target="\_blank"}
 
@@ -89,31 +89,7 @@ import { addWopeeCommands } from "@wopee-io/wopee.cy";
 addWopeeCommands();
 ```
 
-## 6. Wait until the page is ready
-
-Cypress takes the screenshot immediately. Web fonts and images that are still loading are missing from the screenshot, and a baseline without text or pictures is worse than none. `document.fonts.status` does not help: it reports `loaded` while the font faces the page uses are still `unloaded`.
-
-Add a `pageReady` command to the same support file. It forces every font face to load and every image to decode:
-
-```javascript title="cypress/support/e2e.js"
-import { addWopeeCommands } from "@wopee-io/wopee.cy";
-
-addWopeeCommands();
-
-// Cypress screenshots right away: load web fonts and images first, or the baseline misses text and pictures.
-Cypress.Commands.add("pageReady", () =>
-  cy.document().then((doc) =>
-    Promise.all([
-      ...[...doc.fonts].map((font) => font.load()),
-      ...[...doc.images].map((img) => img.decode().catch(() => {})),
-    ]),
-  ),
-);
-```
-
-Call `cy.pageReady()` before **every** `cy.wopeeTrack()`.
-
-## 7. Track screenshots in your test
+## 6. Track screenshots in your test
 
 ```javascript title="cypress/e2e/saucedemo.cy.js"
 /// <reference types="cypress" />
@@ -131,14 +107,12 @@ describe(suiteName, () => {
 
   it("login and products", () => {
     cy.visit("/");
-    cy.pageReady();
     cy.wopeeTrack({ stepName: "Login page" });
 
     cy.get("[data-test=username]").type(Cypress.expose("SAUCE_USER") || "standard_user");
     cy.get("[data-test=password]").type("secret_sauce");
     cy.get("[data-test=login-button]").click();
     cy.get(".inventory_list").should("be.visible");
-    cy.pageReady();
     cy.wopeeTrack({ stepName: "Products" });
   });
 });
@@ -148,10 +122,10 @@ describe(suiteName, () => {
 | --- | --- | --- |
 | `cy.wopeeStartSuite(name)` | `before` | Starts a suite (one entry in **Runs**). Required before the first track. A suite with the same name and branch is reused, so the timestamp gives every run its own entry. |
 | `cy.wopeeStartScenario(name)` | `beforeEach` | Starts a scenario. Use a stable name; it is part of the baseline key. |
-| `cy.wopeeTrack({ stepName })` | in the test | Takes a full-page screenshot and compares it with the baseline. Chained after `cy.get()` it captures one element. |
+| `cy.wopeeTrack({ stepName })` | in the test | Waits for the page's web fonts and images (up to 5 seconds), takes a full-page screenshot and compares it with the baseline. Chained after `cy.get()` it captures one element. |
 | `cy.wopeeStopScenario()` | `afterEach` | Closes the scenario. |
 
-## 8. First run: create the baselines
+## 7. First run: create the baselines
 
 ```shell
 npx cypress run
@@ -168,13 +142,13 @@ npx cypress run
 
 Both steps are `new`: there is no baseline yet. Each `imageUrl` opens the step in Commander. The plugin deletes the local screenshots after the upload.
 
-## 9. Approve in Runs
+## 8. Approve in Runs
 
 Open the project and go to **Runs**. Select the run `Cypress demo ...`, then each step, and click **Approve**. The screenshot becomes the baseline.
 
 ![Comparison view with a new step and the Approve button](../img/visual-testing/runs-comparison.webp){ width="1600" height="775" loading="lazy" }
 
-## 10. Second run: catch a visual bug
+## 9. Second run: catch a visual bug
 
 Sauce Demo has a `visual_user` whose products page is visually broken. Run the same test as that user:
 
@@ -187,12 +161,10 @@ npx cypress run --expose SAUCE_USER=visual_user
 ```text
 [wopee]: Tracking response: {"stepName":"Login page",...,"status":"ok"}
 [wopee]: Tracking response: {"stepName":"Products",...,"status":"unresolved"}
-[wopee]: Tracking response: {"stepName":"Products",...,"status":"unresolved"}
-[wopee]: Tracking response: {"stepName":"Products",...,"status":"unresolved"}
     ✓ login and products (6475ms)
 ```
 
-**Login page** matches the baseline. **Products** is `unresolved`. The plugin tracks an `unresolved` step up to three times (the first attempt plus two retries) in case the page was still changing, so the line appears three times. Open the step in **Runs**, inspect the highlighted differences and **Reject** it as a bug, or **Approve** it if the change is intended.
+**Login page** matches the baseline. **Products** is `unresolved`. Open the step in **Runs**, inspect the highlighted differences and **Reject** it as a bug, or **Approve** it if the change is intended.
 
 ![Unresolved step with the difference overlay next to the baseline](../img/visual-testing/runs-diff.webp){ width="1600" height="775" loading="lazy" }
 
@@ -209,9 +181,10 @@ npx cypress run --expose SAUCE_USER=visual_user
 | Message | Fix |
 | --- | --- |
 | `Class extends value undefined is not a constructor or null` (in `agent-base` / `http-proxy-agent`) | Cypress 15 or newer with `@wopee-io/wopee.cy` 4.12.2 or older. Update the plugin: `npm install -D @wopee-io/wopee.cy@latest`. |
-| `Cypress.env() was removed in Cypress version 16.0.0` | Your own test code calls `Cypress.env()`. Use `Cypress.expose()` for values passed with `--expose` (see [step 10](#10-second-run-catch-a-visual-bug)) and `cy.env()` for environment variables, including the ones set in Commander. If the message comes from `cy.wopeeTrack()`, update the plugin to 4.13.1 or newer. |
+| `Cypress.env() was removed in Cypress version 16.0.0` | Your own test code calls `Cypress.env()`. Use `Cypress.expose()` for values passed with `--expose` (see [step 9](#9-second-run-catch-a-visual-bug)) and `cy.env()` for environment variables, including the ones set in Commander. If the message comes from `cy.wopeeTrack()`, update the plugin to 4.13.1 or newer. |
 | `Cannot find module '.../Cypress.app/Contents/MacOS/Contents/Resources/app/index.js'` or `bad option: --no-sandbox` | Cypress was started from a terminal inside VS Code (or another Electron app) that exports `ELECTRON_RUN_AS_NODE=1`. Start it with `env -u ELECTRON_RUN_AS_NODE npx cypress run`, or use another terminal. |
-| Fonts or product images are missing in the screenshots | Call `cy.pageReady()` before `cy.wopeeTrack()`, see [step 6](#6-wait-until-the-page-is-ready). |
+| Fonts or product images are missing in the screenshots | Update the plugin to 4.13.4 or newer, which waits for them. On a slow page raise `waitForAssetsTimeout` (see [Wait for fonts and images](03-install-plugin.md#wait-for-fonts-and-images)). CSS background images are not awaited: wait for the element with `cy.get(...).should("be.visible")`. |
+| `[wopee.cy] Fonts or images still loading after 5000 ms` | Some font or image did not finish in time and the screenshot was taken anyway. Raise `waitForAssetsTimeout`, or check the browser console for a font or image that never loads. |
 | `apiKey` or `projectUuid` reported missing | `WOPEE_API_KEY` or `WOPEE_PROJECT_UUID` is not set, or the `env.wopee` object is missing in the Cypress config. |
 | `There is no Suite and no Scenario started` | Call `cy.wopeeStartSuite()` in `before()`. |
 | `cy.wopeeTrack is not a function` | Add `addWopeeCommands()` to `cypress/support/e2e.js`. |
