@@ -1,7 +1,7 @@
 /* Home page (overrides/home.html) */
 .wo-home-hero {
-  background: radial-gradient(900px 420px at 78% 0, #3a1b5c 0, transparent 70%), #0a0b12;
-  border-bottom: 1px solid #2c2d31;
+  background: radial-gradient(900px 420px at 78% 0, #3a1b5c 0, transparent 70%), #111827;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   color: #ffffff;
   padding: 3.6rem 0.8rem 3rem;
   text-align: center;
@@ -49,8 +49,8 @@
   justify-content: center;
 }
 .wo-home-hero .md-button {
-  border: 2px solid var(--wo-yellow);
-  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
   color: #ffffff;
   font-size: 0.8rem;
   font-weight: 600;
@@ -58,20 +58,23 @@
 }
 .wo-home-hero .md-button:hover,
 .wo-home-hero .md-button:focus-visible {
-  background: var(--wo-yellow);
-  color: var(--wo-header);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #ffffff;
+  color: #ffffff;
 }
 .wo-home-hero .md-button--primary {
   background: var(--wo-yellow);
+  border-color: var(--wo-yellow);
   color: var(--wo-header);
 }
 .wo-home-hero .md-button--primary:hover,
 .wo-home-hero .md-button--primary:focus-visible {
   background: var(--wo-yellow-hover);
   border-color: var(--wo-yellow-hover);
+  color: var(--wo-header);
 }
 .wo-home-hero :focus-visible {
-  outline: 3px solid #c99be8;
+  outline: 2px solid var(--wo-yellow);
   outline-offset: 2px;
 }
 .wo-home-term {
