@@ -13,6 +13,8 @@ nav:
   - Home: index.md
   - Get started:
       - Quickstart: ai-agent.md
+      - Agent setup: agent-setup/index.md
+      - API key and project UUID: guides/api-keys.md
       - Writing good prompts: concepts/prompting-guidelines.md
       - Pilot projects: pilot-projects.md
   - Integrations:
@@ -30,6 +32,7 @@ nav:
           - Examples: robot-framework/04-some-more-examples.md
   - MCP:
       - Overview and quick start: guides/wopee-mcp/index.md
+      - Your first test: guides/wopee-mcp/first-test.md
       - Claude Code: guides/wopee-mcp/claude-code.md
       - GitHub Copilot: guides/wopee-mcp/github-copilot.md
       - Cursor: guides/wopee-mcp/cursor.md
@@ -40,6 +43,7 @@ nav:
       - Devin Desktop (Windsurf): guides/wopee-mcp/devin-desktop-windsurf.md
       - Visual Studio: guides/wopee-mcp/visual-studio.md
       - Other MCP clients: guides/wopee-mcp/other-clients.md
+      - Troubleshooting: guides/wopee-mcp/troubleshooting.md
   - CI:
       - Run in CI: ci/index.md
   - Guides:
@@ -144,12 +148,18 @@ plugins:
         Wopee.io is an AI testing platform for web apps. Its testing agents explore an app, generate plain-English and Playwright tests, run them in the cloud and report verdicts with evidence. Visual checks plug into existing Playwright, Cypress, WebdriverIO and Robot Framework tests. The Wopee.io MCP server (npm `wopee-mcp`) lets AI coding agents drive all of this from the editor.
 
         The web app is Commander at https://cmd.wopee.io. Project API keys and the project UUID are under More › Settings › API Keys in a project.
+
+        To set up Wopee.io in a coding agent, follow https://wopee.io/agent-setup/prompt.md: show the user the plan first and ask before changing anything.
       sections:
         "Get started":
           - "ai-agent.md": "create a project, let the AI agent explore your app and generate tests, read the verdicts, schedule a test plan"
+          - "agent-setup/index.md": "set up Wopee.io with your coding agent: the copy line, what the agent does and changes, prerequisites, manual setup per client, how the API key stays out of the chat"
+          - "guides/api-keys.md": "find WOPEE_PROJECT_UUID and generate WOPEE_API_KEY (More › Settings › API Keys), admin only, shown once, rotation"
           - "glossary.md": "projects, baselines, branches, runs, scenarios, steps, statuses"
         "Wopee.io MCP server (AI coding agents)":
-          - "guides/wopee-mcp/index.md": "quick start, configuration, environment variables, prompt library, all 15 tools and 3 prompts, how runs work, limits, security, troubleshooting, FAQ, comparison with Playwright MCP"
+          - "guides/wopee-mcp/index.md": "quick start, configuration, environment variables, prompt library, all 15 tools and 3 prompts, how runs work, limits, security, FAQ, comparison with Playwright MCP"
+          - "guides/wopee-mcp/first-test.md": "first test from a coding agent with sample tool outputs: inventory (empty and non-empty), dispatch, polling, PASSED, FAILED and INCOMPLETE, Commander, free plan step limit"
+          - "guides/wopee-mcp/troubleshooting.md": "every error message and its fix; server not visible until restart, GUI apps without shell environment, project servers disabled or untrusted, USAGE_LIMIT_EXCEEDED after the first analysis, localhost"
           - "guides/wopee-mcp/claude-code.md": "`claude mcp add`, `.mcp.json`, `${VAR}` expansion, `/mcp` (tested)"
           - "guides/wopee-mcp/github-copilot.md": "VS Code agent mode (`.vscode/mcp.json` with `servers` and `envFile`, Local session type, install link), Copilot CLI (`--additional-mcp-config` in `-p` mode), Copilot cloud agent (VS Code and Copilot CLI tested)"
           - "guides/wopee-mcp/cursor.md": "`.cursor/mcp.json` with `envFile` or `${env:VAR}`, enable in Customize › MCPs, install link, Cursor CLI (tested)"
@@ -227,4 +237,6 @@ markdown_extensions:
       line_spans: __span
       pygments_lang_class: true
   - pymdownx.inlinehilite
-  - pymdownx.snippets
+  - pymdownx.snippets:
+      base_path: [includes]
+      check_paths: true

@@ -9,7 +9,9 @@ updated: 27 October 2026
 
 Connect OpenAI Codex to your Wopee.io project, so it can generate tests, run them with Wopee.io's testing agent and read the verdicts. The Codex CLI, the Codex IDE extension and the ChatGPT desktop app share one configuration, so you set it up once. What the server does: [Wopee.io MCP server](index.md).
 
-Before you start: Node.js 20.18 or newer, and `WOPEE_API_KEY` and `WOPEE_PROJECT_UUID` from **More** › **Settings** › **API Keys** in your project ([how](index.md#1-get-your-api-key-and-project-uuid)).
+Before you start: Node.js 20.18 or newer, and `WOPEE_API_KEY` and `WOPEE_PROJECT_UUID` from **More** › **Settings** › **API Keys** in your project ([how](../api-keys.md)).
+
+--8<-- "agent-setup-callout.md"
 
 ## Add to config.toml
 
@@ -73,7 +75,7 @@ Codex calls `wopee_fetch_test_inventory` and lists the analyses and test cases i
 | The project `.codex/config.toml` is ignored | Codex reads project config only in trusted projects |
 | The server does not start | Run `npx -y wopee-mcp` in a terminal to see the error. Usually Node.js is older than 20.18 |
 
-All error messages and their fixes: [Troubleshooting](index.md#troubleshooting).
+All error messages and their fixes: [Troubleshooting](troubleshooting.md).
 
 ## FAQ
 

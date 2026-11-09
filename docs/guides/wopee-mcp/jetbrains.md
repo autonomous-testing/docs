@@ -9,7 +9,7 @@ updated: 27 October 2026
 
 Connect JetBrains AI Assistant or Junie to your Wopee.io project, so the agent can generate tests, run them with Wopee.io's testing agent and read the verdicts. Works in IntelliJ IDEA, WebStorm, PyCharm and the other JetBrains IDEs. What the server does: [Wopee.io MCP server](index.md).
 
-Before you start: Node.js 20.18 or newer, and `WOPEE_API_KEY` and `WOPEE_PROJECT_UUID` from **More** › **Settings** › **API Keys** in your project ([how](index.md#1-get-your-api-key-and-project-uuid)).
+Before you start: Node.js 20.18 or newer, and `WOPEE_API_KEY` and `WOPEE_PROJECT_UUID` from **More** › **Settings** › **API Keys** in your project ([how](../api-keys.md)).
 
 The configuration for both:
 
@@ -27,6 +27,8 @@ The configuration for both:
   }
 }
 ```
+
+--8<-- "agent-setup-callout.md"
 
 ## JetBrains AI Assistant
 
@@ -74,7 +76,7 @@ The agent calls `wopee_fetch_test_inventory` and lists the analyses and test cas
 | The status shows an error | Open **Help** › **Show Log** and the `mcp` folder. Usually Node.js is older than 20.18, or the IDE does not find `npx`; use its full path in `command` |
 | `[AUTH_ERROR] WOPEE_API_KEY or WOPEE_AUTH_TOKEN must be set` | The `env` block is missing or empty |
 
-All error messages and their fixes: [Troubleshooting](index.md#troubleshooting).
+All error messages and their fixes: [Troubleshooting](troubleshooting.md).
 
 ## FAQ
 
