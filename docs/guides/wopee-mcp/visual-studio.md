@@ -9,7 +9,9 @@ updated: 27 October 2026
 
 Connect GitHub Copilot in Visual Studio 2026 or Visual Studio 2022 (17.14 or newer) to your Wopee.io project, so the agent can generate tests, run them with Wopee.io's testing agent and read the verdicts. What the server does: [Wopee.io MCP server](index.md).
 
-Before you start: Node.js 20.18 or newer, and `WOPEE_API_KEY` and `WOPEE_PROJECT_UUID` from **More** › **Settings** › **API Keys** in your project ([how](index.md#1-get-your-api-key-and-project-uuid)).
+Before you start: Node.js 20.18 or newer, and `WOPEE_API_KEY` and `WOPEE_PROJECT_UUID` from **More** › **Settings** › **API Keys** in your project ([how](../api-keys.md)).
+
+--8<-- "agent-setup-callout.md"
 
 ## Add the server
 
@@ -67,4 +69,4 @@ Copilot calls `wopee_fetch_test_inventory` and lists the analyses and test cases
 | The server is not found | Check the file location and that the top-level key is `servers` |
 | `[AUTH_ERROR] WOPEE_API_KEY or WOPEE_AUTH_TOKEN must be set` | The `env` block is missing or empty |
 
-All error messages and their fixes: [Troubleshooting](index.md#troubleshooting).
+All error messages and their fixes: [Troubleshooting](troubleshooting.md).

@@ -9,9 +9,11 @@ updated: 27 October 2026
 
 Any MCP client that can start a local (stdio) server can use the Wopee.io MCP server. This page has the configuration for clients without their own page. What the server does: [Wopee.io MCP server](index.md).
 
-Before you start: Node.js 20.18 or newer, and `WOPEE_API_KEY` and `WOPEE_PROJECT_UUID` from **More** › **Settings** › **API Keys** in your project ([how](index.md#1-get-your-api-key-and-project-uuid)).
+Before you start: Node.js 20.18 or newer, and `WOPEE_API_KEY` and `WOPEE_PROJECT_UUID` from **More** › **Settings** › **API Keys** in your project ([how](../api-keys.md)).
 
 Wherever a configuration below contains `your-api-key`, keep that file out of git.
+
+--8<-- "agent-setup-callout.md"
 
 ## Zed
 
@@ -177,4 +179,4 @@ Agents that accept only remote (HTTP) MCP servers, such as ChatGPT on the web an
 How many tests do I have in Wopee.io, and which ones have never run?
 ```
 
-The agent calls `wopee_fetch_test_inventory` and lists the analyses and test cases in your project with their latest status. More prompts: [Prompt library](index.md#prompt-library). Error messages and fixes: [Troubleshooting](index.md#troubleshooting).
+The agent calls `wopee_fetch_test_inventory` and lists the analyses and test cases in your project with their latest status. More prompts: [Prompt library](index.md#prompt-library). Error messages and fixes: [Troubleshooting](troubleshooting.md).

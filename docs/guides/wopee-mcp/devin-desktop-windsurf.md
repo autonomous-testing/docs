@@ -9,7 +9,9 @@ updated: 27 October 2026
 
 Windsurf is now called Devin Desktop. Connect its agent (Cascade) to your Wopee.io project, so it can generate tests, run them with Wopee.io's testing agent and read the verdicts. What the server does: [Wopee.io MCP server](index.md).
 
-Before you start: Node.js 20.18 or newer, and `WOPEE_API_KEY` and `WOPEE_PROJECT_UUID` from **More** › **Settings** › **API Keys** in your project ([how](index.md#1-get-your-api-key-and-project-uuid)).
+Before you start: Node.js 20.18 or newer, and `WOPEE_API_KEY` and `WOPEE_PROJECT_UUID` from **More** › **Settings** › **API Keys** in your project ([how](../api-keys.md)).
+
+--8<-- "agent-setup-callout.md"
 
 ## Add to mcp_config.json
 
@@ -70,7 +72,7 @@ Cascade calls `wopee_fetch_test_inventory` and lists the analyses and test cases
 | `[AUTH_ERROR] WOPEE_API_KEY or WOPEE_AUTH_TOKEN must be set` | Devin Desktop does not see the variables. Start it from a terminal, or use `${file:...}` |
 | Too many tools | Disable unused tools or servers; the limit is 100 tools in total |
 
-All error messages and their fixes: [Troubleshooting](index.md#troubleshooting).
+All error messages and their fixes: [Troubleshooting](troubleshooting.md).
 
 ## FAQ
 

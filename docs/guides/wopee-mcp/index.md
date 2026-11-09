@@ -13,6 +13,8 @@ Playwright MCP gives your agent a browser to drive step by step. The Wopee.io MC
 
     [Watch an AI QA agent in Cursor](https://wopee.io/videos/ai-qa-agent-jira-playwright/){: target="\_blank"} use the Wopee.io, Playwright and Atlassian MCP servers.
 
+--8<-- "agent-setup-callout.md"
+
 ## Add it to your agent
 
 | Agent | Config file | One-click install | Guide |
@@ -52,7 +54,7 @@ Three steps, about five minutes. The example uses Claude Code; the tabs show the
 
     ![API Keys in Project Settings with the WOPEE_API_URL and WOPEE_PROJECT_UUID lines and their copy buttons](../../img/guides/wopee-mcp/commander-api-keys.webp){ width="600" height="397" loading="lazy" }
 
-3. Enter a name, click **Generate a new key** and copy `WOPEE_API_KEY`. The key is shown **only once**.
+3. Enter a name, click **Generate a new key** and copy `WOPEE_API_KEY`. The key is shown **only once**. More, including rotation: [Find your API key and project UUID](../api-keys.md).
 
     ![New API key generated dialog with the WOPEE_API_KEY value and its copy button](../../img/guides/wopee-mcp/commander-new-key.webp){ width="440" height="184" loading="lazy" }
 
@@ -162,7 +164,7 @@ Restart the agent (or reload its MCP servers), then ask:
 How many tests do I have in Wopee.io, and which ones have never run?
 ```
 
-The agent calls `wopee_fetch_test_inventory` (in OpenCode `wopee_wopee_fetch_test_inventory`) and answers with the number of analyses and test cases in your project and the latest status of each test case (`PASSED`, `FAILED`, `INCOMPLETE`, `NOT_RUN`, ...). This call only reads data, so it is a safe first check. A new project with no analysis yet returns zero tests: continue with [Explore a new app](#explore-a-new-app-and-generate-tests).
+The agent calls `wopee_fetch_test_inventory` (in OpenCode `wopee_wopee_fetch_test_inventory`) and answers with the number of analyses and test cases in your project and the latest status of each test case (`PASSED`, `FAILED`, `INCOMPLETE`, `NOT_RUN`, ...). This call only reads data, so it is a safe first check. A new project with no analysis yet returns zero tests: continue with [Explore a new app](#explore-a-new-app-and-generate-tests). The whole path to a first verdict, with sample outputs: [Your first test from your coding agent](first-test.md).
 
 ## Universal configuration
 
@@ -209,7 +211,7 @@ One server entry works with one project. To use several projects, add one entry 
 2. Check that it shows **15 tools** starting with `wopee_`.
 3. Ask a read-only question: "List my Wopee.io analysis suites". You get the suites of your project with their identifiers (`A001`, `A002`, ...) and status.
 
-If the tools load but every answer contains an error such as `[AUTH_ERROR]`, see [Troubleshooting](#troubleshooting). The server returns errors as normal text, so the client may show the call as successful.
+If the tools load but every answer contains an error such as `[AUTH_ERROR]`, see [Troubleshooting](troubleshooting.md). The server returns errors as normal text, so the client may show the call as successful.
 
 ## How Wopee.io organizes your tests
 
@@ -372,27 +374,7 @@ Do these in [Commander](https://cmd.wopee.io){: target="\_blank"}.
 
 ## Troubleshooting
 
-| Symptom or message | Cause | Fix |
-| --- | --- | --- |
-| `[AUTH_ERROR] WOPEE_API_KEY or WOPEE_AUTH_TOKEN must be set` | The server started without the key | Set `WOPEE_API_KEY` in the environment the agent starts from, or check the variable reference syntax for your client. Restart the agent |
-| `WOPEE_PROJECT_UUID is not set` or `Failed to parse input: WOPEE_PROJECT_UUID is not set` | The project UUID is missing | Add `WOPEE_PROJECT_UUID` to the server's `env` and restart |
-| `[GRAPHQL_ERROR] Not Authorised!` | Wrong or deleted key, a key from another project, or a chat tool | Copy the UUID and a new key from the same project's **API Keys** screen |
-| `Not Authorised!` behind a company gateway with a valid key | The gateway drops headers with underscores; the server sends the key as `api_key` | Ask your network team to allow the `api_key` header |
-| `[NETWORK_ERROR] ...` on every call, and your config has `WOPEE_API_URL` | The variable is set to an empty string, which is not replaced by the default | Remove `WOPEE_API_URL`, or set it to the value from the **API Keys** screen |
-| `[NETWORK_ERROR]` or timeouts in a corporate network | Proxy | Set `HTTPS_PROXY` in the server's `env` |
-| `unable to get local issuer certificate`, `self-signed certificate` | TLS inspection | Set `NODE_EXTRA_CA_CERTS` to your company's root certificate (PEM) |
-| Server fails to start, errors about `undici`, `fetch` or engine versions | Node.js too old | Install Node.js 20.18 or newer (22 recommended) |
-| `npx: command not found` or `spawn npx ENOENT` | The client does not see your Node.js installation (common with version managers and GUI apps) | Use the full path to `npx` in `command` (`which npx`, on Windows `where npx`), or start the editor from a terminal |
-| Server not listed, no error | Invalid JSON (for example a trailing comma), wrong top-level key, or no restart | Validate the file, check `mcpServers` / `servers` / `mcp` for your client, restart the agent |
-| `[HTTP_ERROR] HTTP 503` | Wopee.io API update in progress | Retry in a few minutes |
-| VS Code shows **Error** next to the server before the first message | The chat session type is **Copilot** | Switch the session type to **Local** under the chat input, then click **Start** |
-| Cursor lists the server as **Disabled** | Project servers start disabled | Open the server in **Customize** › **MCPs** and switch on the `.cursor/mcp.json` source |
-| The agent reports a started run but no verdict | Runs take minutes; some agents stop polling early (Copilot after about 45 seconds) | Ask "Check the result now" |
-| `[RATE_LIMITED]` or "rate limit" | More than one dispatch in 10 seconds | Wait; dispatch tools retry automatically |
-| `Multiple test cases are not allowed for non-premium users` | Several test cases in one dispatch on a plan below Premium | Dispatch one test case per call |
-| `[USAGE_LIMIT_EXCEEDED]` | The plan's usage limit is reached | Wait for the limit to reset or upgrade in Commander |
-| `Failed to create GitHub issue. Make sure the project has a GitHub repository linked.` | No connected repository, or the GitHub App lacks permissions | Connect a repository; the Wopee.io GitHub App needs Issues (read and write) and, for screenshots, Contents (read and write) |
-| No **API Keys** in **More** › **Settings** | You are not a project admin | Ask a project admin to generate the key |
+Every error message and its fix, and the setup problems (the server not visible until a restart, GUI apps without your shell environment, project servers that start disabled, the usage limit after the first analysis, `localhost` URLs) are on [Troubleshooting](troubleshooting.md).
 
 ## FAQ
 
@@ -453,6 +435,8 @@ Yes, with one server entry per project, see [Several projects](#several-projects
 
 ## More
 
+- [Set up Wopee.io with your coding agent](../../agent-setup/index.md): one line that sets up the server for you
+- [Your first test from your coding agent](first-test.md): from the first question to a verdict, with sample outputs
 - [Getting started with Wopee.io](../../ai-agent.md): create a project and run the first analysis in Commander
 - [Project context](../project-context.md): global instructions for the testing agent
 - [Tools & Assertions](../../concepts/tools-and-assertions.md): what the testing agent does in the browser (not the same as the MCP tools above)

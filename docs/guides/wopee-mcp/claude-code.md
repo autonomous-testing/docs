@@ -9,9 +9,11 @@ verified: 27 October 2026
 
 Connect Claude Code to your Wopee.io project, so it can generate tests, run them with Wopee.io's testing agent and read the verdicts. What the server does and how runs work: [Wopee.io MCP server](index.md).
 
-Before you start: Node.js 20.18 or newer, and `WOPEE_API_KEY` and `WOPEE_PROJECT_UUID` from **More** › **Settings** › **API Keys** in your project ([how](index.md#1-get-your-api-key-and-project-uuid)).
+Before you start: Node.js 20.18 or newer, and `WOPEE_API_KEY` and `WOPEE_PROJECT_UUID` from **More** › **Settings** › **API Keys** in your project ([how](../api-keys.md)).
 
 Tested on 27 October 2026 with `wopee-mcp` 1.32.0 and the setup on this page.
+
+--8<-- "agent-setup-callout.md"
 
 ## Add with the Claude Code CLI
 
@@ -124,7 +126,7 @@ Then name the server in your prompt: "Use wopee-admin to run the login test".
 | `-e` swallowed the server name | Put the name before the `-e` options, as in the command above |
 | Answers stop before the verdict | Runs take minutes. Ask "Check the Wopee.io run again" |
 
-All error messages and their fixes: [Troubleshooting](index.md#troubleshooting).
+All error messages and their fixes: [Troubleshooting](troubleshooting.md).
 
 ## FAQ
 

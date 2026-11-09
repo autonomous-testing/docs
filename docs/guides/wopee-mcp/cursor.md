@@ -9,9 +9,11 @@ verified: 27 October 2026
 
 Connect Cursor to your Wopee.io project, so its agent can generate tests, run them with Wopee.io's testing agent and read the verdicts. The same configuration works in the Cursor editor and the Cursor CLI (`agent`). What the server does: [Wopee.io MCP server](index.md).
 
-Before you start: Node.js 20.18 or newer, and `WOPEE_API_KEY` and `WOPEE_PROJECT_UUID` from **More** › **Settings** › **API Keys** in your project ([how](index.md#1-get-your-api-key-and-project-uuid)).
+Before you start: Node.js 20.18 or newer, and `WOPEE_API_KEY` and `WOPEE_PROJECT_UUID` from **More** › **Settings** › **API Keys** in your project ([how](../api-keys.md)).
 
 Tested on 27 October 2026 with `wopee-mcp` 1.32.0 and Cursor 3.15 using `${env:...}`; `envFile` follows Cursor's documented config schema. The install link and the Cursor CLI follow Cursor's documentation.
+
+--8<-- "agent-setup-callout.md"
 
 ## Add to .cursor/mcp.json
 
@@ -134,7 +136,7 @@ An agent in Cursor combines the Wopee.io, Playwright and Atlassian MCP servers t
 | The server shows an error in MCP settings | Check **Output** › **MCP Logs**. Usually Node.js is older than 20.18 or `npx` is not on the `PATH`; use the full path to `npx` in `command` |
 | The agent uses a browser tool instead | Name Wopee.io in the prompt, or add a rule in `.cursor/rules` that says when to use Wopee.io |
 
-All error messages and their fixes: [Troubleshooting](index.md#troubleshooting).
+All error messages and their fixes: [Troubleshooting](troubleshooting.md).
 
 ## FAQ
 

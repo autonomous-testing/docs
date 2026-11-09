@@ -9,9 +9,11 @@ verified: 27 October 2026
 
 Connect OpenCode to your Wopee.io project, so it can generate tests, run them with Wopee.io's testing agent and read the verdicts from your terminal. What the server does: [Wopee.io MCP server](index.md).
 
-Before you start: Node.js 20.18 or newer, and `WOPEE_API_KEY` and `WOPEE_PROJECT_UUID` from **More** › **Settings** › **API Keys** in your project ([how](index.md#1-get-your-api-key-and-project-uuid)).
+Before you start: Node.js 20.18 or newer, and `WOPEE_API_KEY` and `WOPEE_PROJECT_UUID` from **More** › **Settings** › **API Keys** in your project ([how](../api-keys.md)).
 
 Tested on 27 October 2026 with `wopee-mcp` 1.32.0, OpenCode 1.18 and the `opencode.json` setup on this page. OpenCode needs a working model; the free OpenCode models (for example `opencode/glm-5.3-flash-free`) worked in our test.
+
+--8<-- "agent-setup-callout.md"
 
 ## Add to opencode.json
 
@@ -98,7 +100,7 @@ OpenCode calls `wopee_wopee_fetch_test_inventory` and lists the analyses and tes
 | `mcp list` shows `wopee` connected, but the chat does not answer | OpenCode has no working model. Pick one with `/models`; the free OpenCode models work |
 | The server takes too much context | Set `"enabled": false` when you do not need it, and enable it per project |
 
-All error messages and their fixes: [Troubleshooting](index.md#troubleshooting).
+All error messages and their fixes: [Troubleshooting](troubleshooting.md).
 
 ## FAQ
 

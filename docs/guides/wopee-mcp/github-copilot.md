@@ -9,9 +9,11 @@ verified: 27 October 2026
 
 Connect GitHub Copilot to your Wopee.io project, so it can generate tests, run them with Wopee.io's testing agent and read the verdicts. This page covers Copilot in **VS Code** (agent mode), **Copilot CLI** and the **Copilot cloud agent**. For Copilot in Visual Studio see [Visual Studio](visual-studio.md); for JetBrains IDEs see [JetBrains](jetbrains.md). What the server does: [Wopee.io MCP server](index.md).
 
-Before you start: Node.js 20.18 or newer, and `WOPEE_API_KEY` and `WOPEE_PROJECT_UUID` from **More** › **Settings** › **API Keys** in your project ([how](index.md#1-get-your-api-key-and-project-uuid)).
+Before you start: Node.js 20.18 or newer, and `WOPEE_API_KEY` and `WOPEE_PROJECT_UUID` from **More** › **Settings** › **API Keys** in your project ([how](../api-keys.md)).
 
 Tested on 27 October 2026 with `wopee-mcp` 1.32.0, VS Code 1.143 and Copilot CLI 1.0.40, with the `.vscode/mcp.json` and Copilot CLI setups on this page. The install link, the `inputs` form and the cloud agent follow GitHub's and VS Code's documentation.
+
+--8<-- "agent-setup-callout.md"
 
 ## VS Code (agent mode)
 
@@ -210,7 +212,7 @@ Copilot calls `wopee_fetch_test_inventory` and lists the analyses and test cases
 | Copilot CLI ignores `.vscode/mcp.json` | Expected. Use `~/.copilot/mcp-config.json`, `.mcp.json` or `.github/mcp.json` |
 | Cloud agent: authentication errors | Check the secret names start with `COPILOT_MCP_` and match the names in the configuration |
 
-All error messages and their fixes: [Troubleshooting](index.md#troubleshooting).
+All error messages and their fixes: [Troubleshooting](troubleshooting.md).
 
 ## FAQ
 
