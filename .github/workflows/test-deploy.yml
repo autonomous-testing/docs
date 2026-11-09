@@ -28,3 +28,4 @@ jobs:
           python scripts/check-media.py
           export SITE_URL="https://$(cat CNAME)/"
           zensical build --strict
+          python scripts/markdown-export.py site
