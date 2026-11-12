@@ -1,13 +1,13 @@
 ---
 title: Plugin reference
-description: Reference for the Wopee.io Cypress plugin @wopee-io/wopee.cy. Configuration options, commands, element screenshots, branches, CI and known issues.
+description: Reference for the Wopee.io Cypress plugin @wopee-io/wopee.cy. Configuration options, commands, element screenshots, ignore areas, failing on a visual difference, branches and CI.
 type: Reference
-updated: 20 October 2026
+updated: 12 November 2026
 ---
 
 # Cypress plugin reference
 
-Everything about `@wopee-io/wopee.cy` that [Getting started](01-getting-started.md) leaves out. Applies to version 4.13.1.
+Everything about `@wopee-io/wopee.cy` that [Getting started](01-getting-started.md) leaves out. Applies to version 4.13.6.
 
 ## Install
 
@@ -45,6 +45,8 @@ env: {
 | `customTags`, `comment` | no | Free text stored with each step |
 | `os`, `browser`, `device`, `viewport` | no | Labels that separate baselines per environment |
 | `waitForAssets`, `waitForAssetsTimeout` | no | Defaults for every track, see [Wait for fonts and images](#wait-for-fonts-and-images) |
+| `ignoreAreas` | no | CSS selectors left out of every step's comparison, see [Ignore areas](#ignore-areas) |
+| `enableSoftAssert` | no | `false` fails the test when a step is `unresolved`. Default `true`. See [Fail the test on a visual difference](#fail-the-test-on-a-visual-difference). |
 
 `WOPEE_*` variables that are not mapped into this object have no effect.
 
@@ -54,7 +56,7 @@ env: {
 | --- | --- |
 | `cy.wopeeStartSuite(name)` | Starts a suite. Required before the first `cy.wopeeTrack()`. |
 | `cy.wopeeStartScenario(name)` | Starts a scenario inside the suite. |
-| `cy.wopeeTrack(options, responseCallback?)` | Takes a screenshot and sends it for comparison. |
+| `cy.wopeeTrack(options, responseCallback?, errorCallback?)` | Takes a screenshot and sends it for comparison. |
 | `cy.wopeeStopScenario()` | Closes the scenario. |
 
 `cy.wopeeTrack()` options:
@@ -62,7 +64,8 @@ env: {
 | Option | Description |
 | --- | --- |
 | `stepName` | Required. Part of the baseline key `<scenario name>-<step name>`. |
-| `comment`, `customTags`, `viewport`, `pixelToPixelDiffTolerance`, `baselineBranchName` | Override the configuration for this one step |
+| `comment`, `customTags`, `os`, `browser`, `device`, `viewport`, `pixelToPixelDiffTolerance`, `baselineBranchName` | Override the configuration for this one step (`os`, `browser` and `device` from 4.13.6) |
+| `ignoreAreas` | Areas left out of this step's comparison, on top of the configuration's. See [Ignore areas](#ignore-areas). |
 | `waitForAssets` | Wait for the page's web fonts and images before the screenshot. Default `true`. |
 | `waitForAssetsTimeout` | How long that wait may take, in ms. Default `5000`. After that the screenshot is taken anyway. |
 | `retryLimit` | How many times an `unresolved` step is tracked again. Default `0` since 4.13.4, so one attempt (4.13.3 and older: `2`). |
@@ -94,6 +97,43 @@ From 4.13.4, `cy.wopeeTrack()` loads every web font face and decodes every image
 - Set `waitForAssets` and `waitForAssetsTimeout` for every track in the `wopee` object, or for one step in `cy.wopeeTrack()`; the step option wins.
 - 4.13.3 and older take the screenshot right away. Update the plugin, or wait for the fonts and images yourself as in [Wait for fonts and images before tracking](../visual-testing.md#wait-for-fonts-and-images-before-tracking).
 
+### Ignore areas
+
+Leave changing content, such as dates, ads or a live counter, out of the comparison. An entry of `ignoreAreas` is either:
+
+- a **CSS selector**: covers every element it matches, measured right after the screenshot with a small margin around each. A selector that matches nothing on the page is skipped, so a banner that only some pages show does not fail the others.
+- a **rectangle** `{ x, y, width, height }` in pixels of the screenshot.
+
+```javascript
+// cypress.config.js: for every step
+env: { wopee: { /* ... */ ignoreAreas: [".cookie-banner", "[data-test=clock]"] } },
+
+// a spec: for one step, on top of the configuration's
+cy.wopeeTrack({
+  stepName: "Checkout",
+  ignoreAreas: [".delivery-date", { x: 0, y: 0, width: 300, height: 80 }],
+});
+```
+
+Selectors work for full-page, viewport and element screenshots, with `padding` and `clip`. Ignore areas drawn in the Commander comparison view still apply on top.
+
+4.13.5 and older do not send ignore areas, and fail the test when a selector matches nothing. Update the plugin.
+
+### Fail the test on a visual difference
+
+By default an `unresolved` step, one that differs from its approved baseline, passes the test and waits for review in **Runs**. Set `enableSoftAssert: false` in the `wopee` object to fail the test instead; the error names the step and links to it in Commander. With `retryLimit`, only the last attempt counts.
+
+To let a step pass anyway, return `true` from the `errorCallback`, the third argument of `cy.wopeeTrack()`:
+
+```javascript
+cy.wopeeTrack({ stepName: "Products" }, undefined, (error) => {
+  cy.task("log", error);
+  return true; // the test goes on
+});
+```
+
+4.13.5 and older never fail the test, whatever `enableSoftAssert` says. Update the plugin, or check `result.status` in the `responseCallback`.
+
 ## Branches and suites
 
 - Baselines are kept per branch. Set `branchName` from your CI, for example `branchName: process.env.WOPEE_BRANCH_NAME` with `WOPEE_BRANCH_NAME=$GITHUB_REF_NAME`.
@@ -105,9 +145,3 @@ From 4.13.4, `cy.wopeeTrack()` loads every web font face and decodes every image
 Wopee.io works with any CI system. Set `WOPEE_PROJECT_UUID` and `WOPEE_API_KEY` as secrets of your CI (plus `WOPEE_API_URL` for a self-hosted instance) and run `npx cypress run` as usual. Cypress' own guides: [Continuous Integration](https://docs.cypress.io/guides/continuous-integration/introduction){: target="\_blank"}.
 
 The repository Wopee.io creates for a Cypress project runs from Commander (**Runs** › **Start testing**), not on push; see [Template project › Run from Commander](02-template-project.md#run-from-commander).
-
-## Known issues in 4.13.1
-
-- An `unresolved` step never fails the test, also with `enableSoftAssert` set. Use the `responseCallback` to act on the status.
-- Ignore areas passed to `cy.wopeeTrack()` are not sent. Draw ignore areas in the Commander comparison view instead.
-- The npm README Quick Start is outdated: it uses flat `WOPEE_*` keys in `cypress.env.json` and `cy.wopeeTrack('name')`. Use the setup on this page.
