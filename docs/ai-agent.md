@@ -60,7 +60,7 @@ Under **Steps**, every step has its Playwright locator and a screenshot. When yo
 
 ![Scenarios library](img/getting-started/2026-scenarios.webp){ width="1440" height="810" loading="lazy" }
 
-To write your own test, click **+ New test**, give it a name and describe it in plain English. On its first run the agent works out the steps; keep **Save steps from this run** switched on, and later runs replay them.
+To write your own test, click **+ New test**, give it a name and describe it in plain English. On its first run the agent works out the steps; keep **Save steps from this run** switched on, and later runs replay them. Switch it off to keep the test intent-driven; see [Intent-driven and Scripted Tests](concepts/intent-and-scripted-tests.md). For rules every test should follow, see [Project Context](guides/project-context.md).
 
 ## 7. Test Plans and schedules
 

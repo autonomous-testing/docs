@@ -58,6 +58,7 @@ nav:
       - Analysis - Process: concepts/analysis-process.md
       - Analysis - Inputs: concepts/analysis-inputs.md
       - Tools & Assertions: concepts/tools-and-assertions.md
+      - Intent & Scripted Tests: concepts/intent-and-scripted-tests.md
       - Self-Healing: concepts/self-healing.md
       - Verdict Integrity: concepts/verdict-integrity.md
   - Reference:
@@ -155,7 +156,7 @@ plugins:
           - "ai-agent.md": "create a project, let the AI agent explore your app and generate tests, read the verdicts, schedule a test plan"
           - "agent-setup/index.md": "set up Wopee.io with your coding agent: the copy line, what the agent does and changes, prerequisites, manual setup per client, how the API key stays out of the chat"
           - "guides/api-keys.md": "find WOPEE_PROJECT_UUID and generate WOPEE_API_KEY (More › Settings › API Keys), admin only, shown once, rotation"
-          - "glossary.md": "projects, baselines, branches, runs, scenarios, steps, statuses"
+          - "glossary.md": "projects, baselines, branches, runs, scenarios, intent-driven and scripted tests, project context, steps, statuses"
         "Wopee.io MCP server (AI coding agents)":
           - "guides/wopee-mcp/index.md": "quick start, configuration, environment variables, prompt library, all 15 tools and 3 prompts, how runs work, limits, security, FAQ, comparison with Playwright MCP"
           - "guides/wopee-mcp/first-test.md": "first test from a coding agent with sample tool outputs: inventory (empty and non-empty), dispatch, polling, PASSED, FAILED and INCOMPLETE, Commander, free plan step limit"
@@ -175,6 +176,7 @@ plugins:
           - "concepts/analysis-inputs.md": "Jira stories, Figma designs and crawl data as inputs"
           - "concepts/prompting-guidelines.md": "writing goals, scope and constraints for test generation"
           - "concepts/tools-and-assertions.md": "what the testing agent does in the browser"
+          - "concepts/intent-and-scripted-tests.md": "intent-driven tests (description only, GOAL / PASSES WHEN / MUST NOT / DATA) vs scripted tests (saved steps): how each runs, when to use which, Save steps from this run, Generate steps, Delete all steps, Test Plans"
           - "concepts/self-healing.md": "locators with fallback, self-troubleshooting, agent skills"
           - "concepts/verdict-integrity.md": "evidence checks on an AI agent's pass (no proof, no pass): Passed, Failed and Incomplete verdicts, Report only and Enforce modes, test-environment problems"
           - "concepts/pom-login-example.md": "a reusable login module"
@@ -195,7 +197,7 @@ plugins:
           - "guides/upload-files.md": ""
           - "guides/download-files.md": ""
           - "guides/browser-local-storage.md": ""
-          - "guides/project-context.md": "global instructions for the testing agent"
+          - "guides/project-context.md": "project-wide context read by the test generator and the testing agent: where to paste it (More › Settings › General), paste-ready core and optional template, filled e-shop example, do and don't rules"
           - "guides/http-tools.md": "API calls inside UI tests"
           - "guides/roll-out-enforce.md": "two-week plan from Report only to Enforce: read flagged passes, Enforce on one project, resolve each Incomplete, widen to more projects"
         "Optional":

@@ -1,5 +1,5 @@
 ---
-description: Definitions of key Wopee.io concepts including baselines, projects, branches, test runs, scenarios, steps, and comparison modes.
+description: Definitions of key Wopee.io concepts including baselines, projects, branches, test runs, scenarios, intent-driven and scripted tests, steps, and comparison modes.
 ---
 
 # Glossary
@@ -30,6 +30,18 @@ For integration projects, a suite with the same name on the same branch is reuse
 ### Test Scenario
 
 Each successful test run includes at least one scenario, comprising sequences of steps. In integration projects a scenario is usually one test, started with `startScenario`. Its name is part of the baseline key. For the bot, you can specify the desired number of scenarios and steps for the bot to create or take either in your project configuration or during the setup of bot execution for a specific run, without overwriting your defaults.
+
+### Intent-driven Test
+
+A scenario with a description and no steps. The AI agent reads the goal and the expected results and finds the path on every run. See [Intent-driven and Scripted Tests](concepts/intent-and-scripted-tests.md).
+
+### Scripted Test
+
+A scenario with saved steps, recorded from a passing run or generated with **Generate steps**. The agent replays the steps in order. See [Intent-driven and Scripted Tests](concepts/intent-and-scripted-tests.md).
+
+### Project Context
+
+Project-wide Markdown instructions read by the test generator and by every agent run, edited under **More** › **Settings** › **General**. See [Project Context](guides/project-context.md).
 
 ### Test Result
 

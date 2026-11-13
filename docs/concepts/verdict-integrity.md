@@ -107,5 +107,6 @@ Some problems come from the test browser, not from your app: a dropped click, a 
 - [Roll out Enforce in 2 weeks](../guides/roll-out-enforce.md)
 - [Tools & Assertions](tools-and-assertions.md)
 - [Self-Healing](self-healing.md)
+- [Intent-driven and Scripted Tests](intent-and-scripted-tests.md)
 - [Analysis Process](analysis-process.md)
 - [Getting Started with Wopee.io Agent testing](../ai-agent.md)

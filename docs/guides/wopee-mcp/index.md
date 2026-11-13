@@ -438,6 +438,6 @@ Yes, with one server entry per project, see [Several projects](#several-projects
 - [Set up Wopee.io with your coding agent](../../agent-setup/index.md): one line that sets up the server for you
 - [Your first test from your coding agent](first-test.md): from the first question to a verdict, with sample outputs
 - [Getting started with Wopee.io](../../ai-agent.md): create a project and run the first analysis in Commander
-- [Project context](../project-context.md): global instructions for the testing agent
+- [Project context](../project-context.md): project-wide context for the test generator and the testing agent
 - [Tools & Assertions](../../concepts/tools-and-assertions.md): what the testing agent does in the browser (not the same as the MCP tools above)
 - [wopee-mcp on npm](https://www.npmjs.com/package/wopee-mcp){: target="\_blank"} and [on GitHub](https://github.com/Wopee-io/wopee-mcp){: target="\_blank"}

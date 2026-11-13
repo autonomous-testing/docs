@@ -301,3 +301,5 @@ When applying POM patterns, also verify:
 - [🛠️ Tools & Assertions](tools-and-assertions.md) - Understand how the agent interacts with your app and validates outcomes
 - [✨ Analysis Process](analysis-process.md) - Learn about the complete analysis workflow
 - [🔗 Analysis Inputs](analysis-inputs.md) - Discover what inputs improve test analysis quality
+- [🎯 Intent-driven and Scripted Tests](intent-and-scripted-tests.md) - Write test descriptions the agent can prove
+- [📋 Project Context](../guides/project-context.md) - Paste-ready context that steers the test generator and the agent
