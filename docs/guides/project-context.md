@@ -1,332 +1,339 @@
 ---
-description: Set global instructions and context for Wopee.io AI testing agents. Guide agent behavior across all tests in your project.
+title: Project context
+description: "Write a Wopee.io project context that steers the test generator and the AI agent, with a paste-ready template and a filled example."
+type: How-to
+updated: 13 November 2026
 ---
 
 # Project context
 
-Configure global instructions and context that guide the AI testing agent's behavior across all tests in your project.
+The project context is one Markdown text per project. It tells Wopee.io how your app works and how to test it. Every generator reads it: the generators of the application description, the user flows, the scenarios and their steps. The AI agent also receives it on every run and crawl. It is available on all plans.
 
-## Overview
+!!! info "For product owners and CTOs"
 
-Global project context provides a way to give the AI testing agent specific instructions, preferences, and contextual information about your application. These instructions are automatically loaded and applied whenever the Wopee.io AI testing agent executes tests.
+    Think of the project context as the briefing you would give a new tester on their first day: what the app is, which accounts to use, the business rules, what must never be touched and what counts as a failure. Write it once, and the generator and the agent receive it every time.
 
-## What is global context?
+## Where to paste it
 
-Global project context includes:
+1. Open the project and go to **More** › **Settings** › **General**. If you pinned **Settings** to the top bar, use that instead. From an analysis, you can also open **Variables & Knowledge** and click **Project context**.
+2. Click into the **Project context** field.
+3. **Click Switch to markdown before you paste.** See the warning below.
+4. Paste the text and click **Save**. If you close the dialog first, Commander asks whether to save your changes.
+5. Reopen the field and check the result. Headings must start with `#` and have no backslash in front (`\#`). If they have one, delete the text, switch to markdown and paste again.
 
-- **Testing instructions**: Specific guidance on how tests should be performed
-- **Application behavior**: How your application works and what to expect
-- **User interaction preferences**: Language, formatting, and interaction style
-- **Business rules**: Domain-specific requirements and constraints
-- **Testing scenarios**: Common patterns and workflows in your application
+!!! warning "Switch to markdown first"
 
-## How to set up project context
+    The field opens as rich text. If you paste there, headings and lists are saved as plain paragraphs and stop working. Click **Switch to markdown** before you paste. If the label reads **Switch to rich text**, you are already in markdown.
 
-### Creating the context file
+Runs and generations that start after you save use the new text.
 
-Create a `project-context.md` file in your repository's `data` directory. The AI testing agent will automatically load and apply these instructions during test execution.
+The text is stored as `data/project-context.md` on the default branch of the project's repository, so one context applies to every analysis. Editing that file in the repository changes the same context.
 
-```
-your-repository/
-├── data/
-│   ├── project-context.md    # Global instructions for AI agent
-│   └── auth.json            # Browser storage context
-├── tests/
-└── src/
-```
+!!! tip "After you change test data or rules"
 
-### Basic context structure
+    The scenario and step generators take concrete values such as prices, limits and test data from the analysis's **Application description** first, and from the project context only when the description has none. After changing values in the project context, generate the application description again so the old values do not stay.
 
-The `project-context.md` file uses simple markdown format to provide instructions:
+## Paste-ready template
 
-```markdown
-# Project Context for AI Testing Agent
+The template has two parts: a core that every project needs, and optional sections that you paste below it.
 
-## Application Information
+1. Copy the core block, then any optional sections you need, into the field. Do not put a code fence around the whole text, because the context is passed to the AI word for word.
+2. Replace every `[[...]]` with your own text. Delete a line if it does not apply to your app, for example the cookie-banner line when your app shows no banner, or the sign-out line when tests do not share a signed-in session.
+3. Replace the format example under **Writing test descriptions** with one test from your own app. The generator copies its shape.
+4. Rename the example variables (`${ADMIN_USERNAME}`, `${ADMIN_PASSWORD}`) to yours. Create every `${NAME}` the text uses as a variable before the first run (see [Variables](../concepts/intent-and-scripted-tests.md#variables)).
+5. Before you save, search the pasted text for `[[`. None may remain: anything left goes to the AI word for word on every run.
 
-This is an e-commerce platform for selling organic products.
+### Core
 
-## Testing Instructions
+````markdown
+# Project context
 
-- All form inputs should be filled in Spanish
-- Use emojis extensively in text fields where appropriate
-- Always use EUR currency for currency fields
+These rules apply to every test the generator writes and every run the agent makes. When a test's own description is more specific, the test wins.
 
-## Application Behavior
+## About the app
 
-- Product search results appear after typing 3+ characters
-- Shopping cart updates immediately when items are added
-- When user is logged in, there is avatar and user initials in the top left corner of the page
-- When user is not logged in, there is login button in the top right corner of the page
-- When user is logged in, there is logout button in the top right corner of the page
-```
+- [[One or two lines: what the app does and who uses it.]]
+- Main areas, named as they appear on screen: [[Area 1]], [[Area 2]], [[Area 3]].
+- Screen language: [[English]]. Numbers: [[1,234.56]]. Dates: [[DD/MM/YYYY]]. Currency: [[GBP]].
 
-## Real-world context examples
+## Users and sign-in
 
-### E-commerce platform
+- [[Role, e.g. Customer]]: sign in with ${TESTING_USERNAME} and ${TESTING_PASSWORD} using [[the "Sign in" link in the header]].
+- [[Second role, e.g. Admin]]: sign in with ${ADMIN_USERNAME} and ${ADMIN_PASSWORD} [[on the admin sign-in page]].
+- You are signed in when [[the header shows the account menu]].
 
-```markdown
-# Project Context for AI Testing Agent
+## Business rules
 
-## Application Information
+- [[How a total or result is calculated, e.g. total = subtotal − discount + shipping.]]
+- [[A limit and the message the app shows when it is reached.]]
+- [[What a user can save and where it shows afterwards.]]
 
-This is a luxury fashion e-commerce platform targeting Spanish-speaking customers.
+## Test data
 
-## Testing Instructions
+- Each test creates the data it needs and does not depend on another test. Give each new record a unique suffix, such as a timestamp.
+- Accounts, passwords and other secrets come from variables written as ${NAME}. Never write a secret into a test.
+- Use valid formats for [[country]]: postal code [[format]], phone [[format]]. Never "test" or "123".
+- If a test needs a value that is not on the page, in this context or in a variable, stop and report what is missing.
 
-- Always fill forms in Spanish (e.g., "Juan García" for names, "Calle Mayor 123" for addresses)
-- Use appropriate Spanish email formats: usuario@ejemplo.es
-- Select "España" as country and "EUR" as currency
-- Use fashion-related emojis when filling product reviews: ✨👗🛍️💎
+## How to judge a test
 
-## Application Behavior
+- Judge each test only by its own expected results: its PASSES WHEN and MUST NOT lines, or the expected results in its description or steps. If you notice another problem on the way, report it as an issue, but do not fail the test for it.
+- A pass needs a value checked on the screen. Check durable results (a saved record, its status, its row in a list), not a toast or an e-mail.
+- For values that change on every run (order numbers, dates), check that they are present or contain a fixed part.
+- Missing test data or an unreachable environment is reported as such, not as a defect in the app.
+- Report each mismatch with the expected value, the shown value and the page where it appears.
 
-- Product images take 2-3 seconds to load due to high resolution
-- Size charts appear as overlays when clicking "Guía de tallas"
-- Free shipping banner shows only for orders over €50
-- Guest checkout requires email verification step
+## Always and never
 
-## Business Rules
+- Always accept the cookie banner first ("[[Accept all]]"), before anything else.
+- Never send e-mails, messages or invitations to real people. Use only the addresses in variables.
+- Never change or delete records the test did not create.
+- Never change the password or e-mail of a shared test account.
+- Never sign out, except in a test whose goal is signing out: it ends the session other tests use.
+````
 
-- VIP customers (loyalty tier "Oro") get 24h early access to sales
-- Returns are only available for 30 days, except for undergarments
-- International shipping is disabled for leather products
-```
+### Optional sections
 
-### Banking application
+````markdown
+## Words used on screen
 
-```markdown
-# Project Context for AI Testing Agent
+- "[[On-screen term]]" means [[what it is]].
 
-## Application Information
+## Key pages
 
-This is a mobile banking app for a German financial institution.
+- [[Page name]]: [[https://app.example.com/path]]
 
-## Testing Instructions
+## By design (not a bug)
 
-- Use German formatting for amounts: 1.234,56 € (dot for thousands, comma for decimals)
-- Fill dates in DD.MM.YYYY format
-- Use German addresses: "Hauptstraße 45, 10115 Berlin"
-- IBAN validation requires DE country code format
+- [[Behaviour that looks wrong but is intended.]] [[What still works next to it.]]
 
-## Application Behavior
+## Out of scope
 
-- All transactions require 2FA via SMS or authenticator app
-- Account balance updates may take 10-15 seconds after transactions
-- PDF statements are generated asynchronously - wait for email notification
-- Session timeout occurs after 15 minutes of inactivity
+- [[Third-party pages, e.g. the payment provider or a chat widget.]]
+- [[Areas not under test.]]
 
-## Security Requirements
+## Language
 
-- Never use real account numbers - use test IBANs starting with DE89370400440532013000
-- Sensitive actions trigger additional PIN verification
-- Transaction history shows only last 90 days by default
-```
+- Write test names, descriptions and reports in [[English]]. Quote on-screen labels exactly as shown.
 
-### Healthcare platform
+## Writing test descriptions
 
-```markdown
-# Project Context for AI Testing Agent
+When you write a test's name and description, put everything in the description, with these labels in capitals, each at the start of its own line, in this order: GOAL, PASSES WHEN, MUST NOT, DATA. One behaviour per test. Name buttons, fields and menus only by their visible label. A description contains no clicks, element IDs or CSS selectors.
 
-## Application Information
+Format example (not a test to run):
 
-This is a patient portal for a healthcare provider with HIPAA compliance requirements.
-
-## Testing Instructions
-
-- Use realistic but fake medical data: "Type 2 Diabetes", "Hypertension"
-- Patient names should follow format: "LastName, FirstName MiddleInitial"
-- Use medical terminology correctly: "Prescription" not "Medicine"
-- Always verify privacy notices are displayed before entering sensitive data
-
-## Application Behavior
-
-- Medical history loads in paginated chunks of 10 records
-- Prescription refill requests require pharmacy selection
-- Appointment scheduling shows availability 2 weeks in advance
-- Lab results appear with 24-48 hour delay after tests
-
-## Compliance Requirements
-
-- All test data must be clearly marked as "TEST PATIENT - NOT REAL"
-- Screenshots cannot contain any identifiable information
-- Session expires after 20 minutes for security
-- Audit logs are generated for all data access
+```text
+GOAL: [[One real user goal from your app, in one sentence.]]
+PASSES WHEN:
+- [[One fact the user can see, with its expected value.]]
+- [[Another fact and its expected value.]]
+MUST NOT:
+- [[What makes the test fail even if the goal is reached.]]
+DATA: [[Which account and values to use, as ${NAME} variables.]]
 ```
 
-### Educational platform
+For every limit the app states, write tests just below it, at it and just above it. For each form, one test per rule with one expected error, checking that the form does not move on. Count tests by distinct outcomes, not by bullets in a spec.
 
-```markdown
-# Project Context for AI Testing Agent
+## Stable locators
 
-## Application Information
+- [[Element]]: `[[getByTestId('element-id')]]`
 
-This is a learning management system for K-12 education with multilingual support.
+## Before you finish a test description, check
 
-## Testing Instructions
+- Every PASSES WHEN line names one fact and its expected value.
+- Every test has a MUST NOT line.
+- No description contains clicks, element IDs or CSS selectors.
+- Every value comes from the page, this context or a variable.
+````
 
-- Use age-appropriate student names: "Emma Thompson", "Liam Johnson"
-- Fill assignment submissions with educational content, not lorem ipsum
-- Use encouraging emojis in feedback: 📚✏️⭐🎓
-- Select appropriate grade levels: "Grade 3", "Grade 7", etc.
+## A filled example: demo e-shop
 
-## Application Behavior
+The core and most optional sections, filled in for a fictional home-goods shop. All values are made up.
 
-- Video lessons buffer for 5-10 seconds before playing
-- Quiz auto-saves every 30 seconds
-- Grade calculations update overnight (not real-time)
-- Parent notifications are sent via email and SMS
+````markdown
+# Project context
 
-## Educational Requirements
+These rules apply to every test the generator writes and every run the agent makes. When a test's own description is more specific, the test wins.
 
-- Content must be age-appropriate for selected grade level
-- Assignments have due dates that affect late penalty calculations
-- Student progress tracking includes time spent on activities
-- Accessibility features must work with screen readers
+## About the app
+
+- An online shop for home goods. Customers browse the catalogue, buy with a card and track orders.
+- Main areas, named as they appear on screen: Catalogue, Basket, Checkout, My account, My orders.
+- Screen language: English. Numbers: 1,234.56. Dates: DD/MM/YYYY. Currency: GBP.
+
+## Users and sign-in
+
+- Customer: sign in with ${TESTING_USERNAME} and ${TESTING_PASSWORD} using the "Sign in" link in the header.
+- Shop admin: sign in with ${ADMIN_USERNAME} and ${ADMIN_PASSWORD} on the Admin sign-in page.
+- You are signed in when the header shows "My account".
+
+## Business rules
+
+- Prices include VAT.
+- Total = product subtotal − discount + shipping.
+- Shipping is 4.90 GBP, and free when the product subtotal is 50.00 GBP or more.
+- The test promo code in ${PROMO_CODE} gives 10 % off the product subtotal only. Shipping is never discounted.
+- A customer can buy at most 10 units of one product per order. Above that the Basket shows "Maximum 10 per order".
+- Addresses saved in My account appear as options at Checkout.
+
+## Test data
+
+- Each test creates the data it needs and does not depend on another test. Give each new address or wishlist a unique suffix, such as a timestamp.
+- Accounts, passwords, the promo code and the card number come from variables written as ${NAME}. Never write a secret into a test.
+- Use valid UK formats: a postal code in the UK format (e.g. AB1 2CD), phone +44 20 7946 0000.
+- If a test needs a value that is not on the page, in this context or in a variable, stop and report what is missing.
+
+## How to judge a test
+
+- Judge each test only by its own expected results: its PASSES WHEN and MUST NOT lines, or the expected results in its description or steps. If you notice another problem on the way, report it as an issue, but do not fail the test for it.
+- A placed order counts only when it appears in My orders with its order number. The confirmation e-mail does not count.
+- Order numbers and dates change on every run: check that they are present, not their exact text.
+- Report each mismatch with the expected value, the shown value and the page where it appears.
+
+## Always and never
+
+- Always accept the cookie banner first ("Accept all"), before anything else.
+- Never use the "Contact us" form or the newsletter sign-up with a real address.
+- Never change or delete orders, addresses or products the test did not create.
+- Never change the password or e-mail of a shared test account.
+- Never sign out, except in a test whose goal is signing out.
+- Pay only with the test card in ${TEST_CARD_NUMBER}.
+
+## Words used on screen
+
+- "Basket" means the shopping cart.
+- "Wishlist" means products saved for later; it is not an order.
+
+## Key pages
+
+- Catalogue: https://shop.example.com/
+- Sign in: https://shop.example.com/account/sign-in
+- Admin sign-in: https://shop.example.com/admin
+
+## By design (not a bug)
+
+- Products marked "Out of stock" cannot be added to the Basket, but their page opens and "Add to wishlist" works like for any other product.
+
+## Out of scope
+
+- The payment provider's own pages beyond entering the test card.
+- The blog and the chat widget.
+
+## Language
+
+- Write test names, descriptions and reports in English. Quote on-screen labels exactly as shown.
+
+## Writing test descriptions
+
+When you write a test's name and description, put everything in the description, with these labels in capitals, each at the start of its own line, in this order: GOAL, PASSES WHEN, MUST NOT, DATA. One behaviour per test. Name buttons, fields and menus only by their visible label. A description contains no clicks, element IDs or CSS selectors.
+
+Format example (not a test to run):
+
+```text
+GOAL: A signed-in customer reaches free shipping exactly at the threshold.
+PASSES WHEN:
+- With a product subtotal just below 50.00 GBP, the Basket shows shipping 4.90 GBP.
+- After adding a product that brings the subtotal to 50.00 GBP or more, shipping shows 0.00 GBP.
+- The total equals subtotal + shipping, to the penny.
+MUST NOT:
+- A promo code is used.
+DATA: Sign in with ${TESTING_USERNAME}.
 ```
 
-## How the AI agent uses project context
+For every limit the app states, write tests just below it, at it and just above it. For each form, one test per rule with one expected error, checking that the form does not move on. Count tests by distinct outcomes, not by bullets in a spec.
 
-### Automatic loading
+## Stable locators
 
-When you place a `project-context.md` file in your repository's `data` directory, the AI testing agent automatically:
+- Add to basket button: `getByTestId('add-to-basket')`
+- Basket item count: `[data-test="basket-count"]`
 
-1. **Loads instructions** during test initialization
-2. **Applies context** to all testing decisions and actions
-3. **Follows preferences** for language, formatting, and interaction style
-4. **Respects business rules** and application-specific behavior
-5. **Maintains consistency** across all test executions
+## Before you finish a test description, check
 
-### Context application examples
+- Every PASSES WHEN line names one fact and its expected value.
+- Every test has a MUST NOT line.
+- No description contains clicks, element IDs or CSS selectors.
+- Every value comes from the page, this context or a variable.
+````
 
-If your context specifies "All inputs should be in Spanish", the agent will:
+## What each section does
 
-- Fill name fields with "María González" instead of "John Doe"
-- Use Spanish addresses: "Calle Principal 123, Madrid"
-- Select Spanish language options in dropdowns
-- Write Spanish text in comment fields and reviews
+| Section | What it changes |
+| --- | --- |
+| **About the app** | Shapes the generated application description and tells the agent the formats it will read. |
+| **Users and sign-in** | How to sign in for each role. Whether a test signs in belongs in the test; how to sign in belongs here. |
+| **Business rules** | Gives the generator values to compute expectations from, and gives the agent rules to check against. |
+| **Test data** | Prevents collisions between tests and invented values. |
+| **How to judge a test** | Sets what a pass needs. The first rule stops a general rule here from failing a test that checked what it was asked to. |
+| **Always and never** | Safety limits for every run. |
+| **Words used on screen** | The generator and the agent use your terms instead of guessing. |
+| **Key pages** | A generated step may open a URL directly only in three cases: it is the starting URL, it was seen during the crawl, or it is written out here or in the analysis instructions. Other URLs are turned into steps through the UI. Write each URL in full (`https://...`) or as a path (`/account/sign-in`). The match is on host and path, so `/sign-in-help` does not cover `/sign-in`. |
+| **By design** | Stops false alarms. Say exactly what still works, or the agent may skip a real defect next to it. |
+| **Out of scope** | Keeps generation and crawls away from areas you do not test. |
+| **Language** | The language of generated tests and reports, and how to quote labels. |
+| **Writing test descriptions** | Asks the generator to write descriptions in the intent format of [Intent-driven and Scripted Tests](../concepts/intent-and-scripted-tests.md). The generator copies a worked example more reliably than it follows abstract rules. The rules cover descriptions only, because the same context also goes to **Generate steps** and to steps saved from a run. Check the first scenarios generated after you add this section. If they do not follow the format, also add it to **Additional instructions** in **Generate scenarios**. This section shapes how tests are written. It does not stop steps from being saved: switch **Save steps from this run** off, or run the tests from a Test Plan. |
+| **Stable locators** | Generated steps may use a CSS selector or test ID only when it is written word for word here. When there are no screenshots to support a locator, the generator drops every locator that does not appear exactly in the project context. Write locators exactly as a step would use them, in backticks. |
+| **Before you finish** | A short self-check at the end of the context. Models tend to follow a final checklist, but nothing enforces it. |
 
-### Context-aware testing benefits
+## Do and don't
 
-With project context in place, your AI testing becomes:
+| Do | Don't |
+| --- | --- |
+| Write rules: "Shipping is free from 50.00 GBP" | Write steps: "Click Basket, then click Checkout" |
+| Say when a test fails: MUST NOT lines, a fail rule per test | Leave failure to the agent's judgement |
+| Use `${TESTING_USERNAME}`, `${TESTING_PASSWORD}` and your own variables | Paste passwords, tokens or real card numbers |
+| Name roles and how each signs in | Explain how to sign in "if needed" in every test |
+| Write out a value the agent must judge by eye | Expect `${NAME}` to be filled in inside a visual check or the agent's reasoning; it is filled in only when the agent types, selects, opens a URL or checks text with a text assertion |
+| Use obvious placeholders in examples | Use realistic sample values; they can show up in reports as if they were read from the page |
+| Say each rule once | Repeat or contradict a rule; with two versions, the AI may follow either one |
+| Put a check that only one test needs into that test | Put a pass or fail rule for one test into the context; it applies to every test |
+| Use triggers the agent can see: a message, a value, its own actions | Use elapsed time ("after 5 minutes") or page source; the agent knows the date and time when the run starts, but not how much time has passed |
+| Name exact on-screen labels in quotes | Describe elements vaguely ("the blue button") |
+| Keep it short and current | List past incidents, run IDs, dates or issue numbers |
+| Write calm, factual rules | Write commands such as "ignore", "override" or "bypass"; this wording can trip the AI model's content filter and fail the run |
 
-- **Culturally appropriate**: Tests use correct language, formats, and cultural conventions
-- **Domain-specific**: Agent understands your business terminology and processes
-- **Consistent**: All tests follow the same guidelines and preferences
-- **Realistic**: Test data matches your actual user patterns and requirements
+## Size
 
-## Context organization tips
+The field has no character limit, but the whole text goes to the AI with every generation and every step of every run. A longer context makes generation and runs slower and more expensive, and rules in the middle of a long text are followed less reliably. Aim for one to two screens of text: the core sections and only the optional sections you need. Put app details that belong to one analysis into that analysis instead.
 
-### Structuring your context file
+## Project context, application description and instructions
 
-Organize your `project-context.md` file in clear sections:
+| What | Where | Scope |
+| --- | --- | --- |
+| Shared rules, roles, test data rules, never-do rules, description format | **Project context** | Every analysis, every generation, every run |
+| What the app shows: features, values, prices on screen | **Application description** (Variables & Knowledge) | One analysis; every generation, and sent to the agent as application context on every run |
+| Background for one analysis, such as how to sign in or navigate | The analysis's **Instructions** (next to **Project URL** in the analysis inputs) | One analysis; sent to the agent on every run as supplementary background, used only when the test needs it |
+| A focus for one generation, e.g. "add coverage for checkout with an expired card" | **Additional instructions** in **Generate scenarios** | One analysis; saved and sent with every generation in it, not to runs |
+| Know-how the agent applies during runs | **Skills** (Variables & Knowledge) | See [Self-Healing](../concepts/self-healing.md) |
+| A check that must hold for one test | The test's **Description** | One test |
 
-```markdown
-# Project Context for AI Testing Agent
+## Change it with the Assistant
 
-## Application Information
-
-Brief description of your application and its purpose.
-
-## Testing Instructions
-
-- Specific guidelines for how tests should be performed
-- Language and formatting preferences
-- Data entry requirements
-
-## Application Behavior
-
-- How your application works and responds
-- Timing expectations and loading behaviors
-- Special features or interactions
-
-## Business Rules
-
-- Domain-specific requirements
-- Validation rules and constraints
-- Workflow requirements
-
-## Error Handling
-
-- Expected error messages and how to handle them
-- Recovery procedures for failed operations
-```
-
-## Best practices
-
-!!! tip "Project context best practices"
-
-    - **Be specific**: Provide clear, actionable instructions rather than vague guidelines
-    - **Use examples**: Include concrete examples of preferred data formats and values
-    - **Keep updated**: Regularly review and update context as your application evolves
-    - **Test your context**: Verify that the AI agent correctly applies your instructions
-    - **Version control**: Track context changes alongside your code changes
-
-## Common context patterns
-
-### Language and localization
-
-```markdown
-## Testing Instructions
-
-- All form inputs should be in French
-- Use French date format: DD/MM/YYYY
-- Currency should always be EUR with French formatting: 1 234,56 €
-- Use French postal codes: 75001, 69001, etc.
-- Select "France" as country in all dropdowns
-```
-
-### Industry-specific terminology
-
-```markdown
-## Application Behavior
-
-- Medical appointments are called "consultations"
-- Use ICD-10 codes for diagnoses: E11.9 for diabetes
-- Patient consent forms must be acknowledged before proceeding
-- Insurance verification takes 30-45 seconds to process
-```
-
-### UI interaction preferences
-
-```markdown
-## Testing Instructions
-
-- Use emojis extensively in social media posts: 🎉✨💝🌟
-- Fill bio fields with creative, personality-rich content
-- Use hashtags in relevant fields: #fashion #style #trendy
-- Profile photos should represent diverse demographics
-```
+You can ask the **Assistant** to change the project context. It proposes the change as a **Change to project context** card with **Apply**, **Edit** and **Discard**. Only a project admin can apply it.
 
 ## Troubleshooting
 
-### Context not being applied
+### The context is not applied
 
-- Verify `project-context.md` file exists in the `data` directory
-- Check markdown syntax is valid
-- Ensure file is committed to your repository
-- Confirm the AI agent can access the file during test execution
+- Check that you clicked **Save** in Project Settings.
+- Reopen the field. If headings show a backslash (`\#`), the text was pasted as rich text: paste it again after **Switch to markdown**.
+- Runs that were already running keep the old text; start a new run.
+- New values do not appear in generated tests: generate the application description again (see the tip under [Where to paste it](#where-to-paste-it)).
 
-### Instructions not being followed
+### A rule is not followed
 
-- Make instructions more specific and actionable
-- Add concrete examples of expected behavior
-- Check for conflicting instructions within the context
-- Test with simpler instructions first, then add complexity
+- Make it a list item with one rule, and say why if the reason is not obvious.
+- Look for a second rule that contradicts it, in the context, the test or the analysis instructions.
+- If the rule must hold for one test, write it into that test's description: a test's own words take priority.
 
-### File organization issues
+## Related topics
 
-- Ensure file is named exactly `project-context.md`
-- Verify the file is in the correct `data` directory path
-- Check file permissions allow reading
-
-!!! warning "Context considerations"
-
-    - Avoid including sensitive information in context files
-    - Keep instructions clear and unambiguous
-    - Test context changes in a development environment first
-    - Remember that context affects all tests in the project
+- [Intent-driven and Scripted Tests](../concepts/intent-and-scripted-tests.md)
+- [Prompting Guidelines](../concepts/prompting-guidelines.md)
+- [Verdict Integrity](../concepts/verdict-integrity.md)
+- [Self-Healing](../concepts/self-healing.md)
+- [Tools & Assertions](../concepts/tools-and-assertions.md)
+- [Getting Started with Wopee.io Agent testing](../ai-agent.md)
 
 !!! note "Need help?"
 
-    For project context configuration issues, contact our support team at [help@wopee.io](mailto:help@wopee.io) or visit our [community discussions](https://github.com/orgs/Wopee-io/discussions).
+    For project context questions, contact our support team at [help@wopee.io](mailto:help@wopee.io) or visit our [community discussions](https://github.com/orgs/Wopee-io/discussions).

@@ -138,3 +138,4 @@ If it fits, we send you the pilot charter pre-filled from that conversation.
 - [Tools & Assertions](concepts/tools-and-assertions.md)
 - [Self-Healing](concepts/self-healing.md)
 - [Project Context](guides/project-context.md)
+- [Intent-driven and Scripted Tests](concepts/intent-and-scripted-tests.md)

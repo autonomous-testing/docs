@@ -85,4 +85,5 @@ Verdicts are guarded in the other direction too: a pass must rest on evidence th
 - [Verdict Integrity](verdict-integrity.md)
 - [Analysis Process](analysis-process.md)
 - [Project Context](../guides/project-context.md)
+- [Intent-driven and Scripted Tests](intent-and-scripted-tests.md)
 - [Getting Started with Wopee.io Agent testing](../ai-agent.md)

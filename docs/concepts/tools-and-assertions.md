@@ -160,4 +160,5 @@ After a passing agent run, Wopee.io can generate Playwright code that mirrors th
 - [Analysis Process](analysis-process.md)
 - [Prompting Guidelines](prompting-guidelines.md)
 - [Project Context](../guides/project-context.md)
+- [Intent-driven and Scripted Tests](intent-and-scripted-tests.md)
 - [HTTP Request Tool](../guides/http-tools.md)
