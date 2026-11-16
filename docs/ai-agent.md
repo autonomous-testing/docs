@@ -19,7 +19,7 @@ You land on the **Projects** page. Every app you test lives here as one project.
 
 1. Click **NEW PROJECT**.
 2. Paste the URL of your app, or pick a demo (**E-shop demo**, **Website demo** or **Banking demo**). The demos come with test instructions already filled in. The agent runs in the cloud, so the URL must open from the internet. App on `localhost`? [Expose it with a tunnel or use a deployed URL](guides/test-localhost.md).
-3. Under **Test instructions**, describe in plain English what matters to you, including any test credentials. For example: _Log in with the test account, add an item to the cart, complete the purchase, and verify the "Thank you" message._ You can leave it empty and let the agent decide.
+3. Under **Test instructions**, describe in plain English what matters to you. For example: _Add an item to the cart, complete the purchase, and verify the "Thank you" message._ You can leave it empty and let the agent decide. Do not type passwords here: a test account goes in Environment Variables (see below).
 4. Click **Create project and generate tests**.
 
 ![New project dialog](img/getting-started/2026-new-project.webp){ width="1440" height="810" }
@@ -28,19 +28,23 @@ You land on the **Projects** page. Every app you test lives here as one project.
 
     The test framework (Playwright) is fixed once the project exists. Switch off **Explore the app and generate tests** to create an empty project and add your own tests first.
 
+!!! tip "Your app needs a login?"
+
+    Give the agent a test account: open **More** › **Settings** › **Environment Variables** and add `TESTING_USERNAME` and `TESTING_PASSWORD`. The agent signs in with them, and your tests use them as `${TESTING_USERNAME}` and `${TESTING_PASSWORD}`. The first Analysis starts without them, so if it stopped at your login, add the account and re-run the tests it generated before you start a new Analysis: on the free plan only your first Analysis is free of the step limit, and an Analysis uses more steps than a test run. See [Test an app behind a login](https://docs.wopee.io/first-green-test/test-behind-a-login/).
+
 ## 3. Accept the GitHub invitation
 
-Every project gets its own GitHub repository. To open it, accept the invitation: open the menu under your avatar, click **GH Invitation**, and click **Join** on GitHub.
+Every project gets its own GitHub repository, and GitHub invites you to the organization that holds it. Accept the invitation from GitHub's e-mail, or open the menu under your avatar, click **GitHub Invite**, and click **Join** on GitHub.
 
-![GH Invitation in the account menu](img/getting-started/2026-gh-invitation.webp){ width="1440" height="810" loading="lazy" }
+![GitHub Invite in the account menu](img/getting-started/2026-gh-invitation.webp){ width="1440" height="810" loading="lazy" }
 
 ## 4. Watch the agent explore
 
-The first Analysis starts right away. You see a live view of the agent's browser: it opens your app, logs in, clicks through the pages and checks what it sees. From what it saw, it writes:
+The first Analysis starts right away. You see a live view of the agent's browser: it opens your app, clicks through the pages and checks what it sees. From what it saw, it writes:
 
 - an **application description**,
 - **user flows**, written as user stories,
-- **test scenarios** for those flows, and runs every one of them, so you start with real results.
+- **test scenarios** for those flows, and runs up to 4 of them, one after another, so you start with real results. The others wait under **NOT RUN** in the scenario list; run one with its ▶ button.
 
 All of them are under **Variables & Knowledge** and in the scenario list. Edit any of them, or add instructions and regenerate.
 

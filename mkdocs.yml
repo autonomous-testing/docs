@@ -18,6 +18,9 @@ nav:
       - API key and project UUID: guides/api-keys.md
       - Writing good prompts: concepts/prompting-guidelines.md
       - Pilot projects: pilot-projects.md
+  - First green test:
+      - Test an app behind a login: first-green-test/test-behind-a-login.md
+      - Read your first results: first-green-test/read-your-first-results.md
   - Integrations:
       - Your own tests: visual-testing.md
       - Playwright: playwright-visual-testing.md
@@ -62,6 +65,9 @@ nav:
       - Intent & Scripted Tests: concepts/intent-and-scripted-tests.md
       - Self-Healing: concepts/self-healing.md
       - Verdict Integrity: concepts/verdict-integrity.md
+  - Troubleshooting:
+      - Commander: troubleshooting/commander.md
+      - MCP server: guides/wopee-mcp/troubleshooting.md
   - Reference:
       - GraphQL API: graphql-api.md
       - Glossary: glossary.md
@@ -159,6 +165,9 @@ plugins:
           - "agent-setup/index.md": "set up Wopee.io with your coding agent: the copy line, npx -y @wopee-io/init and its browser pairing, what it changes, prerequisites, manual setup, how the API key stays out of the chat"
           - "guides/api-keys.md": "find WOPEE_PROJECT_UUID and generate WOPEE_API_KEY (More › Settings › API Keys), admin only, shown once, rotation"
           - "glossary.md": "projects, baselines, branches, runs, scenarios, intent-driven and scripted tests, project context, steps, statuses"
+        "First green test":
+          - "first-green-test/test-behind-a-login.md": "give the agent a test account: TESTING_USERNAME and TESTING_PASSWORD under More › Settings › Environment Variables, re-run before a new analysis (free-plan steps), which account, several roles, Take control is not saved, ${TESTING_USERNAME} typed literally, Google/SSO/MFA/magic links (what is not supported), saved session auth.json, API login, Windows sign-in (Kerberos)"
+          - "first-green-test/read-your-first-results.md": "tell a real bug from a test problem or a run with no result: three kinds of red, confirm a bug by hand, fix the test or project context and re-run (not a new analysis), by design, Incomplete, Stopped and the amber ring (verdict gate disagreed, gate codes in plain words), why the first board is red (up to 4 tests picked to catch bugs run first), green tests that only checked the login page"
         "Wopee.io MCP server (AI coding agents)":
           - "guides/wopee-mcp/index.md": "quick start, configuration, environment variables, prompt library, all 15 tools and 3 prompts, how runs work, limits, security, FAQ, comparison with Playwright MCP"
           - "guides/wopee-mcp/first-test.md": "first test from a coding agent with sample tool outputs: inventory (empty and non-empty), dispatch, polling, PASSED, FAILED and INCOMPLETE, Commander, free plan step limit"
@@ -202,6 +211,8 @@ plugins:
           - "guides/project-context.md": "project-wide context read by the test generator and the testing agent: where to paste it (More › Settings › General), paste-ready core and optional template, filled e-shop example, do and don't rules"
           - "guides/http-tools.md": "API calls inside UI tests"
           - "guides/roll-out-enforce.md": "two-week plan from Report only to Enforce: read flagged passes, Enforce on one project, resolve each Incomplete, widen to more projects"
+        "Troubleshooting":
+          - "troubleshooting/commander.md": "every message Commander shows on a new project and a first analysis, quoted exactly, with cause and fix: URL check warnings (not reachable, private network, could not check), project limit and locked projects, Waiting for a live browser session, Agent needs your input, each Crawling failed cause (ran out of time, never started, Starting URL unreachable, Login failed, stopped before it could report), Crawling stopped, Step limit reached, content policy refusal"
         "Optional":
           - "pilot-projects.md": ""
           - "security/enterprise-connectivity.md": "apps behind VPN or firewalls"
@@ -222,6 +233,7 @@ plugins:
         "getting-started.md": "ai-agent.md"
         "bot.md": "ai-agent.md"
         "mcp.md": "guides/wopee-mcp/index.md"
+        "troubleshooting/index.md": "troubleshooting/commander.md"
         "guides/wopee-mcp/windsurf.md": "guides/wopee-mcp/devin-desktop-windsurf.md"
         "guides/wopee-mcp/vscode.md": "guides/wopee-mcp/github-copilot.md"
 
