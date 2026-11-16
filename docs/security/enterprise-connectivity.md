@@ -12,25 +12,9 @@ Connect Wopee.io to applications behind VPN, firewalls, or in secure enterprise 
 
 Allow Wopee.io cloud IPs to access your internal systems.
 
-#### Wopee.io IP Ranges
+#### Wopee.io IP Addresses
 
-**Production IPs** (to be provided by Wopee.io):
-
-```
-# Primary Wopee.io Cloud IPs
-203.0.113.0/24    # Wopee.io Cloud - Primary
-198.51.100.0/24   # Wopee.io Cloud - Secondary
-192.0.2.0/24      # Wopee.io Cloud - Backup
-
-# Regional IPs (if applicable)
-# North America: 203.0.113.0/24
-# Europe: 198.51.100.0/24
-# Asia Pacific: 192.0.2.0/24
-```
-
-!!! caution "IP Addresses"
-
-    The IP ranges above are placeholders. Contact Wopee.io support for actual IP addresses for your region.
+[Contact us](mailto:help@wopee.io) for the current egress IP addresses to allowlist.
 
 ### Option 2: Secure Tunnel (Enterprise Plan)
 
