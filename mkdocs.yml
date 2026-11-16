@@ -14,7 +14,7 @@ nav:
   - Get started:
       - Quickstart: ai-agent.md
       - Agent setup: agent-setup/index.md
-      - Apps on localhost: guides/test-localhost.md
+      - "Can the agent reach your app?": guides/test-localhost.md
       - API key and project UUID: guides/api-keys.md
       - Writing good prompts: concepts/prompting-guidelines.md
       - Pilot projects: pilot-projects.md
@@ -155,7 +155,7 @@ plugins:
       sections:
         "Get started":
           - "ai-agent.md": "create a project, let the AI agent explore your app and generate tests, read the verdicts, schedule a test plan"
-          - "guides/test-localhost.md": "test an app on localhost or in a private network: deployed staging or preview URL (deployment protection), Cloudflare quick tunnel (cloudflared tunnel --url), ngrok and its free-plan warning page, dev-server allowed hosts (Vite, Next.js, webpack), keep the tunnel up for runs, change the project URL (More › Settings › General › Change), test account, security"
+          - "guides/test-localhost.md": "can the agent reach your app: check from outside your network, Commander's URL check messages (The app returned an error or is not reachable; This address is on a private network), Create anyway, Starting URL unreachable; localhost, internal DNS, non-standard port or IP allowlist, Vercel and Netlify deployment protection (Protection Bypass for Automation query parameter), Cloudflare and CAPTCHA test keys, basic auth (BASIC_AUTH_USER, BASIC_AUTH_PASSWORD), API host or store page instead of the app, test only apps you own; deployed staging or preview URL, Cloudflare quick tunnel (cloudflared tunnel --url), ngrok and its free-plan warning page, dev-server allowed hosts (Vite, Next.js, webpack), keep the tunnel up for runs, change the project URL (More › Settings › General › Change), test account, security"
           - "agent-setup/index.md": "set up Wopee.io with your coding agent: the copy line, npx -y @wopee-io/init and its browser pairing, what it changes, prerequisites, manual setup, how the API key stays out of the chat"
           - "guides/api-keys.md": "find WOPEE_PROJECT_UUID and generate WOPEE_API_KEY (More › Settings › API Keys), admin only, shown once, rotation"
           - "glossary.md": "projects, baselines, branches, runs, scenarios, intent-driven and scripted tests, project context, steps, statuses"
