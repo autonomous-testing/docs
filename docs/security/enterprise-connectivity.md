@@ -6,6 +6,10 @@ description: Connect Wopee.io to apps behind VPN or firewalls. Options include I
 
 Connect Wopee.io to applications behind VPN, firewalls, or in secure enterprise environments.
 
+!!! tip "For a quick test"
+
+    To test an app on your machine or in your network once, expose it for the time of the test with a tunnel, or use a deployed staging or preview URL. See [Test an app that runs on localhost](../guides/test-localhost.md). The options below are for permanent access.
+
 ## Connectivity Options
 
 ### Option 1: IP Allowlisting (Recommended)

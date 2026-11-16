@@ -336,7 +336,7 @@ The server also ships three MCP prompts. In Claude Code they appear as slash com
 - **One test case per dispatch below Premium.** On plans below Premium, `wopee_dispatch_agent` takes one test case per call; the agent dispatches them one by one. Several test cases in one call need a Premium or Enterprise plan.
 - **Runs queue.** Runs in a project run one after another unless the project is set to run in parallel.
 - **Usage counts.** Runs started through MCP count toward the plan of the user who created the API key. When the limit is reached, calls return `[USAGE_LIMIT_EXCEEDED]`.
-- **Your app must be reachable from Wopee.io.** The runners are in the cloud, so `localhost` does not work. Use a public or staging URL, or see [Enterprise connectivity](../../security/enterprise-connectivity.md).
+- **Your app must be reachable from Wopee.io.** The runners are in the cloud, so `localhost` does not work. Use a public or staging URL, [expose your local app with a tunnel](../test-localhost.md), or see [Enterprise connectivity](../../security/enterprise-connectivity.md).
 
 ## Team setup
 
@@ -408,7 +408,7 @@ They do different jobs, and many teams use both.
 | --- | --- | --- |
 | What the agent gets | A browser it drives step by step | A testing agent it delegates to |
 | Where the browser runs | On your machine | On Wopee.io's runners |
-| Reaches `localhost` | yes | no, needs a reachable URL |
+| Reaches `localhost` | yes | no, needs a reachable URL ([use a tunnel](../test-localhost.md)) |
 | Tests and history | none kept between chats | kept in your Wopee.io project, shared with your team |
 | Results | page snapshots in the agent's context | a verdict with the agent's report, screenshots and a GitHub issue on request |
 | Cost | free, open source | open-source server; runs use your Wopee.io plan |
@@ -417,7 +417,7 @@ Use Playwright MCP to look at a page or debug a change locally. Use the Wopee.io
 
 ### Can it test my app on localhost?
 
-No. The tests run in the cloud, so the app needs a URL that Wopee.io's runners can reach, such as a staging or preview deployment. For private networks see [Enterprise connectivity](../../security/enterprise-connectivity.md).
+Not directly. The tests run in the cloud, so the app needs a URL that Wopee.io's runners can reach: a staging or preview deployment, or a tunnel that exposes your local app for the time of the test. See [Test an app that runs on localhost](../test-localhost.md). For permanent access to private networks see [Enterprise connectivity](../../security/enterprise-connectivity.md).
 
 ### Is the Wopee.io MCP server free?
 

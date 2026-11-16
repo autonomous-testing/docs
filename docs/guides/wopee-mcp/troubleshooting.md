@@ -2,7 +2,7 @@
 title: Troubleshooting the Wopee.io MCP server
 description: Fix Wopee.io MCP server problems - server not visible until restart, GUI apps without shell environment variables, disabled or untrusted project servers, AUTH_ERROR, Not Authorised!, NETWORK_ERROR, USAGE_LIMIT_EXCEEDED after the first analysis, localhost URLs.
 type: How-to
-updated: 9 November 2026
+updated: 16 November 2026
 ---
 
 # Troubleshooting the Wopee.io MCP server
@@ -85,7 +85,7 @@ The text is an abbreviated example; the numbers and the time are your own. Despi
 
 The testing agent runs in a browser on Wopee.io's cloud runners, not on your machine, so it cannot open `localhost`, `127.0.0.1` or an address in your private network. The analysis or the run fails to load the app.
 
-- Use a URL the runners can reach: a staging or preview deployment.
+- Use a URL the runners can reach: a staging or preview deployment, or a tunnel to your machine (Cloudflare quick tunnel or ngrok). Steps, dev-server settings and the ngrok warning page: [Test an app that runs on localhost](../test-localhost.md).
 - Set the app URL on the project in Commander. The MCP tools cannot pass a URL.
 - For apps behind a VPN or a firewall, see [Enterprise connectivity](../../security/enterprise-connectivity.md).
 

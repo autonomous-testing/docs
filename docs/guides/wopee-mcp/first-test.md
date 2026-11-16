@@ -17,7 +17,7 @@ From the first question to a verdict, in your coding agent's chat. Each step sho
 ## Before you start
 
 - The Wopee.io MCP server is connected: your agent lists the `wopee` server with 15 tools. Not yet? [Let your agent set it up](../../agent-setup/index.md) or follow the [quick start](index.md#quick-start).
-- Your project's app URL is reachable from the internet. The tests run on Wopee.io's cloud runners, so `localhost` does not work.
+- Your project's app URL is reachable from the internet. The tests run on Wopee.io's cloud runners, so `localhost` does not work. Running it locally? [Expose it with a tunnel or use a deployed URL](../test-localhost.md).
 
 !!! warning "Free plan: 50 steps every 5 hours"
 
