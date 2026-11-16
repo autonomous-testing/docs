@@ -4,6 +4,10 @@ description: How Wopee.io analyzes your web app to generate automated tests. Con
 
 # Analysis Process
 
+!!! note "Screenshots from 2025"
+
+    The screenshots on this page show the 2025 analysis screen, and Commander looks different today. For the current first Analysis, see [Getting started](../ai-agent.md). A test account now goes in **More** › **Settings** › **Environment Variables** as `TESTING_USERNAME` and `TESTING_PASSWORD`.
+
 The analysis process transforms your application into a set of actionable, automated tests by systematically exploring its features, identifying user journeys, and generating reliable test cases. This ensures your app is thoroughly understood and tested, while giving you full control to guide and refine each step for maximum relevance and coverage.
 
 Below is a step-by-step overview of how your application is analyzed and how you can influence each phase.
