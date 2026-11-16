@@ -17,6 +17,8 @@ nav:
       - API key and project UUID: guides/api-keys.md
       - Writing good prompts: concepts/prompting-guidelines.md
       - Pilot projects: pilot-projects.md
+  - First green test:
+      - Test an app behind a login: first-green-test/test-behind-a-login.md
   - Integrations:
       - Your own tests: visual-testing.md
       - Playwright: playwright-visual-testing.md
@@ -160,6 +162,8 @@ plugins:
           - "agent-setup/index.md": "set up Wopee.io with your coding agent: the copy line, npx -y @wopee-io/init and its browser pairing, what it changes, prerequisites, manual setup, how the API key stays out of the chat"
           - "guides/api-keys.md": "find WOPEE_PROJECT_UUID and generate WOPEE_API_KEY (More › Settings › API Keys), admin only, shown once, rotation"
           - "glossary.md": "projects, baselines, branches, runs, scenarios, intent-driven and scripted tests, project context, steps, statuses"
+        "First green test":
+          - "first-green-test/test-behind-a-login.md": "give the agent a test account: TESTING_USERNAME and TESTING_PASSWORD under More › Settings › Environment Variables, re-run before a new analysis (free-plan steps), which account, several roles, Take control is not saved, ${TESTING_USERNAME} typed literally, Google/SSO/MFA/magic links (what is not supported), saved session auth.json, API login, Windows sign-in (Kerberos)"
         "Wopee.io MCP server (AI coding agents)":
           - "guides/wopee-mcp/index.md": "quick start, configuration, environment variables, prompt library, all 15 tools and 3 prompts, how runs work, limits, security, FAQ, comparison with Playwright MCP"
           - "guides/wopee-mcp/first-test.md": "first test from a coding agent with sample tool outputs: inventory (empty and non-empty), dispatch, polling, PASSED, FAILED and INCOMPLETE, Commander, free plan step limit"
