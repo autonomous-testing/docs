@@ -42,7 +42,9 @@ Tested on 27 October 2026 with `wopee-mcp` 1.32.0: Claude Code, GitHub Copilot i
 
 ## Quick start
 
-Three steps, about five minutes. The example uses Claude Code; the tabs show the same step in other agents.
+**Fastest:** run `npx -y @wopee-io/init@latest` in your repository, or ask your coding agent to ([Set up Wopee.io with your coding agent](../../agent-setup/index.md)). You approve in Commander, and it writes the key to a git-ignored `.env` and adds a key-free `wopee` server for Claude Code, Cursor, VS Code, OpenCode and Codex.
+
+By hand: three steps, about five minutes. The example uses Claude Code; the tabs show the same step in other agents.
 
 ### 1. Get your API key and project UUID
 
