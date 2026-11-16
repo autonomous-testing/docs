@@ -150,11 +150,11 @@ plugins:
 
         The web app is Commander at https://cmd.wopee.io. Project API keys and the project UUID are under More › Settings › API Keys in a project.
 
-        To set up Wopee.io in a coding agent, follow https://wopee.io/agent-setup/prompt.md: show the user the plan first and ask before changing anything.
+        To set up Wopee.io in a coding agent, follow https://wopee.io/agent-setup/prompt.md: show the user the plan first and ask before changing anything. It runs `npx -y @wopee-io/init`, which pairs with Commander in the browser, so never ask the user to paste an API key.
       sections:
         "Get started":
           - "ai-agent.md": "create a project, let the AI agent explore your app and generate tests, read the verdicts, schedule a test plan"
-          - "agent-setup/index.md": "set up Wopee.io with your coding agent: the copy line, what the agent does and changes, prerequisites, manual setup per client, how the API key stays out of the chat"
+          - "agent-setup/index.md": "set up Wopee.io with your coding agent: the copy line, npx -y @wopee-io/init and its browser pairing, what it changes, prerequisites, manual setup, how the API key stays out of the chat"
           - "guides/api-keys.md": "find WOPEE_PROJECT_UUID and generate WOPEE_API_KEY (More › Settings › API Keys), admin only, shown once, rotation"
           - "glossary.md": "projects, baselines, branches, runs, scenarios, intent-driven and scripted tests, project context, steps, statuses"
         "Wopee.io MCP server (AI coding agents)":
