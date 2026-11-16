@@ -67,6 +67,13 @@ How many tests do I have in Wopee.io, and which ones have never run?
 
 Codex calls `wopee_fetch_test_inventory` and lists the analyses and test cases in your project with their latest status. More prompts: [Prompt library](index.md#prompt-library).
 
+## Watch it done
+
+<div class="yt-facade"><a href="https://youtu.be/I3E5c1pg1YY" data-yt="I3E5c1pg1YY" data-title="Codex MCP for Testing: Add a Testing Agent"><img src="https://i.ytimg.com/vi/I3E5c1pg1YY/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"><span class="yt-facade__play">Play: Codex with the Wopee.io MCP server, 5:07</span></a></div>
+
+Codex connects with a project `.codex/config.toml`, lists the tests, writes a new end-to-end test, runs it and reads the result. 5:07. [Video page](https://wopee.io/videos/codex-mcp-testing-agent/){: target="\_blank"}
+{ .wo-video-caption }
+
 ## Troubleshooting
 
 | Problem | Fix |
