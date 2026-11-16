@@ -13,6 +13,13 @@ When your app asks for a sign-in, the testing agent needs a test account. Withou
 
     Create one account for testing, the way you would for a new tester. The agent receives only the variable names. The values are filled in when the run types them, so they stay out of the agent's prompt and out of the generated tests.
 
+## Watch it done
+
+<div class="yt-facade"><a href="https://youtu.be/nOjfrPGru_8" data-yt="nOjfrPGru_8" data-title="Test an app behind a login: give the agent a test account"><img src="https://i.ytimg.com/vi/nOjfrPGru_8/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"><span class="yt-facade__play">Play: give the agent a test account, 1:21</span></a></div>
+
+On the E-shop demo, a test stops at the login because no test account is set. After adding `TESTING_USERNAME` and `TESTING_PASSWORD`, the same test signs in and passes. 1:21. [Short version](https://youtube.com/shorts/CAz74gE4hRc){: target="\_blank"}
+{ .wo-video-caption }
+
 ## Add a test account { #add-a-test-account }
 
 _Also called: credentials, login details, test user, username and password._
