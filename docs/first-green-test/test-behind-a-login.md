@@ -144,7 +144,7 @@ The cloud runners at [cmd.wopee.io](https://cmd.wopee.io) cannot reach your doma
 
 ## Related topics
 
-- [Read your first results](https://docs.wopee.io/first-green-test/read-your-first-results/)
+- [Read your first results](read-your-first-results.md)
 - [Variables](../concepts/intent-and-scripted-tests.md#variables)
 - [Project context](../guides/project-context.md)
 - [Browser local storage](../guides/browser-local-storage.md)
