@@ -61,6 +61,9 @@ nav:
       - Intent & Scripted Tests: concepts/intent-and-scripted-tests.md
       - Self-Healing: concepts/self-healing.md
       - Verdict Integrity: concepts/verdict-integrity.md
+  - Troubleshooting:
+      - Commander: troubleshooting/commander.md
+      - MCP server: guides/wopee-mcp/troubleshooting.md
   - Reference:
       - GraphQL API: graphql-api.md
       - Glossary: glossary.md
@@ -200,6 +203,8 @@ plugins:
           - "guides/project-context.md": "project-wide context read by the test generator and the testing agent: where to paste it (More › Settings › General), paste-ready core and optional template, filled e-shop example, do and don't rules"
           - "guides/http-tools.md": "API calls inside UI tests"
           - "guides/roll-out-enforce.md": "two-week plan from Report only to Enforce: read flagged passes, Enforce on one project, resolve each Incomplete, widen to more projects"
+        "Troubleshooting":
+          - "troubleshooting/commander.md": "every message Commander shows on a new project and a first analysis, quoted exactly, with cause and fix: URL check warnings (not reachable, private network, could not check), project limit and locked projects, Waiting for a live browser session, Agent needs your input, each Crawling failed cause (ran out of time, never started, Starting URL unreachable, Login failed, stopped before it could report), Crawling stopped, Step limit reached, content policy refusal"
         "Optional":
           - "pilot-projects.md": ""
           - "security/enterprise-connectivity.md": "apps behind VPN or firewalls"
@@ -220,6 +225,7 @@ plugins:
         "getting-started.md": "ai-agent.md"
         "bot.md": "ai-agent.md"
         "mcp.md": "guides/wopee-mcp/index.md"
+        "troubleshooting/index.md": "troubleshooting/commander.md"
         "guides/wopee-mcp/windsurf.md": "guides/wopee-mcp/devin-desktop-windsurf.md"
         "guides/wopee-mcp/vscode.md": "guides/wopee-mcp/github-copilot.md"
 
