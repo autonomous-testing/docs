@@ -18,7 +18,7 @@ You land on the **Projects** page. Every app you test lives here as one project.
 ## 2. Create a project and start the first Analysis
 
 1. Click **NEW PROJECT**.
-2. Paste the URL of your app, or pick a demo (**E-shop demo**, **Website demo** or **Banking demo**). The demos come with test instructions already filled in.
+2. Paste the URL of your app, or pick a demo (**E-shop demo**, **Website demo** or **Banking demo**). The demos come with test instructions already filled in. The agent runs in the cloud, so the URL must open from the internet. App on `localhost`? [Expose it with a tunnel or use a deployed URL](guides/test-localhost.md).
 3. Under **Test instructions**, describe in plain English what matters to you, including any test credentials. For example: _Log in with the test account, add an item to the cart, complete the purchase, and verify the "Thank you" message._ You can leave it empty and let the agent decide.
 4. Click **Create project and generate tests**.
 

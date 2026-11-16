@@ -28,7 +28,7 @@ The command configures Claude Code, Cursor, GitHub Copilot in VS Code, OpenAI Co
     https://cmd.wopee.io/signup?url=<your-app-url>
     ```
 
-    The app must be reachable from the internet, because the tests run on Wopee.io's cloud runners. `localhost` does not work.
+    The app must be reachable from the internet, because the tests run on Wopee.io's cloud runners. `localhost` does not work: [expose it with a tunnel or use a deployed URL](../guides/test-localhost.md).
 
 - **Project admin rights.** Only project admins can approve the pairing, because it creates a project API key. See [Find your API key and project UUID](../guides/api-keys.md).
 - **An agent that runs local (stdio) MCP servers.** Web-only chat apps cannot use the server.
