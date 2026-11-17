@@ -378,17 +378,12 @@ While a tunnel runs, anyone with the URL can open your app. The ngrok free dev d
 | The browser asks for a username and password before any page | HTTP basic auth | Set `BASIC_AUTH_USER` and `BASIC_AUTH_PASSWORD` ([basic auth](#basic-auth)) |
 | JSON, an API description or a 404 | The project URL is an API host | [Use the app's address](#api-host) |
 
-<!--
-VIDEO EMBED: add once the explainer is public on YouTube and the website PR that adds wopee.io/videos/<slug>/ has merged (same pattern as docs/guides/wopee-mcp/codex.md).
-Uncomment, replace <ID>, <title>, <m:ss> and <slug>, and add the link to "More walkthroughs" in docs/index.md.
-
 ## Watch it done
 
-<div class="yt-facade"><a href="https://youtu.be/<ID>" data-yt="<ID>" data-title="<title>"><img src="https://i.ytimg.com/vi/<ID>/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"><span class="yt-facade__play">Play: Test an app on localhost with a tunnel, <m:ss></span></a></div>
+<div class="yt-facade"><a href="https://youtu.be/2xLDkZYCiWE" data-yt="2xLDkZYCiWE" data-title="How to test localhost with a cloud testing agent"><img src="https://i.ytimg.com/vi/2xLDkZYCiWE/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"><span class="yt-facade__play">Play: test an app on localhost with a tunnel, 2:00</span></a></div>
 
-A local app gets a public address with one command, and Wopee.io's agent analyzes it. <m:ss>. [Video page](https://wopee.io/videos/<slug>/){: target="\_blank"}
+A local app gets a public address with one command, and Wopee.io's agent analyzes it. 2:00.
 { .wo-video-caption }
--->
 
 ## Related pages
 
