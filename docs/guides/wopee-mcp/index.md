@@ -359,7 +359,7 @@ The server also ships three MCP prompts. In Claude Code they appear as slash com
 - **Keep keys out of prompts, chats and committed files.** Use environment variables, your client's secret input or a secret manager.
 - **Rotate a key** by generating a new one under **API Keys** and deleting the old one under **Existing keys**.
 - **Review write tools.** The server tells your client which tools only read and which change something, but it does not ask for confirmation itself. Keep your client's tool approval on for tools that dispatch runs, generate tests, change artifacts or variables, or create issues.
-- **Treat results as data.** Test reports, artifacts, variables and chat history can hold text from your app, from web pages or from other people. Since version 1.39.0, the server returns this stored data between marker lines, removes invisible characters and tells the agent not to follow instructions in it.
+- **Treat results as data.** Test reports, artifacts, variables and chat history can hold text from your app, from web pages or from other people. Since version 1.39.1, the server returns this stored data between marker lines, removes invisible characters and tells the agent not to follow instructions in it.
 - **Know what marking cannot do.** It lowers the risk of prompt injection but cannot remove it: a model can still be misled by text it reads. Setup checks and run confirmations are cleaned but not marked, and they can include project and suite names. Check what an agent proposes before you approve a change.
 - **What leaves your machine.** The server sends only the tool arguments to the Wopee.io API: identifiers, instructions, variables and content your agent chooses to upload. It does not read your repository by itself.
 
