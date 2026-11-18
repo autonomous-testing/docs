@@ -183,7 +183,7 @@ plugins:
           - "guides/wopee-mcp/visual-studio.md": "GitHub Copilot in Visual Studio 2026 and 2022 17.14+"
           - "guides/wopee-mcp/other-clients.md": "Zed, Cline, Kilo Code, Warp, Kiro, Goose, Continue, Augment, Claude Desktop"
         "Concepts":
-          - "concepts/analysis-process.md": "how Wopee.io analyzes a web app and generates tests"
+          - "concepts/analysis-process.md": "how an analysis explores a web app and generates tests, in the analysis workspace (default) and the legacy analysis view; switching views, live agent, generating, running and publishing scenarios"
           - "concepts/analysis-inputs.md": "Jira stories, Figma designs and crawl data as inputs"
           - "concepts/prompting-guidelines.md": "writing goals, scope and constraints for test generation"
           - "concepts/tools-and-assertions.md": "what the testing agent does in the browser"

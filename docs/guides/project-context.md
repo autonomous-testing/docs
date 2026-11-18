@@ -301,7 +301,7 @@ The field has no character limit, but the whole text goes to the AI with every g
 | --- | --- | --- |
 | Shared rules, roles, test data rules, never-do rules, description format | **Project context** | Every analysis, every generation, every run |
 | What the app shows: features, values, prices on screen | **Application description** (Variables & Knowledge) | One analysis; every generation, and sent to the agent as application context on every run |
-| Background for one analysis, such as how to sign in or navigate | The analysis's **Instructions** (next to **Project URL** in the analysis inputs) | One analysis; sent to the agent on every run as supplementary background, used only when the test needs it |
+| Background for one analysis, such as how to sign in or navigate | The analysis's **Instructions** (next to **Project URL** in step 1 of the [legacy analysis view](../concepts/analysis-process.md#legacy-inputs)) | One analysis; sent to the agent on every run as supplementary background, used only when the test needs it |
 | A focus for one generation, e.g. "add coverage for checkout with an expired card" | **Additional instructions** in **Generate scenarios** | One analysis; saved and sent with every generation in it, not to runs |
 | Know-how the agent applies during runs | **Skills** (Variables & Knowledge) | See [Self-Healing](../concepts/self-healing.md) |
 | A check that must hold for one test | The test's **Description** | One test |

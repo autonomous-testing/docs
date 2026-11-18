@@ -1,109 +1,231 @@
 ---
-description: How Wopee.io analyzes your web app to generate automated tests. Configure crawling and review scenarios.
+description: How a Wopee.io analysis explores your web app and turns it into tests, in the analysis workspace and in the legacy analysis view. Start an analysis, steer the live agent, edit the application description and user flows, generate, run and publish scenarios.
 ---
 
 # Analysis Process
 
-!!! note "Screenshots from 2025"
+An analysis is where the testing agent explores your app and turns what it finds into tests you can run. Every analysis goes through the same stages:
 
-    The screenshots on this page show the 2025 analysis screen, and Commander looks different today. For the current first Analysis, see [Getting started](../ai-agent.md). A test account now goes in **More** › **Settings** › **Environment Variables** as `TESTING_USERNAME` and `TESTING_PASSWORD`.
+1. **Crawl.** The agent opens your project URL in a real browser, clicks through the app and captures screenshots and HTML.
+2. **Application description.** From what the agent saw, Wopee.io writes a description of the app: its features, key pages and the values it shows.
+3. **User flows.** The description becomes user flows, written as user stories with acceptance criteria.
+4. **Scenarios.** Each user story becomes one or more scenarios (test cases) with their steps.
+5. **Runs.** The agent runs the scenarios against your app and reports a verdict for each: Passed, Failed or Incomplete. See [Verdict Integrity](verdict-integrity.md).
 
-The analysis process transforms your application into a set of actionable, automated tests by systematically exploring its features, identifying user journeys, and generating reliable test cases. This ensures your app is thoroughly understood and tested, while giving you full control to guide and refine each step for maximum relevance and coverage.
+Each stage builds on the one before. You can edit the application description and the user flows, and generate scenarios again, without crawling again.
 
-Below is a step-by-step overview of how your application is analyzed and how you can influence each phase.
+Commander has two views of the same analyses:
 
-## New Analysis
+- **[The analysis workspace](#analysis-workspace)**, the default view. One screen with the live agent, the scenario board and the analysis overview.
+- **[The legacy analysis view](#legacy-analysis)**, a stepper with four steps: **1. Inputs**, **2. Application Description**, **3. User Stories**, **4. Test Cases**. It has a few options the workspace does not, such as crawl instructions, uploaded screenshots and publishing tests to Git.
 
-![New analysis](../img/analysis/2025-04-16_04-39.webp){ width="2880" height="1800" }
+## Switch between the two views { #switch-views }
 
-Before starting the analysis, you can tailor how source data is collected and provide specific instructions for the crawler:
+Both views show the same analyses, user flows, scenarios and runs. An analysis started in one view opens in the other.
 
-**Screenshot Input Options:**
+- **To the legacy view:** hover **Analysis** in the top bar and choose **Legacy analysis**.
+- **Back to the workspace:** hover **Analysis** and choose **New analysis**.
 
-- **Automatically capture screenshots** (recommended for a fresh start): The system explores your app and collects new screenshots and HTML.  
-  _The project URL is displayed for confirmation._
-- **Use existing test results:** Select a previous test suite to reuse its data (option enabled when suites are available).
-- **Manually upload screenshots:** Upload your own screenshots and relevant HTML files for analysis.
+![The Analysis menu with Legacy analysis](../img/concepts/analysis-process/switch-to-legacy.webp){ width="1000" height="280" loading="lazy" }
 
-**Testing Instructions:**
+Commander remembers your choice for each project, in this browser. On another browser or computer, the project opens in the default view again. Some installations open the legacy view by default; the menu switches both ways there too.
 
-- **Login Credentials:** Provide a username and password to be used if a login screen appears.
-- **Cookies Consent:** Specify your cookies preference for handling consent dialogs.
-- **Pre-Test Actions:** Add any additional instructions or steps that should be performed before each test (e.g., setup actions, navigation, or configuration).
+### Which view do you need? { #which-view }
 
-Once you’ve configured these options, you can start the analysis or cancel to return to the previous screen.
+| You want to | Workspace | Legacy view |
+| --- | --- | --- |
+| Watch the agent explore, take control, answer its questions | Yes, in the **Live** stage | Yes, with **Run interactively** |
+| Crawl without a live view | No | Yes, with **Run analysis** |
+| Give the crawl written instructions for this analysis | No, use the [project context](../guides/project-context.md) | Yes, in **Instructions** |
+| Generate tests from an earlier crawl or from uploaded screenshots and HTML | No | Yes, **Previous executions** or **Manual upload** |
+| Edit the application description and user flows | Yes | Yes, with version history |
+| Generate scenarios with extra instructions | Yes | Yes |
+| Write a scenario by hand | Yes, **+ New test** | Yes, **Add test case** |
+| See the results of an analysis at a glance | Yes, in **Overview** | No |
+| Publish tests to Git (push or pull request) | No | Yes, **Publish tests** |
+| Download or upload test cases as JSON | No | Yes |
 
-## 1. Collecting Input Data
+## The analysis workspace { #analysis-workspace }
 
-**What Happens:**
+The workspace has three columns:
 
-- ✅ **Automated Exploration:** The AI interacts with your app via the provided URL, following your instructions and using any credentials you supply.
-- 📸 **Data Capture:** Screenshots and HTML are collected after each interaction step.
+- **The analysis list**, collapsed to a narrow rail. Click an analysis ID (such as `A001`) to open it, or expand the rail for **+ New analysis**, **Search** and each analysis's ⋮ menu (**Stop**, **Rename**, **Duplicate**, **Delete**).
+- **The analysis**: its name, **Overview**, the **Scenarios** board and **Variables & Knowledge**.
+- **The detail panel** on the right: the live browser, the overview, a scenario's steps or a run's report.
 
-**Duration:** 5–15 minutes (or ~1 minute if using previous results or manual uploads)
+![The analysis workspace with the overview of a finished analysis](../img/concepts/analysis-process/workspace-overview.webp){ width="1440" height="900" loading="lazy" }
 
-**Why it matters:**  
-Accurate data collection ensures targeted and reliable testing.
+### Start an analysis { #workspace-start }
 
-**Your Options:**
+1. Expand the analysis list and click **+ New analysis**. Commander creates an empty analysis named `Analysis - A00x` straight away.
+2. In **How do you want to start this analysis?**, choose **Create tests with AI**, or press `1`. The crawl starts at once.
 
-- ⚡ **Reuse Results:** Use data from previous test runs to speed up analysis.
-- 📤 **Manual Upload:** Upload your own screenshots and HTML for immediate analysis.
+![How do you want to start this analysis?](../img/concepts/analysis-process/workspace-start.webp){ width="1440" height="900" loading="lazy" }
 
-## 2. Analyzing Collected Data
+The workspace has no form before the crawl. The agent starts at the project URL and uses the project's variables. So before you start:
 
-**What Happens:**
+- **Check the project URL** in the project settings, and that the agent can reach it: [Can the agent reach your app?](../guides/test-localhost.md)
+- **Add a test account** if the app has a sign-in: `TESTING_USERNAME` and `TESTING_PASSWORD`, see [Test an app behind a login](../first-green-test/test-behind-a-login.md).
+- **Put lasting rules in the [project context](../guides/project-context.md)**: how to sign in, cookie banners, areas to stay out of. The agent reads it on every crawl and run.
 
-- 🔍 **Automated Analysis:** The system examines screenshots and HTML to detect features and areas of interest.
-- 📝 **Document Generation:** A structured document is created, summarizing key areas for testing.
+!!! note "Free plan"
+    On the free plan, a crawl uses the testing agent's steps. Only your first analysis is free. See the note at the top of [Troubleshooting: Commander](../troubleshooting/commander.md).
 
-**Duration:** 1–2 minutes
+### Watch and steer the live agent { #workspace-live }
 
-**Why it matters:**  
-A clear, well-structured document leads to precise and effective test coverage.
+While the agent explores, the **Live** stage streams its browser. The live steps show what it is doing, for example Exploring, Following direction, Needs input, Building scenarios or Generating tests.
 
-**Your Actions:**
+- **Take control** pauses the agent after its current action and hands you the browser, for example to solve a CAPTCHA or enter a one-time code. Click **Hand back to agent** or **Resume agent** when you are done, and add a note if the agent should know what you did.
+- **Agent needs your input** appears when the agent asks a question. Answer it in the chat, or pick one of the suggested answers.
+- You can write to the agent at any time, for example to point it to a part of the app it missed.
 
-- ✏️ **Edit Document:** Refine, expand, or clarify the generated document as needed.
-- 🔄 **Regenerate Document:** Restart the analysis to incorporate new instructions or reset changes.
+!!! warning "No passwords in the chat"
+    Type passwords in the browser, or save them as variables. Never send them in the chat.
 
-## 3. Identifying User Journeys
+What you do in the live browser helps only this crawl. Every later run starts in a fresh browser.
 
-**What Happens:**
+### What gets generated { #workspace-generation }
 
-- 🗺️ **Scenario Detection:** Realistic user journeys are identified based on your app’s structure.
-- 📖 **User Story Generation:** Scenarios are written as user stories:  
-  _As a [role], I want to [action], so I can [goal]._
+When the agent has finished exploring, Wopee.io generates, in this order:
 
-**Duration:** 1–2 minutes
+- **Application description**
+- **User flows**
+- **Scenarios**
+- **Steps** for each scenario
 
-**Why it matters:**  
-Relevant user stories ensure meaningful and comprehensive test coverage.
+**Overview** shows each one as Queued, Generating…, Ready, Failed or Skipped. Scenarios usually take 20 to 35 seconds per user story.
 
-**Your Actions:**
+After the crawl, up to 4 scenarios run straight away: up to 3 that are most likely to find a bug, plus one main flow the agent completed while exploring. The others wait under **NOT RUN**. See [Read your first results](../first-green-test/read-your-first-results.md).
 
-- ✏️ **Edit Stories:** Adjust roles, actions, or goals, or add/remove stories as needed.
-- 🔄 **Regenerate Stories:** Generate new stories based on your updated instructions.
+### Overview { #workspace-overview }
 
-## 4. Creating Test Cases
+Click **Overview** to see the analysis at a glance:
 
-**What Happens:**
+- **The crawl status**: Crawling, Generating, Crawled or the crawl's verdict. Click it to open the crawl's report and logs.
+- **The counters**: **Scenarios**, **Passed**, **Incomplete**, **Failed**, **Running / queued** and **Not run**.
+- **Re-run crawl** explores the app again and refreshes the screenshots and the report. Your scenarios, their steps and their run history are kept.
+- **Stop analysis** and **Stop scenario runs** stop the crawl or the queued runs.
+- **Generate scenarios**, described below.
 
-- 🚦 **Test Generation:** Each user story is converted into executable test cases, including detailed steps and element locators.
-- 🛠️ **Test Automation:** Choose between:
-  - **Direct Mode:** Fast code generation without live execution (10–30 seconds per test).
-  - **Agent Mode:** An interactive AI performs the scenario live for highly reliable code (5–10 minutes per test).
+### Generate scenarios { #workspace-generate-scenarios }
 
-**Duration:** Varies by mode and number of scenarios
+Open **Generate scenarios** on the overview to write new scenarios or improve the existing ones:
 
-**Why it matters:**  
-Well-structured tests lead to dependable and actionable results.
+- **Scope:** **Every user story**, or the user stories you pick.
+- **Additional instructions:** a focus for this generation, for example "add coverage for checkout with an expired card". They are saved for this analysis and sent with every later generation in it.
+- **Keep existing scenarios** (on by default): the generator evolves the current scenarios. They keep their steps and run history unless your instructions name them. Turn it off to replace all scenarios in the scope; Commander asks you to confirm.
+- **Rebuild the story outline** rebuilds the list of user stories and scenario titles from the application description.
 
-**Your Actions:**
+Click **Generate scenarios**. The card shows how many stories it writes and roughly how long it takes.
 
-- ✏️ **View/Edit:** Inspect and adjust test details, steps, or generated code.
-- ✨ **Generate Code:** Create executable tests in your preferred mode.
-- ▶️ **Run Tests:** Execute tests immediately to validate functionality.
-- 💾 **Save to Git:** Store finalized scenarios and code in your connected Git repository.
-- ➕ **Add New:** Create additional user stories or test cases as needed.
-- 🔄 **Regenerate:** Refresh scenarios or code based on new instructions.
+### Variables & Knowledge { #workspace-knowledge }
+
+**Variables & Knowledge** sits below the scenario board.
+
+- **Variables:** click **Edit** to set variables for this analysis only. A variable with the same name as a project variable overrides it. The built-in ones are `TESTING_USERNAME`, `TESTING_PASSWORD`, `WOPEE_DEVICE` and `WOPEE_BROWSER`. You can also upload an **Authentication (auth.json)** file, see [Browser local storage](../guides/browser-local-storage.md).
+- **Application description** and **User flows** open in the panel on the right. Edit, copy or download them, or click **Regenerate**. A regenerated text replaces your edits; Commander keeps the previous version in this browser, so you can click **Restore previous version** right after.
+- **Project context** and **Skills** open the project settings.
+
+![The application description in Variables & Knowledge](../img/concepts/analysis-process/workspace-knowledge.webp){ width="1440" height="900" loading="lazy" }
+
+Generated scenarios take concrete values such as prices and limits from the application description first. After you change values there, generate the scenarios again.
+
+### Scenarios and runs { #workspace-scenarios }
+
+The **Scenarios** board groups the scenarios of the analysis into **RUNNING NOW**, **QUEUED**, **NOT RUN** and **COMPLETED**. The **Initial crawl** card is the crawl itself.
+
+- **Run a scenario:** click ▶ on its card, or open it and click **Run**. Interactive mode is on, so you can watch the run live. If the scenario has no steps yet, **Save steps from this run** stores the steps the agent takes.
+- **Read a result:** open a scenario. **Test Runs** lists its runs; each has a **Report** with the verdict and every step, **Steps**, **Playwright report** and **Logs**. See [Read your first results](../first-green-test/read-your-first-results.md).
+- **Edit steps:** in **Steps**, click **Edit**, change the steps and click **Save**.
+- **Write a scenario by hand:** click **+ New test**, give it a name and a description, click **Create** and add its steps. Hand-written scenarios are filed under the user story "Manually added scenarios".
+
+![A scenario's report in the workspace](../img/concepts/analysis-process/workspace-scenario-report.webp){ width="1440" height="900" loading="lazy" }
+
+Your edits are saved to the project's repository. To run the scenarios outside Commander, see [Run in CI](../ci/index.md).
+
+## The legacy analysis view { #legacy-analysis }
+
+The legacy view takes you through an analysis in four steps. Open it with **Analysis** › **Legacy analysis**. The left column lists the analyses, with **New analysis**, **Search** and a selection menu to stop, duplicate or delete several at once.
+
+Every step has an ⓘ icon with a short description. Move between steps with the step names at the top or the buttons at the bottom.
+
+### 1. Inputs { #legacy-inputs }
+
+Click **New analysis**. Commander creates an empty analysis and opens **1. Inputs**.
+
+![Step 1. Inputs of the legacy view](../img/concepts/analysis-process/legacy-inputs.webp){ width="1440" height="900" loading="lazy" }
+
+**The side panel** on the left holds the analysis settings:
+
+- **Name** of the analysis.
+- **Variables:** the project variables (read only) and the variables for this analysis. Fill in `TESTING_USERNAME` and `TESTING_PASSWORD` here to sign in with a different test account than the project's, and `WOPEE_DEVICE` and `WOPEE_BROWSER` to pick the device and browser. **Add variable** adds your own. Click **Save**.
+- **Authentication (auth.json):** a saved browser session, see [Browser local storage](../guides/browser-local-storage.md).
+
+**Select data source** decides where the screenshots and HTML for the analysis come from:
+
+- **AI agent** (the default): the agent crawls your app.
+    - **Project URL** shows where it starts. To change it, edit the project settings.
+    - **Instructions** tell the agent what it needs for this analysis: setup before each test such as signing in or accepting cookies, rules and quirks of the app, and the main user flow to cover. The agent also receives them on every run of this analysis.
+    - **Run analysis** crawls in the background, without a live view.
+    - **Run analysis** ▾ › **Run interactively** opens the **Live Cockpit**: you watch the agent's browser, can **Take control** and **Resume agent**, and send it messages. Click **Done** to end it. Only an interactive crawl runs the first scenarios automatically when it ends.
+- **Previous executions:** reuse the screenshots and results of an earlier crawl. Choose it in **Select a suite** and click **Analyze existing**. Available once the project has a crawled analysis.
+- **Manual upload:** upload screenshots (`.png`) and the matching HTML (`.html`), for example mockups or Figma exports, and click **Upload & analyze**.
+
+After the crawl, step 1 shows the screenshots and the agent's report. **Re-run analysis** drops the screenshots and captures new ones; the existing test cases are not affected.
+
+### 2. Application Description { #legacy-application-description }
+
+The description of your app, generated from the screenshots and HTML.
+
+![Step 2. Application Description of the legacy view](../img/concepts/analysis-process/legacy-application-description.webp){ width="1440" height="900" loading="lazy" }
+
+- **Edit**, copy or download it. Clear wording and correct values here lead to better user stories and test cases.
+- **Regenerate** writes it again from the crawl data and overwrites your edits; Commander asks you to confirm.
+- **Version history:** every change is a commit in the project's repository. Pick an earlier version, compare it with the current one and click **Restore this version** to go back.
+
+### 3. User Stories { #legacy-user-stories }
+
+The user flows of your app, written as user stories (_As a [role], I want to [action], so I can [goal]_) with acceptance criteria.
+
+- **Edit** the stories to change roles, actions or goals, or to add and remove stories.
+- Open the side drawer for **Additional instructions**, for example "focus on the checkout and account flows", and click **Regenerate**. Regenerating overwrites the current stories; Commander asks you to confirm.
+- The same version history as in step 2.
+
+### 4. Test Cases { #legacy-test-cases }
+
+The test cases, grouped by category and user story.
+
+![Step 4. Test Cases of the legacy view](../img/concepts/analysis-process/legacy-test-cases.webp){ width="1440" height="900" loading="lazy" }
+
+**Generate test cases.** Open the side drawer:
+
+- **Scope:** **Every user story**, or the user stories you pick.
+- **Additional instructions:** a focus for this generation. They are saved for this analysis and sent with every generation in it.
+- **Keep existing test cases** (on by default once test cases exist): evolve the current test cases instead of replacing them. Commander asks before it replaces them.
+- **Generate test cases** writes the test cases; the drawer shows how many stories it writes and roughly how long it takes.
+- **Rebuild the story outline** rebuilds the list of user stories and test case titles from the application description.
+
+With no test cases yet, the step offers **Generate test cases**, **Add user story** and **Upload JSON**.
+
+**Edit and organise.** Each user story has **Edit user story**, **Delete user story** and **Add test case**. Each test case has a ⋮ menu with **Edit**, **Duplicate**, **Delete** and **Stop/Dequeue**.
+
+**Run.** Click ▶ next to a test case, or select several and click **Run tests**. The run dialog has two switches:
+
+- **Save steps from this run** (on): when the test case has no steps yet, the agent's steps are saved to it.
+- **Interactive mode** (off): watch the run live and take control.
+
+The selection menu next to **Run tests** also has **Re-run test cases via code**, which replays the generated Playwright code instead of the agent, **Generate steps**, **Stop/Dequeue**, **Duplicate** and **Delete**. **Stop queue** stops every queued run.
+
+**Publish to Git.** Open the ⋮ menu at the top right:
+
+- **Publish tests** commits the test cases to the project's repository. Only test cases that have generated code and a finished run can be published; run the others first. Choose **Push** or **Pull request** and the **Target branch**, and click **Publish**.
+- **Download JSON** and **Upload JSON** export or import the test cases.
+
+The history icon at the top right lists earlier versions of the test cases, which you can restore.
+
+## Related
+
+- [Analysis - Inputs](analysis-inputs.md): user stories, Jira and Figma as inputs for test generation
+- [Project context](../guides/project-context.md): rules every analysis and run follows
+- [Intent & Scripted Tests](intent-and-scripted-tests.md): how a scenario's description and steps are used in a run
+- [Troubleshooting: Commander](../troubleshooting/commander.md): failed crawls and other messages
