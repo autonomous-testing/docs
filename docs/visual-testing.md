@@ -4,6 +4,8 @@ description: Add Wopee.io visual checks to the tests you already have in Playwri
 
 # Visual testing with your own tests
 
+--8<-- "repo-setup-callout.md"
+
 Keep your tests in your framework and add visual checks to them. At the points you choose, your test sends a screenshot to Wopee.io. Wopee.io compares it with the approved baseline, and you approve or reject every difference in [Commander](https://cmd.wopee.io){: target="\_blank"}.
 
 | Framework | Package | Guide |

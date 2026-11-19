@@ -15,18 +15,18 @@ Pick a path. Every card leads to the page that finishes the job.
 
 <div class="grid cards wo-cards" markdown>
 
+- :material-console:{ .lg } **[Set up my repository](agent-setup/index.md)**
+
+    Run `npx -y @wopee-io/init@latest` in your repository, or ask your coding agent to. After you approve in Commander, it connects the Wopee.io MCP server to Claude Code, GitHub Copilot, Cursor, Codex and OpenCode.
+
+    Coding agents
+    { .wo-meta }
+
 - :material-rocket-launch:{ .lg } **[Run my first test](ai-agent.md)**
 
     Sign in, create a project, let the agent explore your app and read the verdicts.
 
     5 min · Quickstart
-    { .wo-meta }
-
-- :material-console:{ .lg } **[Use it from my coding agent](guides/wopee-mcp/index.md)**
-
-    The MCP server connects Claude Code, GitHub Copilot, Cursor, OpenCode and other agents to your project.
-
-    5 min · MCP
     { .wo-meta }
 
 - :material-puzzle:{ .lg } **[Add it to my existing tests](visual-testing.md)**

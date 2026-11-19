@@ -8,6 +8,8 @@ steps: true
 
 # Cypress
 
+--8<-- "repo-setup-callout.md"
+
 Add visual checks to your existing Cypress tests with the `@wopee-io/wopee.cy` plugin. Each `cy.wopeeTrack()` sends a screenshot to Wopee.io, which compares it with the approved baseline. You review the differences in Commander and approve or reject them.
 
 This page walks through a complete example on [Sauce Demo](https://www.saucedemo.com){: target="\_blank"}: two screenshots, a first run that creates the baselines, and a second run that catches a visual bug. Verified with `@wopee-io/wopee.cy` 4.13.1 and Cypress 16.2.0. Prefer a ready project? Start from the [template project](02-template-project.md).

@@ -157,12 +157,12 @@ plugins:
 
         The web app is Commander at https://cmd.wopee.io. Project API keys and the project UUID are under More › Settings › API Keys in a project.
 
-        To set up Wopee.io in a coding agent, follow https://wopee.io/agent-setup/prompt.md: show the user the plan first and ask before changing anything. It runs `npx -y @wopee-io/init`, which pairs with Commander in the browser, so never ask the user to paste an API key.
+        To set up Wopee.io testing for a repository, run `npx -y @wopee-io/init@latest` from the repository root. A coding agent can run it itself: it asks no questions, prints a link and three pairing words for the user to approve in Commander, and writes the key to a git-ignored `.env`, so never ask the user to paste an API key. Guided setup for coding agents: https://wopee.io/agent-setup/prompt.md. The packages `@wopee-io/wopee.pw`, `@wopee-io/wopee.cy`, `@wopee-io/wopee.wdio` and `wopee_rf` add visual checks to existing tests.
       sections:
         "Get started":
           - "ai-agent.md": "create a project, let the AI agent explore your app and generate tests, read the verdicts, schedule a test plan"
           - "guides/test-localhost.md": "can the agent reach your app: check from outside your network, Commander's URL check messages (The app returned an error or is not reachable; This address is on a private network), Create anyway, Starting URL unreachable; localhost, internal DNS, non-standard port or IP allowlist, Vercel and Netlify deployment protection (Protection Bypass for Automation query parameter), Cloudflare and CAPTCHA test keys, basic auth (BASIC_AUTH_USER, BASIC_AUTH_PASSWORD), API host or store page instead of the app, test only apps you own; deployed staging or preview URL, Cloudflare quick tunnel (cloudflared tunnel --url), ngrok and its free-plan warning page, dev-server allowed hosts (Vite, Next.js, webpack), keep the tunnel up for runs, change the project URL (More › Settings › General › Change), test account, security"
-          - "agent-setup/index.md": "set up Wopee.io with your coding agent: the copy line, npx -y @wopee-io/init and its browser pairing, what it changes, prerequisites, manual setup, how the API key stays out of the chat"
+          - "agent-setup/index.md": "set up Wopee.io testing for a repository with your coding agent: npx -y @wopee-io/init@latest and its browser pairing, the copy line, what it changes, prerequisites, manual setup, how the API key stays out of the chat"
           - "guides/api-keys.md": "find WOPEE_PROJECT_UUID and generate WOPEE_API_KEY (More › Settings › API Keys), admin only, shown once, rotation"
           - "glossary.md": "projects, baselines, branches, runs, scenarios, intent-driven and scripted tests, project context, steps, statuses"
         "First green test":

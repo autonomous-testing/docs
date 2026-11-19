@@ -15,19 +15,19 @@
       <p class="wo-home-hero__lead">Point the agent at your app's URL, read the verdict, and keep the tests in a Git repository you can open, diff and roll back. Everything from sign-in to CI.</p>
       <div class="wo-home-hero__cta">
         <a class="md-button md-button--primary" href="{{ 'ai-agent/' | url }}">Start the 5-minute quickstart</a>
-        <a class="md-button" href="{{ 'guides/wopee-mcp/' | url }}">Connect your coding agent (MCP)</a>
+        <a class="md-button" href="{{ 'agent-setup/' | url }}">Set up your repository</a>
       </div>
       <div class="wo-home-term">
         <div class="wo-home-term__bar">
-          <span>Add Wopee.io to Claude Code</span>
-          <button type="button" class="wo-home-term__copy" data-clipboard-text="claude mcp add --scope project wopee -e 'WOPEE_API_KEY=${WOPEE_API_KEY}' -e 'WOPEE_PROJECT_UUID=${WOPEE_PROJECT_UUID}' -- npx -y wopee-mcp" aria-label="Copy the claude mcp add command">Copy</button>
+          <span>Set up Wopee.io testing for a repository</span>
+          <button type="button" class="wo-home-term__copy" data-clipboard-text="npx -y @wopee-io/init@latest" aria-label="Copy the setup command">Copy</button>
         </div>
-<pre><code><span class="c"># in your repository, with WOPEE_API_KEY and WOPEE_PROJECT_UUID exported</span>
-<span class="k">claude</span> mcp add --scope project wopee -e <span class="s">'WOPEE_API_KEY=${WOPEE_API_KEY}'</span> -e <span class="s">'WOPEE_PROJECT_UUID=${WOPEE_PROJECT_UUID}'</span> -- npx -y wopee-mcp
-<span class="c"># then start claude and ask</span>
+<pre><code><span class="c"># in your repository; your coding agent can run it for you</span>
+<span class="k">npx</span> -y @wopee-io/init@latest
+<span class="c"># approve in Commander, restart your agent and ask</span>
 <span class="s">"Use Wopee.io to analyze my app and generate tests. Focus on the checkout flow."</span></code></pre>
       </div>
-      <p class="wo-home-hero__note">Key and project UUID: <a href="{{ 'guides/wopee-mcp/' | url }}#1-get-your-api-key-and-project-uuid">where to find them</a> &middot; Other agents: <a href="{{ 'guides/wopee-mcp/' | url }}#add-it-to-your-agent">Copilot, Cursor, Codex and more</a></p>
+      <p class="wo-home-hero__note">Works with Claude Code, GitHub Copilot, Cursor, Codex and OpenCode &middot; <a href="{{ 'agent-setup/' | url }}">What it changes</a> &middot; <a href="{{ 'guides/wopee-mcp/' | url }}#add-it-to-your-agent">Set up the MCP server by hand</a></p>
     </div>
   </section>
 {% endblock %}
