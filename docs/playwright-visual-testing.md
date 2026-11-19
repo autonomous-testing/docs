@@ -7,6 +7,8 @@ steps: true
 
 # Playwright
 
+--8<-- "repo-setup-callout.md"
+
 Add visual checks to your existing Playwright tests. Each `wopee.track...()` call sends a screenshot to Wopee.io, which compares it with the approved baseline. You review the differences in Commander and approve or reject them.
 
 This page walks through a complete example on [Sauce Demo](https://www.saucedemo.com){: target="\_blank"}: two screenshots, a first run that creates the baselines, and a second run that catches a visual bug. Verified with `@wopee-io/wopee.pw` 4.26.1 and `@playwright/test` 1.64.

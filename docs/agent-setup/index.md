@@ -1,13 +1,21 @@
 ---
 title: Set up Wopee.io with your coding agent
-description: Paste one line into Claude Code, Cursor, GitHub Copilot, Codex or OpenCode. The agent runs npx -y @wopee-io/init, you approve in Commander, and the Wopee.io MCP server is connected without the API key ever reaching the chat. What it does and changes, prerequisites and manual setup.
+description: Set up Wopee.io testing for a repository with one command, npx -y @wopee-io/init@latest, run by you or your coding agent (Claude Code, Cursor, GitHub Copilot, Codex or OpenCode). You approve in Commander, and the Wopee.io MCP server is connected without the API key ever reaching the chat. What it does and changes, prerequisites and manual setup.
 type: How-to
-updated: 16 November 2026
+updated: 19 November 2026
 ---
 
 # Set up Wopee.io with your coding agent
 
-Paste one line into your coding agent. The agent runs one command, `npx -y @wopee-io/init`, which prints a link and three pairing words. You approve in Commander, and the command connects the [Wopee.io MCP server](../guides/wopee-mcp/index.md) to your project with a new API key that neither you nor the agent has to copy. The agent then checks the connection with a read-only call and offers to run one test. It shows its plan first and asks before it changes anything.
+Setting up Wopee.io testing for a repository takes one command, run from the repository root:
+
+```shell
+npx -y @wopee-io/init@latest
+```
+
+Ask your coding agent to set up Wopee.io testing for the repository and it can run the command itself: the command asks no questions and needs no key. It prints a link and three pairing words. You approve in Commander, and the command connects the [Wopee.io MCP server](../guides/wopee-mcp/index.md) to your project with a new API key that neither you nor the agent has to copy. The API key never passes through the chat.
+
+For a guided setup, paste the line below instead. The agent then checks the connection with a read-only call and offers to run one test. It shows its plan first and asks before it changes anything.
 
 !!! tip wo-agent-setup "Paste this into your coding agent"
 
@@ -38,8 +46,8 @@ The command configures Claude Code, Cursor, GitHub Copilot in VS Code, OpenAI Co
 1. **Checks for an existing setup.** If the `wopee` tools already work, it skips to the check in step 6. Running the line again is safe.
 2. **Detects your setup and shows a plan.** It works out the client, the operating system and the repository, then lists what will change and waits for your yes.
 3. **Checks Node.js.** `node --version` only reads. New to Wopee.io? It gives you the sign-up link first, because the pairing needs a project you administer.
-4. **Runs `npx -y @wopee-io/init`.** The command prints a link and three words, for example `brave-otter-42`. The agent shows you both.
-5. **You approve in Commander.** Check that the words match, pick the project and click **Approve**. A new, named API key goes back to the waiting command, encrypted to it. If you take longer than about 90 seconds, the command hands back and the agent runs `npx -y @wopee-io/init --resume` once you say you approved. Then you restart or reload the agent.
+4. **Runs `npx -y @wopee-io/init@latest`.** The command returns within seconds with a link and three words, for example `brave-otter-42`. The agent shows you both, then runs `npx -y @wopee-io/init@latest --resume`, which waits about 90 seconds for your approval.
+5. **You approve in Commander.** Check that the words match, pick the project and click **Approve**. A new, named API key goes back to the waiting command, encrypted to it, and the command writes the files. If you take longer than about 90 seconds, the agent runs `--resume` again once you say you approved. Then you restart or reload the agent.
 6. **Checks the connection.** It calls `wopee_setup_check` (or `wopee_fetch_test_inventory`), which only reads, and reports your project with its analyses and test cases. A new project with zero tests counts as a success.
 7. **Offers one test run.** Runs use Wopee.io's cloud runners and your plan, so it starts one only after you say yes. See [Your first test from your coding agent](../guides/wopee-mcp/first-test.md).
 8. **Reports.** A short summary: what changed, where the key lives, the check result and how to undo the setup.

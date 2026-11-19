@@ -8,6 +8,8 @@ steps: true
 
 # Robot Framework
 
+--8<-- "repo-setup-callout.md"
+
 `wopee_rf` adds visual testing to your Robot Framework tests. Your test takes a screenshot at the steps you choose, Wopee.io compares it with the approved baseline, and you review the differences in [Commander](https://cmd.wopee.io).
 
 You can use it in two ways:
