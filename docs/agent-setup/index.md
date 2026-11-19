@@ -46,8 +46,8 @@ The command configures Claude Code, Cursor, GitHub Copilot in VS Code, OpenAI Co
 1. **Checks for an existing setup.** If the `wopee` tools already work, it skips to the check in step 6. Running the line again is safe.
 2. **Detects your setup and shows a plan.** It works out the client, the operating system and the repository, then lists what will change and waits for your yes.
 3. **Checks Node.js.** `node --version` only reads. New to Wopee.io? It gives you the sign-up link first, because the pairing needs a project you administer.
-4. **Runs `npx -y @wopee-io/init@latest`.** The command returns within seconds with a link and three words, for example `brave-otter-42`. The agent shows you both, then runs `npx -y @wopee-io/init@latest --resume`, which waits about 90 seconds for your approval.
-5. **You approve in Commander.** Check that the words match, pick the project and click **Approve**. A new, named API key goes back to the waiting command, encrypted to it, and the command writes the files. If you take longer than about 90 seconds, the agent runs `--resume` again once you say you approved. Then you restart or reload the agent.
+4. **Runs `npx -y @wopee-io/init@latest`.** The command returns within seconds with a link and three words, for example `brave-otter-42`. The agent shows you both and waits for you.
+5. **You approve in Commander.** Check that the words match, pick the project and click **Approve**, then tell the agent you approved. It runs `npx -y @wopee-io/init@latest --resume`, which receives a new, named API key, encrypted to the command, and writes the files. Then you restart or reload the agent.
 6. **Checks the connection.** It calls `wopee_setup_check` (or `wopee_fetch_test_inventory`), which only reads, and reports your project with its analyses and test cases. A new project with zero tests counts as a success.
 7. **Offers one test run.** Runs use Wopee.io's cloud runners and your plan, so it starts one only after you say yes. See [Your first test from your coding agent](../guides/wopee-mcp/first-test.md).
 8. **Reports.** A short summary: what changed, where the key lives, the check result and how to undo the setup.
