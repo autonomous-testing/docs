@@ -5,6 +5,8 @@ description: Run Playwright, Cypress, WebdriverIO and Robot Framework tests with
 
 # Run in CI
 
+--8<-- "repo-setup-callout.md"
+
 Wopee.io works with any CI system. Your tests run as they always do; the Wopee.io library or plugin reads its settings from environment variables.
 
 ## Secrets
