@@ -1,7 +1,7 @@
 ---
 description: Add Wopee.io visual testing to your WebdriverIO tests. Install the @wopee-io/wopee.wdio service, add track commands, review differences in Commander, or start from the template project.
 type: How-to
-verified: 19 October 2026
+verified: 23 November 2026
 steps: true
 ---
 
@@ -11,7 +11,7 @@ steps: true
 
 Add visual checks to your existing WebdriverIO tests with the `@wopee-io/wopee.wdio` service. Each `browser.track...()` command sends a screenshot to Wopee.io, which compares it with the approved baseline. You review the differences in Commander and approve or reject them.
 
-This page walks through a complete example on [Sauce Demo](https://www.saucedemo.com){: target="\_blank"}: two screenshots, a first run that creates the baselines, and a second run that catches a visual bug. Verified with `@wopee-io/wopee.wdio` 6.0.0 and WebdriverIO 9 (Mocha, Chrome). Prefer a ready project? Start from the [template project](#template-project).
+This page walks through a complete example on [Sauce Demo](https://www.saucedemo.com){: target="\_blank"}: two screenshots, a first run that creates the baselines, and a second run that catches a visual bug. Verified with `@wopee-io/wopee.wdio` 6.0.3 and WebdriverIO 9 (Mocha, Chrome). Prefer a ready project? Start from the [template project](#template-project).
 
 ## Prerequisites
 
@@ -78,7 +78,7 @@ export const config: WebdriverIO.Config = {
 ```
 
 - The connection settings go **inside** `screenshotValidation`. The service does not pick up `WOPEE_*` variables on its own; pass every value through the config.
-- `isLandscape` sits **next to** `screenshotValidation`. Set it to `false` for desktop browsers: the default `true` is meant for mobile devices in landscape orientation and crops desktop screenshots to the wrong size.
+- `isLandscape` sits **next to** `screenshotValidation`. From 6.0.3 its default comes from the session: `false` for desktop browsers, `true` for Android and iOS. Keep `isLandscape: false` for desktop browsers anyway: in 6.0.1 and older the default is `true`, which rotates desktop screenshots.
 
 For TypeScript, add the service types to `tsconfig.json` so `browser.trackScreen()` and the other commands are typed:
 
@@ -235,7 +235,7 @@ Options next to `screenshotValidation`:
 
 | Option | Default | Description |
 | --- | --- | --- |
-| `isLandscape` | `true` | Set to `false` for desktop browsers |
+| `isLandscape` | from the session: `false` for desktop browsers, `true` for Android and iOS (`true` in 6.0.1 and older) | `true` only for mobile devices in landscape orientation; it rotates desktop screenshots |
 | `imageProcessing` | `mode: 'none'` | `mode: 'masking'` or `'cropping'` with `xLeft`, `xRight`, `yTop`, `yBottom` and `maskColor` to hide or cut screen edges on every screenshot |
 
 ### Branches in CI
@@ -321,7 +321,7 @@ If `.env` contains `put-your-project-uuid-here`, you cloned the public template,
 | `Failed to initialise service @wopee-io/wopee.wdio` naming `apiKey` or `projectUuid` | The value is missing. Check `.env`, that `wdio.conf.ts` starts with `import 'dotenv/config'`, and that the values are inside `screenshotValidation`. |
 | `must be an absolute URL including the scheme` | Write `apiUrl` with `https://`. |
 | `ZodError ... Expected object, received null` or an authorization error | The API key usually belongs to another Wopee.io instance or another project. Create the key in the Commander you run against. Set `WOPEE_API_URL` only for a self-hosted instance. |
-| `Error: Unsupported type: function` from `trackElement` | The selector matched nothing on the page. Use a selector from your app. |
+| `WopeeError: trackElement "<step>": no element matches the selector "<selector>"` (6.0.1 and older: `Error: Unsupported type: function`) | The selector matched nothing on the page. Use a selector from your app, or wait for the element before tracking it. |
 | `browser.trackScreen is not a function` | The service is not listed in `services`, or the package is not installed. |
 | The screenshot is narrow and tall, with a white area | Set `isLandscape: false` next to `screenshotValidation`. |
 | A step is `unresolved` on every run without a visible change | The page was still loading. Wait for fonts and images before tracking, or draw an ignore area over the dynamic region in the comparison view. |
