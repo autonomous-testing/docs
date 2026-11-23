@@ -30,6 +30,8 @@ This page walks through a complete example on [Sauce Demo](https://www.saucedemo
 
 ## 2. Get the API key
 
+--8<-- "get-api-key-init.md"
+
 1. In the project, open **More** › **Settings** › **API Keys** and copy `WOPEE_PROJECT_UUID`.
 2. Enter a name, click **Generate a new key** and copy `WOPEE_API_KEY`. The key is shown **only once**.
 
@@ -44,7 +46,7 @@ npm init -y
 npm install -D cypress@16.2.0 @wopee-io/wopee.cy dotenv
 ```
 
-Create a `.env` file in the project root:
+If init wrote `.env` in the project root, skip this. Otherwise create a `.env` file there:
 
 ```shell
 WOPEE_PROJECT_UUID=your-project-uuid

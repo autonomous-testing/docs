@@ -40,6 +40,8 @@ Created the project in Commander? It already has a Robot Framework repository wi
 
 ## 2. Get the API key
 
+--8<-- "get-api-key-init.md"
+
 In the project, open **More › Settings › API Keys**. The page shows `WOPEE_API_URL` and `WOPEE_PROJECT_UUID`. Enter a name and click **Generate a new key**. The key is shown only once: copy it right away.
 
 ![API Keys in project settings](../img/visual-testing/api-keys.webp){ width="600" height="433" loading="lazy" }
@@ -56,7 +58,7 @@ rfbrowser init chromium
 
 ## 4. Configure
 
-Create a `.env` file next to your tests folder. Copy the first three values from **API Keys**:
+Create a `.env` file next to your tests folder, or add the missing lines to the `.env` that init wrote. Init writes `WOPEE_PROJECT_UUID` and `WOPEE_API_KEY`; the API URL is on the **API Keys** page:
 
 ```dotenv
 WOPEE_API_URL=https://api.wopee.io

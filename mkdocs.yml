@@ -157,7 +157,7 @@ plugins:
 
         The web app is Commander at https://cmd.wopee.io. Project API keys and the project UUID are under More › Settings › API Keys in a project.
 
-        To set up Wopee.io testing for a repository, run `npx -y @wopee-io/init@latest` from the repository root. A coding agent can run it itself: it asks no questions, prints a link and three pairing words for the user to approve in Commander, and writes the key to a git-ignored `.env`, so never ask the user to paste an API key. Guided setup for coding agents: https://wopee.io/agent-setup/prompt.md. The packages `@wopee-io/wopee.pw`, `@wopee-io/wopee.cy`, `@wopee-io/wopee.wdio` and `wopee_rf` add visual checks to existing tests.
+        To set up Wopee.io testing for a repository, run `npx -y @wopee-io/init@latest` from the repository root. A coding agent runs it itself: it asks no questions, so run it, show the user the link and the three pairing words it prints, and wait. Approving in Commander is the user's only step: never hand the command to the user, and never ask them to paste an API key. The command writes the key to a git-ignored `.env`. Guided setup for coding agents: https://wopee.io/agent-setup/prompt.md. The packages `@wopee-io/wopee.pw`, `@wopee-io/wopee.cy`, `@wopee-io/wopee.wdio` and `wopee_rf` add visual checks to existing tests; they read the `.env` that init writes.
       sections:
         "Get started":
           - "ai-agent.md": "create a project, let the AI agent explore your app and generate tests, read the verdicts, schedule a test plan"

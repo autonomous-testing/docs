@@ -29,6 +29,8 @@ This page walks through a complete example on [Sauce Demo](https://www.saucedemo
 
 ## 2. Get the API key
 
+--8<-- "get-api-key-init.md"
+
 1. In the project, open **More** › **Settings** › **API Keys** and copy `WOPEE_API_URL` and `WOPEE_PROJECT_UUID`.
 2. Click **Generate a new key** and copy `WOPEE_API_KEY`. The key is shown **only once**.
 
@@ -44,7 +46,7 @@ npm i -D @playwright/test @wopee-io/wopee.pw @types/node
 npx playwright install chromium
 ```
 
-Create a `.env` file next to `playwright.config.ts`:
+If init wrote `.env` next to `playwright.config.ts`, skip this. Otherwise create a `.env` file there:
 
 ```shell
 WOPEE_API_URL=https://api.wopee.io
