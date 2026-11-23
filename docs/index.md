@@ -82,7 +82,9 @@ What the [quickstart](ai-agent.md) walks you through.
 An AI agent tests a web app, from the URL to the verdict.
 { .wo-lead }
 
-More walkthroughs: [quick start in 6 minutes](https://youtu.be/o5ThjRddZfw), [Claude Code with the MCP server](https://youtu.be/rIfLyNvAOjs), [Codex with the MCP server](https://youtu.be/I3E5c1pg1YY), [your tests in your repo](https://youtu.be/7yLnLJBpBB4), [test an app on localhost](https://youtu.be/2xLDkZYCiWE).
+<!-- TODO(backlog#5060): point "set up with one prompt" at the one-prompt setup launch film once it is public on YouTube. -->
+
+More walkthroughs: [quick start in 6 minutes](https://youtu.be/o5ThjRddZfw), [set up with one prompt](agent-setup/index.md), [Codex with the MCP server](https://youtu.be/I3E5c1pg1YY), [your tests in your repo](https://youtu.be/7yLnLJBpBB4), [test an app on localhost](https://youtu.be/2xLDkZYCiWE).
 
 </div>
 
