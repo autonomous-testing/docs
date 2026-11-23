@@ -98,11 +98,13 @@ In headless mode (`claude -p`), Claude Code loads the project's MCP servers with
 claude -p "How many tests do I have in Wopee.io?" --allowedTools "mcp__wopee"
 ```
 
-## Watch it done
+## Watch the one-prompt setup
 
-<div class="yt-facade"><a href="https://youtu.be/rIfLyNvAOjs" data-yt="rIfLyNvAOjs" data-title="Claude Code uses the Wopee.io MCP server"><img src="https://i.ytimg.com/vi/rIfLyNvAOjs/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"><span class="yt-facade__play">Play: Claude Code uses the Wopee.io MCP server</span></a></div>
+<!-- TODO(backlog#5060): replace this animation with the one-prompt setup launch film (yt-facade embed) once it is public on YouTube. -->
 
-Claude Code uses the Wopee.io MCP server.
+[![Claude Code gets one line, shows its plan, you approve in Wopee.io Commander, and the read-only connection check passes](../../img/guides/wopee-mcp/claude-code-agent-setup.webp){ width="600" height="450" loading="lazy" }](../../agent-setup/index.md)
+
+Paste one line, approve in Commander, and Claude Code is connected: [Set up Wopee.io with your coding agent](../../agent-setup/index.md).
 { .wo-video-caption }
 
 ## Several Wopee.io projects
