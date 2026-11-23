@@ -7,7 +7,7 @@ updated: 27 October 2026
 
 # Add the Wopee.io MCP server to other MCP clients
 
-Any MCP client that can start a local (stdio) server can use the Wopee.io MCP server. This page has the configuration for clients without their own page. What the server does: [Wopee.io MCP server](index.md).
+Any MCP client that can start a local (stdio) server can use the Wopee.io MCP server; clients that take only remote servers use the [remote server](index.md#remote-server-oauth). This page has the configuration for clients without their own page. What the server does: [Wopee.io MCP server](index.md).
 
 Before you start: Node.js 20.18 or newer, and `WOPEE_API_KEY` and `WOPEE_PROJECT_UUID` from **More** › **Settings** › **API Keys** in your project ([how](../api-keys.md)).
 
@@ -169,9 +169,9 @@ In Augment (VS Code, JetBrains or the Auggie CLI), open **Settings** › **MCP**
 
 Claude Desktop reads the [universal configuration](index.md#universal-configuration) (`mcpServers` with `command`, `args` and `env`) from its `claude_desktop_config.json`. Put the real values into `env`, restart Claude Desktop and check that the `wopee` tools appear in a new chat.
 
-## Not supported
+## Remote-only clients
 
-Agents that accept only remote (HTTP) MCP servers, such as ChatGPT on the web and Replit Agent, cannot start the Wopee.io MCP server, because it runs locally over stdio.
+Agents that accept only remote (HTTP) MCP servers, such as ChatGPT on the web and Replit Agent, cannot start the local server. Connect them to the [remote server](index.md#remote-server-oauth) at `https://mcp.wopee.io/mcp` instead; only Claude Code is tested with it so far.
 
 ## First prompt to try
 

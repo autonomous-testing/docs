@@ -37,7 +37,7 @@ Tested on 27 October 2026 with `wopee-mcp` 1.32.0: Claude Code, GitHub Copilot i
 - **Node.js 20.18 or newer** (Node.js 22 recommended). The server runs with `npx`, so there is nothing else to install.
 - A **Wopee.io project**. Create one at [cmd.wopee.io](https://cmd.wopee.io){: target="\_blank"}, see [Getting started](../../ai-agent.md).
 - A **project API key** and the **project UUID**, from **More** › **Settings** › **API Keys** in the project.
-- An MCP client that supports local (stdio) servers. The Wopee.io MCP server has no hosted HTTP endpoint.
+- An MCP client that supports local (stdio) servers. Clients that take only remote servers use the [remote server](#remote-server-oauth).
 - `wopee-mcp` **1.32.0 or newer**. With `npx -y wopee-mcp` you get the latest version on every start.
 
 ## Quick start
@@ -167,6 +167,23 @@ How many tests do I have in Wopee.io, and which ones have never run?
 ```
 
 The agent calls `wopee_fetch_test_inventory` (in OpenCode `wopee_wopee_fetch_test_inventory`) and answers with the number of analyses and test cases in your project and the latest status of each test case (`PASSED`, `FAILED`, `INCOMPLETE`, `NOT_RUN`, ...). This call only reads data, so it is a safe first check. A new project with no analysis yet returns zero tests: continue with [Explore a new app](#explore-a-new-app-and-generate-tests). The whole path to a first verdict, with sample outputs: [Your first test from your coding agent](first-test.md).
+
+## Remote server (OAuth)
+
+Wopee.io also serves the MCP server at `https://mcp.wopee.io/mcp`. Your client connects with OAuth: you approve it in Commander, and no key is stored in any file. Use it for clients that take only remote MCP servers.
+
+In Claude Code:
+
+```shell
+claude mcp add --transport http wopee https://mcp.wopee.io/mcp
+```
+
+Run `/mcp`, select `wopee` and authenticate. Commander opens in the browser: pick the project, choose **Read only**, or **Read and write** if you administer the project, and click **Allow**. A read-only connection lists only the tools that read.
+
+- **Tested with Claude Code.** Other clients that connect to remote MCP servers with OAuth use the same URL but are not tested yet.
+- **Disconnect** a client in the project under **More** › **Settings** › **MCP Connections**. Access ends on its next request.
+- **The `.env` key stays** for the test SDKs and CI, which do not use OAuth. `npx -y @wopee-io/init@latest` still writes it and sets up the local server.
+- **Wopee.io cloud only.** Dedicated and self-hosted instances use the local server.
 
 ## Universal configuration
 
@@ -371,7 +388,6 @@ The server also ships three MCP prompts. In Claude Code they appear as slash com
 - Delete suites, test cases or variables
 - Set the app URL, login or cookie handling for a crawl (set them on the project in Commander)
 - Test `localhost` directly
-- Connect over HTTP or SSE: the server is local (stdio) only
 
 Do these in [Commander](https://cmd.wopee.io){: target="\_blank"}.
 
@@ -387,7 +403,7 @@ An open-source (MIT) MCP server, published on npm as `wopee-mcp` and in the offi
 
 ### Which coding agents does the Wopee.io MCP server work with?
 
-Any MCP client that can start a local (stdio) server. This documentation has setup guides for [Claude Code](claude-code.md), [GitHub Copilot](github-copilot.md), [Cursor](cursor.md), [OpenCode](opencode.md), [OpenAI Codex](codex.md), [Google Antigravity and Gemini CLI](antigravity.md), [JetBrains AI Assistant and Junie](jetbrains.md), [Devin Desktop (formerly Windsurf)](devin-desktop-windsurf.md), [Visual Studio](visual-studio.md) and [other clients](other-clients.md). Web-only agents that accept only remote MCP servers cannot use it.
+Any MCP client that can start a local (stdio) server, and clients that connect to remote MCP servers with OAuth through the [remote server](#remote-server-oauth). This documentation has setup guides for [Claude Code](claude-code.md), [GitHub Copilot](github-copilot.md), [Cursor](cursor.md), [OpenCode](opencode.md), [OpenAI Codex](codex.md), [Google Antigravity and Gemini CLI](antigravity.md), [JetBrains AI Assistant and Junie](jetbrains.md), [Devin Desktop (formerly Windsurf)](devin-desktop-windsurf.md), [Visual Studio](visual-studio.md) and [other clients](other-clients.md).
 
 ### Does the Wopee.io MCP server work with Cursor?
 
@@ -430,7 +446,7 @@ Not by the server. It sends only what your agent passes in tool calls, for examp
 
 ### Does it have a remote (HTTP) endpoint?
 
-No. It runs locally over stdio, started by your agent with `npx`.
+Yes: `https://mcp.wopee.io/mcp`, with OAuth through Commander. See [Remote server (OAuth)](#remote-server-oauth).
 
 ### Can I use several Wopee.io projects?
 

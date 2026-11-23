@@ -2,7 +2,7 @@
 title: Set up Wopee.io with your coding agent
 description: Set up Wopee.io testing for a repository with one command, npx -y @wopee-io/init@latest, run by you or your coding agent (Claude Code, Cursor, GitHub Copilot, Codex or OpenCode). You approve in Commander, and the Wopee.io MCP server is connected without the API key ever reaching the chat. What it does and changes, prerequisites and manual setup.
 type: How-to
-updated: 19 November 2026
+updated: 23 November 2026
 ---
 
 # Set up Wopee.io with your coding agent
@@ -39,7 +39,7 @@ The command configures Claude Code, Cursor, GitHub Copilot in VS Code, OpenAI Co
     The app must be reachable from the internet, because the tests run on Wopee.io's cloud runners. `localhost` does not work: [expose it with a tunnel or use a deployed URL](../guides/test-localhost.md).
 
 - **Project admin rights.** Only project admins can approve the pairing, because it creates a project API key. See [Find your API key and project UUID](../guides/api-keys.md).
-- **An agent that runs local (stdio) MCP servers.** Web-only chat apps cannot use the server.
+- **An agent that runs local (stdio) MCP servers.** For a client that takes only remote MCP servers, use the [remote server](../guides/wopee-mcp/index.md#remote-server-oauth) instead.
 
 ## What the agent does
 

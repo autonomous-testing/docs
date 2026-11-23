@@ -96,4 +96,4 @@ Run `codex mcp add <name> -- <command>`, or add a `[mcp_servers.<name>]` table t
 
 ### Does the Wopee.io MCP server work in ChatGPT?
 
-In the ChatGPT desktop app, yes: it uses the Codex configuration. ChatGPT on the web cannot start local MCP servers, and the Wopee.io MCP server has no remote endpoint.
+In the ChatGPT desktop app, yes: it uses the Codex configuration. ChatGPT on the web cannot start local MCP servers; the [remote server](index.md#remote-server-oauth) is not tested with it yet.
