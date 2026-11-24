@@ -1,5 +1,5 @@
 ---
-description: How a Wopee.io analysis explores your web app and turns it into tests, in the analysis workspace and in the legacy analysis view. Start an analysis, steer the live agent, edit the application description and user flows, generate, run and publish scenarios.
+description: "How a Wopee.io analysis explores your web app and turns it into tests: start an analysis, steer the live agent, edit user flows and publish scenarios."
 ---
 
 # Analysis Process

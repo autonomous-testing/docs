@@ -1,6 +1,6 @@
 ---
 title: Plugin reference
-description: Reference for the Wopee.io Cypress plugin @wopee-io/wopee.cy. Configuration options, commands, element screenshots, ignore areas, failing on a visual difference, branches and CI.
+description: "Reference for the Wopee.io Cypress plugin @wopee-io/wopee.cy: configuration, commands, element screenshots, ignore areas, failing on a visual difference, CI."
 type: Reference
 updated: 12 November 2026
 ---

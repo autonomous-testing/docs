@@ -1,6 +1,6 @@
 ---
 title: Add Wopee.io MCP to JetBrains AI and Junie
-description: Set up the Wopee.io MCP server in JetBrains IDEs (IntelliJ IDEA, WebStorm, PyCharm and others) for AI Assistant and Junie. Settings path, .junie/mcp/mcp.json, API key, verify and troubleshooting.
+description: Set up the Wopee.io MCP server in JetBrains IDEs (IntelliJ IDEA, WebStorm, PyCharm) for AI Assistant and Junie. Settings path, .junie/mcp/mcp.json, API key.
 type: How-to
 updated: 27 October 2026
 ---

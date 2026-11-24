@@ -1,6 +1,6 @@
 ---
 title: Wopee.io MCP server for AI coding agents
-description: Connect the Wopee.io MCP server (wopee-mcp) to Claude Code, GitHub Copilot, Cursor, OpenCode, Codex and other MCP clients. Quick start, configuration, prompts, all 15 tools, limits and troubleshooting.
+description: Connect the Wopee.io MCP server (wopee-mcp) to Claude Code, GitHub Copilot, Cursor, OpenCode, Codex and other MCP clients. Quick start, all 15 tools, limits.
 ---
 
 # Wopee.io MCP server

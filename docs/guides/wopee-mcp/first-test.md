@@ -1,6 +1,6 @@
 ---
 title: Your first test from your coding agent
-description: Run your first Wopee.io test from Claude Code, Cursor, Copilot or Codex through the MCP server. What the agent asks, what each tool returns (inventory, dispatch, polling, PASSED, FAILED, INCOMPLETE), where to see the run in Commander, and the free plan's step limit.
+description: "Run your first Wopee.io test from Claude Code, Cursor, Copilot or Codex via the MCP server: what the agent asks, PASSED, FAILED, INCOMPLETE and the step limit."
 type: Tutorial
 updated: 9 November 2026
 steps: true

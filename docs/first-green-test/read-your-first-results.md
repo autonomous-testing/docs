@@ -1,6 +1,6 @@
 ---
 title: Read your first results
-description: "Tell a real bug in your app from a test problem or a run with no result: the three kinds of red, how to confirm a bug, what to fix and re-run, Passed, Failed, Incomplete and the amber ring, why the first board is red, and green tests that only checked the login page."
+description: "Tell a real bug from a test problem or a run with no result: Passed, Failed and Incomplete, the amber ring, what to fix and re-run, why the first board is red."
 type: How-to
 updated: 16 November 2026
 ---

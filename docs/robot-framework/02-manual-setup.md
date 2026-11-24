@@ -1,6 +1,6 @@
 ---
 title: Configuration and listener
-description: Configure wopee_rf for Robot Framework. All environment variables, the keywords, the listener, SeleniumLibrary, branches, CI, and how to fail a test on a visual difference.
+description: "Configure wopee_rf for Robot Framework: environment variables, keywords, the listener, SeleniumLibrary, branches, CI and failing a test on a visual difference."
 type: Reference
 updated: 3 November 2026
 ---

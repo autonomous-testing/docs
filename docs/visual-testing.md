@@ -1,5 +1,5 @@
 ---
-description: Add Wopee.io visual checks to the tests you already have in Playwright, Cypress, WebdriverIO, Robot Framework or any other stack. Projects, API keys, baselines, branches, statuses and the GraphQL API.
+description: "Add Wopee.io visual checks to existing Playwright, Cypress, WebdriverIO or Robot Framework tests: projects, API keys, baselines, branches and the GraphQL API."
 ---
 
 # Visual testing with your own tests

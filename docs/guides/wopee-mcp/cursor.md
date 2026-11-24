@@ -1,6 +1,6 @@
 ---
 title: Add the Wopee.io MCP server to Cursor
-description: Set up the Wopee.io MCP server in Cursor with .cursor/mcp.json or the install link. Config file location, API key from .env or environment variables, enable it in Customize › MCPs, Cursor CLI, first prompt and troubleshooting.
+description: Set up the Wopee.io MCP server in Cursor with .cursor/mcp.json or the install link. API key from .env, enable it in Customize › MCPs, Cursor CLI, first prompt.
 type: How-to
 verified: 27 October 2026
 ---

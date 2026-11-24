@@ -1,5 +1,5 @@
 ---
-description: Definitions of key Wopee.io concepts including baselines, projects, branches, test runs, scenarios, intent-driven and scripted tests, steps, and comparison modes.
+description: "Definitions of key Wopee.io concepts: baselines, projects, branches, test runs, scenarios, intent-driven and scripted tests, steps and comparison modes."
 ---
 
 # Glossary

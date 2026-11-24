@@ -1,6 +1,6 @@
 ---
 title: Add the Wopee.io MCP server to GitHub Copilot
-description: Set up the Wopee.io MCP server in GitHub Copilot - VS Code agent mode (.vscode/mcp.json, install link), Copilot CLI (copilot mcp add) and the Copilot cloud agent. Secure API key, verify, first prompt, troubleshooting.
+description: "Set up the Wopee.io MCP server in GitHub Copilot: VS Code agent mode (.vscode/mcp.json), Copilot CLI (copilot mcp add) and the cloud agent. API key, verify."
 type: How-to
 verified: 27 October 2026
 ---

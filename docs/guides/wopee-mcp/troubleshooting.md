@@ -1,6 +1,6 @@
 ---
 title: Troubleshooting the Wopee.io MCP server
-description: Fix Wopee.io MCP server problems - server not visible until restart, GUI apps without shell environment variables, disabled or untrusted project servers, AUTH_ERROR, Not Authorised!, NETWORK_ERROR, USAGE_LIMIT_EXCEEDED after the first analysis, localhost URLs.
+description: "Fix Wopee.io MCP server problems: AUTH_ERROR, Not Authorised!, NETWORK_ERROR, USAGE_LIMIT_EXCEEDED, server not visible until restart, localhost URLs."
 type: How-to
 updated: 16 November 2026
 ---

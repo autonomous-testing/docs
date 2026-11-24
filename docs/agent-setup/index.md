@@ -1,6 +1,6 @@
 ---
 title: Set up Wopee.io with your coding agent
-description: Set up Wopee.io testing for a repository with one command, npx -y @wopee-io/init@latest, run by you or your coding agent (Claude Code, Cursor, GitHub Copilot, Codex or OpenCode). You approve in Commander, and the Wopee.io MCP server is connected without the API key ever reaching the chat. What it does and changes, prerequisites and manual setup.
+description: Set up Wopee.io in a repository with npx -y @wopee-io/init@latest, run by you or Claude Code, Cursor, Copilot, Codex or OpenCode. What it changes, manual setup.
 type: How-to
 updated: 23 November 2026
 ---

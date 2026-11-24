@@ -1,6 +1,6 @@
 ---
 title: Tools & Assertions
-description: How Wopee.io agents interact with your app using click, type, select tools and validate outcomes with assertions. Passing runs can also be generated as Playwright code.
+description: How Wopee.io agents use click, type and select tools and validate outcomes with assertions. Passing runs can also be generated as Playwright code.
 ---
 
 # Tools & Assertions (Wopee.io)
