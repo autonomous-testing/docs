@@ -18,7 +18,7 @@ This page walks through a complete example on [Sauce Demo](https://www.saucedemo
 - Node.js 20 or newer
 - WebdriverIO 9 (or 8) with a test framework such as Mocha. `npm init wdio` sets one up.
 - Google Chrome. WebdriverIO 9 downloads the matching ChromeDriver on the first run.
-- A Wopee.io account at [cmd.wopee.io](https://cmd.wopee.io){: target="\_blank"}
+- A Wopee.io account at [cmd.wopee.io](https://cmd.wopee.io/login){: target="\_blank"}
 
 ## 1. Create a project
 
@@ -288,7 +288,7 @@ npm ci
 npm test
 ```
 
-The console prints a `Tracking response` line for each tracked step, with its status and a link to the step in Commander. `WOPEE_API_URL` stays commented out for [cmd.wopee.io](https://cmd.wopee.io){: target="\_blank"}; set it only for a self-hosted instance.
+The console prints a `Tracking response` line for each tracked step, with its status and a link to the step in Commander. `WOPEE_API_URL` stays commented out for [cmd.wopee.io](https://cmd.wopee.io/login){: target="\_blank"}; set it only for a self-hosted instance.
 
 ### Review the results
 

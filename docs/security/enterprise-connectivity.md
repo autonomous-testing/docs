@@ -62,4 +62,4 @@ Run Wopee.io agents within your internal network.
 
 - [Getting Started Guide](../ai-agent.md) - Initial setup
 - [Pilot Projects](../pilot-projects.md) - More about pilot projects
-- [Start now!](https://wopee.io/book-demo) - Get started with your pilot project
+- [Start now!](https://wopee.io/book-demo/) - Get started with your pilot project

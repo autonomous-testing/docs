@@ -147,7 +147,7 @@ _Also called: Windows SSO, Kerberos, Active Directory, integrated authentication
 
 Some company apps sign you in with your Windows account and never show a sign-in form. On **hybrid and self-hosted installations**, where the test runners sit inside your network, runs can test them: set the domain account as `KERBEROS_*` project or analysis variables, and the runner gets a Kerberos ticket before the browser starts. The app opens already signed in, and the password never reaches the agent. If the sign-in fails, the run stops with the reason, such as a wrong password, a locked account or an unreachable domain controller.
 
-The cloud runners at [cmd.wopee.io](https://cmd.wopee.io) cannot reach your domain controller. To run your tests inside your network, see the self-hosted runner in [Enterprise Connectivity](../security/enterprise-connectivity.md#option-3-self-hosted-runner) or write to [help@wopee.io](mailto:help@wopee.io).
+The cloud runners at [cmd.wopee.io](https://cmd.wopee.io/login) cannot reach your domain controller. To run your tests inside your network, see the self-hosted runner in [Enterprise Connectivity](../security/enterprise-connectivity.md#option-3-self-hosted-runner) or write to [help@wopee.io](mailto:help@wopee.io).
 
 ## Related topics
 

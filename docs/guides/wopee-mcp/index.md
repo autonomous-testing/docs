@@ -7,7 +7,7 @@ description: Connect the Wopee.io MCP server (wopee-mcp) to Claude Code, GitHub 
 
 The Wopee.io MCP server (npm package [`wopee-mcp`](https://www.npmjs.com/package/wopee-mcp){: target="\_blank"}, registry name `io.github.Wopee-io/wopee-mcp`) connects your AI coding agent to your Wopee.io project over the Model Context Protocol. From the chat, the agent can explore your web app, generate user stories and test cases, start Wopee.io's testing agent on them, read the verdicts with the agent's report, and file a failed run as a GitHub issue. The browsers run on Wopee.io's runners, not on your machine.
 
-Playwright MCP gives your agent a browser to drive step by step. The Wopee.io MCP server gives it a tester: one call starts a test run in the cloud, and the agent gets back a verdict with evidence. Your tests, their history and the reports stay in your Wopee.io project, where your team can open them in [Commander](https://cmd.wopee.io){: target="\_blank"}.
+Playwright MCP gives your agent a browser to drive step by step. The Wopee.io MCP server gives it a tester: one call starts a test run in the cloud, and the agent gets back a verdict with evidence. Your tests, their history and the reports stay in your Wopee.io project, where your team can open them in [Commander](https://cmd.wopee.io/login){: target="\_blank"}.
 
 !!! tip "Video"
 
@@ -35,7 +35,7 @@ Tested on 27 October 2026 with `wopee-mcp` 1.32.0: Claude Code, GitHub Copilot i
 ## Requirements
 
 - **Node.js 20.18 or newer** (Node.js 22 recommended). The server runs with `npx`, so there is nothing else to install.
-- A **Wopee.io project**. Create one at [cmd.wopee.io](https://cmd.wopee.io){: target="\_blank"}, see [Getting started](../../ai-agent.md).
+- A **Wopee.io project**. Create one at [cmd.wopee.io](https://cmd.wopee.io/login){: target="\_blank"}, see [Getting started](../../ai-agent.md).
 - A **project API key** and the **project UUID**, from **More** › **Settings** › **API Keys** in the project.
 - An MCP client that supports local (stdio) servers. Clients that take only remote servers use the [remote server](#remote-server-oauth).
 - `wopee-mcp` **1.32.0 or newer**. With `npx -y wopee-mcp` you get the latest version on every start.
@@ -48,7 +48,7 @@ By hand: three steps, about five minutes. The example uses Claude Code; the tabs
 
 ### 1. Get your API key and project UUID
 
-1. In [Commander](https://cmd.wopee.io){: target="\_blank"}, open your project and go to **More** › **Settings** › **API Keys**.
+1. In [Commander](https://cmd.wopee.io/login){: target="\_blank"}, open your project and go to **More** › **Settings** › **API Keys**.
 
     ![Settings in the More menu of a Commander project](../../img/guides/wopee-mcp/commander-more-settings.webp){ width="300" height="200" }
 
@@ -389,7 +389,7 @@ The server also ships three MCP prompts. In Claude Code they appear as slash com
 - Set the app URL, login or cookie handling for a crawl (set them on the project in Commander)
 - Test `localhost` directly
 
-Do these in [Commander](https://cmd.wopee.io){: target="\_blank"}.
+Do these in [Commander](https://cmd.wopee.io/login){: target="\_blank"}.
 
 ## Troubleshooting
 

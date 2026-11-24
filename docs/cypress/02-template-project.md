@@ -46,7 +46,7 @@ The first `npm ci` also downloads the Cypress app. `npm test` runs `cypress/e2e/
 
 `npm test` runs in Electron, which Cypress 16 deprecates. `npm test -- --browser chrome` runs in your installed Chrome, closer to the browser Commander uses.
 
-`WOPEE_API_URL` is not needed for [cmd.wopee.io](https://cmd.wopee.io){: target="\_blank"}; the plugin defaults to `https://api.wopee.io`. Set it only for a self-hosted instance.
+`WOPEE_API_URL` is not needed for [cmd.wopee.io](https://cmd.wopee.io/login){: target="\_blank"}; the plugin defaults to `https://api.wopee.io`. Set it only for a self-hosted instance.
 
 In a VS Code terminal, start the tests with `env -u ELECTRON_RUN_AS_NODE npm test` (see [Troubleshooting](01-getting-started.md#troubleshooting)).
 

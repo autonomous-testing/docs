@@ -17,7 +17,7 @@ This page walks through a complete example on [Sauce Demo](https://www.saucedemo
 
 - Node.js 20 or newer
 - An existing Playwright project, or a new one as below
-- A Wopee.io account at [cmd.wopee.io](https://cmd.wopee.io){: target="\_blank"}
+- A Wopee.io account at [cmd.wopee.io](https://cmd.wopee.io/login){: target="\_blank"}
 
 ## 1. Create a project
 

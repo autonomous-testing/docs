@@ -9,7 +9,7 @@ A pilot project is an 8-week, fixed-scope engagement to prove that autonomous te
 
 ## What this page covers
 
-Exactly what a pilot includes, what it costs, what it asks of your team, how success is measured, and what happens when it ends. If you can answer every question on this page for your own organization, you are ready for the [first call](https://wopee.io/book-demo).
+Exactly what a pilot includes, what it costs, what it asks of your team, how success is measured, and what happens when it ends. If you can answer every question on this page for your own organization, you are ready for the [first call](https://wopee.io/book-demo/).
 
 ---
 
@@ -128,7 +128,7 @@ If it fits, we send you the pilot charter pre-filled from that conversation.
 
 !!! success "Start the conversation"
 
-    [:octicons-arrow-right-24: **Book the first call**](https://wopee.io/book-demo){ .md-button .md-button--primary style="display: block; margin: 0 auto; text-align: center;" }
+    [:octicons-arrow-right-24: **Book the first call**](https://wopee.io/book-demo/){ .md-button .md-button--primary style="display: block; margin: 0 auto; text-align: center;" }
 
     _30 minutes, with the founders. Bring the questions above and we will answer them plainly._
 

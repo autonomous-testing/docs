@@ -18,7 +18,7 @@ This page walks through a complete example on [Sauce Demo](https://www.saucedemo
 
 - **Cypress 13 to 16**, with `@wopee-io/wopee.cy` 4.13.4 or newer, which waits for web fonts and images before each screenshot (4.12.2 and older work with Cypress 13 and 14 only)
 - The Node.js version your Cypress needs: 22 or 24 for Cypress 16, 20 or newer for Cypress 13 to 15
-- A Wopee.io account at [cmd.wopee.io](https://cmd.wopee.io){: target="\_blank"}
+- A Wopee.io account at [cmd.wopee.io](https://cmd.wopee.io/login){: target="\_blank"}
 
 ## 1. Create a project
 
