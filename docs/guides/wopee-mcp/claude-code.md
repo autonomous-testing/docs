@@ -50,6 +50,16 @@ You can also write this file by hand. Commit it: it contains no secrets, and tea
 
 The first time Claude Code starts in the repository, it asks whether to use the project's new MCP server. Choose **Use this MCP server**.
 
+## Connect without a key (remote server)
+
+On Wopee.io cloud, Claude Code can use the remote server instead, with no key in any file:
+
+```shell
+claude mcp add --transport http wopee https://mcp.wopee.io/mcp
+```
+
+Run `/mcp`, select `wopee` and authenticate. In the browser, pick the project and **Read only** or **Read and write**, then **Allow**. Details: [Remote server (OAuth)](index.md#remote-server-oauth). The test SDKs and CI still need the key from the steps above.
+
 ## Claude Code MCP config file location
 
 | Scope | Flag | File | Use for |
