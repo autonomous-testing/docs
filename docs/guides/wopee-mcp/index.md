@@ -182,7 +182,7 @@ Run `/mcp`, select `wopee` and authenticate. Commander opens in the browser: pic
 
 - **Tested with Claude Code.** Other clients that connect to remote MCP servers with OAuth use the same URL but are not tested yet.
 - **Disconnect** a client in the project under **More** › **Settings** › **MCP Connections**. Access ends on its next request.
-- **The `.env` key stays** for the test SDKs and CI, which do not use OAuth. `npx -y @wopee-io/init@latest` still writes it and sets up the local server.
+- **The `.env` key stays** for the test SDKs and CI, which do not use OAuth. `npx -y @wopee-io/init@latest` still writes it. From version 1.4.0 it gives Claude Code this remote server and the other agents the local one; `--stdio` keeps the local server for Claude Code too.
 - **Wopee.io cloud only.** Dedicated and self-hosted instances use the local server.
 
 ## Universal configuration
