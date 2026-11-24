@@ -1,5 +1,5 @@
 ---
-title: "Apps on localhost or a private network: can the agent reach your app?"
+title: "Can the agent reach your app on localhost?"
 description: "Can Wopee.io's agent reach your app? Check it from outside your network, what Commander's URL check means (\"The app returned an error or is not reachable.\", \"This address is on a private network…\"), Create anyway, Starting URL unreachable. Fixes for localhost, internal DNS, non-standard ports and IP allowlists, Vercel and Netlify deployment protection (Protection Bypass for Automation), Cloudflare and CAPTCHA (test keys), basic auth, an API host or a store page instead of the app. Expose a local app with a Cloudflare quick tunnel or ngrok, dev-server allowed hosts, changing the project URL, test accounts and security."
 type: How-to
 updated: 16 November 2026
