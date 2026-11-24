@@ -1,6 +1,6 @@
 ---
 title: Test an app behind a login
-description: "Give the Wopee.io testing agent a test account: TESTING_USERNAME and TESTING_PASSWORD under More › Settings › Environment Variables, which account to use, several roles, Take control, placeholders typed literally, SSO and MFA, and saved sessions (auth.json)."
+description: "Give the Wopee.io testing agent a test account with TESTING_USERNAME and TESTING_PASSWORD: which account to use, several roles, SSO, MFA and saved sessions."
 type: How-to
 updated: 16 November 2026
 ---

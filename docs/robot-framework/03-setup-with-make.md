@@ -1,6 +1,6 @@
 ---
 title: Setup with Make
-description: Start Wopee.io visual testing for Robot Framework from the template project. Install with one make command and run the Browser, Selenium, listener and image examples.
+description: Start Wopee.io visual testing for Robot Framework from the template project. Install with one make command, run the Browser, Selenium and listener examples.
 type: How-to
 updated: 3 November 2026
 ---

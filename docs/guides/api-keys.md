@@ -1,6 +1,6 @@
 ---
 title: Find your Wopee.io API key and project UUID
-description: Where to find WOPEE_PROJECT_UUID and generate WOPEE_API_KEY in Commander (More › Settings › API Keys), who can see the screen, why the key is shown only once, and how to rotate a key.
+description: Where to find WOPEE_PROJECT_UUID and generate WOPEE_API_KEY in Commander (More › Settings › API Keys), why the key is shown only once and how to rotate it.
 type: How-to
 updated: 9 November 2026
 ---

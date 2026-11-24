@@ -1,6 +1,6 @@
 ---
 title: Add Wopee.io MCP to Antigravity and Gemini CLI
-description: Set up the Wopee.io MCP server in Google Antigravity (app, IDE, CLI) with mcp_config.json and in Gemini CLI with gemini mcp add or settings.json. Config file locations, API key, verify with /mcp, troubleshooting.
+description: Set up the Wopee.io MCP server in Google Antigravity with mcp_config.json and in Gemini CLI with gemini mcp add. Config locations, API key, verify with /mcp.
 type: How-to
 updated: 27 October 2026
 ---

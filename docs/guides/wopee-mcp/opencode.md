@@ -1,6 +1,6 @@
 ---
 title: Add the Wopee.io MCP server to OpenCode
-description: Set up the Wopee.io MCP server in OpenCode with opencode.json (mcp, type local, command array). Config file location, API key with {env:VAR}, verify with opencode mcp list, first prompt and troubleshooting.
+description: Set up the Wopee.io MCP server in OpenCode with opencode.json. Config file location, API key with {env:VAR}, verify with opencode mcp list, first prompt.
 type: How-to
 verified: 27 October 2026
 ---

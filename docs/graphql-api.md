@@ -1,6 +1,6 @@
 ---
 title: "Any other framework: the GraphQL API"
-description: Send screenshots to Wopee.io from Selenium, TestCafe, Appium, Puppeteer or any custom harness. Endpoint, API key headers, the suite, scenario and step mutations with all fields, a curl walk-through and a Python example.
+description: "Send screenshots to Wopee.io from Selenium, TestCafe, Appium, Puppeteer or any harness with the GraphQL API: endpoint, API key headers, mutations, examples."
 ---
 
 # Any other framework: the GraphQL API

@@ -1,6 +1,6 @@
 ---
 title: Roll out Enforce in 2 weeks
-description: "A two-week plan to move a Wopee.io project from Report only to Enforce: read the flagged passes, switch on Enforce for one project, resolve each Incomplete and widen to more projects."
+description: "A two-week plan to move a Wopee.io project from Report only to Enforce: read the flagged passes, enforce one project, resolve each Incomplete, then widen."
 ---
 
 # Roll out Enforce in 2 weeks

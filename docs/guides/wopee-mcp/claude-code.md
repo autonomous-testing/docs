@@ -1,6 +1,6 @@
 ---
 title: Add the Wopee.io MCP server to Claude Code
-description: Set up the Wopee.io MCP server in Claude Code with one claude mcp add command. Config file location (.mcp.json), API key from environment variables, verify with /mcp, first prompt and troubleshooting.
+description: "Set up the Wopee.io MCP server in Claude Code with one claude mcp add command: .mcp.json location, API key from environment variables, verify with /mcp."
 type: How-to
 verified: 27 October 2026
 ---

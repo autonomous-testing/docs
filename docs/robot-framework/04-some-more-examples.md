@@ -1,6 +1,6 @@
 ---
 title: Some more examples
-description: Wopee.io visual testing examples for Robot Framework. Read the comparison result, pass extra parameters, track the viewport, and compare mobile app screenshots and PDF pages.
+description: "Wopee.io visual testing examples for Robot Framework: comparison results, extra parameters, viewport tracking, mobile app screenshots and PDF pages."
 type: How-to
 updated: 3 November 2026
 ---
