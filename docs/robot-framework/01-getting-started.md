@@ -10,7 +10,7 @@ steps: true
 
 --8<-- "repo-setup-callout.md"
 
-`wopee_rf` adds visual testing to your Robot Framework tests. Your test takes a screenshot at the steps you choose, Wopee.io compares it with the approved baseline, and you review the differences in [Commander](https://cmd.wopee.io).
+`wopee_rf` adds visual testing to your Robot Framework tests. Your test takes a screenshot at the steps you choose, Wopee.io compares it with the approved baseline, and you review the differences in [Commander](https://cmd.wopee.io/login).
 
 You can use it in two ways:
 
@@ -28,7 +28,7 @@ Created the project in Commander? It already has a Robot Framework repository wi
 - Python 3.11 or newer
 - Robot Framework 7 or newer
 - Node.js 22 or newer, for the Browser library
-- A Wopee.io account in [Commander](https://cmd.wopee.io)
+- A Wopee.io account in [Commander](https://cmd.wopee.io/login)
 
 ## 1. Create a project
 

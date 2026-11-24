@@ -15,7 +15,7 @@ Read [Visual testing with your own tests](visual-testing.md) first for the conce
 
 | What | Value |
 | --- | --- |
-| Endpoint | `https://api.wopee.io/graphql` for [cmd.wopee.io](https://cmd.wopee.io){: target="\_blank"}. Self-hosted: your instance's API URL, shown as `WOPEE_API_URL` in **API Keys**. The API answers on both the root URL and `/graphql`. |
+| Endpoint | `https://api.wopee.io/graphql` for [cmd.wopee.io](https://cmd.wopee.io/login){: target="\_blank"}. Self-hosted: your instance's API URL, shown as `WOPEE_API_URL` in **API Keys**. The API answers on both the root URL and `/graphql`. |
 | Method | `POST`, `Content-Type: application/json`, body `{"query": "...", "variables": {...}}` |
 | API key | Header `x-api-key: <WOPEE_API_KEY>` |
 | Project | `projectUuid` argument of each mutation (`WOPEE_PROJECT_UUID`) |

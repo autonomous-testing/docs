@@ -181,7 +181,7 @@ More on verdicts: [Verdict Integrity](../../concepts/verdict-integrity.md).
 
 ## 6. See the run in Commander
 
-Open [Commander](https://cmd.wopee.io){: target="\_blank"} and your project. Every run is in **Runs**, and **Scenarios** shows each test case with its last verdict. Click the test case to open its **Report** with every step, what was expected, what the agent verified and a screenshot per step.
+Open [Commander](https://cmd.wopee.io/login){: target="\_blank"} and your project. Every run is in **Runs**, and **Scenarios** shows each test case with its last verdict. Click the test case to open its **Report** with every step, what was expected, what the agent verified and a screenshot per step.
 
 ## Next
 

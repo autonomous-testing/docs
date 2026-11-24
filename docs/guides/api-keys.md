@@ -11,12 +11,12 @@ The Wopee.io MCP server, the CI integrations and the visual testing plugins all 
 
 ## Before you start
 
-- A Wopee.io project. No account yet? Start at [cmd.wopee.io](https://cmd.wopee.io){: target="\_blank"}, see [Getting started](../ai-agent.md).
+- A Wopee.io project. No account yet? Start at [cmd.wopee.io](https://cmd.wopee.io/login){: target="\_blank"}, see [Getting started](../ai-agent.md).
 - **Project admin rights.** Only project admins see **API Keys**. If it is missing from **Settings**, ask a project admin to generate the key for you.
 
 ## Copy the project UUID
 
-1. In [Commander](https://cmd.wopee.io){: target="\_blank"}, open your project and go to **More** › **Settings** › **API Keys**.
+1. In [Commander](https://cmd.wopee.io/login){: target="\_blank"}, open your project and go to **More** › **Settings** › **API Keys**.
 
     ![Settings in the More menu of a Commander project](../img/guides/wopee-mcp/commander-more-settings.webp){ width="300" height="200" }
 
