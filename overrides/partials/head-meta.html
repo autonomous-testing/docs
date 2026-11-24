@@ -1,0 +1,63 @@
+{% if page and page.canonical_url %}
+  {% set wo_home = page.canonical_url == config.site_url %}
+  {% set wo_title = page.meta.title if page.meta and page.meta.title else (page.title or config.site_name) %}
+  {% set wo_desc = page.meta.description if page.meta and page.meta.description else config.site_description %}
+  {% set wo_image = config.site_url ~ "assets/social-card.png" %}
+  {% set wo_org = {
+    "@type": "Organization",
+    "@id": "https://wopee.io/#organization",
+    "name": "Wopee.io",
+    "url": "https://wopee.io/",
+    "logo": "https://wopee.io/img/icon-512.png",
+    "sameAs": [
+      "https://www.youtube.com/@wopee",
+      "https://www.linkedin.com/company/wopee",
+      "https://github.com/Wopee-io",
+      "https://www.npmjs.com/package/wopee-mcp"
+    ]
+  } %}
+  <meta property="og:type" content="{{ 'website' if wo_home else 'article' }}">
+  <meta property="og:site_name" content="{{ config.site_name }}">
+  <meta property="og:title" content="{{ wo_title | e }}">
+  {% if wo_desc %}<meta property="og:description" content="{{ wo_desc | e }}">{% endif %}
+  <meta property="og:url" content="{{ page.canonical_url }}">
+  <meta property="og:image" content="{{ wo_image }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Wopee.io: Paste a URL. Get tested.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ wo_title | e }}">
+  {% if wo_desc %}<meta name="twitter:description" content="{{ wo_desc | e }}">{% endif %}
+  <meta name="twitter:image" content="{{ wo_image }}">
+  {% if wo_home %}
+    {% set wo_ld = {
+      "@context": "https://schema.org",
+      "@graph": [
+        wo_org,
+        {
+          "@type": "WebSite",
+          "@id": config.site_url ~ "#website",
+          "name": "Wopee.io Docs",
+          "url": config.site_url,
+          "inLanguage": "en",
+          "publisher": {"@id": "https://wopee.io/#organization"}
+        }
+      ]
+    } %}
+  {% else %}
+    {% set wo_ld = {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": wo_title,
+      "description": wo_desc,
+      "url": page.canonical_url,
+      "mainEntityOfPage": page.canonical_url,
+      "image": wo_image,
+      "inLanguage": "en",
+      "author": wo_org,
+      "publisher": wo_org,
+      "isPartOf": {"@type": "WebSite", "@id": config.site_url ~ "#website", "name": "Wopee.io Docs", "url": config.site_url}
+    } %}
+  {% endif %}
+  <script type="application/ld+json">{{ wo_ld | tojson }}</script>
+{% endif %}
