@@ -61,15 +61,17 @@ Some breakage never reaches the fallback chain because it is handled inline:
 
 ## Per-project agent skills
 
-The agent maintains **skills** per project: notes about your app's flows, quirks, and patterns that it loads at the start of each run. After a run, it can write updates back, so the knowledge compounds and the agent gets better at your app over time.
+A project can also give the agent **skills**: short `SKILL.md` files in the project repository (`wopee/skills/<name>/SKILL.md`) with know-how about your app's flows, quirks and widgets. The agent reads them at the start of a run. With **Auto-update**, it can commit one new or updated skill after a run, so later runs start with what earlier runs learned. Nobody approves these commits, so review them.
 
-Each project controls this with a skills mode:
+Each project controls this under **More** › **Settings** › **Skills**. The default is **Off**.
 
-| Mode            | Behavior                                                             |
-| --------------- | -------------------------------------------------------------------- |
-| **Off**         | The agent runs without project skills.                               |
-| **Read-only**   | The agent loads existing skills but never modifies them.             |
-| **Auto-update** | The agent loads skills and writes learned updates back after runs.   |
+| Mode            | Behavior                                                                                         |
+| --------------- | ------------------------------------------------------------------------------------------------ |
+| **Off**         | The agent runs without project skills.                                                           |
+| **Read-only**   | The agent loads existing skills but never modifies them.                                         |
+| **Auto-update** | The agent loads skills and may commit one new or updated skill to the repository after each run. |
+
+The **Auto-update** review runs after the verdict is final and cannot change it. Skills the agent reads during a run do steer what it does and how it judges the result. For the file format, how skills are loaded and how they interact with the Run Queue, see [Agent Skills and Run Queue](agent-skills.md). For which mode to use when, see [Agent Skills: good practices](../guides/agent-skills.md).
 
 ## Self-healing never changes a verdict
 
@@ -81,6 +83,7 @@ Verdicts are guarded in the other direction too: a pass must rest on evidence th
 
 ## Related topics
 
+- [Agent Skills and Run Queue](agent-skills.md)
 - [Tools & Assertions](tools-and-assertions.md)
 - [Verdict Integrity](verdict-integrity.md)
 - [Analysis Process](analysis-process.md)

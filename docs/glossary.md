@@ -43,6 +43,18 @@ A scenario with saved steps, recorded from a passing run or generated with **Gen
 
 Project-wide Markdown instructions read by the test generator and by every agent run, edited under **More** › **Settings** › **General**. See [Project Context](guides/project-context.md).
 
+### Agent Skill
+
+A `SKILL.md` file with reusable know-how about operating your app, stored under `wopee/skills/<name>/` in the project repository. The agent reads skills when the project's **Agent Skills** setting is **Read-only** or **Auto-update**. See [Agent Skills and Run Queue](concepts/agent-skills.md).
+
+### Agent Skills (setting)
+
+The project setting **Agent Skills** under **More** › **Settings** › **Skills**: **Off** (skills not used), **Read-only** (used, never changed by the agent) or **Auto-update** (used, and the agent may commit one new or updated skill after each run). Default **Off**. See [The three modes](concepts/agent-skills.md#the-three-modes).
+
+### Run Queue
+
+The project setting that controls tests started together: **Sequential** (default, one after another, the rest show as **Queued**) or **Parallel** (all at once). With **Stop queue on failure**, a Failed or Incomplete test stops the rest of its queue. Scenarios run after a crawl always run one by one. See [Run Queue](concepts/agent-skills.md#run-queue).
+
 ### Test Result
 
 A summary of a run calculated from the statuses of each nested entity within a run (scenarios and steps).

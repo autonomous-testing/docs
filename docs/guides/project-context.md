@@ -303,7 +303,7 @@ The field has no character limit, but the whole text goes to the AI with every g
 | What the app shows: features, values, prices on screen | **Application description** (Variables & Knowledge) | One analysis; every generation, and sent to the agent as application context on every run |
 | Background for one analysis, such as how to sign in or navigate | The analysis's **Instructions** (next to **Project URL** in step 1 of the [legacy analysis view](../concepts/analysis-process.md#legacy-inputs)) | One analysis; sent to the agent on every run as supplementary background, used only when the test needs it |
 | A focus for one generation, e.g. "add coverage for checkout with an expired card" | **Additional instructions** in **Generate scenarios** | One analysis; saved and sent with every generation in it, not to runs |
-| Know-how the agent applies during runs | **Skills** (Variables & Knowledge) | See [Self-Healing](../concepts/self-healing.md) |
+| Know-how about operating parts of the app, such as a tricky widget or sign-in step | **Skills**: `SKILL.md` files under `wopee/skills/` in the project repository. **Variables & Knowledge** › **Skills** opens the mode setting, not the files | Agent runs while Agent Skills is **Read-only** or **Auto-update**. See [Agent Skills and Run Queue](../concepts/agent-skills.md) |
 | A check that must hold for one test | The test's **Description** | One test |
 
 ## Change it with the Assistant
@@ -324,6 +324,7 @@ You can ask the **Assistant** to change the project context. It proposes the cha
 - Make it a list item with one rule, and say why if the reason is not obvious.
 - Look for a second rule that contradicts it, in the context, the test or the analysis instructions.
 - If the rule must hold for one test, write it into that test's description: a test's own words take priority.
+- If you keep many skills, a routing table in the project context tells the agent which skill a test needs. See [Routing table for large catalogs](../concepts/agent-skills.md#routing-table-for-large-catalogs).
 
 ## Related topics
 
@@ -331,6 +332,7 @@ You can ask the **Assistant** to change the project context. It proposes the cha
 - [Prompting Guidelines](../concepts/prompting-guidelines.md)
 - [Verdict Integrity](../concepts/verdict-integrity.md)
 - [Self-Healing](../concepts/self-healing.md)
+- [Agent Skills and Run Queue](../concepts/agent-skills.md)
 - [Tools & Assertions](../concepts/tools-and-assertions.md)
 - [Getting Started with Wopee.io Agent testing](../ai-agent.md)
 

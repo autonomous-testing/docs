@@ -52,6 +52,7 @@ nav:
       - Run in CI: ci/index.md
   - Guides:
       - Project context: guides/project-context.md
+      - "Agent Skills: good practices": guides/agent-skills.md
       - Upload files: guides/upload-files.md
       - Download files: guides/download-files.md
       - Browser local storage: guides/browser-local-storage.md
@@ -64,6 +65,7 @@ nav:
       - Tools & Assertions: concepts/tools-and-assertions.md
       - Intent & Scripted Tests: concepts/intent-and-scripted-tests.md
       - Self-Healing: concepts/self-healing.md
+      - Agent Skills & Run Queue: concepts/agent-skills.md
       - Verdict Integrity: concepts/verdict-integrity.md
   - Troubleshooting:
       - Commander: troubleshooting/commander.md
@@ -188,7 +190,8 @@ plugins:
           - "concepts/prompting-guidelines.md": "writing goals, scope and constraints for test generation"
           - "concepts/tools-and-assertions.md": "what the testing agent does in the browser"
           - "concepts/intent-and-scripted-tests.md": "intent-driven tests (description only, GOAL / PASSES WHEN / MUST NOT / DATA) vs scripted tests (saved steps): how each runs, when to use which, Save steps from this run, Generate steps, Delete all steps, Test Plans"
-          - "concepts/self-healing.md": "locators with fallback, self-troubleshooting, agent skills"
+          - "concepts/self-healing.md": "locators with fallback, self-troubleshooting; agent skills in short (details in concepts/agent-skills.md)"
+          - "concepts/agent-skills.md": "Agent Skills (wopee/skills/<name>/SKILL.md in the project repo, references/, front matter rules, preload budget 24,000 tokens, loadSkill and loadSkillResource, routing table in project context), modes Off / Read-only / Auto-update (one skill per run committed to the default branch by Wopee.io, no review), Run Queue Sequential / Parallel, Stop queue on failure (stops on Failed, Incomplete or error), what counts as started together, post-crawl scenarios always one by one, skill log lines"
           - "concepts/verdict-integrity.md": "evidence checks on an AI agent's pass (no proof, no pass): Passed, Failed and Incomplete verdicts, Report only and Enforce modes, test-environment problems"
           - "concepts/pom-login-example.md": "a reusable login module"
         "Visual testing with your own tests":
@@ -209,6 +212,7 @@ plugins:
           - "guides/download-files.md": ""
           - "guides/browser-local-storage.md": ""
           - "guides/project-context.md": "project-wide context read by the test generator and the testing agent: where to paste it (More › Settings › General), paste-ready core and optional template, filled e-shop example, do and don't rules"
+          - "guides/agent-skills.md": "which skills mode and Run Queue to use per stage, combinations, writing skills by hand, what to keep out (secrets, test data, one-off fixes), reviewing and undoing Auto-update commits in git or on GitHub, measuring Off vs Read-only, troubleshooting, FAQ"
           - "guides/http-tools.md": "API calls inside UI tests"
           - "guides/roll-out-enforce.md": "two-week plan from Report only to Enforce: read flagged passes, Enforce on one project, resolve each Incomplete, widen to more projects"
         "Troubleshooting":
