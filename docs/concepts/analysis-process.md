@@ -97,6 +97,9 @@ When the agent has finished exploring, Wopee.io generates, in this order:
 
 After the crawl, up to 4 scenarios run straight away: up to 3 that are most likely to find a bug, plus one main flow the agent completed while exploring. The others wait under **NOT RUN**. See [Read your first results](../first-green-test/read-your-first-results.md).
 
+!!! tip "Crawls can teach the agent"
+    When the project's Agent Skills mode is **Auto-update**, a finished crawl can save what the agent learned about your app as a skill in the project repository. The scenarios that run after the crawl go through their own queue, always one by one, even when the project's Run Queue is **Parallel**. Interactive runs on Wopee.io's pre-warmed runners, such as a live crawl and these scenarios, do not read the repository and run without skills. See [Agent Skills and Run Queue](agent-skills.md).
+
 ### Overview { #workspace-overview }
 
 Click **Overview** to see the analysis at a glance:
@@ -228,4 +231,5 @@ The history icon at the top right lists earlier versions of the test cases, whic
 - [Analysis - Inputs](analysis-inputs.md): user stories, Jira and Figma as inputs for test generation
 - [Project context](../guides/project-context.md): rules every analysis and run follows
 - [Intent & Scripted Tests](intent-and-scripted-tests.md): how a scenario's description and steps are used in a run
+- [Agent Skills and Run Queue](agent-skills.md): skills the agent reads and writes, and how tests started together are queued
 - [Troubleshooting: Commander](../troubleshooting/commander.md): failed crawls and other messages

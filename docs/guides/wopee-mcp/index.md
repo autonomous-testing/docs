@@ -351,7 +351,7 @@ The server also ships three MCP prompts. In Claude Code they appear as slash com
 - **Two suite UUIDs.** `wopee_dispatch_agent` creates a new agent suite and prints it as "Suite UUID", next to the "Analysis Suite UUID". To fetch results, use the **analysis** suite UUID.
 - **10 seconds between dispatches.** Each project accepts one dispatch every 10 seconds. The server retries automatically after a rate-limit answer.
 - **One test case per dispatch below Premium.** On plans below Premium, `wopee_dispatch_agent` takes one test case per call; the agent dispatches them one by one. Several test cases in one call need a Premium or Enterprise plan.
-- **Runs queue.** Runs in a project run one after another unless the project is set to run in parallel.
+- **Runs queue per dispatch.** Test cases sent in one dispatch run one after another when the project's Run Queue is **Sequential** (the default), or all at once when it is **Parallel**. Separate dispatches each make their own queue and run at the same time. See [Run Queue](../../concepts/agent-skills.md#run-queue).
 - **Usage counts.** Runs started through MCP count toward the plan of the user who created the API key. When the limit is reached, calls return `[USAGE_LIMIT_EXCEEDED]`.
 - **Your app must be reachable from Wopee.io.** The runners are in the cloud, so `localhost` does not work. Use a public or staging URL, [expose your local app with a tunnel](../test-localhost.md), or see [Enterprise connectivity](../../security/enterprise-connectivity.md).
 

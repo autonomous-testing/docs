@@ -96,7 +96,7 @@ Every test shows a coloured dot. Hover it for the label.
 | Blinking dot                 | _Queued_ or _Execution running_        | The test is still waiting or running.                                                                                                                                 |
 | Grey dot                     | _Not run_                              | The test has not run yet.                                                                                                                                             |
 
-The analysis overview counts the same way: **Passed**, **Incomplete**, **Failed**, **Running / queued** and **Not run**. Incomplete is never counted as a pass.
+The analysis overview counts the same way: **Passed**, **Incomplete**, **Failed**, **Running / queued** and **Not run**. Incomplete is never counted as a pass. Tests started together wait as _Queued_ and run one by one when the project's Run Queue is **Sequential**, the default. See [Run Queue](../concepts/agent-skills.md#run-queue).
 
 **The verdict gate** is a set of evidence checks that runs after every test. It compares the agent's verdict with what the run really recorded: no proof, no pass. The tooltip and the report name a check by a short code. In plain words:
 
