@@ -19,6 +19,8 @@ Set these as secrets of your CI instead of committing a `.env` file:
 | `WOPEE_PROJECT_UUID` | Project UUID (same place). |
 | `WOPEE_API_URL` | Only for a self-hosted instance. Default `https://api.wopee.io`. |
 
+To fail fast on a wrong or deleted key, [check the key](../guides/api-keys.md#check-a-key) as the first step of the job.
+
 ## Branches and suite names
 
 - Baselines are kept per branch. Set `WOPEE_BRANCH_NAME` from your pipeline, for example `WOPEE_BRANCH_NAME=$GITHUB_REF_NAME` in GitHub Actions.

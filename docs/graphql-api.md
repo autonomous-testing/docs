@@ -26,7 +26,25 @@ Get the key and the project UUID in Commander under **More** â€º **Settings** â€
 
     The API reads the key from the `api_key` header or from `x-api-key`. Some corporate proxies and load balancers drop header names that contain an underscore, so the request arrives without a key. Send `x-api-key`, or both headers with the same value as the SDKs do.
 
-Errors come back in the GraphQL `errors` array. A wrong key returns HTTP `401` with `You are not authorized to get this resource.`; most other errors, a missing key included, return HTTP `200` with `errors` set and the mutation's `data` field `null`. Always check `errors`, not only the HTTP status.
+Errors come back in the GraphQL `errors` array. A refused key answers with an HTTP error status, and `extensions.code` says why:
+
+| Answer | Meaning |
+| --- | --- |
+| `401`, `UNAUTHENTICATED`, `The API key does not match any project: it is mistyped or was deleted.` | The key exists nowhere. It is refused on every request, `{ __typename }` included. |
+| `403`, `FORBIDDEN`, `The API key is not valid for this project.` | The key is real but belongs to another project: check `WOPEE_PROJECT_UUID`. |
+| `401`, `UNAUTHENTICATED`, `An API key is required.` or `Not Authorised!` | No key arrived. Behind a proxy, send `x-api-key` (see the tip above). |
+
+Most other errors return HTTP `200` with `errors` set and the mutation's `data` field `null`. Always check `errors`, not only the HTTP status.
+
+### Check a key
+
+`setupCheck` takes no project: it answers with the project the key belongs to, so it tests a key before you have the project UUID at hand. It is the query behind the MCP tool `wopee_setup_check`.
+
+```shell
+curl -sS "$WOPEE_API_URL"   -H "Content-Type: application/json"   -H "x-api-key: $WOPEE_API_KEY"   -d '{"query": "{ setupCheck { projectUuid projectName } }"}'
+```
+
+A working key returns its project; compare `projectUuid` with `WOPEE_PROJECT_UUID`. A key that matches no project returns `401`.
 
 ## Lifecycle
 

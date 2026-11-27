@@ -2,7 +2,7 @@
 title: Find your Wopee.io API key and project UUID
 description: Where to find WOPEE_PROJECT_UUID and generate WOPEE_API_KEY in Commander (More › Settings › API Keys), why the key is shown only once and how to rotate it.
 type: How-to
-updated: 9 November 2026
+updated: 27 November 2026
 ---
 
 # Find your API key and project UUID
@@ -47,6 +47,20 @@ export WOPEE_PROJECT_UUID="your-project-uuid"
 ```
 
 On Windows PowerShell use `$env:WOPEE_API_KEY = "your-api-key"`.
+
+## Check a key
+
+To test a key, for example as the first step of a CI job, ask the API which project it belongs to:
+
+```shell
+curl -sS "${WOPEE_API_URL:-https://api.wopee.io/graphql}"   -H "Content-Type: application/json"   -H "x-api-key: $WOPEE_API_KEY"   -d '{"query": "{ setupCheck { projectUuid projectName } }"}'
+```
+
+- **The project comes back:** the key works. Its `projectUuid` must equal `WOPEE_PROJECT_UUID`.
+- **HTTP `401`, `UNAUTHENTICATED`:** the key matches no project. It is mistyped or was deleted: generate a new one.
+- **HTTP `403`, `FORBIDDEN`** on a later request: the key is real but belongs to another project. Check `WOPEE_PROJECT_UUID`.
+
+In a coding agent, the MCP tool `wopee_setup_check` runs the same check.
 
 ## Rotate a key
 
